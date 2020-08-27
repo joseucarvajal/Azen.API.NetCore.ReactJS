@@ -5,7 +5,8 @@ Azen.API/logs
 Azen.API/obj
 
 Azen.API.Sockets/bin
+Azen.API.Sockets/obj
 Azen.API.Sockets/logs
 
 Azen.API.Test/bin
-Azen.API.Test/logs
+Azen.API.Test/obj
