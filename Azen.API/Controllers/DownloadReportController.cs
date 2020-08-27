@@ -8,12 +8,14 @@ namespace Azen.API.Controllers
 {
     public class DownloadReportController : Controller
     {
-        public IActionResult Index()
-        {
-            Response.ContentType = "text/plain";
-            Response.AddHeader("Content-Disposition", "attachment; filename=file.txt");
-            Response.TransmitFile(Server.MapPath("file.txt"));
-            return View();
-        }
-    }
+		public IActionResult Index()
+		{
+			return View();
+		}
+		public FileResult DownloadFile()
+		{
+			// this will append the content-disposition header and download the file to the computer as "downloaded_file.txt"
+			return File("/temp/test.txt", "text/plain", "downloaded_file.txt");
+		}
+	}
 }
