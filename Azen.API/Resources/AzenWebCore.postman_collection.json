@@ -1,0 +1,327 @@
+{
+	"info": {
+		"_postman_id": "6b2dc2f5-0651-441d-b9c5-4d3a582af614",
+		"name": "AzenWebCore",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CM_ACEPTARLOGIN login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Buffer\":\"<cm>LOGIN</cm><usr>azen</usr><vc>azen</vc>\",\r\n    \"cmd\":-3\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44391/api/command/aceptarlogin",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44391",
+					"path": [
+						"api",
+						"command",
+						"aceptarlogin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CM_APLICACION lanzar app",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJaQ2xhaW1zIjoie1wiVGtuYVwiOlwiMXpjWDRzZTVHT1wifSIsIm5iZiI6MTU5ODQ5MzQ1MCwiZXhwIjoxNTk4NTc5ODUwLCJpYXQiOjE1OTg0OTM0NTB9.yXsQfKM9yDbv3NFy4M8zC-egnP0m4HW8hy0FKReF6Ns",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cmd\":-1,\r\n    \"log\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44391/api/command/azenctb/execute",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44391",
+					"path": [
+						"api",
+						"command",
+						"azenctb",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CM_EJECOPCION editar cuertas",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJaQ2xhaW1zIjoie1wiVGtuYVwiOlwid0ozN0RWSExnRFwiLFwiVGtuc1wiOlwiSnJ4MEN5bkN4a1wifSIsIm5iZiI6MTU5ODQ5ODQzOCwiZXhwIjoxNTk4NTg0ODM4LCJpYXQiOjE1OTg0OTg0Mzh9.7xpHkgGqO2AN8iBJO00It7eCBHSQUCdUMCRubPEEIPg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"port\":7757,\n    \"cmd\": 118,\n    \"buffer\":\"0xA13DL\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44391/api/command/azenctb/execute",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44391",
+					"path": [
+						"api",
+						"command",
+						"azenctb",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CM_SGTEREG default siguiente registro",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJaQ2xhaW1zIjoie1wiVGtuYVwiOlwid0ozN0RWSExnRFwiLFwiVGtuc1wiOlwiSnJ4MEN5bkN4a1wifSIsIm5iZiI6MTU5ODQ5ODQzOCwiZXhwIjoxNTk4NTg0ODM4LCJpYXQiOjE1OTg0OTg0Mzh9.7xpHkgGqO2AN8iBJO00It7eCBHSQUCdUMCRubPEEIPg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"port\":7757,\r\n    \"cmd\": 40\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44391/api/command/azenctb/execute",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44391",
+					"path": [
+						"api",
+						"command",
+						"azenctb",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CM_CERRAR default cerrar",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJaQ2xhaW1zIjoie1wiVGtuYVwiOlwid0ozN0RWSExnRFwiLFwiVGtuc1wiOlwiSnJ4MEN5bkN4a1wifSIsIm5iZiI6MTU5ODQ5ODQzOCwiZXhwIjoxNTk4NTg0ODM4LCJpYXQiOjE1OTg0OTg0Mzh9.7xpHkgGqO2AN8iBJO00It7eCBHSQUCdUMCRubPEEIPg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"port\":7757,\r\n    \"cmd\": 11\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44391/api/command/azenctb/execute",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44391",
+					"path": [
+						"api",
+						"command",
+						"azenctb",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CM_EJECOPCION listar cuertas",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJaQ2xhaW1zIjoie1wiVGtuYVwiOlwid0ozN0RWSExnRFwiLFwiVGtuc1wiOlwiSnJ4MEN5bkN4a1wifSIsIm5iZiI6MTU5ODQ5ODQzOCwiZXhwIjoxNTk4NTg0ODM4LCJpYXQiOjE1OTg0OTg0Mzh9.7xpHkgGqO2AN8iBJO00It7eCBHSQUCdUMCRubPEEIPg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"port\":7757,\n    \"cmd\": 118,\n    \"buffer\":\"A13F\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44391/api/command/azenctb/execute",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44391",
+					"path": [
+						"api",
+						"command",
+						"azenctb",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CM_ACEPTAR aceptar",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJaQ2xhaW1zIjoie1wiVGtuYVwiOlwid0ozN0RWSExnRFwiLFwiVGtuc1wiOlwiSnJ4MEN5bkN4a1wifSIsIm5iZiI6MTU5ODQ5ODQzOCwiZXhwIjoxNTk4NTg0ODM4LCJpYXQiOjE1OTg0OTg0Mzh9.7xpHkgGqO2AN8iBJO00It7eCBHSQUCdUMCRubPEEIPg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"port\":7757,\n    \"cmd\": 50\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44391/api/command/azenctb/execute",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44391",
+					"path": [
+						"api",
+						"command",
+						"azenctb",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CM_EJECOPCION salir",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJaQ2xhaW1zIjoie1wiVGtuYVwiOlwid0ozN0RWSExnRFwiLFwiVGtuc1wiOlwiSnJ4MEN5bkN4a1wifSIsIm5iZiI6MTU5ODQ5ODQzOCwiZXhwIjoxNTk4NTg0ODM4LCJpYXQiOjE1OTg0OTg0Mzh9.7xpHkgGqO2AN8iBJO00It7eCBHSQUCdUMCRubPEEIPg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"port\":7757,\n    \"cmd\": 118,\n    \"buffer\":\"0x1300L\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44391/api/command/azenctb/execute",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44391",
+					"path": [
+						"api",
+						"command",
+						"azenctb",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
