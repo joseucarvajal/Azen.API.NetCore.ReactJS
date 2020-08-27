@@ -21,9 +21,12 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Azen.API
-{
+{   
+
     public class Startup
     {
+        readonly string AzenCORSPolicy = "_AzenCORSPolicy";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -33,7 +36,17 @@ namespace Azen.API
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {
+        {            
+            services.AddCors(options =>
+                options.AddDefaultPolicy(builder =>
+                    builder.AllowAnyOrigin()
+                   .AllowAnyMethod()
+                   .AllowAnyHeader()
+                )
+            );
+
+            services.AddRazorPages();
+
             services.AddControllers();
             services.Configure<AzenSettings>(Configuration.GetSection("Azen"));
             services.Configure<IdentitySettings>(Configuration.GetSection("Identity"));
@@ -61,13 +74,23 @@ namespace Azen.API
 
             app.UseRouting();
 
+            app.UseCors();
+
             // custom jwt auth middleware
             app.UseMiddleware<JwtMiddleware>();
 
-
+            /*
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+            */
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
         }        
     }

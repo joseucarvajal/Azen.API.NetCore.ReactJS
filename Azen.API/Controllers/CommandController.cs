@@ -15,6 +15,7 @@ using MediatR;
 using Azen.API.Sockets.Helpers;
 using Newtonsoft.Json;
 using Azen.API.Sockets.Auth;
+using Microsoft.AspNetCore.Cors;
 
 namespace Azen.API.Controllers
 {
@@ -23,7 +24,6 @@ namespace Azen.API.Controllers
     public class CommandController : ControllerBase
     {
         LogHandler _logHandler;
-        bool siLogActividad;
         ZSocket _zsck;
         private readonly IOptions<AzenSettings> _azenSettings;
         private readonly IMediator _mediator;
@@ -36,12 +36,14 @@ namespace Azen.API.Controllers
             _mediator = mediator;
         }
 
+        //[EnableCors]
         [HttpPost("aceptarlogin")]
         public async Task<ActionResult<string>> AceptarLogin(Model.ZCommand.Execute.Command command)
         {
-            return await _mediator.Send(command);
+            string response = await _mediator.Send(command);
+            return response;
         }
-
+        
         [HttpPost("{idaplicacion}/execute")]
         [Authorize]
         public async Task<ActionResult<string>> Execute([FromRoute] string idAplicacion, [FromBody] Model.ZCommand.Execute.Command command)
@@ -53,35 +55,9 @@ namespace Azen.API.Controllers
             command.IdAplication = idAplicacion;
             command.Tkna = zClaims.Tkna;
 
-            return await _mediator.Send(command);
-        }
+            string response = await _mediator.Send(command);
 
-        [HttpGet]
-        public IActionResult Get(
-            string idApl,
-            string opcion,
-            [FromHeader] int cmd,
-            [FromHeader] string dominio,
-            [FromHeader] string buffer,
-            [FromHeader] string tkna,
-            [FromHeader] string tkns,
-            [FromHeader] int log,
-            [FromHeader] int puerto
-            )
-        {
-            string result = string.Empty;
-            // Ejecuta solo opcion
-            if (cmd == ZCommandConst.CM_EJECSOLOOPCION)
-            {
-                result = _zsck.EjecutarSoloOpcion(idApl, opcion, buffer, dominio, log, tkna);
-            }
-            // cualquier otro comando
-            else
-            {
-                result = _zsck.EjecutarComando(idApl, dominio, buffer, tkna, tkns, log, puerto, cmd);
-            }
-
-            return Ok(result);
+            return response;
         }
     }
 }
