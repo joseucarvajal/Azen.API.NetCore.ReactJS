@@ -1,21 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Azen.API.Sockets.Helpers;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.StaticFiles;
 
 namespace Azen.API.Controllers
 {
     public class DownloadReportController : Controller
     {
-		public IActionResult Index()
+		[Authorize]
+		public FileResult Index(string filename)
 		{
-			return View();
-		}
-		public FileResult DownloadFile()
-		{
-			// this will append the content-disposition header and download the file to the computer as "downloaded_file.txt"
-			return File("/temp/test.txt", "text/plain", "downloaded_file.txt");
+			string[] paths = { @"temp", filename };
+			string fullPath = Path.Combine(paths);
+
+			byte[] data = System.IO.File.ReadAllBytes(fullPath);
+
+			string contentType;
+			var provider = new FileExtensionContentTypeProvider();
+			if(!provider.TryGetContentType(filename, out contentType))
+			{
+				contentType = "text/plain";
+			}
+
+			System.IO.File.Delete(fullPath);
+
+			return File(data, contentType);
 		}
 	}
 }

@@ -1,24 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "D:\\joseW\\azen\\Azen.API.Middleware\\Azen.API.Test\\Azen.API.Test.csproj": {}
+    "D:\\Azen\\GitAzen\\Azen.API.NetCore.ReactJS\\Azen.API.Test\\Azen.API.Test.csproj": {}
   },
   "projects": {
-    "D:\\joseW\\azen\\Azen.API.Middleware\\Azen.API.Test\\Azen.API.Test.csproj": {
+    "D:\\Azen\\GitAzen\\Azen.API.NetCore.ReactJS\\Azen.API.Test\\Azen.API.Test.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\joseW\\azen\\Azen.API.Middleware\\Azen.API.Test\\Azen.API.Test.csproj",
+        "projectUniqueName": "D:\\Azen\\GitAzen\\Azen.API.NetCore.ReactJS\\Azen.API.Test\\Azen.API.Test.csproj",
         "projectName": "Azen.API.Test",
-        "projectPath": "D:\\joseW\\azen\\Azen.API.Middleware\\Azen.API.Test\\Azen.API.Test.csproj",
-        "packagesPath": "C:\\Users\\joseW\\.nuget\\packages\\",
-        "outputPath": "D:\\joseW\\azen\\Azen.API.Middleware\\Azen.API.Test\\obj\\",
+        "projectPath": "D:\\Azen\\GitAzen\\Azen.API.NetCore.ReactJS\\Azen.API.Test\\Azen.API.Test.csproj",
+        "packagesPath": "C:\\Users\\Carlos Hurtado\\.nuget\\packages\\",
+        "outputPath": "D:\\Azen\\GitAzen\\Azen.API.NetCore.ReactJS\\Azen.API.Test\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\joseW\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Carlos Hurtado\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -73,7 +75,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
         }
       }
     }
