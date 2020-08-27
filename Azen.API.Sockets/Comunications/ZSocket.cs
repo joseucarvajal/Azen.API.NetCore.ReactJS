@@ -299,8 +299,20 @@ namespace Azen.API.Sockets.Comunications
             byte[] bytes = new byte[tamano];
             try
             {
-                int bytesRec = socket.Receive(bytes);
-                return Encoding.UTF8.GetString(bytes, 0, bytesRec);
+                int bytesRead = 0;
+                string result = string.Empty;
+                
+                do
+                {
+                    int bytesRec = socket.Receive(bytes);
+                    bytesRead += bytesRec;
+
+                    result += Encoding.UTF8.GetString(bytes, 0, bytesRec);
+
+                } while (bytesRead < tamano);
+
+
+                return result;
             }
             catch (Exception e)
             {
