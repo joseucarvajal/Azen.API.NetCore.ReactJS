@@ -3,6 +3,7 @@
 Azen.API/bin
 Azen.API/logs
 Azen.API/obj
+Azen.API/tmp
 
 Azen.API.Sockets/bin
 Azen.API.Sockets/obj
