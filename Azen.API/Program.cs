@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
@@ -14,23 +15,15 @@ namespace Azen.API
     {
         public static void Main(string[] args)
         {
+            string folderTmp = "tmp";
+            if (!Directory.Exists(folderTmp))
+            {
+                Directory.CreateDirectory(folderTmp);
+            }
+
             CreateHostBuilder(args).Build().Run();
         }
-
-         /*public static IHostBuilder CreateHostBuilder(string[] args) =>
-             Host.CreateDefaultBuilder(args)
-                 .ConfigureWebHostDefaults(webBuilder =>
-                 {
-                     webBuilder.UseStartup<Startup>().UseKestrel(options =>
-                     {
-                         int port = 5443;
-                         if (args.Length > 0)
-                             int.TryParse(args[0], out port);
-
-                         options.ListenAnyIP(port); // is no cert and password specified the run the server as HTTP one
-                     });
-                 });
-         */
+         
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
             .ConfigureWebHostDefaults(webBuilder =>
