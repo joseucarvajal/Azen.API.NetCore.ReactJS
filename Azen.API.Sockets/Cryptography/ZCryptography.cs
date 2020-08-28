@@ -20,7 +20,7 @@ namespace Azen.API.Sockets.Cryptography
             _zCriptographySettings = zCriptographySettings;
         }
 
-        public string PlainTextToCipher(string plainText)
+        public string GetCipherText(string plainText)
         {
             byte[] cipherTextBytes;
 
@@ -46,7 +46,7 @@ namespace Azen.API.Sockets.Cryptography
             }
         }
 
-        public string CipherTextToPlain(string cipherText)
+        public string GetPlainText(string cipherText)
         {
             using (var rijAlg = new RijndaelManaged())
             {

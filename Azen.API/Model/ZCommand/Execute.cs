@@ -41,7 +41,7 @@ namespace Azen.API.Model.ZCommand
 
             public async Task<string> Handle(Command request, CancellationToken cancellationToken)
             {                
-                request.Buffer = _zCryptography.CipherTextToPlain(request.Buffer);
+                request.Buffer = _zCryptography.GetPlainText(request.Buffer);
 
                 switch (request.Cmd)
                 {

@@ -15,9 +15,9 @@ namespace Azen.API.Test
             zCriptographySettings.Key = "$B&E)H@McQfTjWnZr4u7x!A%C*F-JaNd";
             zCriptographySettings.IV = "z%C*F-JaNdRgUkXp";
 
-            ZCryptography zCriptography = new ZCryptography(zCriptographySettings);
-            var cipherText = zCriptography.PlainTextToCipher(plainText);
-            var plainTextReversed = zCriptography.CipherTextToPlain(cipherText);
+            ZCryptography zCriptography = new ZCryptography();
+            var cipherText = zCriptography.GetCipherText(plainText);
+            var plainTextReversed = zCriptography.GetPlainText(cipherText);
 
             Assert.Equal(plainText, plainTextReversed);
         }
