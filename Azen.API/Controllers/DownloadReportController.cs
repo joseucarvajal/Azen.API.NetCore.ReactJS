@@ -10,12 +10,9 @@ using Microsoft.AspNetCore.StaticFiles;
 
 namespace Azen.API.Controllers
 {
-	[Route("api/[controller]")]
-	[ApiController]
-	public class DownloadReportController : ControllerBase
+	public class DownloadReportController : Controller
 	{
-		[HttpGet("{fileName}")]
-		[Authorize]
+		[HttpGet("{fileName}")]		
 		public FileResult Index([FromRoute] string filename)
 		{
 			string[] paths = { @"tmp", filename };
