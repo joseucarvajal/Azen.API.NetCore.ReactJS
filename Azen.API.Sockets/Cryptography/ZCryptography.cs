@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Options;
+using System;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
@@ -9,15 +10,9 @@ namespace Azen.API.Sockets.Cryptography
     {
         private ZCryptographySettings _zCriptographySettings;
 
-        public ZCryptography()
+        public ZCryptography(IOptions<ZCryptographySettings> zCriptographySettings)
         {
-            ZCryptographySettings zCriptographySettings = new ZCryptographySettings
-            {
-                Key = "$B&E)H@McQfTjWnZr4u7x!A%C*F-JaNd",
-                IV = "z%C*F-JaNdRgUkXp"
-            };
-
-            _zCriptographySettings = zCriptographySettings;
+            _zCriptographySettings = zCriptographySettings.Value;
         }
 
         public string GetCipherText(string plainText)

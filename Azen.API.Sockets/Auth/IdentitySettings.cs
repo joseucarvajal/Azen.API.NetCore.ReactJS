@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Azen.API.Sockets.Settings
+namespace Azen.API.Sockets.Auth
 {
     public class IdentitySettings
     {

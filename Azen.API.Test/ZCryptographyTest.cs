@@ -1,4 +1,5 @@
 ﻿using Azen.API.Sockets.Cryptography;
+using Microsoft.Extensions.Options;
 using System;
 using Xunit;
 
@@ -14,8 +15,9 @@ namespace Azen.API.Test
             ZCryptographySettings zCriptographySettings = new ZCryptographySettings();
             zCriptographySettings.Key = "$B&E)H@McQfTjWnZr4u7x!A%C*F-JaNd";
             zCriptographySettings.IV = "z%C*F-JaNdRgUkXp";
+            IOptions<ZCryptographySettings> settingsOptions = Options.Create(zCriptographySettings);
 
-            ZCryptography zCriptography = new ZCryptography();
+            ZCryptography zCriptography = new ZCryptography(settingsOptions);
             var cipherText = zCriptography.GetCipherText(plainText);
             var plainTextReversed = zCriptography.GetPlainText(cipherText);
 

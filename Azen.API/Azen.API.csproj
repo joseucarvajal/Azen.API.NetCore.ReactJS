@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -21,6 +21,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Azen.API.Sockets\Azen.API.Sockets.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="tmp\" />
   </ItemGroup>
 
 
