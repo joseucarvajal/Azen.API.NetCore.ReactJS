@@ -5,11 +5,11 @@ using System.Text;
 
 namespace Azen.API.Sockets.Cryptography
 {
-    public class ZCriptography
+    public class ZCryptography
     {
-        private ZCriptographySettings _zCriptographySettings;
+        private ZCryptographySettings _zCriptographySettings;
 
-        public ZCriptography(ZCriptographySettings zCriptographySettings)
+        public ZCryptography(ZCryptographySettings zCriptographySettings)
         {
             _zCriptographySettings = zCriptographySettings;
         }
