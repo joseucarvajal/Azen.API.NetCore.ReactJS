@@ -23,9 +23,5 @@
     <ProjectReference Include="..\Azen.API.Sockets\Azen.API.Sockets.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="tmp\" />
-  </ItemGroup>
-
 
 </Project>

@@ -11,18 +11,18 @@ using Microsoft.AspNetCore.StaticFiles;
 namespace Azen.API.Controllers
 {
 	public class DownloadReportController : Controller
-	{
-		[HttpGet("{fileName}")]		
-		public FileResult Index([FromRoute] string filename)
+	{		
+		[HttpGet("downloadreport/{filename}")]
+		public async Task<IActionResult> Index(string fileName)
 		{
-			string[] paths = { @"tmp", filename };
+			string[] paths = { @"tmp", fileName };
 			string fullPath = Path.Combine(paths);
 
-			byte[] data = System.IO.File.ReadAllBytes(fullPath);
+			byte[] data = await System.IO.File.ReadAllBytesAsync (fullPath);
 
 			string contentType;
 			var provider = new FileExtensionContentTypeProvider();
-			if (!provider.TryGetContentType(filename, out contentType))
+			if (!provider.TryGetContentType(fileName, out contentType))
 			{
 				contentType = "text/plain";
 			}
