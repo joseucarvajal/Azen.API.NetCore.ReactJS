@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Azen.API.Sockets.Auth;
 using Azen.API.Sockets.Comunications;
+using Azen.API.Sockets.Cryptography;
 using Azen.API.Sockets.General;
 using Azen.API.Sockets.Helpers;
 using Azen.API.Sockets.Settings;
@@ -48,11 +49,14 @@ namespace Azen.API
             services.AddRazorPages();
 
             services.AddControllers();
-            services.Configure<AzenSettings>(Configuration.GetSection("Azen"));
-            services.Configure<IdentitySettings>(Configuration.GetSection("Identity"));
+            services.Configure<AzenSettings>(Configuration.GetSection("AzenSettings"));
+            services.Configure<IdentitySettings>(Configuration.GetSection("IdentitySettings"));
+            services.Configure<ZCryptographySettings>(Configuration.GetSection("ZCryptographySettings"));
 
             services.AddSingleton<LogHandler>();
+
             services.AddScoped<AuthService>();
+            services.AddScoped<ZCryptography>();
 
             services.AddSingleton<ZTag>();
             services.AddTransient<ZSocket>();

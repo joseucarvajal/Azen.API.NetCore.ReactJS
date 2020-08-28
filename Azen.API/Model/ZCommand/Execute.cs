@@ -1,12 +1,10 @@
 ﻿using Azen.API.Model.ZCommand.Interceptors;
 using Azen.API.Sockets.Comunications;
+using Azen.API.Sockets.Cryptography;
 using Azen.API.Sockets.Domain.Command;
 using Azen.API.Sockets.General;
 using FluentValidation;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -31,16 +29,19 @@ namespace Azen.API.Model.ZCommand
         public class Handler : IRequestHandler<Command, string>
         {
             private readonly IMediator _mediator;
-            ZSocket _zSocket;
-            public Handler(IMediator mediator, ZSocket zSocket)
+            private ZSocket _zSocket;
+            private ZCryptography _zCryptography;
+
+            public Handler(IMediator mediator, ZSocket zSocket, ZCryptography zCryptography)
             {
                 _mediator = mediator;
                 _zSocket = zSocket;
+                _zCryptography = zCryptography;
             }
 
             public async Task<string> Handle(Command request, CancellationToken cancellationToken)
-            {
-                var requestZCommandDTO = request as ZCommandDTO;
+            {                
+                request.Buffer = _zCryptography.CipherTextToPlain(request.Buffer);
 
                 switch (request.Cmd)
                 {

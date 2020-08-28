@@ -9,8 +9,14 @@ namespace Azen.API.Sockets.Cryptography
     {
         private ZCryptographySettings _zCriptographySettings;
 
-        public ZCryptography(ZCryptographySettings zCriptographySettings)
+        public ZCryptography()
         {
+            ZCryptographySettings zCriptographySettings = new ZCryptographySettings
+            {
+                Key = "$B&E)H@McQfTjWnZr4u7x!A%C*F-JaNd",
+                IV = "z%C*F-JaNdRgUkXp"
+            };
+
             _zCriptographySettings = zCriptographySettings;
         }
 
@@ -66,7 +72,7 @@ namespace Azen.API.Sockets.Cryptography
             rijAlg.Mode = CipherMode.CBC;
             rijAlg.Padding = PaddingMode.PKCS7;
             rijAlg.KeySize = 256;
-            rijAlg.BlockSize = 128;
+            rijAlg.BlockSize = 128;            
 
             rijAlg.Key = Encoding.UTF8.GetBytes(_zCriptographySettings.Key);
 
