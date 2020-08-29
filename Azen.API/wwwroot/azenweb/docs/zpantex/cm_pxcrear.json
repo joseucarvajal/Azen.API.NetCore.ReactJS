@@ -1,0 +1,1887 @@
+{
+    "numEventos": 111,
+    "eventos": [
+        {
+            "evento": 1,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 120,
+                "inf": "",
+                "buffer": {
+                    "fto": "json",
+                    "dato": {
+                        "numPx": 1,
+                        "zFormaTablaList": [
+                            {
+                                "ven": {
+                                    "numPx": 1,
+                                    "descr": "Tercero (ctbter.zf0)",
+                                    "nomTbl": "",
+                                    "nomRcrZoom": "^/ctbter.zf2",
+                                    "fil": 1,
+                                    "col": 1,
+                                    "nfils": 19,
+                                    "ncols": 79,
+                                    "modo": 4,
+                                    "ctx": 41283,
+                                    "numLinsEnc": 0,
+                                    "numLinsDatos": 0,
+                                    "nfilsrx": 18,
+                                    "ncolsrx": 73
+                                },
+                                "linEst": [
+                                    {
+                                        "etq": "Ayuda",
+                                        "tec": 265,
+                                        "cmd": 9,
+                                        "desh": 0
+                                    },
+                                    {
+                                        "etq": "Adicionar",
+                                        "tec": 267,
+                                        "cmd": 44,
+                                        "desh": 0
+                                    },
+                                    {
+                                        "etq": "Modificar",
+                                        "tec": 268,
+                                        "cmd": 45,
+                                        "desh": 0
+                                    },
+                                    {
+                                        "etq": "Consultar",
+                                        "tec": 269,
+                                        "cmd": 61,
+                                        "desh": 1
+                                    },
+                                    {
+                                        "etq": "Cerrar",
+                                        "tec": 27,
+                                        "cmd": 11,
+                                        "desh": 0
+                                    },
+                                    {
+                                        "etq": "Primero",
+                                        "tec": 10309,
+                                        "cmd": 36,
+                                        "desh": 0
+                                    },
+                                    {
+                                        "etq": "Anterior",
+                                        "tec": 305,
+                                        "cmd": 41,
+                                        "desh": 0
+                                    },
+                                    {
+                                        "etq": "Siguiente",
+                                        "tec": 306,
+                                        "cmd": 40,
+                                        "desh": 0
+                                    },
+                                    {
+                                        "etq": "Ultimo",
+                                        "tec": 10310,
+                                        "cmd": 37,
+                                        "desh": 0
+                                    },
+                                    {
+                                        "etq": "Retocar",
+                                        "tec": 10065,
+                                        "cmd": 94,
+                                        "desh": 0
+                                    },
+                                    {
+                                        "etq": "Visualizar",
+                                        "tec": 10086,
+                                        "cmd": 19,
+                                        "desh": 0
+                                    }
+                                ],
+                                "cmps": [
+                                    {
+                                        "etq": "Codigo          ",
+                                        "nomCmp": "codigo",
+                                        "lonv": 13,
+                                        "lon": 13,
+                                        "claseInd": 0,
+                                        "tipo": 65,
+                                        "modo": 256,
+                                        "noEnTabla": 0,
+                                        "control": 44,
+                                        "numDec": 0
+                                    },
+                                    {
+                                        "etq": "Identificacion  ",
+                                        "nomCmp": "id",
+                                        "lonv": 15,
+                                        "lon": 13,
+                                        "claseInd": 0,
+                                        "tipo": 65,
+                                        "modo": 0,
+                                        "noEnTabla": 0,
+                                        "control": 44,
+                                        "numDec": 0
+                                    },
+                                    {
+                                        "etq": "@RTipo ident.",
+                                        "cmps": [
+                                            {
+                                                "etq": "Nit",
+                                                "nomCmp": "tipoId",
+                                                "lonv": 2,
+                                                "lon": 1,
+                                                "claseInd": 2,
+                                                "tipo": 69,
+                                                "modo": 0,
+                                                "noEnTabla": 0,
+                                                "control": 44,
+                                                "numDec": 0
+                                            },
+                                            {
+                                                "etq": "Cedula",
+                                                "nomCmp": "tipoId",
+                                                "lonv": 2,
+                                                "lon": 2,
+                                                "claseInd": 2,
+                                                "tipo": 69,
+                                                "modo": 0,
+                                                "noEnTabla": 0,
+                                                "control": 44,
+                                                "numDec": 0
+                                            },
+                                            {
+                                                "etq": "Otro",
+                                                "nomCmp": "tipoId",
+                                                "lonv": 2,
+                                                "lon": 0,
+                                                "claseInd": 2,
+                                                "tipo": 69,
+                                                "modo": 0,
+                                                "noEnTabla": 0,
+                                                "control": 44,
+                                                "numDec": 0
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "etq": "Nombre completo ",
+                                        "nomCmp": "nombre",
+                                        "lonv": 56,
+                                        "lon": 60,
+                                        "claseInd": 0,
+                                        "tipo": 65,
+                                        "modo": 0,
+                                        "noEnTabla": 0,
+                                        "control": 44,
+                                        "numDec": 0
+                                    },
+                                    {
+                                        "etq": "Primer apellido ",
+                                        "nomCmp": "apellido1",
+                                        "lonv": 15,
+                                        "lon": 15,
+                                        "claseInd": 0,
+                                        "tipo": 65,
+                                        "modo": 0,
+                                        "noEnTabla": 0,
+                                        "control": 44,
+                                        "numDec": 0
+                                    },
+                                    {
+                                        "etq": "Segundo apellido ",
+                                        "nomCmp": "apellido2",
+                                        "lonv": 15,
+                                        "lon": 15,
+                                        "claseInd": 0,
+                                        "tipo": 65,
+                                        "modo": 0,
+                                        "noEnTabla": 0,
+                                        "control": 44,
+                                        "numDec": 0
+                                    },
+                                    {
+                                        "etq": "Primer nombre   ",
+                                        "nomCmp": "nombre1",
+                                        "lonv": 15,
+                                        "lon": 15,
+                                        "claseInd": 0,
+                                        "tipo": 65,
+                                        "modo": 0,
+                                        "noEnTabla": 0,
+                                        "control": 44,
+                                        "numDec": 0
+                                    },
+                                    {
+                                        "etq": "Segundo nombre   ",
+                                        "nomCmp": "nombre2",
+                                        "lonv": 15,
+                                        "lon": 15,
+                                        "claseInd": 0,
+                                        "tipo": 65,
+                                        "modo": 0,
+                                        "noEnTabla": 0,
+                                        "control": 44,
+                                        "numDec": 0
+                                    },
+                                    {
+                                        "etq": "Direccion       ",
+                                        "nomCmp": "direccion",
+                                        "lonv": 56,
+                                        "lon": 50,
+                                        "claseInd": 0,
+                                        "tipo": 65,
+                                        "modo": 0,
+                                        "noEnTabla": 0,
+                                        "control": 44,
+                                        "numDec": 0
+                                    },
+                                    {
+                                        "etq": "Ciudad          ",
+                                        "nomCmp": "ciudad",
+                                        "lonv": 20,
+                                        "lon": 20,
+                                        "claseInd": 0,
+                                        "tipo": 65,
+                                        "modo": 0,
+                                        "noEnTabla": 0,
+                                        "control": 44,
+                                        "numDec": 0
+                                    },
+                                    {
+                                        "etq": "Telefonos       ",
+                                        "nomCmp": "telefono1",
+                                        "lonv": 10,
+                                        "lon": 10,
+                                        "claseInd": 0,
+                                        "tipo": 65,
+                                        "modo": 0,
+                                        "noEnTabla": 0,
+                                        "control": 44,
+                                        "numDec": 0
+                                    },
+                                    {
+                                        "etq": "",
+                                        "nomCmp": "telefono2",
+                                        "lonv": 10,
+                                        "lon": 10,
+                                        "claseInd": 0,
+                                        "tipo": 65,
+                                        "modo": 0,
+                                        "noEnTabla": 0,
+                                        "control": 44,
+                                        "numDec": 0
+                                    },
+                                    {
+                                        "etq": "Fax   ",
+                                        "nomCmp": "fax",
+                                        "lonv": 15,
+                                        "lon": 10,
+                                        "claseInd": 0,
+                                        "tipo": 65,
+                                        "modo": 0,
+                                        "noEnTabla": 0,
+                                        "control": 44,
+                                        "numDec": 0
+                                    },
+                                    {
+                                        "etq": "@RTipo de regimen",
+                                        "cmps": [
+                                            {
+                                                "etq": "Simplificado",
+                                                "nomCmp": "tipoRegimen",
+                                                "lonv": 2,
+                                                "lon": 3,
+                                                "claseInd": 2,
+                                                "tipo": 69,
+                                                "modo": 0,
+                                                "noEnTabla": 0,
+                                                "control": 44,
+                                                "numDec": 0
+                                            },
+                                            {
+                                                "etq": "Comun",
+                                                "nomCmp": "tipoRegimen",
+                                                "lonv": 2,
+                                                "lon": 2,
+                                                "claseInd": 2,
+                                                "tipo": 69,
+                                                "modo": 0,
+                                                "noEnTabla": 0,
+                                                "control": 44,
+                                                "numDec": 0
+                                            },
+                                            {
+                                                "etq": "Otros",
+                                                "nomCmp": "tipoRegimen",
+                                                "lonv": 2,
+                                                "lon": 0,
+                                                "claseInd": 2,
+                                                "tipo": 69,
+                                                "modo": 0,
+                                                "noEnTabla": 0,
+                                                "control": 44,
+                                                "numDec": 0
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "etq": "@RTipo tercero",
+                                        "cmps": [
+                                            {
+                                                "etq": "Gran contribuyente",
+                                                "nomCmp": "tipoImp",
+                                                "lonv": 1,
+                                                "lon": 0,
+                                                "claseInd": 1,
+                                                "tipo": 69,
+                                                "modo": 0,
+                                                "noEnTabla": 0,
+                                                "control": 44,
+                                                "numDec": 0
+                                            },
+                                            {
+                                                "etq": "Autorretenedor",
+                                                "nomCmp": "tipoImp",
+                                                "lonv": 1,
+                                                "lon": 1,
+                                                "claseInd": 1,
+                                                "tipo": 69,
+                                                "modo": 0,
+                                                "noEnTabla": 0,
+                                                "control": 44,
+                                                "numDec": 0
+                                            },
+                                            {
+                                                "etq": "Retenedor de IVA",
+                                                "nomCmp": "tipoImp",
+                                                "lonv": 1,
+                                                "lon": 2,
+                                                "claseInd": 1,
+                                                "tipo": 69,
+                                                "modo": 0,
+                                                "noEnTabla": 0,
+                                                "control": 44,
+                                                "numDec": 0
+                                            },
+                                            {
+                                                "etq": "Es agente de retencion",
+                                                "nomCmp": "tipoImp",
+                                                "lonv": 1,
+                                                "lon": 3,
+                                                "claseInd": 1,
+                                                "tipo": 69,
+                                                "modo": 0,
+                                                "noEnTabla": 0,
+                                                "control": 44,
+                                                "numDec": 0
+                                            },
+                                            {
+                                                "etq": "Tercero No activo",
+                                                "nomCmp": "tipoImp",
+                                                "lonv": 1,
+                                                "lon": 4,
+                                                "claseInd": 1,
+                                                "tipo": 69,
+                                                "modo": 0,
+                                                "noEnTabla": 0,
+                                                "control": 44,
+                                                "numDec": 0
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "etq": "Consignar en    ",
+                                        "nomCmp": "nomBanco",
+                                        "lonv": 56,
+                                        "lon": 30,
+                                        "claseInd": 0,
+                                        "tipo": 65,
+                                        "modo": 0,
+                                        "noEnTabla": 0,
+                                        "control": 44,
+                                        "numDec": 0
+                                    },
+                                    {
+                                        "etq": "e-mail          ",
+                                        "nomCmp": "email",
+                                        "lonv": 56,
+                                        "lon": 50,
+                                        "claseInd": 0,
+                                        "tipo": 65,
+                                        "modo": 0,
+                                        "noEnTabla": 0,
+                                        "control": 44,
+                                        "numDec": 0
+                                    }
+                                ],
+                                "btns": [
+                                    {
+                                        "etq": "Grabar",
+                                        "cmd": 14,
+                                        "desh": 1,
+                                        "tec": 266
+                                    },
+                                    {
+                                        "etq": "Buscar",
+                                        "cmd": 53,
+                                        "desh": 0,
+                                        "tec": 2
+                                    },
+                                    {
+                                        "etq": "Detallar",
+                                        "cmd": 62,
+                                        "desh": 0,
+                                        "tec": 4
+                                    },
+                                    {
+                                        "etq": "Selecc.",
+                                        "cmd": 57,
+                                        "desh": 0,
+                                        "tec": 12
+                                    },
+                                    {
+                                        "etq": "Eliminar",
+                                        "cmd": 20,
+                                        "desh": 0,
+                                        "tec": 5
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "evento": 2,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 140,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>14</nc> <vc>1</vc>"
+                }
+            }
+        },
+        {
+            "evento": 3,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 140,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>62</nc> <vc>1</vc>"
+                }
+            }
+        },
+        {
+            "evento": 4,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 140,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>57</nc> <vc>1</vc>"
+                }
+            }
+        },
+        {
+            "evento": 5,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 140,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>53</nc> <vc>1</vc>"
+                }
+            }
+        },
+        {
+            "evento": 6,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 140,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>20</nc> <vc>1</vc>"
+                }
+            }
+        },
+        {
+            "evento": 7,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 140,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>14</nc> <vc>0</vc>"
+                }
+            }
+        },
+        {
+            "evento": 8,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 96,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>codigo</nc>  <rg>1</rg> <mc>32</mc>"
+                }
+            }
+        },
+        {
+            "evento": 9,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 96,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>id</nc>  <rg>1</rg> <mc>32</mc>"
+                }
+            }
+        },
+        {
+            "evento": 10,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 96,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>tipoId</nc>  <pb>1</pb> <rg>1</rg> <mc>32</mc>"
+                }
+            }
+        },
+        {
+            "evento": 11,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 96,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>tipoId</nc>  <pb>2</pb> <rg>1</rg> <mc>32</mc>"
+                }
+            }
+        },
+        {
+            "evento": 12,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 96,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>tipoId</nc>  <pb>0</pb> <rg>1</rg> <mc>32</mc>"
+                }
+            }
+        },
+        {
+            "evento": 13,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 96,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>nombre</nc>  <rg>1</rg> <mc>32</mc>"
+                }
+            }
+        },
+        {
+            "evento": 14,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 96,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>apellido1</nc>  <rg>1</rg> <mc>32</mc>"
+                }
+            }
+        },
+        {
+            "evento": 15,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 96,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>apellido2</nc>  <rg>1</rg> <mc>32</mc>"
+                }
+            }
+        },
+        {
+            "evento": 16,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 96,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>nombre1</nc>  <rg>1</rg> <mc>32</mc>"
+                }
+            }
+        },
+        {
+            "evento": 17,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 96,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>nombre2</nc>  <rg>1</rg> <mc>32</mc>"
+                }
+            }
+        },
+        {
+            "evento": 18,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 96,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>direccion</nc>  <rg>1</rg> <mc>32</mc>"
+                }
+            }
+        },
+        {
+            "evento": 19,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 96,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>ciudad</nc>  <rg>1</rg> <mc>32</mc>"
+                }
+            }
+        },
+        {
+            "evento": 20,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 96,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>telefono1</nc>  <rg>1</rg> <mc>32</mc>"
+                }
+            }
+        },
+        {
+            "evento": 21,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 96,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>telefono2</nc>  <rg>1</rg> <mc>32</mc>"
+                }
+            }
+        },
+        {
+            "evento": 22,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 96,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>fax</nc>  <rg>1</rg> <mc>32</mc>"
+                }
+            }
+        },
+        {
+            "evento": 23,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 96,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>tipoRegimen</nc>  <pb>3</pb> <rg>1</rg> <mc>32</mc>"
+                }
+            }
+        },
+        {
+            "evento": 24,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 96,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>tipoRegimen</nc>  <pb>2</pb> <rg>1</rg> <mc>32</mc>"
+                }
+            }
+        },
+        {
+            "evento": 25,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 96,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>tipoRegimen</nc>  <pb>0</pb> <rg>1</rg> <mc>32</mc>"
+                }
+            }
+        },
+        {
+            "evento": 26,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 96,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>tipoImp</nc>  <pb>0</pb> <rg>1</rg> <mc>32</mc>"
+                }
+            }
+        },
+        {
+            "evento": 27,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 96,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>tipoImp</nc>  <pb>1</pb> <rg>1</rg> <mc>32</mc>"
+                }
+            }
+        },
+        {
+            "evento": 28,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 96,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>tipoImp</nc>  <pb>2</pb> <rg>1</rg> <mc>32</mc>"
+                }
+            }
+        },
+        {
+            "evento": 29,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 96,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>tipoImp</nc>  <pb>3</pb> <rg>1</rg> <mc>32</mc>"
+                }
+            }
+        },
+        {
+            "evento": 30,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 96,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>tipoImp</nc>  <pb>4</pb> <rg>1</rg> <mc>32</mc>"
+                }
+            }
+        },
+        {
+            "evento": 31,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 96,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>nomBanco</nc>  <rg>1</rg> <mc>32</mc>"
+                }
+            }
+        },
+        {
+            "evento": 32,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 96,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>email</nc>  <rg>1</rg> <mc>32</mc>"
+                }
+            }
+        },
+        {
+            "evento": 33,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 61,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <vc> Consultando Tercero </vc>"
+                }
+            }
+        },
+        {
+            "evento": 34,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 64,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 35,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>id</nc> <vc></vc> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 36,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>tipoId</nc> <vc>*</vc> <pb>1</pb> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 37,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>tipoId</nc> <vc> </vc> <pb>2</pb> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 38,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>tipoId</nc> <vc> </vc> <pb>0</pb> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 39,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>nombre</nc> <vc></vc> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 40,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>apellido1</nc> <vc></vc> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 41,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>apellido2</nc> <vc></vc> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 42,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>nombre1</nc> <vc></vc> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 43,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>nombre2</nc> <vc></vc> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 44,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>direccion</nc> <vc></vc> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 45,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>ciudad</nc> <vc></vc> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 46,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>telefono1</nc> <vc></vc> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 47,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>telefono2</nc> <vc></vc> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 48,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>fax</nc> <vc></vc> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 49,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>tipoRegimen</nc> <vc> </vc> <pb>3</pb> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 50,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>tipoRegimen</nc> <vc>*</vc> <pb>2</pb> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 51,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>tipoRegimen</nc> <vc> </vc> <pb>0</pb> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 52,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>tipoImp</nc> <vc> </vc> <pb>0</pb> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 53,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>tipoImp</nc> <vc> </vc> <pb>1</pb> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 54,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>tipoImp</nc> <vc> </vc> <pb>2</pb> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 55,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>tipoImp</nc> <vc> </vc> <pb>3</pb> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 56,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>tipoImp</nc> <vc> </vc> <pb>4</pb> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 57,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>nomBanco</nc> <vc></vc> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 58,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>email</nc> <vc></vc> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 59,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>codigo</nc> <vc></vc> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 60,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 77,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <rg>1</rg> <nc>codigo</nc>"
+                }
+            }
+        },
+        {
+            "evento": 61,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>tipoId</nc> <vc> </vc> <pb>1</pb> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 62,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>tipoId</nc> <vc> </vc> <pb>2</pb> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 63,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>tipoId</nc> <vc> </vc> <pb>0</pb> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 64,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>tipoId</nc> <vc> </vc> <pb>1</pb> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 65,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>tipoId</nc> <vc> </vc> <pb>2</pb> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 66,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>tipoId</nc> <vc> </vc> <pb>0</pb> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 67,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>tipoId</nc> <vc> </vc> <pb>1</pb> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 68,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>tipoId</nc> <vc> </vc> <pb>2</pb> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 69,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>tipoId</nc> <vc> </vc> <pb>0</pb> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 70,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>tipoRegimen</nc> <vc> </vc> <pb>3</pb> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 71,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>tipoRegimen</nc> <vc> </vc> <pb>2</pb> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 72,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>tipoRegimen</nc> <vc> </vc> <pb>0</pb> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 73,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>tipoRegimen</nc> <vc> </vc> <pb>3</pb> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 74,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>tipoRegimen</nc> <vc> </vc> <pb>2</pb> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 75,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>tipoRegimen</nc> <vc> </vc> <pb>0</pb> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 76,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>tipoRegimen</nc> <vc> </vc> <pb>3</pb> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 77,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>tipoRegimen</nc> <vc> </vc> <pb>2</pb> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 78,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>tipoRegimen</nc> <vc> </vc> <pb>0</pb> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 79,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 52,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>apellido1</nc>  <rg>1</rg> <mc>8</mc>"
+                }
+            }
+        },
+        {
+            "evento": 80,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 52,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>apellido2</nc>  <rg>1</rg> <mc>8</mc>"
+                }
+            }
+        },
+        {
+            "evento": 81,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 52,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>nombre1</nc>  <rg>1</rg> <mc>8</mc>"
+                }
+            }
+        },
+        {
+            "evento": 82,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 52,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>nombre2</nc>  <rg>1</rg> <mc>8</mc>"
+                }
+            }
+        },
+        {
+            "evento": 83,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 52,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>nombre</nc>  <rg>1</rg> <mc>8</mc>"
+                }
+            }
+        },
+        {
+            "evento": 84,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>id</nc> <vc>8903028298-6</vc> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 85,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>tipoId</nc> <vc>*</vc> <pb>1</pb> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 86,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>tipoId</nc> <vc> </vc> <pb>2</pb> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 87,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>tipoId</nc> <vc> </vc> <pb>0</pb> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 88,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>nombre</nc> <vc>Rosales Perez Miguel Antonio</vc> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 89,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>apellido1</nc> <vc>Rosales</vc> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 90,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>apellido2</nc> <vc>Perez</vc> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 91,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>nombre1</nc> <vc>Miguel</vc> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 92,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>nombre2</nc> <vc>Antonio</vc> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 93,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>direccion</nc> <vc></vc> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 94,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>ciudad</nc> <vc>CALI</vc> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 95,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>telefono1</nc> <vc></vc> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 96,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>telefono2</nc> <vc></vc> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 97,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>fax</nc> <vc></vc> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 98,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>tipoRegimen</nc> <vc>*</vc> <pb>3</pb> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 99,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>tipoRegimen</nc> <vc> </vc> <pb>2</pb> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 100,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>tipoRegimen</nc> <vc> </vc> <pb>0</pb> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 101,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>tipoImp</nc> <vc>X</vc> <pb>0</pb> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 102,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>tipoImp</nc> <vc> </vc> <pb>1</pb> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 103,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>tipoImp</nc> <vc>X</vc> <pb>2</pb> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 104,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>tipoImp</nc> <vc> </vc> <pb>3</pb> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 105,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>tipoImp</nc> <vc> </vc> <pb>4</pb> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 106,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>nomBanco</nc> <vc></vc> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 107,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>email</nc> <vc></vc> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 108,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>codigo</nc> <vc>0-200026</vc> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 109,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>codigo</nc> <vc>0-200026</vc> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 110,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px> <nc>codigo</nc> <vc>0-200026</vc> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 111,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 122,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>1</px>"
+                }
+            }
+        }
+    ]
+}

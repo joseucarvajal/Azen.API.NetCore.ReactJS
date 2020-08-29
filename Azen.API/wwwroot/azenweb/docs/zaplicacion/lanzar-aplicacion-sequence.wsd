@@ -1,0 +1,53 @@
+@startuml
+
+actor Usuario
+
+boundary ZListadoAplicaciones <<Component>>
+boundary Index
+boundary ZAplicacionContainer <<Component>>
+
+Usuario -> ZListadoAplicaciones: lanzarAplicacion(idApl:string)
+ZListadoAplicaciones -> Index : cuando se carga la página
+activate Index
+
+Index -> ZUtils.Services : getQueryStringParameter('idApl')
+activate ZUtils.Services
+Index <-- ZUtils.Services: idApl = idApl:string
+deactivate ZUtils.Services
+
+Index -> ZUtils.Services : getQueryStringParameter('lanzarMenu')
+activate ZUtils.Services
+Index <-- ZUtils.Services: lanzarMenu = lanzarMenu:string
+note right: lanzarMenu={0, 1}
+deactivate ZUtils.Services
+
+alt idApl
+
+note left: Obtener idApl del QueryString
+Index -> Index:cargarStoreInicial(idApl):
+activate Index
+Index -> IZAplState : zAplState = new {}
+Index -> Redux: createStore(App.Reducers.zaplState, zAplState, middlewares...)
+Index <-- Redux: store
+Index -> ReactDOM: render(ZAplicacionContainer)
+Index -> Store: dispatch(zaplicacion.actions.lanzarAplicacion(idApl, lanzarMenu))
+note right: app.reducers
+Store -> zaplicacion.actions: lanzarAplicacion(idApl:string, lanzarMenu:int)
+activate zaplicacion.actions
+zaplicacion.actions -> zcomunicaciones.actions : enviarRequestComando
+zaplicacion.actions <-- zcomunicaciones.actions: resultadoAccionConDato = enviarRequestComando():ResultadoAccionConDato
+alt resultadoAccionConDato.resultado == EXITO
+zaplicacion.actions -> app.actions: setIdApl(idApl)
+app.actions -> Store: IZAplState.idApl=idApl
+alt lanzarMenu
+zaplicacion.actions -> zmenu.actions: lanzarMenu()
+end
+end
+deactivate zaplicacion.actions
+deactivate Index
+else !idApl
+Index -> ReactDOM: render(ZLogin)
+deactivate Index
+end
+
+@enduml

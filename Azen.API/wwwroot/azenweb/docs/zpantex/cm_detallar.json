@@ -1,0 +1,856 @@
+{
+    "numEventos": 55,
+    "eventos": [
+        {
+            "evento": 1,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 126,
+                "inf": "",
+                "buffer": {
+                    "fto": "json",
+                    "dato": {
+                        "numPx": 2,
+                        "zFormaTablaList": [
+                            {
+                                "ven": {
+                                    "numPx": 2,
+                                    "descr": " Detallando Cuentas ",
+                                    "nomTbl": "",
+                                    "nomRcrZoom": "",
+                                    "fil": 0,
+                                    "col": 1,
+                                    "nfils": 21,
+                                    "ncols": 63,
+                                    "modo": 0,
+                                    "ctx": 41278,
+                                    "numLinsEnc": 1,
+                                    "numLinsDatos": 19,
+                                    "nfilsrx": 20,
+                                    "ncolsrx": 57
+                                },
+                                "linEst": [
+                                    {
+                                        "etq": "Ayuda",
+                                        "tec": 265,
+                                        "cmd": 9,
+                                        "desh": 0
+                                    },
+                                    {
+                                        "etq": "Primero",
+                                        "tec": 10309,
+                                        "cmd": 36,
+                                        "desh": 0
+                                    },
+                                    {
+                                        "etq": "?47'",
+                                        "tec": 305,
+                                        "cmd": 47,
+                                        "desh": 0
+                                    },
+                                    {
+                                        "etq": "Anterior",
+                                        "tec": 301,
+                                        "cmd": 41,
+                                        "desh": 0
+                                    },
+                                    {
+                                        "etq": "Siguiente",
+                                        "tec": 302,
+                                        "cmd": 40,
+                                        "desh": 0
+                                    },
+                                    {
+                                        "etq": "?46'",
+                                        "tec": 306,
+                                        "cmd": 46,
+                                        "desh": 0
+                                    },
+                                    {
+                                        "etq": "?88'",
+                                        "tec": 14,
+                                        "cmd": 88,
+                                        "desh": 0
+                                    },
+                                    {
+                                        "etq": "?89'",
+                                        "tec": 25,
+                                        "cmd": 89,
+                                        "desh": 0
+                                    },
+                                    {
+                                        "etq": "Ultimo",
+                                        "tec": 10310,
+                                        "cmd": 37,
+                                        "desh": 0
+                                    },
+                                    {
+                                        "etq": "Retocar",
+                                        "tec": 10065,
+                                        "cmd": 94,
+                                        "desh": 0
+                                    },
+                                    {
+                                        "etq": "Visualizar",
+                                        "tec": 10086,
+                                        "cmd": 19,
+                                        "desh": 0
+                                    }
+                                ],
+                                "cmps": [
+                                    {
+                                        "etq": "Codigo",
+                                        "nomCmp": "codigo",
+                                        "lonv": 15,
+                                        "lon": 20,
+                                        "claseInd": 0,
+                                        "tipo": 65,
+                                        "modo": 260,
+                                        "noEnTabla": 0,
+                                        "control": 44,
+                                        "numDec": 0
+                                    },
+                                    {
+                                        "etq": "Nombre",
+                                        "nomCmp": "nombre",
+                                        "lonv": 40,
+                                        "lon": 40,
+                                        "claseInd": 0,
+                                        "tipo": 65,
+                                        "modo": 4,
+                                        "noEnTabla": 0,
+                                        "control": 44,
+                                        "numDec": 0
+                                    }
+                                ],
+                                "btns": [
+                                    {
+                                        "etq": "Seleccionar",
+                                        "cmd": 50,
+                                        "desh": 0,
+                                        "tec": 13
+                                    },
+                                    {
+                                        "etq": "Buscar",
+                                        "cmd": 53,
+                                        "desh": 0,
+                                        "tec": 2
+                                    },
+                                    {
+                                        "etq": "Cerrar",
+                                        "cmd": 11,
+                                        "desh": 0,
+                                        "tec": 27
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "evento": 2,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 96,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>2</px> <nc>codigo</nc>  <fi>1</fi> <rg>1</rg> <mc>32</mc>"
+                }
+            }
+        },
+        {
+            "evento": 3,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 96,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>2</px> <nc>nombre</nc>  <fi>1</fi> <rg>1</rg> <mc>32</mc>"
+                }
+            }
+        },
+        {
+            "evento": 4,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 61,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>2</px> <vc> Consultando Cuentas </vc>"
+                }
+            }
+        },
+        {
+            "evento": 5,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 140,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>2</px> <nc>53</nc> <vc>1</vc>"
+                }
+            }
+        },
+        {
+            "evento": 6,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 96,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>2</px> <nc>codigo</nc>  <fi>1</fi> <rg>1</rg> <mc>32</mc>"
+                }
+            }
+        },
+        {
+            "evento": 7,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 96,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>2</px> <nc>nombre</nc>  <fi>1</fi> <rg>1</rg> <mc>32</mc>"
+                }
+            }
+        },
+        {
+            "evento": 8,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 61,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>2</px> <vc> Detallando Cuentas </vc>"
+                }
+            }
+        },
+        {
+            "evento": 9,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 128,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>2</px> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 10,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>2</px> <nc>codigo</nc> <vc>0</vc> <fi>1</fi> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 11,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>2</px> <nc>nombre</nc> <vc>CUENTAS DE PRESUPUESTO Y TESORERIA 01</vc> <fi>1</fi> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 12,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>2</px> <nc>codigo</nc> <vc>02</vc> <fi>2</fi> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 13,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>2</px> <nc>nombre</nc> <vc>PRESUPUESTO DE INGRESOS Y TESORERIA</vc> <fi>2</fi> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 14,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>2</px> <nc>codigo</nc> <vc>0202</vc> <fi>3</fi> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 15,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>2</px> <nc>nombre</nc> <vc>INGRESOS TRIBUTARIOS APROBADOS</vc> <fi>3</fi> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 16,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>2</px> <nc>codigo</nc> <vc>020238</vc> <fi>4</fi> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 17,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>2</px> <nc>nombre</nc> <vc>DERECHOS DE EXPLOTAC DE JUEGOS DE SUERTE</vc> <fi>4</fi> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 18,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>2</px> <nc>codigo</nc> <vc>0203</vc> <fi>5</fi> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 19,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>2</px> <nc>nombre</nc> <vc>INGRESOS NO TRIBUTARIOS APROBADOS</vc> <fi>5</fi> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 20,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>2</px> <nc>codigo</nc> <vc>020390</vc> <fi>6</fi> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 21,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>2</px> <nc>nombre</nc> <vc>OTROS INGRESOS NO TRIBUTARIOS APROBADOS</vc> <fi>6</fi> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 22,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>2</px> <nc>codigo</nc> <vc>0207</vc> <fi>7</fi> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 23,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>2</px> <nc>nombre</nc> <vc>RECURSOS DE CAPITAL APROBADOS</vc> <fi>7</fi> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 24,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>2</px> <nc>codigo</nc> <vc>020703</vc> <fi>8</fi> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 25,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>2</px> <nc>nombre</nc> <vc>CREDITO INTERNO BANCA COMERCIAL</vc> <fi>8</fi> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 26,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>2</px> <nc>codigo</nc> <vc>020719</vc> <fi>9</fi> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 27,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>2</px> <nc>nombre</nc> <vc>RENDIMIENTOS FINANCIEROS</vc> <fi>9</fi> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 28,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>2</px> <nc>codigo</nc> <vc>020734</vc> <fi>10</fi> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 29,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>2</px> <nc>nombre</nc> <vc>VENTA DE ACTIVOS NO FINANC SECTOR PUBLIC</vc> <fi>10</fi> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 30,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>2</px> <nc>codigo</nc> <vc>020735</vc> <fi>11</fi> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 31,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>2</px> <nc>nombre</nc> <vc>VENTA DE ACTIVOS NO FINANC SECTOR PRIVAD</vc> <fi>11</fi> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 32,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>2</px> <nc>codigo</nc> <vc>020737</vc> <fi>12</fi> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 33,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>2</px> <nc>nombre</nc> <vc>RECUPERACION DE CARTERA</vc> <fi>12</fi> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 34,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>2</px> <nc>codigo</nc> <vc>020738</vc> <fi>13</fi> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 35,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>2</px> <nc>nombre</nc> <vc>CANCELACION DE RESERVAS</vc> <fi>13</fi> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 36,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>2</px> <nc>codigo</nc> <vc>020744</vc> <fi>14</fi> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 37,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>2</px> <nc>nombre</nc> <vc>OTROS RECURSOS DEL BALANCE</vc> <fi>14</fi> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 38,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>2</px> <nc>codigo</nc> <vc>020790</vc> <fi>15</fi> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 39,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>2</px> <nc>nombre</nc> <vc>OTROS RECURSOS DE CAPITAL</vc> <fi>15</fi> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 40,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>2</px> <nc>codigo</nc> <vc>0213</vc> <fi>16</fi> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 41,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>2</px> <nc>nombre</nc> <vc>DISPONIBILIDAD INICIAL APROBADA</vc> <fi>16</fi> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 42,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>2</px> <nc>codigo</nc> <vc>021301</vc> <fi>17</fi> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 43,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>2</px> <nc>nombre</nc> <vc>DISPONIBILIDAD INICIAL</vc> <fi>17</fi> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 44,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>2</px> <nc>codigo</nc> <vc>0216</vc> <fi>18</fi> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 45,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>2</px> <nc>nombre</nc> <vc>INGRESOS TRIBUTARIOS POR EJECUTAR</vc> <fi>18</fi> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 46,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>2</px> <nc>codigo</nc> <vc>021638</vc> <fi>19</fi> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 47,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>2</px> <nc>nombre</nc> <vc>DERECHOS DE EXPLOTAC DE JUEGOS DE SUERTE</vc> <fi>19</fi> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 48,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>2</px> <nc>codigo</nc> <vc>021638</vc> <fi>19</fi> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 49,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>2</px> <nc>nombre</nc> <vc>CUENTAS DE PRESUPUESTO Y TESORERIA 01</vc> <fi>1</fi> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 50,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>2</px> <nc>codigo</nc> <vc>0</vc> <fi>1</fi> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 51,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 139,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": " <px>2</px> <fi>0</fi> <rg>1</rg> "
+                }
+            }
+        },
+        {
+            "evento": 52,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>2</px> <nc>codigo</nc> <vc>0</vc> <fi>1</fi> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 53,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 119,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>2</px> <nc>codigo</nc> <vc>0</vc> <fi>1</fi> <rg>1</rg>"
+                }
+            }
+        },
+        {
+            "evento": 54,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 122,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>2</px>"
+                }
+            }
+        },
+        {
+            "evento": 55,
+            "dato": {
+                "tipo": 2,
+                "tec": 0,
+                "cmd": 169,
+                "inf": "",
+                "buffer": {
+                    "fto": "xml",
+                    "dato": "<px>2</px>"
+                }
+            }
+        }
+    ]
+}

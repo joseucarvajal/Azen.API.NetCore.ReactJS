@@ -1,0 +1,34 @@
+@startuml
+
+IZAplState o-- IZLoginModule
+IZLoginModule *-- IZAplList
+Index o-- ZListadoAplicaciones
+ZListadoAplicaciones o-- ZLogin
+IZLoginModule o-- ZUtils.models.ResultadoAction.ResultadoAction
+note bottom of ZUtils.models.ResultadoAction.ResultadoAction: Almacena el resultado/error del login
+
+modules.zlogin.reducers.impl +-- IZLoginModule
+
+interface modules.zlogin.reducers.actionType { 
+    +SET_USERNAME:string
+}
+interface modules.zlogin.reducers.impl {
+    +setUserName(userName:string)
+}
+
+modules.zlogin.reducers.impl -> modules.zlogin.actionType
+
+modules.zlogin.action -> modules.zcomunicaciones.actions
+
+interface modules.zcomunicaciones.actions {
+    +enviarRequestComando(...)
+}
+
+interface IZLoginModule {
+    +username:string
+    +password:string
+    +zAplList:IZAplList
+    +resultadoAction:ZUtils.models.ResultadoAction.ResultadoAction
+}
+
+@enduml

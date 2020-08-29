@@ -4,6 +4,9 @@ Azen.API/bin
 Azen.API/logs
 Azen.API/obj
 Azen.API/tmp
+Azen.API/wwwroot/azenweb/.vscode
+Azen.API/wwwroot/azenweb/node_modules
+Azen.API/wwwroot/azenweb/dist/bundle.js.map
 
 Azen.API.Sockets/bin
 Azen.API.Sockets/obj

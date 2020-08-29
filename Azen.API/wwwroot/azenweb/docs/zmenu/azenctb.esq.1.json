@@ -1,0 +1,32 @@
+{
+    "menu": [
+        {
+            "nom": " � ",
+            "desc": "Opciones generales",
+            "ctx": "1101",
+            "desh": 0      
+        },
+        {
+            "nom": "Asientos",
+            "desc": "Asientos de diario",
+            "ctx": "A100",
+            "desh": 0,
+            "menu": [
+                {
+                    "nom": "Editar",
+                    "desc": "Edita los asientos de diario del mes activo",
+                    "ctx": "A101",
+                    "desh": 0,
+                    "menu": []
+                },
+                {
+                    "nom": "Listar por Documento...",
+                    "desc": "Revision de asientos por documento",
+                    "ctx": "A103",
+                    "desh": 0,
+                    "menu": []
+                }
+            ]
+        }
+    ]
+}    

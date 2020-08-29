@@ -1,0 +1,1078 @@
+{
+    "menu": [
+        {
+            "nom": " � ",
+            "desc": "Opciones generales",
+            "ctx": "1101",
+            "desh": 0,
+            "menu": [
+                {
+                    "nom": "Control impresi�n",
+                    "desc": "Pone ventana de control para tareas de impresi�n",
+                    "ctx": "110100",
+                    "desh": 0,
+                    "menu": []
+                },
+                {
+                    "nom": "Act/DesAct Gen Tabla...",
+                    "desc": "Activa Desactiva generacion de reporte a tabla",
+                    "ctx": "0sdf54",
+                    "desh": 0,
+                    "menu": []
+                },
+                {
+                    "nom": "Entorno...",
+                    "desc": "Establece indicadores generales para el usuario",
+                    "ctx": "110101",
+                    "desh": 0,
+                    "menu": []
+                },
+                {
+                    "nom": "Cambiar clave...",
+                    "desc": "Cambia la clave de acceso del usuario",
+                    "ctx": "1B02",
+                    "desh": 0,
+                    "menu": []
+                },
+                {
+                    "nom": "Editar texto...",
+                    "desc": "Edita un archivo texto",
+                    "ctx": "110113",
+                    "desh": 0,
+                    "menu": []
+                },
+                {
+                    "nom": "Calculadora",
+                    "desc": "AZEN Calculadora",
+                    "ctx": "0asdf86",
+                    "desh": 0,
+                    "menu": []
+                },
+                {
+                    "nom": "Ejecuci�n",
+                    "desc": "Reporta un estado de ejecuci�n de la aplicaci�n",
+                    "ctx": "1503",
+                    "desh": 0,
+                    "menu": []
+                },
+                {
+                    "nom": "Salir...",
+                    "desc": "Termina la sesi�n de trabajo",
+                    "ctx": "1300",
+                    "desh": 0,
+                    "menu": []
+                }
+            ]
+        },
+        {
+            "nom": "Asientos",
+            "desc": "Asientos de diario",
+            "ctx": "A100",
+            "desh": 0,
+            "menu": [
+                {
+                    "nom": "Editar",
+                    "desc": "Edita los asientos de diario del mes activo",
+                    "ctx": "A101",
+                    "desh": 0,
+                    "menu": []
+                },
+                {
+                    "nom": "Listar por Documento...",
+                    "desc": "Revision de asientos por documento",
+                    "ctx": "A103",
+                    "desh": 0,
+                    "menu": []
+                },
+                {
+                    "nom": "Listar por Fecha...",
+                    "desc": "Revision de asientos por fecha",
+                    "ctx": "A105",
+                    "desh": 0,
+                    "menu": []
+                },
+                {
+                    "nom": "Listar por Comprobante...",
+                    "desc": "Revision de asientos por comprobante",
+                    "ctx": "A107",
+                    "desh": 0,
+                    "menu": []
+                },
+                {
+                    "nom": "Consultar asiento...",
+                    "desc": "Consulta un asiento",
+                    "ctx": "A18F12",
+                    "desh": 0,
+                    "menu": []
+                }
+            ]
+        },
+        {
+            "nom": "Informes",
+            "desc": "Menu de informes contables",
+            "ctx": "A109",
+            "desh": 0,
+            "menu": [
+                {
+                    "nom": "Auxiliares",
+                    "desc": "Menu de libros auxiliares",
+                    "ctx": "A10B",
+                    "desh": 0,
+                    "menu": [
+                        {
+                            "nom": "Cuenta...",
+                            "desc": "Genera auxiliares por cuenta",
+                            "ctx": "A10C",
+                            "desh": 0,
+                            "menu": []
+                        },
+                        {
+                            "nom": "Tercero...",
+                            "desc": "Genera auxiliares por tercero",
+                            "ctx": "A10E",
+                            "desh": 0,
+                            "menu": []
+                        },
+                        {
+                            "nom": "Anexo...",
+                            "desc": "Genera auxiliares por anexo",
+                            "ctx": "A113",
+                            "desh": 0,
+                            "menu": []
+                        },
+                        {
+                            "nom": "Centro de costo...",
+                            "desc": "Genera auxiliares por centros de costo",
+                            "ctx": "A115",
+                            "desh": 0,
+                            "menu": []
+                        },
+                        {
+                            "nom": "Banco...",
+                            "desc": "Genera el auxiliar por banco",
+                            "ctx": "A117",
+                            "desh": 0,
+                            "menu": []
+                        },
+                        {
+                            "nom": "Activos Fijos...",
+                            "desc": "Genera el auxiliar por activos fijos",
+                            "ctx": "A1C5",
+                            "desh": 0,
+                            "menu": []
+                        },
+                        {
+                            "nom": "Documento dos...",
+                            "desc": "Auxiliar documento dos",
+                            "ctx": "A1E4A",
+                            "desh": 0,
+                            "menu": []
+                        }
+                    ]
+                },
+                {
+                    "nom": "Libros Mayores",
+                    "desc": "Menu de libros mayores",
+                    "ctx": "A119",
+                    "desh": 0,
+                    "menu": [
+                        {
+                            "nom": "Prueba...",
+                            "desc": "Genera el Balance de Prueba",
+                            "ctx": "A11B",
+                            "desh": 0,
+                            "menu": []
+                        },
+                        {
+                            "nom": "Consolidado...",
+                            "desc": "Genera el Balance Consolidado",
+                            "ctx": "A11D",
+                            "desh": 0,
+                            "menu": []
+                        },
+                        {
+                            "nom": "Mayor...",
+                            "desc": "Genera el Mayor y Balances",
+                            "ctx": "A11F",
+                            "desh": 0,
+                            "menu": []
+                        },
+                        {
+                            "nom": "PyG...",
+                            "desc": "Genera el estado de Ganancias o Perdidas",
+                            "ctx": "A121",
+                            "desh": 0,
+                            "menu": []
+                        },
+                        {
+                            "nom": "General...",
+                            "desc": "Genera el Balance General",
+                            "ctx": "A123",
+                            "desh": 0,
+                            "menu": []
+                        },
+                        {
+                            "nom": "CajaDiario...",
+                            "desc": "Genera el Caja Diario",
+                            "ctx": "A125",
+                            "desh": 0,
+                            "menu": []
+                        },
+                        {
+                            "nom": "Diario Columnario...",
+                            "desc": "Genera el Caja Diario columnario",
+                            "ctx": "A1CC1",
+                            "desh": 0,
+                            "menu": []
+                        },
+                        {
+                            "nom": "Comprobante de diario...",
+                            "desc": "Comprobante de diario",
+                            "ctx": "A1CC4",
+                            "desh": 0,
+                            "menu": []
+                        },
+                        {
+                            "nom": "Comprobante...",
+                            "desc": "Genera el Balance por Comprobante",
+                            "ctx": "A127",
+                            "desh": 0,
+                            "menu": []
+                        },
+                        {
+                            "nom": "Inventario...",
+                            "desc": "Genera el Inventario y Balance",
+                            "ctx": "A1D2",
+                            "desh": 0,
+                            "menu": []
+                        }
+                    ]
+                },
+                {
+                    "nom": "Retencion",
+                    "desc": "Menu de informes de retencion",
+                    "ctx": "A129",
+                    "desh": 0,
+                    "menu": [
+                        {
+                            "nom": "Cuenta...",
+                            "desc": "Informe de retencion por cuenta",
+                            "ctx": "A12A",
+                            "desh": 0,
+                            "menu": []
+                        },
+                        {
+                            "nom": "Tercero...",
+                            "desc": "Informe de retencion por tercero",
+                            "ctx": "A12C",
+                            "desh": 0,
+                            "menu": []
+                        },
+                        {
+                            "nom": "Certificados...",
+                            "desc": "Genera los Certificados de retencion",
+                            "ctx": "A12E",
+                            "desh": 0,
+                            "menu": []
+                        }
+                    ]
+                },
+                {
+                    "nom": "Iva...",
+                    "desc": "Informes de IVA",
+                    "ctx": "A130",
+                    "desh": 0,
+                    "menu": []
+                },
+                {
+                    "nom": "Documento Dos",
+                    "desc": "Informes de documento dos",
+                    "ctx": "0sdf546",
+                    "desh": 0,
+                    "menu": [
+                        {
+                            "nom": "Saldos...",
+                            "desc": "Saldos de documento dos",
+                            "ctx": "A1115s4df",
+                            "desh": 0,
+                            "menu": []
+                        },
+                        {
+                            "nom": "Auxiliar...",
+                            "desc": "Auxiliar de documento dos",
+                            "ctx": "A111sfd35",
+                            "desh": 0,
+                            "menu": []
+                        },
+                        {
+                            "nom": "Doc2 - Centro de costos...",
+                            "desc": "Informe de documento dos por centro de costos",
+                            "ctx": "A111sdf54",
+                            "desh": 0,
+                            "menu": []
+                        }
+                    ]
+                },
+                {
+                    "nom": "Externos",
+                    "desc": "Informes a entidades externas",
+                    "ctx": "A1E10",
+                    "desh": 0,
+                    "menu": [
+                        {
+                            "nom": "Grandes contribuyentes...",
+                            "desc": "Informe de grandes contribuyentes",
+                            "ctx": "A1EA",
+                            "desh": 0,
+                            "menu": []
+                        },
+                        {
+                            "nom": "Medios magneticos...",
+                            "desc": "Generacion de informacio a medios magneticos",
+                            "ctx": "A1ED",
+                            "desh": 0,
+                            "menu": []
+                        },
+                        {
+                            "nom": "CGN 001...",
+                            "desc": "Generacion de cgn 001",
+                            "ctx": "A1E2A",
+                            "desh": 0,
+                            "menu": []
+                        },
+                        {
+                            "nom": "CGN 002...",
+                            "desc": "Generacion de cgn 002",
+                            "ctx": "A1E3A5648",
+                            "desh": 0,
+                            "menu": []
+                        },
+                        {
+                            "nom": "Inf. 206...",
+                            "desc": "Generacion de informe formato 206 ssupersalud",
+                            "ctx": "A1E3Aasdf54",
+                            "desh": 0,
+                            "menu": []
+                        }
+                    ]
+                },
+                {
+                    "nom": "Otros",
+                    "desc": "Otros informes",
+                    "ctx": "A1E40",
+                    "desh": 0,
+                    "menu": [
+                        {
+                            "nom": "Resumido centro de costos tercero...",
+                            "desc": "Resumido centro de costos tercero",
+                            "ctx": "A1E4A",
+                            "desh": 0,
+                            "menu": []
+                        }
+                    ]
+                },
+                {
+                    "nom": "Etiquetar Libros...",
+                    "desc": "Etiquetas de Libros para Camara y comercio",
+                    "ctx": "A1E8",
+                    "desh": 0,
+                    "menu": []
+                },
+                {
+                    "nom": "Visor Movimiento",
+                    "desc": "Visor de movimiento",
+                    "ctx": "0oijasdf",
+                    "desh": 0,
+                    "menu": []
+                }
+            ]
+        },
+        {
+            "nom": "Procesos",
+            "desc": "Menu de procesos especiales",
+            "ctx": "A132",
+            "desh": 0,
+            "menu": [
+                {
+                    "nom": "Actualizacion...",
+                    "desc": "Actualiza los saldos de las cuentas",
+                    "ctx": "A133",
+                    "desh": 0,
+                    "menu": []
+                },
+                {
+                    "nom": "Ajustes...",
+                    "desc": "Ejecuta el proceso de ajustes por inflacion",
+                    "ctx": "A135",
+                    "desh": 0,
+                    "menu": []
+                },
+                {
+                    "nom": "Depreciacion...",
+                    "desc": "Ejecuta el proceso de depreciacion de activos fijos",
+                    "ctx": "A1CB",
+                    "desh": 0,
+                    "menu": []
+                },
+                {
+                    "nom": "Cierre de terceros...",
+                    "desc": "Cierre de terceros",
+                    "ctx": "A139asdf54",
+                    "desh": 0,
+                    "menu": []
+                },
+                {
+                    "nom": "Consolidacion...",
+                    "desc": "Ejecuta el proceso de consolidacion de contabilidades",
+                    "ctx": "A137",
+                    "desh": 0,
+                    "menu": []
+                },
+                {
+                    "nom": "Cierre de a�o...",
+                    "desc": "Cierre de a�o",
+                    "ctx": "A13954asd",
+                    "desh": 0,
+                    "menu": []
+                },
+                {
+                    "nom": "Cambio de a�o ...",
+                    "desc": "Prepara los archivos del nuevo a�o",
+                    "ctx": "A1391asdf8",
+                    "desh": 0,
+                    "menu": []
+                },
+                {
+                    "nom": "Pasar saldos...",
+                    "desc": "Pasa saldos de cuentas al siguiente a�o",
+                    "ctx": "A1D0",
+                    "desh": 0,
+                    "menu": []
+                }
+            ]
+        },
+        {
+            "nom": "Definiciones",
+            "desc": "Menu para la entrada de definiciones basicas",
+            "ctx": "A18B",
+            "desh": 0,
+            "menu": [
+                {
+                    "nom": "Cuentas",
+                    "desc": "Menu de cuentas",
+                    "ctx": "A13B",
+                    "desh": 0,
+                    "menu": [
+                        {
+                            "nom": "Editar",
+                            "desc": "Edita la tabla de cuentas",
+                            "ctx": "A13D",
+                            "desh": 0,
+                            "menu": []
+                        },
+                        {
+                            "nom": "Listar...",
+                            "desc": "Lista el plan de cuentas",
+                            "ctx": "A13F",
+                            "desh": 0,
+                            "menu": []
+                        }
+                    ]
+                },
+                {
+                    "nom": "Terceros",
+                    "desc": "Menu de terceros",
+                    "ctx": "A141",
+                    "desh": 0,
+                    "menu": [
+                        {
+                            "nom": "Editar",
+                            "desc": "Edita la tabla de terceros",
+                            "ctx": "A142",
+                            "desh": 0,
+                            "menu": []
+                        },
+                        {
+                            "nom": "Listar por Codigo...",
+                            "desc": "Lista los terceros ordenados por codigo",
+                            "ctx": "A144",
+                            "desh": 0,
+                            "menu": []
+                        },
+                        {
+                            "nom": "Listar por Nombre...",
+                            "desc": "Lista los terceros ordenados por nombre",
+                            "ctx": "A146",
+                            "desh": 0,
+                            "menu": []
+                        }
+                    ]
+                },
+                {
+                    "nom": "Documento dos",
+                    "desc": "Menu de documentos dos",
+                    "ctx": "A1F1A1",
+                    "desh": 0,
+                    "menu": [
+                        {
+                            "nom": "Editar",
+                            "desc": "Edita la tabla de documentos dos",
+                            "ctx": "A1F1A2",
+                            "desh": 0,
+                            "menu": []
+                        },
+                        {
+                            "nom": "Listar...",
+                            "desc": "Lista la definicion de los documentos dos",
+                            "ctx": "A1F1A5",
+                            "desh": 0,
+                            "menu": []
+                        },
+                        {
+                            "nom": "Asignar seguridad",
+                            "desc": "Asignar seguridad  por documentos dos",
+                            "ctx": "A1F1A8",
+                            "desh": 0,
+                            "menu": []
+                        }
+                    ]
+                },
+                {
+                    "nom": "Documento",
+                    "desc": "Menu de documentos",
+                    "ctx": "A14D",
+                    "desh": 0,
+                    "menu": [
+                        {
+                            "nom": "Editar",
+                            "desc": "Edita la tabla de documentos",
+                            "ctx": "A14E",
+                            "desh": 0,
+                            "menu": []
+                        },
+                        {
+                            "nom": "Listar por Codigo...",
+                            "desc": "Lista los documentos ordenados por codigo",
+                            "ctx": "A150",
+                            "desh": 0,
+                            "menu": []
+                        },
+                        {
+                            "nom": "Listar Notas...",
+                            "desc": "Lista las notas de documentos",
+                            "ctx": "A152",
+                            "desh": 0,
+                            "menu": []
+                        },
+                        {
+                            "nom": "Informe de Numeracion...",
+                            "desc": "Lista la numeracion de documentos",
+                            "ctx": "A154",
+                            "desh": 0,
+                            "menu": []
+                        }
+                    ]
+                },
+                {
+                    "nom": "Comprobante",
+                    "desc": "Menu de comprobantes",
+                    "ctx": "A148",
+                    "desh": 0,
+                    "menu": [
+                        {
+                            "nom": "Editar",
+                            "desc": "Edita la tabla de comprobantes",
+                            "ctx": "A149",
+                            "desh": 0,
+                            "menu": []
+                        },
+                        {
+                            "nom": "Listar...",
+                            "desc": "Lista la definicion de los comprobantes",
+                            "ctx": "A14B",
+                            "desh": 0,
+                            "menu": []
+                        }
+                    ]
+                },
+                {
+                    "nom": "Anexos",
+                    "desc": "Menu de anexos",
+                    "ctx": "A156",
+                    "desh": 0,
+                    "menu": [
+                        {
+                            "nom": "Editar",
+                            "desc": "Edita la tabla de anexos",
+                            "ctx": "A157",
+                            "desh": 0,
+                            "menu": []
+                        },
+                        {
+                            "nom": "Listar...",
+                            "desc": "Lista la definicion de los anexos",
+                            "ctx": "A159",
+                            "desh": 0,
+                            "menu": []
+                        }
+                    ]
+                },
+                {
+                    "nom": "Centros de costos",
+                    "desc": "Menu de centros de costos",
+                    "ctx": "A15B",
+                    "desh": 0,
+                    "menu": [
+                        {
+                            "nom": "Editar",
+                            "desc": "Edita la tabla de centros de costos",
+                            "ctx": "A15D",
+                            "desh": 0,
+                            "menu": []
+                        },
+                        {
+                            "nom": "Listar...",
+                            "desc": "Lista la definicion de centros de costo",
+                            "ctx": "A15E",
+                            "desh": 0,
+                            "menu": []
+                        }
+                    ]
+                },
+                {
+                    "nom": "Activos Fijos",
+                    "desc": "Menu para Activos Fijos",
+                    "ctx": "A1BD",
+                    "desh": 0,
+                    "menu": [
+                        {
+                            "nom": "Editar",
+                            "desc": "Edita la tabla de Activos Fijos",
+                            "ctx": "A1BE",
+                            "desh": 0,
+                            "menu": []
+                        },
+                        {
+                            "nom": "Editar Cuentas",
+                            "desc": "Edita las cuentas de Activos Fijos",
+                            "ctx": "A1C01F",
+                            "desh": 0,
+                            "menu": []
+                        },
+                        {
+                            "nom": "Listar...",
+                            "desc": "Lista la tabla de Activos Fijos",
+                            "ctx": "A1C1",
+                            "desh": 0,
+                            "menu": []
+                        },
+                        {
+                            "nom": "Listar Cuentas...",
+                            "desc": "Lista las cuentas de Activos Fijos",
+                            "ctx": "A1C8",
+                            "desh": 0,
+                            "menu": []
+                        },
+                        {
+                            "nom": "Depreciacion...",
+                            "desc": "Lista el estado de la depreciacion de los Activos Fijos",
+                            "ctx": "A1E1",
+                            "desh": 0,
+                            "menu": []
+                        }
+                    ]
+                },
+                {
+                    "nom": "Retencion",
+                    "desc": "Menu de definicion de retencion",
+                    "ctx": "A160",
+                    "desh": 0,
+                    "menu": [
+                        {
+                            "nom": "Editar",
+                            "desc": "Edita la definicion de retencion",
+                            "ctx": "A161",
+                            "desh": 0,
+                            "menu": []
+                        },
+                        {
+                            "nom": "Listar...",
+                            "desc": "Lista la definicion de retencion",
+                            "ctx": "A163",
+                            "desh": 0,
+                            "menu": []
+                        }
+                    ]
+                },
+                {
+                    "nom": "Iva",
+                    "desc": "Menu de definicion de IVA",
+                    "ctx": "A165",
+                    "desh": 0,
+                    "menu": [
+                        {
+                            "nom": "Editar",
+                            "desc": "Edita la definicion del IVA",
+                            "ctx": "A166",
+                            "desh": 0,
+                            "menu": []
+                        },
+                        {
+                            "nom": "Listar...",
+                            "desc": "Lista la definicion del IVA",
+                            "ctx": "A168",
+                            "desh": 0,
+                            "menu": []
+                        }
+                    ]
+                },
+                {
+                    "nom": "Ajustes",
+                    "desc": "Menu de definicion de ajustes por inflacion",
+                    "ctx": "A16A",
+                    "desh": 0,
+                    "menu": [
+                        {
+                            "nom": "Editar",
+                            "desc": "Edita la definicion de Ajustes por inflacion",
+                            "ctx": "A16B",
+                            "desh": 0,
+                            "menu": []
+                        },
+                        {
+                            "nom": "Listar...",
+                            "desc": "Lista la definicion de Ajustes por inflacion",
+                            "ctx": "A16D",
+                            "desh": 0,
+                            "menu": []
+                        }
+                    ]
+                },
+                {
+                    "nom": "P y G",
+                    "desc": "Menu para perdidas y ganancias",
+                    "ctx": "A181",
+                    "desh": 0,
+                    "menu": [
+                        {
+                            "nom": "Definir",
+                            "desc": "Define formatos de ganancias o perdidas",
+                            "ctx": "A1811",
+                            "desh": 0,
+                            "menu": []
+                        },
+                        {
+                            "nom": "Listar...",
+                            "desc": "Lista la definicion del estado de ganacias o perdidas",
+                            "ctx": "A183",
+                            "desh": 0,
+                            "menu": []
+                        },
+                        {
+                            "nom": "Utilidad...",
+                            "desc": "Definicion de las utilidades o perdidas en cada mes",
+                            "ctx": "A1BCF",
+                            "desh": 0,
+                            "menu": []
+                        }
+                    ]
+                },
+                {
+                    "nom": "Balance",
+                    "desc": "Menu para balances generales",
+                    "ctx": "A185",
+                    "desh": 0,
+                    "menu": [
+                        {
+                            "nom": "Definir",
+                            "desc": "Define formatos de balance general",
+                            "ctx": "A1851",
+                            "desh": 0,
+                            "menu": []
+                        },
+                        {
+                            "nom": "Listar...",
+                            "desc": "Lista la definicion de balance general",
+                            "ctx": "A187",
+                            "desh": 0,
+                            "menu": []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "nom": "Generales",
+            "desc": "Menu opciones generales",
+            "ctx": "A18C",
+            "desh": 0,
+            "menu": [
+                {
+                    "nom": "Parametros...",
+                    "desc": "Edita los Parametros de activacion del usuario",
+                    "ctx": "1201",
+                    "desh": 0,
+                    "menu": []
+                },
+                {
+                    "nom": "Configurar...",
+                    "desc": "Edita la configuracion de la aplicacion",
+                    "ctx": "A189",
+                    "desh": 0,
+                    "menu": []
+                },
+                {
+                    "nom": "Mantenimiento",
+                    "desc": "Menu de mantenimiento",
+                    "ctx": "A16F",
+                    "desh": 0,
+                    "menu": [
+                        {
+                            "nom": "Integridad...",
+                            "desc": "Verifica la integridad de los datos",
+                            "ctx": "A178",
+                            "desh": 0,
+                            "menu": []
+                        },
+                        {
+                            "nom": "Recodificar",
+                            "desc": "Recodificacion",
+                            "ctx": "A170",
+                            "desh": 0,
+                            "menu": [
+                                {
+                                    "nom": "Cuentas...",
+                                    "desc": "Recodificacion de cuentas en el movimiento",
+                                    "ctx": "A171",
+                                    "desh": 0,
+                                    "menu": []
+                                },
+                                {
+                                    "nom": "Terceros...",
+                                    "desc": "Recodificacion de terceros en el movimiento",
+                                    "ctx": "A1922",
+                                    "desh": 0,
+                                    "menu": []
+                                },
+                                {
+                                    "nom": "Anexos...",
+                                    "desc": "Recodificacion de anexos en el movimiento",
+                                    "ctx": "A174",
+                                    "desh": 0,
+                                    "menu": []
+                                },
+                                {
+                                    "nom": "Centros de costos...",
+                                    "desc": "Recodificacion de centros de costos en el movimiento",
+                                    "ctx": "A176",
+                                    "desh": 0,
+                                    "menu": []
+                                },
+                                {
+                                    "nom": "Activos Fijos...",
+                                    "desc": "Recodificacion de activos fijos en el movimiento",
+                                    "ctx": "A191",
+                                    "desh": 0,
+                                    "menu": []
+                                },
+                                {
+                                    "nom": "Renumerar",
+                                    "desc": "Permite renuerar un documento",
+                                    "ctx": "0as33",
+                                    "desh": 0,
+                                    "menu": []
+                                }
+                            ]
+                        },
+                        {
+                            "nom": "Reindexar...",
+                            "desc": "Reindexacion de tablas del sistema",
+                            "ctx": "A17A",
+                            "desh": 0,
+                            "menu": []
+                        },
+                        {
+                            "nom": "Crear...",
+                            "desc": "Creacion de tablas del sistema",
+                            "ctx": "A17B",
+                            "desh": 0,
+                            "menu": []
+                        }
+                    ]
+                },
+                {
+                    "nom": "Bib. Listados",
+                    "desc": "Visualizacion y edici�n de biblioteca de listados",
+                    "ctx": "0asdf54",
+                    "desh": 0,
+                    "menu": [
+                        {
+                            "nom": "Visualizar",
+                            "desc": "Visualiza un listado de la biblioteca",
+                            "ctx": "23011",
+                            "desh": 0,
+                            "menu": []
+                        },
+                        {
+                            "nom": "Editar",
+                            "desc": "Edita biblioteca de listados",
+                            "ctx": "23012",
+                            "desh": 0,
+                            "menu": []
+                        }
+                    ]
+                },
+                {
+                    "nom": "Utilitarios",
+                    "desc": "Menu de utilitarios",
+                    "ctx": "A17D",
+                    "desh": 0,
+                    "menu": [
+                        {
+                            "nom": "Visualizar...",
+                            "desc": "Visualizacion de tablas en forma columnaria.",
+                            "ctx": "A17F11asdf54",
+                            "desh": 0,
+                            "menu": []
+                        },
+                        {
+                            "nom": "Exportar...",
+                            "desc": "Exportacion de los datos a formato ascii",
+                            "ctx": "A17E",
+                            "desh": 0,
+                            "menu": []
+                        },
+                        {
+                            "nom": "Importar...",
+                            "desc": "Importacion de datos en formato ascii",
+                            "ctx": "A17F",
+                            "desh": 0,
+                            "menu": []
+                        },
+                        {
+                            "nom": "Ejecutar...",
+                            "desc": "Ejecutar comando",
+                            "ctx": "A17F11asdf8",
+                            "desh": 0,
+                            "menu": []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "nom": "Ventana",
+            "desc": "Manejo de las ventanas de trabajo",
+            "ctx": "1310",
+            "desh": 0,
+            "menu": [
+                {
+                    "nom": "Mover",
+                    "desc": "Mueve la ventana activa",
+                    "ctx": "1302",
+                    "desh": 0,
+                    "menu": []
+                },
+                {
+                    "nom": "Dimensionar",
+                    "desc": "Cambia de tama�o a la ventana activa",
+                    "ctx": "1303",
+                    "desh": 0,
+                    "menu": []
+                },
+                {
+                    "nom": "Maximizar",
+                    "desc": "Maximiza o desmaximiza la ventana activa",
+                    "ctx": "1304",
+                    "desh": 0,
+                    "menu": []
+                },
+                {
+                    "nom": "Organizar",
+                    "desc": "Organiza la disposici�n de las ventanas",
+                    "ctx": "1305",
+                    "desh": 0,
+                    "menu": []
+                },
+                {
+                    "nom": "Siguiente",
+                    "desc": "Arriva a la siguiente ventana",
+                    "ctx": "1306",
+                    "desh": 0,
+                    "menu": []
+                },
+                {
+                    "nom": "Cerrar",
+                    "desc": "Cierra la ventana activa",
+                    "ctx": "1307",
+                    "desh": 0,
+                    "menu": []
+                },
+                {
+                    "nom": "Cerrar todo",
+                    "desc": "Cierra todas las ventanas",
+                    "ctx": "1308",
+                    "desh": 0,
+                    "menu": []
+                },
+                {
+                    "nom": "Listar...",
+                    "desc": "Muestra la lista de todas las ventanas actuales",
+                    "ctx": "1309",
+                    "desh": 0,
+                    "menu": []
+                },
+                {
+                    "nom": "Comandos del sistema...",
+                    "desc": "Descripcion de lo comados del sistema",
+                    "ctx": "0654d8",
+                    "desh": 0,
+                    "menu": []
+                }
+            ]
+        },
+        {
+            "nom": " ? ",
+            "desc": "Opciones generales de ayuda",
+            "ctx": "1004",
+            "desh": 0,
+            "menu": [
+                {
+                    "nom": "Contenido",
+                    "desc": "Muestra la tabla de contenido",
+                    "ctx": "1000",
+                    "desh": 0,
+                    "menu": []
+                },
+                {
+                    "nom": "Indice",
+                    "desc": "Muestra el �ndice de t�rminos",
+                    "ctx": "1001",
+                    "desh": 0,
+                    "menu": []
+                },
+                {
+                    "nom": "Ayuda sobre ayuda",
+                    "desc": "Muestra ayuda sobre el manejo de ayudas",
+                    "ctx": "1003",
+                    "desh": 0,
+                    "menu": []
+                },
+                {
+                    "nom": "Entorno AZEN",
+                    "desc": "Explica los aspectos b�sicos de una aplicaci�n AZEN",
+                    "ctx": "1005",
+                    "desh": 0,
+                    "menu": []
+                },
+                {
+                    "nom": "Acerca de...",
+                    "desc": "Muestra versi�n e informaci�n general sobre la aplicaci�n",
+                    "ctx": "1002",
+                    "desh": 0,
+                    "menu": []
+                }
+            ]
+        }
+    ]
+}

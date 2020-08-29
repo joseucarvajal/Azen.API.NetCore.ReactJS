@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+	<TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,6 +11,13 @@
 
   <ItemGroup>
     <None Include="log4net.config" />
+    <None Include="wwwroot\azenweb\lib\bootstrap\dist\fonts\glyphicons-halflings-regular.svg" />
+    <None Include="wwwroot\azenweb\lib\bootstrap\dist\fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="wwwroot\azenweb\lib\bootstrap\dist\js\bootstrap.js" />
+    <None Include="wwwroot\azenweb\lib\bootstrap\dist\js\bootstrap.min.js" />
+    <None Include="wwwroot\azenweb\lib\bootstrap\dist\js\npm.js" />
+    <None Include="wwwroot\azenweb\lib\react-dom\dist\react-dom.min.js" />
+    <None Include="wwwroot\azenweb\lib\react\dist\react.min.js" />
   </ItemGroup>
 
   <ItemGroup>

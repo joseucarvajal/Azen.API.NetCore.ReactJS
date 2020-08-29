@@ -1,0 +1,45 @@
+@startuml
+
+actor Usuario
+
+boundary ZLogin <<Component>>
+Usuario -> ZLogin: onIngresarClick()
+activate ZLogin
+
+control zlogin.Actions
+ZLogin -> zlogin.Actions: login(dispatch:(), getState())
+activate zlogin.Actions
+
+control zcomunicaciones.actions
+zlogin.Actions -> zcomunicaciones.actions: enviarRequestComando()
+activate zcomunicaciones.actions
+
+zcomunicaciones.actions --> zlogin.Actions: Promise<ResultadoActionConDato<common.contrats.IZColaEventos>>
+deactivate zcomunicaciones.actions
+
+control zaplication.services.Responder
+zlogin.Actions -> zaplication.services.Responder: <b>[resultado == EXITO]</b> procesarZColaEventos(iZColaEventos)
+activate zaplication.services.Responder
+
+
+zaplication.services.Responder -> zaplication.services.Responder: procesarEvento(zEvento: IZEvento, dispatch(), getState())
+activate zaplication.services.Responder
+zaplication.services.Responder -> zaplication.services.Responder: procesarEventoComando(zEvento: IZEvento, dispatch(), getState())
+note left: switch con evento zcommon.constants.ComandoEnum.CM_ACEPTARLOGIN
+activate zaplication.services.Responder
+control modules.zlogin.reducers
+participant modules.zlogin.reducers <<Reducer>>
+zaplication.services.Responder -> modules.zlogin.reducers: setZAplList(zAplList:IZAplList)
+activate modules.zlogin.reducers
+
+boundary ZListadoAplicaciones <<Component>>
+deactivate zaplication.services.Responder
+modules.zlogin.reducers -> ZListadoAplicaciones: refresh
+deactivate modules.zlogin.reducers
+
+deactivate zaplication.services.Responder
+deactivate zaplication.services.Responder
+deactivate zlogin.Actions
+deactivate ZLogin
+
+@enduml

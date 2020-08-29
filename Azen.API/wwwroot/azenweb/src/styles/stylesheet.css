@@ -1,0 +1,212 @@
+.sk-folding-cube {
+    margin: 0px;
+    margin-left: 15px;
+    width: 15px;
+    height: 15px;
+    position: relative;
+    -webkit-transform: rotateZ(45deg);
+    transform: rotateZ(45deg);
+}
+
+.sk-folding-cube .sk-cube {
+    float: left;
+    width: 50%;
+    height: 50%;
+    position: relative;
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+.sk-folding-cube .sk-cube:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #333;
+    -webkit-animation: sk-foldCubeAngle 2.4s infinite linear both;
+    animation: sk-foldCubeAngle 2.4s infinite linear both;
+    -webkit-transform-origin: 100% 100%;
+    -ms-transform-origin: 100% 100%;
+    transform-origin: 100% 100%;
+}
+
+.sk-folding-cube .sk-cube2 {
+    -webkit-transform: scale(1.1) rotateZ(90deg);
+    transform: scale(1.1) rotateZ(90deg);
+}
+
+.sk-folding-cube .sk-cube3 {
+    -webkit-transform: scale(1.1) rotateZ(180deg);
+    transform: scale(1.1) rotateZ(180deg);
+}
+
+.sk-folding-cube .sk-cube4 {
+    -webkit-transform: scale(1.1) rotateZ(270deg);
+    transform: scale(1.1) rotateZ(270deg);
+}
+
+.sk-folding-cube .sk-cube2:before {
+    -webkit-animation-delay: 0.3s;
+    animation-delay: 0.3s;
+}
+
+.sk-folding-cube .sk-cube3:before {
+    -webkit-animation-delay: 0.6s;
+    animation-delay: 0.6s;
+}
+
+.sk-folding-cube .sk-cube4:before {
+    -webkit-animation-delay: 0.9s;
+    animation-delay: 0.9s;
+}
+
+@-webkit-keyframes sk-foldCubeAngle {
+    0%,
+    10% {
+        -webkit-transform: perspective(140px) rotateX(-180deg);
+        transform: perspective(140px) rotateX(-180deg);
+        opacity: 0;
+    }
+    25%,
+    75% {
+        -webkit-transform: perspective(140px) rotateX(0deg);
+        transform: perspective(140px) rotateX(0deg);
+        opacity: 1;
+    }
+    90%,
+    100% {
+        -webkit-transform: perspective(140px) rotateY(180deg);
+        transform: perspective(140px) rotateY(180deg);
+        opacity: 0;
+    }
+}
+
+@keyframes sk-foldCubeAngle {
+    0%,
+    10% {
+        -webkit-transform: perspective(140px) rotateX(-180deg);
+        transform: perspective(140px) rotateX(-180deg);
+        opacity: 0;
+    }
+    25%,
+    75% {
+        -webkit-transform: perspective(140px) rotateX(0deg);
+        transform: perspective(140px) rotateX(0deg);
+        opacity: 1;
+    }
+    90%,
+    100% {
+        -webkit-transform: perspective(140px) rotateY(180deg);
+        transform: perspective(140px) rotateY(180deg);
+        opacity: 0;
+    }
+}
+
+.zaplicacion-zprocesando-loader > h4, .sk-folding-cube {
+    display: inline-block;
+}
+
+.zaplicacion-zprocesando-no-modal-loader > div {
+    display: inline-block;
+}
+
+.zaplicacion-zprocesando-no-modal-loader > :last-child {
+    float: right;
+    margin-top: 10px;
+}
+
+.modal-lg {
+    width: 95% !important;
+}
+
+.modal-dialog{
+    width: 95% !important;
+    top:45px;
+}
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+    padding: 1px !important;
+    border: none !important;
+}
+
+.azen-multi .form-group{
+    margin-bottom:0px !important;
+}
+
+.azen-tabla-mov{
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+}
+
+.form-group{
+    margin-bottom: 1px !important;
+}
+
+.form-group-sm .form-control{
+    height: 26px !important;
+    padding: 0px 2px !important;
+}
+
+.azen-tabla-mov .form-group{
+    margin-bottom: 0px !important;
+}
+
+.input-group-addon {
+    padding: 4px 6px !important;
+}
+
+.panel {
+    margin-bottom: 10px;
+}
+
+.panel-info{
+    margin-top:3px !important;
+}
+
+.panel-body {
+    padding: 2px;
+    font-size: 13px;
+}
+
+.panel-heading {
+    padding: 1px 15px;
+}
+
+.panel-heading h3{
+    font-size: 17px;
+    margin-top: 12px;
+    margin-bottom: 8px;
+}
+
+.well{
+    margin-bottom: 5px !important;
+}
+
+.well-sm {
+    padding: 3px;
+    padding-bottom: 0px;
+}
+
+.panel-body .table {
+    margin-bottom: 5px !important;
+}
+
+.azn-seleccionar:hover {
+    background-color: #DFF0D8 !important;
+}
+
+.btn {
+    font-size: 12px;
+}
+
+.btn-group-xs>.btn, .btn-xs {
+    padding: 0px 5px;
+}
+
+.apls-list li {
+    list-style-type: none;
+}
