@@ -132,7 +132,7 @@ export namespace Actions {
         });
         */
           resolve({
-              azenBackEndURL: "https://localhost:44391/",
+              azenBackEndURL: "/",
               urlCargarArchivo: "http://52.42.49.101:8080/azenupl/index.jsp"
           });
     });

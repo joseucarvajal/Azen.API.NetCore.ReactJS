@@ -26903,7 +26903,6 @@ var Services;
             });
         };
         var downloadReportPopup = function (visualRtpParams, getState) {
-            visualRtpParams.vc = 'file-text.txt';
             var rptWindow = window.open(zutils_1.Services.trimLasCharacter(getState().azenURL, "/") + "/downloadreport/" + visualRtpParams.vc, "", "location=0");
             if (visualRtpParams.vc.endsWith(".txt")) {
                 rptWindow.addEventListener("load", function () {
@@ -51529,8 +51528,6 @@ var ZListadoAplicaciones = (function (_super) {
     }
     ZListadoAplicaciones.prototype.render = function () {
         var apls = this.props.zLoginModule.zAplList.apls;
-        if (apls.find(function (apl) { return apl.descrOpc; }))
-            console.log("debug 1", apls);
         var azenPto = sessionStorage.getItem(ZCommon.Constants.SessionStorageKeyEnum.AZEN_PUERTO);
         if (azenPto) {
             return (React.createElement("div", null,
@@ -52431,7 +52428,7 @@ var Actions;
     Actions.cargarCfg = function () {
         return new Promise(function (resolve, reject) {
             resolve({
-                azenBackEndURL: "https://localhost:44391/",
+                azenBackEndURL: "/",
                 urlCargarArchivo: "http://52.42.49.101:8080/azenupl/index.jsp"
             });
         });
