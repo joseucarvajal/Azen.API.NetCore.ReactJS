@@ -15,7 +15,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Azen.API.Model.ZCommand.Interceptors
+namespace Azen.API.Models.ZCommand.Interceptors
 {
     public class SoloLogin
     {

@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
-using Azen.API.Model.ZCommand;
+using Azen.API.Models.ZCommand;
 
 namespace Azen.API.Controllers
 {

@@ -1,4 +1,4 @@
-﻿using Azen.API.Model.ZCommand.Interceptors;
+﻿using Azen.API.Models.ZCommand.Interceptors;
 using Azen.API.Sockets.Comunications;
 using Azen.API.Sockets.Cryptography;
 using Azen.API.Sockets.Domain.Command;
@@ -8,7 +8,7 @@ using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Azen.API.Model.ZCommand
+namespace Azen.API.Models.ZCommand
 {
     public class Execute
     {

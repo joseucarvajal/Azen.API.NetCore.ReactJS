@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Azen.API.Sockets.Auth;
 using Azen.API.Sockets.Comunications;
 using Azen.API.Sockets.Cryptography;
@@ -13,21 +8,15 @@ using Azen.API.Sockets.Utils;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.IdentityModel.Tokens;
 
 namespace Azen.API
-{   
+{
 
     public class Startup
-    {
-        readonly string AzenCORSPolicy = "_AzenCORSPolicy";
-
+    {        
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -61,7 +50,7 @@ namespace Azen.API
             services.AddSingleton<ZTag>();
             services.AddTransient<ZSocket>();
 
-            services.AddMediatR(typeof(Model.ZCommand.Execute).Assembly);
+            services.AddMediatR(typeof(Models.ZCommand.Execute).Assembly);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -75,6 +64,7 @@ namespace Azen.API
             }
 
             app.UseHttpsRedirection();
+            app.UseStaticFiles();
 
             app.UseRouting();
 
