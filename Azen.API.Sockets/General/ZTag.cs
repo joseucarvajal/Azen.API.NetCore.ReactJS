@@ -1,4 +1,5 @@
 ﻿using Azen.API.Sockets.Utils;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -234,6 +235,30 @@ namespace Azen.API.Sockets.General
 			}
 
 			return returnObject;
+		}
+
+		public string JsonToXml(string data)
+		{
+			string xmlResult = "";
+
+			JObject json = JObject.Parse(data);
+			try
+			{
+				foreach (var x in json)
+				{
+					string name = x.Key;
+					JToken value = x.Value;
+					xmlResult += $"<campo><nc>{x.Key}</nc><vc>{x.Value}</vc></campo>";
+				}
+
+			}
+			catch (Exception e)
+			{
+				return null;
+			}
+
+
+			return "<dts>" + xmlResult + "</dts>";
 		}
 	}
 }
