@@ -437,7 +437,6 @@ export namespace Services {
       visualRtpParams: CM.IPxVisualizarRpt,
       getState: () => IZAplState
     ) => {
-        visualRtpParams.vc = 'file-text.txt';
       let rptWindow = window.open(
           `${ZUtilsServices.trimLasCharacter(getState().azenURL, "/")}/downloadreport/${
           visualRtpParams.vc

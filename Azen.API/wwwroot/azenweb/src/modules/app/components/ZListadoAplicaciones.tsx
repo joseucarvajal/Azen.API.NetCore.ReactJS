@@ -40,9 +40,6 @@ export class ZListadoAplicaciones extends React.Component<
   render() {
     const { apls } = this.props.zLoginModule.zAplList;
 
-    //this.props.zLoginModule.zAplList.apls[0].
-    if (apls.find((apl) => apl.descrOpc)) console.log("debug 1", apls);
-
     const azenPto = sessionStorage.getItem(
       ZCommon.Constants.SessionStorageKeyEnum.AZEN_PUERTO
     );

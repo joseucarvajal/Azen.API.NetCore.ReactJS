@@ -6,11 +6,29 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="log4net.config" />
+    <Compile Remove="wwwroot\azenweb\docs\**" />
+    <Compile Remove="wwwroot\azenweb\src\**" />
+    <Content Remove="wwwroot\azenweb\docs\**" />
+    <Content Remove="wwwroot\azenweb\src\**" />
+    <EmbeddedResource Remove="wwwroot\azenweb\docs\**" />
+    <EmbeddedResource Remove="wwwroot\azenweb\src\**" />
+    <None Remove="wwwroot\azenweb\docs\**" />
+    <None Remove="wwwroot\azenweb\src\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="log4net.config" />
+    <Content Remove="log4net.config" />
+    <Content Remove="wwwroot\azenweb\package-lock.json" />
+    <Content Remove="wwwroot\azenweb\package.json" />
+    <Content Remove="wwwroot\azenweb\tsconfig.json" />
+    <Content Remove="wwwroot\azenweb\typings.json" />
+    <Content Remove="wwwroot\azenweb\webpack.config.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="log4net.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="wwwroot\azenweb\lib\bootstrap\dist\fonts\glyphicons-halflings-regular.svg" />
     <None Include="wwwroot\azenweb\lib\bootstrap\dist\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="wwwroot\azenweb\lib\bootstrap\dist\js\bootstrap.js" />
