@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json.Linq;
+using MediatR;
 
 namespace Azen.API.Controllers
 {
@@ -22,12 +23,21 @@ namespace Azen.API.Controllers
         bool siLogActividad;
         ZSocket _zsck;
         private readonly IOptions<AzenSettings> _azenSettings;
+        private readonly IMediator _mediator;
 
-        public ServiceController(IOptions<AzenSettings> azenSettings, ZSocket zsck, LogHandler logHandler)
+        public ServiceController(IOptions<AzenSettings> azenSettings, ZSocket zsck, LogHandler logHandler, IMediator mediator)
         {
             _azenSettings = azenSettings;
             _logHandler = logHandler;
             _zsck = zsck;
+            _mediator = mediator;
+        }
+
+        [HttpPost("login")]
+        public async Task<ActionResult<string>> Login(Models.ZService.SoloLogin.Command command)
+        {
+            string response = await _mediator.Send(command);
+            return response;
         }
 
         [HttpGet]
@@ -59,6 +69,7 @@ namespace Azen.API.Controllers
             string content = await new StreamReader(Request.Body).ReadToEndAsync();
             string result = EjecutarServicio(idApl, opcion, dominio, tkna, log, content, string.Empty, cmd, metodo != null ? metodo : "POST");
             return Ok(result);
+
         }
 
         [HttpPut]

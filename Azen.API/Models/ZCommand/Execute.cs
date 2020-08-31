@@ -48,9 +48,6 @@ namespace Azen.API.Models.ZCommand
                     case ZCommandConst.CM_ACEPTARLOGIN: // Retorna tkna
                         return await _mediator.Send(new AceptarLogin.Command(request));
 
-                    case ZCommandConst.CM_SOLOLOGIN: // Retorna tkna
-                        return await _mediator.Send(new SoloLogin.Command(request));
-
                     case ZCommandConst.CM_APLICACION:
                         return await _mediator.Send(new Aplicacion.Command(request));
 
