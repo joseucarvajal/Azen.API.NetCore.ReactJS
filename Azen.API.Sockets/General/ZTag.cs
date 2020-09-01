@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml.Serialization;
@@ -239,11 +240,11 @@ namespace Azen.API.Sockets.General
 
 		public string JsonToXml(string data)
 		{
-			string xmlResult = "";
+			string xmlResult = string.Empty;
 
-			JObject json = JObject.Parse(data);
 			try
 			{
+				JObject json = JObject.Parse(data);
 				foreach (var x in json)
 				{
 					string name = x.Key;

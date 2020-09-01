@@ -13,9 +13,7 @@ using Azen.API.Models.ZCommand;
 
 namespace Azen.API.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class CommandController : ControllerBase
+    public class CommandController : AzenBaseController
     {
         LogHandler _logHandler;
         ZSocket _zsck;
@@ -47,16 +45,12 @@ namespace Azen.API.Controllers
             [FromRoute] string idAplicacion, 
             [FromBody] Execute.Command command)
         {
-            string zClaimsStr = HttpContext.Items["ZClaims"] as string;
-
-            var zClaims = JsonConvert.DeserializeObject<ZClaims>(zClaimsStr);
+            var zClaims = GetZClaims();
 
             command.IdAplication = idAplicacion;
             command.Tkna = zClaims.Tkna;
 
-            string response = await _mediator.Send(command);
-
-            return response;
+            return await _mediator.Send(command);
         }
     }
 }

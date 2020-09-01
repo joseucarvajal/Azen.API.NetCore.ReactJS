@@ -45,11 +45,16 @@ namespace Azen.API.Models.ZService
             ZSocket _zsck;
             private readonly IdentitySettings _identitySettings;
             private ZCryptography _zCryptography;
-            public Handler(ZSocket zsck, IOptions<IdentitySettings> identitySettings, ZCryptography zCryptography)
+            private AuthService _authService;
+
+            public Handler(ZSocket zsck, IOptions<IdentitySettings> identitySettings, 
+                ZCryptography zCryptography,
+                AuthService authService)
             {
                 _zsck = zsck;
                 _identitySettings = identitySettings.Value;
                 _zCryptography = zCryptography;
+                _authService = authService;
             }
 
             public async Task<string> Handle(Command request, CancellationToken cancellationToken)
@@ -68,25 +73,15 @@ namespace Azen.API.Models.ZService
 
                 if (zLoginResponse.MessageCode == ZSocket.ZSCK_ERROPERNOVAL)
                 {
-                    throw new Exception(zLoginResponse.Message);
+                    throw new UnauthorizedAccessException(zLoginResponse.Message);
                 }
 
-                string token = GenerateJwtToken(zLoginResponse.Tkna);
-                return token;
-            }
-
-            private string GenerateJwtToken(string tkna)
-            {
-                var tokenHandler = new JwtSecurityTokenHandler();
-                var key = Encoding.ASCII.GetBytes(_identitySettings.SecretKey);
-                var tokenDescriptor = new SecurityTokenDescriptor
+                string token = _authService.GenerateJwtToken(new ZClaims
                 {
-                    Subject = new ClaimsIdentity(new[] { new Claim("tkna", tkna) }),
-                    Expires = DateTime.UtcNow.AddDays(1),
-                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-                };
-                var token = tokenHandler.CreateToken(tokenDescriptor);
-                return tokenHandler.WriteToken(token);
+                    Tkna = zLoginResponse.Tkna
+                });
+                
+                return token;
             }
         }
     }

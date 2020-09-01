@@ -10,6 +10,8 @@ using System.Text;
 using System.Threading;
 using Azen.API.Sockets.Domain.Command;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using Azen.API.Sockets.Domain.Service;
 
 namespace Azen.API.Sockets.Comunications
 {
@@ -536,6 +538,73 @@ namespace Azen.API.Sockets.Comunications
         {
             return _ztag.ObtValorTag($"<{tag}>", $"</{tag}>", buffer);
         }
+
+        public string EjecutarServicio(ZServiceDTO zServiceDTO)
+        {
+            return EjecutarServicio(zServiceDTO.IdAplication, zServiceDTO.Opcion, zServiceDTO.Tkna, zServiceDTO.Log, zServiceDTO.JsonBuffer, zServiceDTO.Cmd, zServiceDTO.HttpMethod.ToString());
+        }
+            
+
+        private string EjecutarServicio(string idApl, string opcion, string tkna, int log, object jsonBuffer, int cmd, string metodo)
+        {
+            siLogActividad = log == 1;
+
+            string jsonBufferStr = string.Empty;
+
+            if (jsonBuffer != null)
+            {
+                jsonBufferStr = jsonBuffer.ToString();
+            }
+
+            string cadenaXmlBody =
+                ZTag.ZTAG_I_PARAMETROS +
+                ZTag.ZTAG_I_FMT + "xml" + ZTag.ZTAG_F_FMT +
+                ZTag.ZTAG_I_OPER + metodo + ZTag.ZTAG_F_OPER +
+                ZTag.ZTAG_I_DATOS + _ztag.JsonToXml(jsonBufferStr) + ZTag.ZTAG_F_DATOS +
+                ZTag.ZTAG_F_PARAMETROS;
+
+            // Ejecuta aplicacion
+            _logHandler.Info("---- CM_APLICACION " + idApl + "Opc:" + opcion);
+
+            string buffer = string.Empty;
+
+            switch (cmd)
+            {
+                // Cmd que se da cuando se entra parametros de logeo
+                case ZCommandConst.CM_EJECSERVICIO:
+                    // Arma buffer para enviar con parametros de logeo
+                    buffer =
+                    ZTag.ZTAG_I_CMDEVT + "EJECUTAR" + ZTag.ZTAG_F_CMDEVT +
+                    ZTag.ZTAG_I_TKNA + tkna + ZTag.ZTAG_F_TKNA +
+                    ZTag.ZTAG_I_IPSC + "0000" + ZTag.ZTAG_F_IPSC +
+                    ZTag.ZTAG_I_PSC + "0000" + ZTag.ZTAG_F_PSC +
+                    ZTag.ZTAG_I_CLIENTE + "web" + ZTag.ZTAG_F_CLIENTE +
+                    ZTag.ZTAG_I_IDAPLI + idApl + ZTag.ZTAG_F_IDAPLI +
+                    ZTag.ZTAG_I_LOG + log + ZTag.ZTAG_F_LOG +
+                    ZTag.ZTAG_I_OPC + opcion + ZTag.ZTAG_F_OPC +
+                    ZTag.ZTAG_I_PARAMETROS + "si" + ZTag.ZTAG_F_PARAMETROS; // Indica que es servicio
+
+                    _logHandler.Info("---- antes CM_APLICACION EJECUTAR SERVICIO Buffer: " + buffer);
+                    break;
+            }
+
+            string cadena = SocketClienteEnviar(buffer);
+
+            //Obtiene puerto donde se ejecuta la aplciacion
+            int puertoSrvAplicacion = Int32.Parse(GetTagValue(ZTag.ZTAG_PSC, cadena));
+            string tkns = GetTagValue(ZTag.ZTAG_TKNS, cadena);
+            _logHandler.Info(puertoSrvAplicacion);
+            _logHandler.Info(tkns);
+
+            string datoTkns = ZTag.ZTAG_I_TKNS + tkns + ZTag.ZTAG_F_TKNS;
+
+            string cadEvento = new ZEvent(2, 0, ZCommandConst.CM_EJECSERVICIO, "", "").ArmarCadenaSocket();
+
+            string cadenaEnviar = cadEvento + datoTkns + cadenaXmlBody;
+
+            return SocketClienteEnviar(cadenaEnviar, puertoSrvAplicacion, ZCommandConst.CM_EJECSERVICIO);
+        }
+
 
         public T DeserializeXMLToObject<T>(string XmlFilename)
         {

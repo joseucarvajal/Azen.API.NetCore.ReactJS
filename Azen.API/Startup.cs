@@ -1,3 +1,4 @@
+using Azen.API.ExceptionsHandling;
 using Azen.API.Sockets.Auth;
 using Azen.API.Sockets.Comunications;
 using Azen.API.Sockets.Cryptography;
@@ -73,12 +74,8 @@ namespace Azen.API
             // custom jwt auth middleware
             app.UseMiddleware<JwtMiddleware>();
 
-            /*
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
-            */
+            app.UseMiddleware<ExceptionHandlerMiddleware>();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

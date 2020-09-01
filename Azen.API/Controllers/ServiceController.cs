@@ -12,12 +12,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json.Linq;
 using MediatR;
+using Azen.API.Sockets.Helpers;
+using Azen.API.Models.ZService;
+using Azen.API.Sockets.Domain.Service;
 
 namespace Azen.API.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ServiceController : ControllerBase
+    public class ServiceController : AzenBaseController
     {
         LogHandler _logHandler;
         bool siLogActividad;
@@ -40,6 +41,32 @@ namespace Azen.API.Controllers
             return response;
         }
 
+        [HttpPost("{idaplicacion}/{opcion}/{cmd}/{log?}")]
+        [Authorize]
+        public async Task<ActionResult<string>> Post(
+                        [FromRoute] string idAplicacion,
+                        [FromRoute] string opcion,
+                        [FromRoute] int cmd,
+                        [FromRoute] int? log,
+                        [FromBody] object json
+            )
+        {
+            var zClaims = GetZClaims();
+
+            Execute.Command command = new Execute.Command
+            {
+                Tkna = zClaims.Tkna,
+                IdAplication = idAplicacion,
+                Opcion = opcion,
+                Cmd = cmd,
+                Log = log ?? 0,
+                JsonBuffer = json,
+                HttpMethod = System.Web.Mvc.HttpVerbs.Post
+            };
+
+            return await _mediator.Send(command);
+        }
+
         [HttpGet]
         public IActionResult Get(
             string idApl,
@@ -55,6 +82,7 @@ namespace Azen.API.Controllers
             string result = EjecutarServicio(idApl, opcion, dominio, tkna, log, string.Empty, buffer, cmd, metodo != null ? metodo : "GET");
             return Ok(result);
         }
+
         [HttpPost]
         public async Task<IActionResult> PostAsync(
             string idApl,
