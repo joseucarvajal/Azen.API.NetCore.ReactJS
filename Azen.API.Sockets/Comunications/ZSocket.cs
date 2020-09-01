@@ -464,8 +464,8 @@ namespace Azen.API.Sockets.Comunications
                         // Arma buffer para enviar con parametros de logeo
                         buffer1 = ZTag.ZTAG_I_CMDEVT + "EJECUTAR" + ZTag.ZTAG_F_CMDEVT +
                             ZTag.ZTAG_I_TKNA + tkna + ZTag.ZTAG_F_TKNA +
-                            ZTag.ZTAG_I_IPSC + "0000" + ZTag.ZTAG_F_IPSC +
-                            ZTag.ZTAG_I_PSC + "0000" + ZTag.ZTAG_F_PSC +
+                            ZTag.ZTAG_I_IPCLI + "pending" + ZTag.ZTAG_F_IPCLI +
+                            ZTag.ZTAG_I_IPMID + "pending" + ZTag.ZTAG_I_IPMID +
                             ZTag.ZTAG_I_IDAPLI + aplicacion + ZTag.ZTAG_F_IDAPLI +
                             ZTag.ZTAG_I_LOG + log + ZTag.ZTAG_F_LOG +
                             ZTag.ZTAG_I_CLIENTE + "web" + ZTag.ZTAG_F_CLIENTE;
@@ -499,8 +499,8 @@ namespace Azen.API.Sockets.Comunications
         {
             buffer = ZTag.ZTAG_I_CMDEVT + "EJECUTAR" + ZTag.ZTAG_F_CMDEVT +
                 ZTag.ZTAG_I_TKNA + tkna + ZTag.ZTAG_F_TKNA +
-                ZTag.ZTAG_I_IPSC + "0000" + ZTag.ZTAG_F_IPSC +
-                ZTag.ZTAG_I_PSC + "0000" + ZTag.ZTAG_F_PSC +
+                ZTag.ZTAG_I_IPCLI + "pending" + ZTag.ZTAG_F_IPCLI +
+                ZTag.ZTAG_I_IPMID + "pending" + ZTag.ZTAG_I_IPMID +
                 ZTag.ZTAG_I_IDAPLI + aplicacion + ZTag.ZTAG_F_IDAPLI +
                 ZTag.ZTAG_I_CLIENTE + "web" + ZTag.ZTAG_F_CLIENTE +
                 ZTag.ZTAG_I_LOG + log + ZTag.ZTAG_F_LOG +
@@ -576,9 +576,9 @@ namespace Azen.API.Sockets.Comunications
                     buffer =
                     ZTag.ZTAG_I_CMDEVT + "EJECUTAR" + ZTag.ZTAG_F_CMDEVT +
                     ZTag.ZTAG_I_TKNA + tkna + ZTag.ZTAG_F_TKNA +
-                    ZTag.ZTAG_I_IPSC + "0000" + ZTag.ZTAG_F_IPSC +
-                    ZTag.ZTAG_I_PSC + "0000" + ZTag.ZTAG_F_PSC +
                     ZTag.ZTAG_I_CLIENTE + "web" + ZTag.ZTAG_F_CLIENTE +
+                    ZTag.ZTAG_I_IPCLI + "pending" + ZTag.ZTAG_F_IPCLI +
+                    ZTag.ZTAG_I_IPMID + "pending" + ZTag.ZTAG_I_IPMID +
                     ZTag.ZTAG_I_IDAPLI + idApl + ZTag.ZTAG_F_IDAPLI +
                     ZTag.ZTAG_I_LOG + log + ZTag.ZTAG_F_LOG +
                     ZTag.ZTAG_I_OPC + opcion + ZTag.ZTAG_F_OPC +

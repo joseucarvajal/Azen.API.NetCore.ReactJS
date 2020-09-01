@@ -39,7 +39,13 @@ namespace Azen.API.Sockets.General
 
 		public const string ZTAG_IPSC = "ipSC";     // tag para almacenar ip del servidor cliente
 		public const string ZTAG_I_IPSC = "<ipSC>";     // tag para almacenar ip del servidor cliente
-		public const string    ZTAG_F_IPSC		= "</ipSC>";        // finalizador de ip del servidor cliente
+		public const string ZTAG_F_IPSC = "</ipSC>";        // finalizador de ip del servidor cliente
+
+		public const string ZTAG_I_IPCLI = "<ipCli>";     // tag para almacenar ip del cliente
+		public const string ZTAG_F_IPCLI = "</ipCli>";        // finalizador de ip del cliente
+
+		public const string ZTAG_I_IPMID = "<ipMid>";     // tag para almacenar ip del cliente
+		public const string ZTAG_F_IPMID = "</ipMid>";        // finalizador de ip del cliente
 
 		public const string ZTAG_PSC = "pSC";       // tag para almacenar puerto del servidor cliente
 		public const string ZTAG_I_PSC = "<pSC>";       // tag para almacenar puerto del servidor cliente

@@ -37,9 +37,13 @@ namespace Azen.API.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<string>> Login(Models.ZService.SoloLogin.Command command)
         {
+            //var ip = HttpContext.Connection.RemoteIpAddress.ToString();
+
             string response = await _mediator.Send(command);
             return response;
         }
+
+       
 
         [HttpPost("{idaplicacion}/{opcion}/{cmd}/{log?}")]
         [Authorize]
