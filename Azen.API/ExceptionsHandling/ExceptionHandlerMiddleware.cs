@@ -1,5 +1,6 @@
 ﻿using Azen.API.Sockets.Utils;
 using Microsoft.AspNetCore.Http;
+using Renci.SshNet.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,12 @@ namespace Azen.API.ExceptionsHandling
             try
             {
                 await _next(httpContext);
+            }
+            catch (SftpPermissionDeniedException e)
+            {
+                _logHandler.Error(e.ToString());
+                httpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                await httpContext.Response.WriteAsync(e.Message);
             }
             catch (UnauthorizedAccessException e)
             {

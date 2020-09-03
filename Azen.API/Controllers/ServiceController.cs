@@ -45,12 +45,11 @@ namespace Azen.API.Controllers
 
        
 
-        [HttpPost("{idaplicacion}/{opcion}/{cmd}/{log?}")]
+        [HttpPost("{idaplicacion}/{opcion}/{log?}")]
         [Authorize]
         public async Task<ActionResult<string>> Post(
                         [FromRoute] string idAplicacion,
                         [FromRoute] string opcion,
-                        [FromRoute] int cmd,
                         [FromRoute] int? log,
                         [FromBody] object json
             )
@@ -62,7 +61,7 @@ namespace Azen.API.Controllers
                 Tkna = zClaims.Tkna,
                 IdAplication = idAplicacion,
                 Opcion = opcion,
-                Cmd = cmd,
+                Cmd = 189,
                 Log = log ?? 0,
                 JsonBuffer = json,
                 HttpMethod = System.Web.Mvc.HttpVerbs.Post

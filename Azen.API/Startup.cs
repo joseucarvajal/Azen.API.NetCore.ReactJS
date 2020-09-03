@@ -1,6 +1,7 @@
 using Azen.API.ExceptionsHandling;
 using Azen.API.Sockets.Auth;
 using Azen.API.Sockets.Comunications;
+using Azen.API.Sockets.Comunications.ZFile;
 using Azen.API.Sockets.Cryptography;
 using Azen.API.Sockets.General;
 using Azen.API.Sockets.Helpers;
@@ -42,11 +43,13 @@ namespace Azen.API
             services.Configure<AzenSettings>(Configuration.GetSection("AzenSettings"));
             services.Configure<IdentitySettings>(Configuration.GetSection("IdentitySettings"));
             services.Configure<ZCryptographySettings>(Configuration.GetSection("ZCryptographySettings"));
+            services.Configure<ZTransferFileSettings>(Configuration.GetSection("ZTransferFileSettings"));
 
             services.AddSingleton<LogHandler>();
 
             services.AddScoped<AuthService>();
             services.AddScoped<ZCryptography>();
+            services.AddScoped<ZTransferFile>();            
 
             services.AddSingleton<ZTag>();
             services.AddTransient<ZSocket>();
