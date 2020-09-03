@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Azen.API.Models.ZUploadFile
+namespace Azen.API.Models.ZTransferFile
 {
-    public class UploadFile
+    public class TransferFile
     {
     }
 }

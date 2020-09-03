@@ -9,7 +9,7 @@ namespace Azen.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UploadFileController : AzenBaseController
+    public class TransferFileController : AzenBaseController
     {
     }
 }

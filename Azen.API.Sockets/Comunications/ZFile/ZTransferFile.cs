@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Azen.API.Sockets.Comunications.ZFile
 {
-    public class ZTransferdFile
+    public class ZTransferFile
     {
     }
 }
