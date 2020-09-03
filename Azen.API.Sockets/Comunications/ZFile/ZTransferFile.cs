@@ -31,9 +31,11 @@ namespace Azen.API.Sockets.Comunications.ZFile
             {
                 sftpClient.Connect();
 
+                sftpClient.ChangeDirectory(_zTransferFileSettings.TargetPath);
+
                 sftpClient.UploadFile(
                     fs,
-                    _zTransferFileSettings.TargetPath.TrimEnd('/') + "/" + Path.GetFileName(fileToUpload),
+                    Path.GetFileName(fileToUpload),
                     uploaded =>
                     {
                         Console.WriteLine($"Uploaded {(double)uploaded / fs.Length * 100}% of the file.");

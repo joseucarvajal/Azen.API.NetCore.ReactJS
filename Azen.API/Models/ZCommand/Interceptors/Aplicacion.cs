@@ -1,4 +1,5 @@
-﻿using Azen.API.Sockets.Auth;
+﻿using Azen.API.ExceptionsHandling.Exceptions;
+using Azen.API.Sockets.Auth;
 using Azen.API.Sockets.Comunications;
 using Azen.API.Sockets.Domain.Command;
 using Azen.API.Sockets.General;
@@ -31,6 +32,7 @@ namespace Azen.API.Models.ZCommand.Interceptors
         {
             ZSocket _zsck;
             AuthService _authService;
+
             public Handler(ZSocket zsck, AuthService authService)
             {
                 _zsck = zsck;
@@ -38,7 +40,15 @@ namespace Azen.API.Models.ZCommand.Interceptors
             }
 
             public async Task<string> Handle(Command request, CancellationToken cancellationToken)
-            {               
+            {
+                CommandValidator commandValidator = new CommandValidator();
+                var validatorResult = commandValidator.Validate(request);
+
+                if (!validatorResult.IsValid)
+                {
+                    throw new ZValidatorException(validatorResult);
+                }
+                
                 request.Buffer = ZTag.ZTAG_I_CMDEVT + "EJECUTAR" + ZTag.ZTAG_F_CMDEVT +
                     ZTag.ZTAG_I_TKNA + request.Tkna + ZTag.ZTAG_F_TKNA +
                     ZTag.ZTAG_I_IPSC + "0000" + ZTag.ZTAG_F_IPSC +

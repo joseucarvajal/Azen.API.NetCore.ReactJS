@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using Azen.API.ExceptionsHandling.Exceptions;
+using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.VisualStudio.Web.CodeGeneration;
@@ -22,8 +23,8 @@ namespace Azen.API.Models.ZTransferFile
         {
             public CommandValidator()
             {
-                RuleFor(x => x.FormFile)
-                    .NotNull().WithMessage("Archivo es requerido");
+                RuleFor(x => x.FormFile).NotNull()
+                    .WithMessage("Archivo es requerido");
             }
         }
 
@@ -40,6 +41,14 @@ namespace Azen.API.Models.ZTransferFile
 
             public async Task<string> Handle(Command request, CancellationToken cancellationToken)
             {
+                CommandValidator commandValidator = new CommandValidator();
+                var validatorResult = commandValidator.Validate(request);
+
+                if (!validatorResult.IsValid)
+                {
+                    throw new ZValidatorException(validatorResult);
+                }
+
                 string folderName = DateTime.Now.ToString("HHmmss");
                 string[] pathFolder = { @"tmp", folderName };
 

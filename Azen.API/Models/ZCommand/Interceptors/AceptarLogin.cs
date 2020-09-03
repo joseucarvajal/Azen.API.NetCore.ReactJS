@@ -1,4 +1,5 @@
-﻿using Azen.API.Sockets.Auth;
+﻿using Azen.API.ExceptionsHandling.Exceptions;
+using Azen.API.Sockets.Auth;
 using Azen.API.Sockets.Comunications;
 using Azen.API.Sockets.Domain.Command;
 using Azen.API.Sockets.Domain.Response;
@@ -34,8 +35,7 @@ namespace Azen.API.Models.ZCommand.Interceptors
         {
             public CommandValidator()
             {
-                RuleFor(x => x.Buffer)
-                    .NotEmpty()
+                RuleFor(x => x.Buffer).NotNull().NotEmpty()
                     .WithMessage("Buffer es requerido");
             }
         }
@@ -52,6 +52,14 @@ namespace Azen.API.Models.ZCommand.Interceptors
 
             public async Task<string> Handle(Command request, CancellationToken cancellationToken)
             {
+                CommandValidator commandValidator = new CommandValidator();
+                var validatorResult = commandValidator.Validate(request);
+
+                if (!validatorResult.IsValid)
+                {
+                    throw new ZValidatorException(validatorResult);
+                }
+
                 var result = _zsck.ExecuteCommandAsString(request);
 
                 string tkna = _zsck.GetTagValue(ZTag.ZTAG_TKNA, result);

@@ -32,6 +32,8 @@ namespace Azen.API.Models.ZCommand
             private ZSocket _zSocket;
             private ZCryptography _zCryptography;
 
+            private readonly IValidator<CommandValidator> _commandValidator;
+
             public Handler(IMediator mediator, ZSocket zSocket, ZCryptography zCryptography)
             {
                 _mediator = mediator;

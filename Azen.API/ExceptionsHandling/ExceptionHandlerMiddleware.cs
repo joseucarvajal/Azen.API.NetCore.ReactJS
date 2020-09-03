@@ -1,11 +1,15 @@
-﻿using Azen.API.Sockets.Utils;
+﻿using Azen.API.ExceptionsHandling.Exceptions;
+using Azen.API.Sockets.Utils;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 using Renci.SshNet.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using System.Web.Helpers;
 
 namespace Azen.API.ExceptionsHandling
 {
@@ -26,27 +30,63 @@ namespace Azen.API.ExceptionsHandling
             {
                 await _next(httpContext);
             }
-            catch (SftpPermissionDeniedException e)
-            {
-                _logHandler.Error(e.ToString());
-                httpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                await httpContext.Response.WriteAsync(e.Message);
-            }
             catch (UnauthorizedAccessException e)
             {
-                _logHandler.Error(e.ToString());
-                httpContext.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
-                await httpContext.Response.WriteAsync(e.Message);
+                await WriteErrorResponse(httpContext, HttpStatusCode.Unauthorized, e);
+            }
+            catch (SftpPermissionDeniedException e)
+            {
+                await WriteErrorResponse(httpContext, HttpStatusCode.Forbidden, e);
+            }
+            catch (ZValidatorException e)
+            {
+                await WriteErrorResponse(httpContext, HttpStatusCode.BadRequest, e);
             }
             catch (Exception e)
             {
-                _logHandler.Error(e.ToString());
-                httpContext.Items["exceptionMessage"] = e.ToString();
-                throw e;
+                await WriteErrorResponse(httpContext, HttpStatusCode.InternalServerError, e);
             }
-
         }
 
+        private async Task WriteErrorResponse(HttpContext httpContext, HttpStatusCode httpStatusCode, Exception exception)
+        {
+            _logHandler.Error(exception.ToString());
+
+            httpContext.Response.ContentType = "application/json";
+            httpContext.Response.StatusCode = (int)httpStatusCode;
+
+            ZValidationResult zValidationResult = new ZValidationResult
+            {
+                Title = exception.Message
+            };
+
+            if (exception is ZValidatorException)
+            {
+                ZValidatorException zValidatorException = exception as ZValidatorException;
+
+                zValidationResult.Title = "Se produjeron uno o más errores de validación.";
+
+                if (zValidatorException.ValidationResult.Errors.Count > 0)
+                {
+                    zValidationResult.Errors = new Dictionary<string, string[]>
+                    {
+                        {
+                            zValidatorException.ValidationResult.Errors[0].PropertyName,
+                            new string[]{ zValidatorException.ValidationResult.Errors[0].ErrorMessage }
+                        }
+                    };
+                }
+            }
+
+            await httpContext.Response.WriteAsync(JsonConvert.SerializeObject(zValidationResult));
+        }
+
+    }
+
+    public class ZValidationResult
+    {
+        public string Title { get; set; }
+        public IDictionary<string, string[]> Errors { get; set; }
     }
 
 }

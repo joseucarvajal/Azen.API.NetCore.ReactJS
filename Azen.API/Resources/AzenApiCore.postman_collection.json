@@ -1,0 +1,116 @@
+{
+	"info": {
+		"_postman_id": "e483d7a5-d1f5-467c-ac59-37990a2f7c1d",
+		"name": "AzenApiCore",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CM_SOLOLOGIN login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"UserName\":\"azen\",\r\n    \"Password\":\"azen\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44391/api/service/login",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44391",
+					"path": [
+						"api",
+						"service",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Anexo Adicionar",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJaQ2xhaW1zIjoie1wiVGtuYVwiOlwiM29FdkhoWTFUZVwiLFwiVGtuc1wiOm51bGx9IiwibmJmIjoxNTk4OTgyNjU4LCJleHAiOjE1OTkwNjkwNTgsImlhdCI6MTU5ODk4MjY1OH0.bArQ_DJXL_2_SedMYLJPSPcBrKiHGGUdMYh6EkQjsLc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"codigo\":\"xx66\", \"nombre\":\"desc66\" }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44391/api/service/azenctb/anx_Ejecutar",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44391",
+					"path": [
+						"api",
+						"service",
+						"azenctb",
+						"anx_Ejecutar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TransferFile",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "FormFile",
+							"type": "file",
+							"src": "/C:/Users/Carlos Hurtado/Downloads/portletbossitroiiframebuilder.js"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44391/api/transferfile",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44391",
+					"path": [
+						"api",
+						"transferfile"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

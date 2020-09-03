@@ -23,7 +23,7 @@ namespace Azen.API.Controllers
 
         [HttpPost]
         //[Authorize]
-        public async Task<ActionResult<string>> Post([FromForm(Name = "file")] IFormFile file)
+        public async Task<ActionResult<string>> Post([FromForm(Name = "FormFile")] IFormFile file)
         {
             TransferFile.Command command = new TransferFile.Command
             {

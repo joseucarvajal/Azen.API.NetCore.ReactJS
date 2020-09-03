@@ -31,11 +31,9 @@ namespace Azen.API.Models.ZService
         {
             public CommandValidator()
             {
-                RuleFor(x => x.UserName)
-                    .NotEmpty()
+                RuleFor(x => x.UserName).NotNull().NotEmpty()
                     .WithMessage("UserName es requerido");
-                RuleFor(x => x.Password)
-                    .NotEmpty()
+                RuleFor(x => x.Password).NotNull().NotEmpty()
                     .WithMessage("Password es requerido");
             }
         }

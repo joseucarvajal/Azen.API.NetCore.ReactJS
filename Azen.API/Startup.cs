@@ -7,6 +7,7 @@ using Azen.API.Sockets.General;
 using Azen.API.Sockets.Helpers;
 using Azen.API.Sockets.Settings;
 using Azen.API.Sockets.Utils;
+using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -53,6 +54,12 @@ namespace Azen.API
 
             services.AddSingleton<ZTag>();
             services.AddTransient<ZSocket>();
+
+            //Fluent Validators
+            services.AddControllers()
+                .AddFluentValidation(cfg => {
+                    cfg.RegisterValidatorsFromAssemblyContaining<Models.ZCommand.Execute>();
+                });
 
             services.AddMediatR(typeof(Models.ZCommand.Execute).Assembly);
         }
