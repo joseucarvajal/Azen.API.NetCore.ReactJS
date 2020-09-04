@@ -2,13 +2,12 @@ import * as React from "react";
 
 import { Panel, FormControl } from "react-bootstrap";
 
+import * as ZUtils from '../../zutils'
+
 import {
   IZCampoState,
   IZFormaTablaState,
-  IParametrosActivacionObj,
 } from "../../zcommon";
-
-declare const window: any;
 
 export interface OwnProps {
   zCampoModel: IZCampoState;
@@ -16,8 +15,8 @@ export interface OwnProps {
 }
 
 export interface ConnectedState {
-  tkns:string
-
+  azenAPIURL:string;
+  tkns:string;
 }
 
 export interface ConnectedDispatch {
@@ -29,11 +28,14 @@ export const ZCampoArchivo: React.FC<
 > = (props) => {
   const {
     zCampoModel,    
+    azenAPIURL,
     tkns,
     enviarCmdCambioCmp,
   } = props; 
   
   const [loadingFileMessage, setLoadingFileMessage] = React.useState('');
+
+  const requestUrl = `${ZUtils.Services.trimLasCharacter(azenAPIURL, "/")}/api/transferfile`;
 
   return (
     <Panel bsStyle="success">
@@ -50,15 +52,15 @@ export const ZCampoArchivo: React.FC<
             }            
             const formData = new FormData();
             formData.append('file', e.target.files[0]);            
-            const response = await fetch('/api/transferfile', {
+
+            const response = await fetch(requestUrl, {
               headers: {                
                 Authorization: `Bearer ${tkns}`,
               },
               method: "POST",      
               body: formData
             });
-            
-            
+                        
             if(response.status !== 201){
               setLoadingFileMessage('');
               alert('Hubo un error al cargar el archivo, por favor intentelo de nuevo');
@@ -67,7 +69,7 @@ export const ZCampoArchivo: React.FC<
             
             const fileName = await response.text();
             setTimeout(() => {              
-              setLoadingFileMessage(`Archivo "${fileName}" cargado con éxito`);
+              setLoadingFileMessage(`Archivo "${fileName}" subido con éxito`);
             }, 1000);
             enviarCmdCambioCmp(zCampoModel, fileName);
           }}

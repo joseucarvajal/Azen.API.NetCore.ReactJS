@@ -52362,7 +52362,6 @@ var Actions;
     Actions.enviarRequestComando = function (parametros) { return function (dispatch, getState) {
         return new Promise(function (resolve, reject) {
             var idApl = getState().idApl;
-            var azenURL = getState().azenURL;
             var cmd = parametros.cmd, buffer = parametros.buffer;
             var requestUrl = cmd === ZCommon.Constants.ComandoEnum.CM_ACEPTARLOGIN
                 ? ZUtils.Services.trimLasCharacter(getState().azenURL, "/") + "/api/command/aceptarlogin"
@@ -52900,9 +52899,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
 var react_bootstrap_1 = __webpack_require__(16);
+var ZUtils = __webpack_require__(41);
 exports.ZCampoArchivo = function (props) {
-    var zCampoModel = props.zCampoModel, tkns = props.tkns, enviarCmdCambioCmp = props.enviarCmdCambioCmp;
+    var zCampoModel = props.zCampoModel, azenAPIURL = props.azenAPIURL, tkns = props.tkns, enviarCmdCambioCmp = props.enviarCmdCambioCmp;
     var _a = React.useState(''), loadingFileMessage = _a[0], setLoadingFileMessage = _a[1];
+    var requestUrl = ZUtils.Services.trimLasCharacter(azenAPIURL, "/") + "/api/transferfile";
     return (React.createElement(react_bootstrap_1.Panel, { bsStyle: "success" },
         React.createElement(react_bootstrap_1.Panel.Heading, null, zCampoModel.etq),
         React.createElement(react_bootstrap_1.Panel.Body, null,
@@ -52919,7 +52920,7 @@ exports.ZCampoArchivo = function (props) {
                                 }
                                 formData = new FormData();
                                 formData.append('file', e.target.files[0]);
-                                return [4, fetch('/api/transferfile', {
+                                return [4, fetch(requestUrl, {
                                         headers: {
                                             Authorization: "Bearer " + tkns,
                                         },
@@ -52933,11 +52934,12 @@ exports.ZCampoArchivo = function (props) {
                                     alert('Hubo un error al cargar el archivo, por favor intentelo de nuevo');
                                     return [2];
                                 }
+                                console.log('file uploadeddd 1');
                                 return [4, response.text()];
                             case 2:
                                 fileName = _c.sent();
                                 setTimeout(function () {
-                                    setLoadingFileMessage("Archivo \"" + fileName + "\" cargado con \u00E9xito");
+                                    setLoadingFileMessage("Archivo \"" + fileName + "\" subido con \u00E9xito");
                                 }, 1000);
                                 enviarCmdCambioCmp(zCampoModel, fileName);
                                 return [2];
@@ -54047,6 +54049,7 @@ var react_redux_1 = __webpack_require__(14);
 var ZCampoArchivo_1 = __webpack_require__(542);
 var actions_1 = __webpack_require__(27);
 var mapStateToProps = function (appState) { return ({
+    azenAPIURL: appState.azenURL,
     tkns: appState.zLoginModule.tkns
 }); };
 var mapDispatchToProps = function (dispatch) { return ({

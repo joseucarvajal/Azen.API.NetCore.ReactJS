@@ -20,7 +20,6 @@ export namespace Actions {
   ): Promise<ResultadoActionConDato<TRetorno>> => {
     return new Promise<ResultadoActionConDato<TRetorno>>((resolve, reject) => {
       const idApl = getState().idApl;
-      const azenURL = getState().azenURL;
 
       const { cmd, buffer } = parametros;
 

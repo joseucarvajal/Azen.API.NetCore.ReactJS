@@ -16,6 +16,7 @@ import {
 import { Actions } from "../actions";
 
 const mapStateToProps = (appState: IZAplState): ConnectedState => ({
+    azenAPIURL: appState.azenURL,
     tkns: appState.zLoginModule.tkns
 });
 
