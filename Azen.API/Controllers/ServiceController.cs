@@ -61,7 +61,7 @@ namespace Azen.API.Controllers
                 Tkna = zClaims.Tkna,
                 IdAplication = idAplicacion,
                 Opcion = opcion,
-                Cmd = 189,
+                Cmd = ZCommandConst.CM_EJECSERVICIO,
                 Log = log ?? 0,
                 JsonBuffer = json,
                 HttpMethod = System.Web.Mvc.HttpVerbs.Post

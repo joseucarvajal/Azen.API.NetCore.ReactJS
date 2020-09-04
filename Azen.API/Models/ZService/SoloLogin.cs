@@ -58,7 +58,7 @@ namespace Azen.API.Models.ZService
             public async Task<string> Handle(Command request, CancellationToken cancellationToken)
             {
                 request.UserName = _zCryptography.GetPlainText(request.UserName);
-                request.Password = _zCryptography.GetPlainText(request.UserName);
+                request.Password = _zCryptography.GetPlainText(request.Password);
 
                 string buffer = $"{ZTag.ZTAG_I_CMDEVT}SOLOLOGIN{ZTag.ZTAG_F_CMDEVT}{ZTag.ZTAG_I_USUARIO}{request.UserName}{ZTag.ZTAG_F_USUARIO}{ZTag.ZTAG_I_VALORCAMPO}{request.Password}{ZTag.ZTAG_F_VALORCAMPO}";
 

@@ -23,15 +23,9 @@ namespace Azen.API.Controllers
 
         [HttpPost]
         [Authorize]
-        public async Task<ActionResult<string>> Post([FromForm(Name = "FormFile")] IFormFile file)
+        public async Task<ActionResult<string>> Post([FromForm] TransferFile.Command command)
         {
-            TransferFile.Command command = new TransferFile.Command
-            {
-                FormFile = file
-            };
-
             Response.StatusCode = 201;
-
             return await _mediator.Send(command);
         }
     }

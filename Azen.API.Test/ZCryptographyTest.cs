@@ -10,11 +10,16 @@ namespace Azen.API.Test
         [Fact]
         public void Plain_text_to_cipher_and_visceversa_works_well()
         {
-            var plainText = "ubas123#?&jh&";
+            var plainText = "azen";
 
             ZCryptographySettings zCriptographySettings = new ZCryptographySettings();
             zCriptographySettings.Key = "$B&E)H@McQfTjWnZr4u7x!A%C*F-JaNd";
             zCriptographySettings.IV = "z%C*F-JaNdRgUkXp";
+
+            /*
+            zCriptographySettings.Key = "$B&E)H@McQfTjWnZr4u7x!A%C*F-JaNd";
+            zCriptographySettings.IV = "z%C*F-JaNdRgUkXp";
+            */
             IOptions<ZCryptographySettings> settingsOptions = Options.Create(zCriptographySettings);
 
             ZCryptography zCriptography = new ZCryptography(settingsOptions);

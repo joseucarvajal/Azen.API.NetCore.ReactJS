@@ -16,14 +16,14 @@ namespace Azen.API.Models.ZTransferFile
     {
         public class Command : IRequest<string>
         {
-            public IFormFile FormFile{ get; set; }
+            public IFormFile File{ get; set; }
         }
 
         public class CommandValidator : AbstractValidator<Command>
         {
             public CommandValidator()
             {
-                RuleFor(x => x.FormFile).NotNull()
+                RuleFor(x => x.File).NotNull()
                     .WithMessage("Archivo es requerido");
             }
         }
@@ -57,12 +57,12 @@ namespace Azen.API.Models.ZTransferFile
                     Directory.CreateDirectory(Path.Combine(pathFolder));
                 }
 
-                string[] paths = { @"tmp", folderName, request.FormFile.FileName };
+                string[] paths = { @"tmp", folderName, request.File.FileName };
                 string fullPath = Path.Combine(paths);
 
                 using (var stream = new FileStream(fullPath, FileMode.Create))
                 {
-                    await request.FormFile.CopyToAsync(stream);
+                    await request.File.CopyToAsync(stream);
                 }
 
                 try
@@ -77,7 +77,7 @@ namespace Azen.API.Models.ZTransferFile
                     Directory.Delete(Path.Combine(pathFolder), true);
                 }
 
-                return request.FormFile.FileName;
+                return request.File.FileName;
             }
         }
     }
