@@ -16,7 +16,7 @@ import {
 import { Actions } from "../actions";
 
 const mapStateToProps = (appState: IZAplState): ConnectedState => ({
-    parametrosActivacionObj: appState.parametrosActivacionObj,
+    tkns: appState.zLoginModule.tkns
 });
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<IZAplState, void, Action>): ConnectedDispatch => ({
