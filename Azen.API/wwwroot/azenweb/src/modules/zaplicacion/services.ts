@@ -445,6 +445,11 @@ export namespace Services {
         "location=0"
       );
 
+      if(!rptWindow){
+        alert('Por favor habilite las ventanas emergentes en su navegador');
+        return;
+      }
+
       if (visualRtpParams.vc.endsWith(".txt")) {
         rptWindow.addEventListener(
           "load",
