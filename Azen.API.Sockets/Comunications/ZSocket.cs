@@ -558,9 +558,9 @@ namespace Azen.API.Sockets.Comunications
 
             string cadenaXmlBody =
                 ZTag.ZTAG_I_PARAMETROS +
-                ZTag.ZTAG_I_FMT + "xml" + ZTag.ZTAG_F_FMT +
-                ZTag.ZTAG_I_OPER + metodo + ZTag.ZTAG_F_OPER +
-                ZTag.ZTAG_I_DATOS + _ztag.JsonToXml(jsonBufferStr) + ZTag.ZTAG_F_DATOS +
+                    ZTag.ZTAG_I_FMT + "xml" + ZTag.ZTAG_F_FMT +
+                    ZTag.ZTAG_I_OPER + metodo + ZTag.ZTAG_F_OPER +
+                    _ztag.JsonToXml(jsonBufferStr) +
                 ZTag.ZTAG_F_PARAMETROS;
 
             // Ejecuta aplicacion
