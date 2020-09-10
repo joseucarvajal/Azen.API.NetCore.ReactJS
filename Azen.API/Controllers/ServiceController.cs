@@ -43,8 +43,6 @@ namespace Azen.API.Controllers
             return response;
         }
 
-       
-
         [HttpPost("{idaplicacion}/{opcion}/{log?}")]
         [Authorize]
         public async Task<ActionResult<string>> Post(
@@ -54,53 +52,19 @@ namespace Azen.API.Controllers
                         [FromBody] object json
             )
         {
-            var zClaims = GetZClaims();
-
-            Execute.Command command = new Execute.Command
-            {
-                Tkna = zClaims.Tkna,
-                IdAplication = idAplicacion,
-                Opcion = opcion,
-                Cmd = ZCommandConst.CM_EJECSERVICIO,
-                Log = log ?? 0,
-                JsonBuffer = json,
-                HttpMethod = System.Web.Mvc.HttpVerbs.Post
-            };
-
-            return await _mediator.Send(command);
+            return await SaveAccept(idAplicacion, opcion, log, json, System.Web.Mvc.HttpVerbs.Post);
         }
 
-        [HttpGet]
-        public IActionResult Get(
-            string idApl,
-            string opcion,
-            [FromHeader] string dominio,
-            [FromHeader] string tkna,
-            [FromHeader] string log,
-            [FromHeader] string metodo,
-            [FromHeader] string buffer,
-            [FromHeader] int cmd
+        [HttpGet("{idaplicacion}/{opcion}/{log?}")]
+        [Authorize]
+        public async Task<ActionResult<string>> Get(
+                        [FromRoute] string idAplicacion,
+                        [FromRoute] string opcion,
+                        [FromRoute] int? log,
+                        [FromBody] object json
             )
         {
-            string result = EjecutarServicio(idApl, opcion, dominio, tkna, log, string.Empty, buffer, cmd, metodo != null ? metodo : "GET");
-            return Ok(result);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> PostAsync(
-            string idApl,
-            string opcion,
-            [FromHeader] string dominio,
-            [FromHeader] string tkna,
-            [FromHeader] string log,
-            [FromHeader] string metodo,
-            [FromHeader] int cmd
-            )
-        {
-            string content = await new StreamReader(Request.Body).ReadToEndAsync();
-            string result = EjecutarServicio(idApl, opcion, dominio, tkna, log, content, string.Empty, cmd, metodo != null ? metodo : "POST");
-            return Ok(result);
-
+            return await SaveAccept(idAplicacion, opcion, log, json, System.Web.Mvc.HttpVerbs.Get);
         }
 
         [HttpPut]
@@ -134,6 +98,30 @@ namespace Azen.API.Controllers
 
             string result = EjecutarServicio(idApl, opcion, dominio, tkna, log, content, string.Empty, cmd, metodo != null ? metodo : "DELETE");
             return Ok(result);
+        }
+
+        private async Task<ActionResult<string>> SaveAccept(
+                        string idAplicacion,
+                        string opcion,
+                        int? log,
+                        object json,
+                        System.Web.Mvc.HttpVerbs methodVerb
+            )
+        {
+            var zClaims = GetZClaims();
+
+            Execute.Command command = new Execute.Command
+            {
+                Tkna = zClaims.Tkna,
+                IdAplication = idAplicacion,
+                Opcion = opcion,
+                Cmd = ZCommandConst.CM_EJECSERVICIO,
+                Log = log ?? 0,
+                JsonBuffer = json,
+                HttpMethod = methodVerb
+            };
+
+            return await _mediator.Send(command);
         }
 
         private string EjecutarServicio(string idApl, string opcion, string dominio, string tkna, string log, string content, string buffer, int cmd, string metodo)
