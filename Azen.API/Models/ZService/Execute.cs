@@ -46,6 +46,7 @@ namespace Azen.API.Models.ZService
                 switch (request.HttpMethod)
                 {
                     case HttpVerbs.Post: // Retorna tkna
+                    case HttpVerbs.Get: // Retorna tkna
                         return _zSocket.EjecutarServicio(request);
 
                     default:
