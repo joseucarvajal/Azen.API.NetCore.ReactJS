@@ -1,4 +1,6 @@
 ﻿using Azen.API.ExceptionsHandling.Exceptions;
+using Azen.API.Sockets.Domain.Response;
+using Azen.API.Sockets.Exceptions.Services;
 using Azen.API.Sockets.Utils;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Http;
@@ -34,6 +36,10 @@ namespace Azen.API.ExceptionsHandling
             {
                 await WriteErrorResponse(httpContext, HttpStatusCode.Unauthorized, e);
             }
+            catch (ZErrorException e)
+            {
+                await WriteErrorResponse(httpContext, e.ZServiceResponse.Status, e);
+            }
             catch (SftpPermissionDeniedException e)
             {
                 await WriteErrorResponse(httpContext, HttpStatusCode.Forbidden, e);
@@ -55,7 +61,7 @@ namespace Azen.API.ExceptionsHandling
             httpContext.Response.ContentType = "application/json";
             httpContext.Response.StatusCode = (int)httpStatusCode;
 
-            ZValidationResult zValidationResult = new ZValidationResult
+            ZExceptionResponse zExceptionResponse = new ZExceptionResponse
             {
                 Title = exception.Message
             };
@@ -64,11 +70,11 @@ namespace Azen.API.ExceptionsHandling
             {
                 ZValidatorException zValidatorException = exception as ZValidatorException;
 
-                zValidationResult.Title = "Se produjeron uno o más errores de validación.";
+                zExceptionResponse.Title = "Se produjeron uno o más errores de validación.";
 
                 if (zValidatorException.ValidationResult.Errors.Count > 0)
                 {
-                    zValidationResult.Errors = new Dictionary<string, string[]>
+                    zExceptionResponse.Errors = new Dictionary<string, string[]>
                     {
                         {
                             zValidatorException.ValidationResult.Errors[0].PropertyName,
@@ -77,16 +83,12 @@ namespace Azen.API.ExceptionsHandling
                     };
                 }
             }
+            else if(exception is ZErrorException) //Azen exception
+            {
+                zExceptionResponse = (exception as ZErrorException).ZServiceResponse;
+            }
 
-            await httpContext.Response.WriteAsync(JsonConvert.SerializeObject(zValidationResult));
+            await httpContext.Response.WriteAsync(JsonConvert.SerializeObject(zExceptionResponse));
         }
-
     }
-
-    public class ZValidationResult
-    {
-        public string Title { get; set; }
-        public IDictionary<string, string[]> Errors { get; set; }
-    }
-
 }

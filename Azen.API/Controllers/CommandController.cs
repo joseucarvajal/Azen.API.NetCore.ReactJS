@@ -1,15 +1,12 @@
-﻿using Azen.API.Sockets.Auth;
+﻿using Azen.API.Models.ZCommand;
 using Azen.API.Sockets.Comunications;
 using Azen.API.Sockets.Helpers;
 using Azen.API.Sockets.Settings;
 using Azen.API.Sockets.Utils;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
 using System.Threading.Tasks;
-using Azen.API.Models.ZCommand;
 
 namespace Azen.API.Controllers
 {

@@ -12,6 +12,7 @@ using Azen.API.Sockets.Domain.Command;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Azen.API.Sockets.Domain.Service;
+using Azen.API.Sockets.Exceptions.Services;
 
 namespace Azen.API.Sockets.Comunications
 {
@@ -539,9 +540,20 @@ namespace Azen.API.Sockets.Comunications
             return _ztag.ObtValorTag($"<{tag}>", $"</{tag}>", buffer);
         }
 
-        public string EjecutarServicio(ZServiceDTO zServiceDTO)
+        public ZServiceResponse EjecutarServicio(ZServiceDTO zServiceDTO)
         {
-            return EjecutarServicio(zServiceDTO.IdAplication, zServiceDTO.Opcion, zServiceDTO.Tkna, zServiceDTO.Log, zServiceDTO.JsonBuffer, zServiceDTO.Cmd, zServiceDTO.HttpMethod.ToString());
+            string responseStr = EjecutarServicio(zServiceDTO.IdAplication, zServiceDTO.Opcion, zServiceDTO.Tkna, zServiceDTO.Log, zServiceDTO.JsonBuffer, zServiceDTO.Cmd, zServiceDTO.HttpMethod.ToString());
+
+            var zcolaResponse = JsonConvert.DeserializeObject<ZColaServiceEventos>(responseStr);
+
+            ZServiceResponse response = zcolaResponse.Eventos.ElementAt(0).Dato.Buffer;
+
+            if(response.Errors != null)
+            {
+                throw new ZErrorException(response);
+            }
+
+            return response;
         }
             
 

@@ -1,32 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Azen.API.Models.ZService;
+using Azen.API.Sockets.Comunications;
+using Azen.API.Sockets.Domain.Service;
+using Azen.API.Sockets.General;
+using Azen.API.Sockets.Helpers;
 using Azen.API.Sockets.Settings;
 using Azen.API.Sockets.Utils;
-using Azen.API.Sockets.Comunications;
-using Azen.API.Sockets.General;
-using Microsoft.AspNetCore.Http;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json.Linq;
-using MediatR;
-using Azen.API.Sockets.Helpers;
-using Azen.API.Models.ZService;
-using Azen.API.Sockets.Domain.Service;
+using System;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace Azen.API.Controllers
 {
     public class ServiceController : AzenBaseController
     {
         LogHandler _logHandler;
-        bool siLogActividad;
+        bool _siLogActividad;
         ZSocket _zsck;
         private readonly IOptions<AzenSettings> _azenSettings;
         private readonly IMediator _mediator;
 
-        public ServiceController(IOptions<AzenSettings> azenSettings, ZSocket zsck, LogHandler logHandler, IMediator mediator)
+        public ServiceController(
+            IOptions<AzenSettings> azenSettings, 
+            ZSocket zsck, 
+            LogHandler logHandler, 
+            IMediator mediator)
         {
             _azenSettings = azenSettings;
             _logHandler = logHandler;
@@ -43,9 +44,36 @@ namespace Azen.API.Controllers
             return response;
         }
 
+        private async Task<ActionResult<ZServiceResponse>> SaveAccept(
+                string idAplicacion,
+                string opcion,
+                int? log,
+                object json,
+                System.Web.Mvc.HttpVerbs methodVerb
+    )
+        {
+            var zClaims = GetZClaims();
+
+            Execute.Command command = new Execute.Command
+            {
+                Tkna = zClaims.Tkna,
+                IdAplication = idAplicacion,
+                Opcion = opcion,
+                Cmd = ZCommandConst.CM_EJECSERVICIO,
+                Log = log ?? 0,
+                JsonBuffer = json,
+                HttpMethod = methodVerb
+            };
+            
+            var zResponse = await _mediator.Send(command);
+            Response.StatusCode = (int)zResponse.Status;
+
+            return zResponse;
+        }
+
         [HttpPost("{idaplicacion}/{opcion}/{log?}")]
         [Authorize]
-        public async Task<ActionResult<string>> Post(
+        public async Task<ActionResult<ZServiceResponse>> Post(
                         [FromRoute] string idAplicacion,
                         [FromRoute] string opcion,
                         [FromRoute] int? log,
@@ -57,7 +85,7 @@ namespace Azen.API.Controllers
 
         [HttpGet("{idaplicacion}/{opcion}/{log?}")]
         [Authorize]
-        public async Task<ActionResult<string>> Get(
+        public async Task<ActionResult<ZServiceResponse>> Get(
                         [FromRoute] string idAplicacion,
                         [FromRoute] string opcion,
                         [FromRoute] int? log,
@@ -66,6 +94,7 @@ namespace Azen.API.Controllers
         {
             return await SaveAccept(idAplicacion, opcion, log, json, System.Web.Mvc.HttpVerbs.Get);
         }
+
 
         [HttpPut]
         public async Task<IActionResult> PutAsync(
@@ -100,34 +129,10 @@ namespace Azen.API.Controllers
             return Ok(result);
         }
 
-        private async Task<ActionResult<string>> SaveAccept(
-                        string idAplicacion,
-                        string opcion,
-                        int? log,
-                        object json,
-                        System.Web.Mvc.HttpVerbs methodVerb
-            )
-        {
-            var zClaims = GetZClaims();
-
-            Execute.Command command = new Execute.Command
-            {
-                Tkna = zClaims.Tkna,
-                IdAplication = idAplicacion,
-                Opcion = opcion,
-                Cmd = ZCommandConst.CM_EJECSERVICIO,
-                Log = log ?? 0,
-                JsonBuffer = json,
-                HttpMethod = methodVerb
-            };
-
-            return await _mediator.Send(command);
-        }
-
         private string EjecutarServicio(string idApl, string opcion, string dominio, string tkna, string log, string content, string buffer, int cmd, string metodo)
         {
             if (null != log)
-                siLogActividad = (1 == Int32.Parse(log));
+                _siLogActividad = (1 == Int32.Parse(log));
 
             string cadenaXmlBody =
                 ZTag.ZTAG_I_PARAMETROS +

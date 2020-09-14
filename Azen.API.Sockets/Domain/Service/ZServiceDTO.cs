@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace Azen.API.Sockets.Domain.Service
 {
-    public class ZServiceDTO : IRequest<string>
+    public class ZServiceDTO : IRequest<ZServiceResponse>
     {
         public string Tkna { get; set; }
         public string IdAplication { get; set; }

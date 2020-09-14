@@ -30,7 +30,7 @@ namespace Azen.API.Models.ZService
             }
         }
 
-        public class Handler : IRequestHandler<Command, string>
+        public class Handler : IRequestHandler<Command, ZServiceResponse>
         {
             private readonly IMediator _mediator;
             private ZSocket _zSocket;
@@ -41,7 +41,7 @@ namespace Azen.API.Models.ZService
                 _zSocket = zSocket;
             }
 
-            public async Task<string> Handle(Command request, CancellationToken cancellationToken)
+            public async Task<ZServiceResponse> Handle(Command request, CancellationToken cancellationToken)
             {
                 switch (request.HttpMethod)
                 {
