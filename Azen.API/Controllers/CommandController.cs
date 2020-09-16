@@ -32,6 +32,8 @@ namespace Azen.API.Controllers
         [HttpPost("aceptarlogin")]
         public async Task<ActionResult<string>> AceptarLogin(Execute.Command command)
         {
+            command.RemoteIpAddress = Request.HttpContext.Connection.RemoteIpAddress;
+
             string response = await _mediator.Send(command);
             return response;
         }
@@ -46,6 +48,7 @@ namespace Azen.API.Controllers
 
             command.IdAplication = idAplicacion;
             command.Tkna = zClaims.Tkna;
+            command.RemoteIpAddress = Request.HttpContext.Connection.RemoteIpAddress;
 
             return await _mediator.Send(command);
         }

@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Text;
 using System.Web.Mvc;
 
@@ -17,6 +18,7 @@ namespace Azen.API.Sockets.Domain.Service
         public object JsonBuffer { get; set; }
 
         public HttpVerbs HttpMethod { get; set; }
+        public IPAddress RemoteIpAddress { get; set; }
 
         public void CopyTo(ZServiceDTO target)
         {
@@ -26,6 +28,7 @@ namespace Azen.API.Sockets.Domain.Service
             target.Cmd = Cmd;
             target.Opcion = Opcion;
             target.HttpMethod = HttpMethod;
+            target.RemoteIpAddress = RemoteIpAddress;
         }
     }
 }

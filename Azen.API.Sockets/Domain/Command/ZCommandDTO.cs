@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Internal;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Text;
 
 namespace Azen.API.Sockets.Domain.Command
@@ -17,7 +18,7 @@ namespace Azen.API.Sockets.Domain.Command
         public int Log { get; set; }
         public int Cmd { get; set; }
         public string Opcion { get; set; }
-
+        public IPAddress RemoteIpAddress { get; set; }
         public void CopyTo(ZCommandDTO target)
         {
             target.Tkna = Tkna;
@@ -28,6 +29,7 @@ namespace Azen.API.Sockets.Domain.Command
             target.Log = Log;
             target.Cmd = Cmd;
             target.Opcion = Opcion;
+            target.RemoteIpAddress = RemoteIpAddress;
         }
     }
 

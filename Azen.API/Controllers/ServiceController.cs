@@ -38,8 +38,6 @@ namespace Azen.API.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<string>> Login(Models.ZService.SoloLogin.Command command)
         {
-            //var ip = HttpContext.Connection.RemoteIpAddress.ToString();
-
             string response = await _mediator.Send(command);
             return response;
         }
@@ -54,6 +52,7 @@ namespace Azen.API.Controllers
         {
             var zClaims = GetZClaims();
 
+
             Execute.Command command = new Execute.Command
             {
                 Tkna = zClaims.Tkna,
@@ -62,7 +61,8 @@ namespace Azen.API.Controllers
                 Cmd = ZCommandConst.CM_EJECSERVICIO,
                 Log = log ?? 0,
                 JsonBuffer = json,
-                HttpMethod = methodVerb
+                HttpMethod = methodVerb,
+                RemoteIpAddress = Request.HttpContext.Connection.RemoteIpAddress
             };
             
             var zResponse = await _mediator.Send(command);

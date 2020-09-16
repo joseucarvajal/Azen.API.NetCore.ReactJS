@@ -59,7 +59,7 @@ namespace Azen.API.Models.ZCommand
                         return _zSocket.EjecutarEvento(2, 0, request.Cmd, request.Buffer, "", request.IdAplication, request.Port, request.Tkns);
 
                     case ZCommandConst.CM_EJECSOLOOPCION:
-                        return _zSocket.EjecutarSoloOpcion(request.IdAplication, request.Opcion, request.Buffer, null, request.Log, request.Tkna);
+                        return _zSocket.EjecutarSoloOpcion(request.IdAplication, request.Opcion, request.Buffer, null, request.Log, request.Tkna, request.RemoteIpAddress);
 
                     default:
                         return _zSocket.EjecutarEvento(2, 0, request.Cmd, "", request.Buffer, request.IdAplication, request.Port, request.Tkns);

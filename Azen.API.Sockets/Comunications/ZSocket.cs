@@ -13,6 +13,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Azen.API.Sockets.Domain.Service;
 using Azen.API.Sockets.Exceptions.Services;
+using System.Net;
 
 namespace Azen.API.Sockets.Comunications
 {
@@ -440,7 +441,7 @@ namespace Azen.API.Sockets.Comunications
             return SocketClienteEnviar(zCommandDTO.Buffer);
         }
 
-        public string EjecutarComando(string aplicacion, string dominio, string buffer, string tkna, string tkns, int log, int puertoSrvAplicacion, int cmd)
+/*        public string EjecutarComando(string aplicacion, string dominio, string buffer, string tkna, string tkns, int log, int puertoSrvAplicacion, int cmd)
         {
             string result = string.Empty;
             string buffer1;
@@ -494,14 +495,17 @@ namespace Azen.API.Sockets.Comunications
             }
 
             return result;
-        }
+        }*/
 
-        public string EjecutarSoloOpcion(string aplicacion, string opcion, string buffer, string dominio, int log, string tkna)
+        public string EjecutarSoloOpcion(string aplicacion, string opcion, string buffer, string dominio, int log, string tkna, IPAddress remoteIpAddress)
         {
+            string remoteIP = remoteIpAddress.ToString();
+            string localIP = LocalIPAddress().ToString();
+
             buffer = ZTag.ZTAG_I_CMDEVT + "EJECUTAR" + ZTag.ZTAG_F_CMDEVT +
                 ZTag.ZTAG_I_TKNA + tkna + ZTag.ZTAG_F_TKNA +
-                ZTag.ZTAG_I_IPCLI + "pending" + ZTag.ZTAG_F_IPCLI +
-                ZTag.ZTAG_I_IPMID + "pending" + ZTag.ZTAG_I_IPMID +
+                ZTag.ZTAG_I_IPCLI + remoteIP + ZTag.ZTAG_F_IPCLI +
+                ZTag.ZTAG_I_IPMID + localIP + ZTag.ZTAG_I_IPMID +
                 ZTag.ZTAG_I_IDAPLI + aplicacion + ZTag.ZTAG_F_IDAPLI +
                 ZTag.ZTAG_I_CLIENTE + "web" + ZTag.ZTAG_F_CLIENTE +
                 ZTag.ZTAG_I_LOG + log + ZTag.ZTAG_F_LOG +
@@ -542,7 +546,7 @@ namespace Azen.API.Sockets.Comunications
 
         public ZServiceResponse EjecutarServicio(ZServiceDTO zServiceDTO)
         {
-            string responseStr = EjecutarServicio(zServiceDTO.IdAplication, zServiceDTO.Opcion, zServiceDTO.Tkna, zServiceDTO.Log, zServiceDTO.JsonBuffer, zServiceDTO.Cmd, zServiceDTO.HttpMethod.ToString());
+            string responseStr = EjecutarServicio(zServiceDTO.IdAplication, zServiceDTO.Opcion, zServiceDTO.Tkna, zServiceDTO.Log, zServiceDTO.JsonBuffer, zServiceDTO.Cmd, zServiceDTO.HttpMethod.ToString(), zServiceDTO.RemoteIpAddress);
 
             var zcolaResponse = JsonConvert.DeserializeObject<ZColaServiceEventos>(responseStr);
 
@@ -555,9 +559,8 @@ namespace Azen.API.Sockets.Comunications
 
             return response;
         }
-            
 
-        private string EjecutarServicio(string idApl, string opcion, string tkna, int log, object jsonBuffer, int cmd, string metodo)
+        private string EjecutarServicio(string idApl, string opcion, string tkna, int log, object jsonBuffer, int cmd, string metodo, IPAddress remoteIpAddress)
         {
             siLogActividad = log == 1;
 
@@ -575,8 +578,11 @@ namespace Azen.API.Sockets.Comunications
                     _ztag.JsonToXml(jsonBufferStr) +
                 ZTag.ZTAG_F_PARAMETROS;
 
+            string remoteIP = remoteIpAddress.ToString();
+            string localIP = LocalIPAddress().ToString();
+
             // Ejecuta aplicacion
-            _logHandler.Info("---- CM_APLICACION " + idApl + "Opc:" + opcion);
+            _logHandler.Info("---- CM_APLICACION " + idApl + ", Opc:" + opcion + ", remoteIP: " + remoteIP + ", localIP: " + localIP);
 
             string buffer = string.Empty;
 
@@ -589,8 +595,8 @@ namespace Azen.API.Sockets.Comunications
                     ZTag.ZTAG_I_CMDEVT + "EJECUTAR" + ZTag.ZTAG_F_CMDEVT +
                     ZTag.ZTAG_I_TKNA + tkna + ZTag.ZTAG_F_TKNA +
                     ZTag.ZTAG_I_CLIENTE + "web" + ZTag.ZTAG_F_CLIENTE +
-                    ZTag.ZTAG_I_IPCLI + "pending" + ZTag.ZTAG_F_IPCLI +
-                    ZTag.ZTAG_I_IPMID + "pending" + ZTag.ZTAG_I_IPMID +
+                    ZTag.ZTAG_I_IPCLI + remoteIP + ZTag.ZTAG_F_IPCLI +
+                    ZTag.ZTAG_I_IPMID + localIP + ZTag.ZTAG_I_IPMID +
                     ZTag.ZTAG_I_IDAPLI + idApl + ZTag.ZTAG_F_IDAPLI +
                     ZTag.ZTAG_I_LOG + log + ZTag.ZTAG_F_LOG +
                     ZTag.ZTAG_I_OPC + opcion + ZTag.ZTAG_F_OPC +
@@ -615,8 +621,18 @@ namespace Azen.API.Sockets.Comunications
             string cadenaEnviar = cadEvento + datoTkns + cadenaXmlBody;
 
             return SocketClienteEnviar(cadenaEnviar, puertoSrvAplicacion, ZCommandConst.CM_EJECSERVICIO);
+        }       
+        private IPAddress LocalIPAddress()
+        {
+            if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+            {
+                return null;
+            }
+            IPHostEntry host = Dns.GetHostEntry(Dns.GetHostName());
+            return host
+               .AddressList
+               .FirstOrDefault(ip => ip.AddressFamily == AddressFamily.InterNetwork);
         }
-
 
         public T DeserializeXMLToObject<T>(string XmlFilename)
         {
