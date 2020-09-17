@@ -441,62 +441,6 @@ namespace Azen.API.Sockets.Comunications
             return SocketClienteEnviar(zCommandDTO.Buffer);
         }
 
-/*        public string EjecutarComando(string aplicacion, string dominio, string buffer, string tkna, string tkns, int log, int puertoSrvAplicacion, int cmd)
-        {
-            string result = string.Empty;
-            string buffer1;
-
-            siLogActividad = 1 == log;
-
-            string datoTkns = ZTag.ZTAG_I_TKNS + tkns + ZTag.ZTAG_F_TKNS;
-            try
-            {
-                switch (cmd)
-                {
-                    // Cmd que se da cuando se entra parametros de logeo
-                    case ZCommandConst.CM_SOLOLOGIN: // Retorna tkna
-                        buffer1 = ZTag.ZTAG_I_CMDEVT + "SOLOLOGIN" + ZTag.ZTAG_F_CMDEVT + buffer;
-                        result = SocketClienteEnviar(buffer1);
-                        break;
-                    case ZCommandConst.CM_ACEPTARLOGIN:  // Retorna tkna y json con menu de aplicaciones
-                        buffer1 = ZTag.ZTAG_I_CMDEVT + "LOGIN" + ZTag.ZTAG_F_CMDEVT + buffer;
-                        result = SocketClienteEnviar(buffer1);
-                        break;
-                    case ZCommandConst.CM_APLICACION:
-                        // Arma buffer para enviar con parametros de logeo
-                        buffer1 = ZTag.ZTAG_I_CMDEVT + "EJECUTAR" + ZTag.ZTAG_F_CMDEVT +
-                            ZTag.ZTAG_I_TKNA + tkna + ZTag.ZTAG_F_TKNA +
-                            ZTag.ZTAG_I_IPCLI + "pending" + ZTag.ZTAG_F_IPCLI +
-                            ZTag.ZTAG_I_IPMID + "pending" + ZTag.ZTAG_I_IPMID +
-                            ZTag.ZTAG_I_IDAPLI + aplicacion + ZTag.ZTAG_F_IDAPLI +
-                            ZTag.ZTAG_I_LOG + log + ZTag.ZTAG_F_LOG +
-                            ZTag.ZTAG_I_CLIENTE + "web" + ZTag.ZTAG_F_CLIENTE;
-                        result = SocketClienteEnviar(buffer1);
-                        break;
-                    case ZCommandConst.CM_DEFMENU:
-                        result = EjecutarEvento(2, 0, cmd, buffer, "", aplicacion, puertoSrvAplicacion, datoTkns);
-                        break;
-
-                    case ZCommandConst.CM_EJECOPCION:            // opcion de menu desplegado
-                        result = EjecutarEvento(2, 0, cmd, buffer, "", aplicacion, puertoSrvAplicacion, datoTkns);
-                        break;
-
-                    case ZCommandConst.CM_IRVENTANA_CS:
-                        result = EjecutarEvento(2, 0, cmd, buffer, "", aplicacion, puertoSrvAplicacion, datoTkns);
-                        break;
-                    default:
-                        result = EjecutarEvento(2, 0, cmd, "", buffer, aplicacion, puertoSrvAplicacion, datoTkns);
-                        break;
-                }
-            }
-            catch (Exception e)
-            {
-                _logHandler.Info(e.ToString());
-            }
-
-            return result;
-        }*/
-
         public string EjecutarSoloOpcion(string aplicacion, string opcion, string buffer, string dominio, int log, string tkna, IPAddress remoteIpAddress)
         {
             string remoteIP = remoteIpAddress.ToString();
