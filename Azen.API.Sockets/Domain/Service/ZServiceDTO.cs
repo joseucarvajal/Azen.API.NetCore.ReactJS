@@ -15,7 +15,7 @@ namespace Azen.API.Sockets.Domain.Service
         public int Log { get; set; }
         public int Cmd { get; set; }
         public string Opcion { get; set; }
-        public object JsonBuffer { get; set; }
+        public object ObjectBuffer { get; set; }
 
         public HttpVerbs HttpMethod { get; set; }
         public string RemoteIpAddress { get; set; }

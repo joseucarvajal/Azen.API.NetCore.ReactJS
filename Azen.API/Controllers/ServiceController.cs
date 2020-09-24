@@ -11,8 +11,12 @@ using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace Azen.API.Controllers
 {
@@ -47,7 +51,7 @@ namespace Azen.API.Controllers
                 string idAplicacion,
                 string opcion,
                 int? log,
-                object json,
+                object objectBuffer,
                 System.Web.Mvc.HttpVerbs methodVerb
     )
         {
@@ -61,7 +65,7 @@ namespace Azen.API.Controllers
                 Opcion = opcion,
                 Cmd = ZCommandConst.CM_EJECSERVICIO,
                 Log = log ?? 0,
-                JsonBuffer = json,
+                ObjectBuffer = objectBuffer,
                 HttpMethod = methodVerb,
                 RemoteIpAddress = Request.HttpContext.Connection.RemoteIpAddress.ToString()
             };
@@ -92,11 +96,14 @@ namespace Azen.API.Controllers
         public async Task<ActionResult<ZServiceResponse>> Get(
                         [FromRoute] string idAplicacion,
                         [FromRoute] string opcion,
-                        [FromRoute] int? log,
-                        [FromBody] object json
+                        [FromRoute] int? log
             )
         {
-            return await SaveAccept(idAplicacion, opcion, log, json, System.Web.Mvc.HttpVerbs.Get);
+            var urlParameters = HttpUtility.ParseQueryString(Request.QueryString.Value);
+
+            var dictionary = urlParameters.AllKeys.ToDictionary(k => k, k => urlParameters[k]);
+
+            return await SaveAccept(idAplicacion, opcion, log, dictionary, System.Web.Mvc.HttpVerbs.Get);
         }
 
 

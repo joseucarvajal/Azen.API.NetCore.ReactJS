@@ -490,7 +490,7 @@ namespace Azen.API.Sockets.Comunications
 
         public ZServiceResponse EjecutarServicio(ZServiceDTO zServiceDTO)
         {
-            string responseStr = EjecutarServicio(zServiceDTO.IdAplication, zServiceDTO.Opcion, zServiceDTO.Tkna, zServiceDTO.Log, zServiceDTO.JsonBuffer, zServiceDTO.Cmd, zServiceDTO.HttpMethod.ToString(), zServiceDTO.RemoteIpAddress);
+            string responseStr = EjecutarServicio(zServiceDTO.IdAplication, zServiceDTO.Opcion, zServiceDTO.Tkna, zServiceDTO.Log, zServiceDTO.ObjectBuffer, zServiceDTO.Cmd, zServiceDTO.HttpMethod.ToString(), zServiceDTO.RemoteIpAddress);
 
             var zcolaResponse = JsonConvert.DeserializeObject<ZColaServiceEventos>(responseStr);
 
@@ -504,22 +504,29 @@ namespace Azen.API.Sockets.Comunications
             return response;
         }
 
-        private string EjecutarServicio(string idApl, string opcion, string tkna, int log, object jsonBuffer, int cmd, string metodo, string remoteIpAddress)
+        private string EjecutarServicio(string idApl, string opcion, string tkna, int log, object objectBuffer, int cmd, string metodo, string remoteIpAddress)
         {
             siLogActividad = log == 1;
 
-            string jsonBufferStr = string.Empty;
+            string xmlBuffer = string.Empty;
 
-            if (jsonBuffer != null)
+            if (objectBuffer != null)
             {
-                jsonBufferStr = jsonBuffer.ToString();
+                if (objectBuffer is Dictionary<string, string>)
+                {
+                    xmlBuffer = _ztag.DictionaryToXml(objectBuffer as Dictionary<string, string>);
+                }
+                else
+                {
+                    xmlBuffer = _ztag.JsonToXml(objectBuffer.ToString());
+                }
             }
 
             string cadenaXmlBody =
                 ZTag.ZTAG_I_PARAMETROS +
                     ZTag.ZTAG_I_FMT + "xml" + ZTag.ZTAG_F_FMT +
                     ZTag.ZTAG_I_OPER + metodo + ZTag.ZTAG_F_OPER +
-                    _ztag.JsonToXml(jsonBufferStr) +
+                    xmlBuffer +
                 ZTag.ZTAG_F_PARAMETROS;
 
             string localIP = LocalIPAddress().ToString();

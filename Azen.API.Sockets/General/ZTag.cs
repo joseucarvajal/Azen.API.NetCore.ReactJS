@@ -267,5 +267,17 @@ namespace Azen.API.Sockets.General
 
 			return "<dts>" + xmlResult + "</dts>";
 		}
+
+		public string DictionaryToXml(Dictionary<string, string> dictionary)
+		{
+			string xmlResult = string.Empty;
+
+			foreach (var item in dictionary)
+			{
+				xmlResult += $"<campo><nc>{item.Key}</nc><vc>{item.Value}</vc></campo>";
+			}
+
+			return "<dts>" + xmlResult + "</dts>";
+		}
 	}
 }
