@@ -18,7 +18,7 @@ namespace Azen.API.Sockets.Domain.Service
         public object JsonBuffer { get; set; }
 
         public HttpVerbs HttpMethod { get; set; }
-        public IPAddress RemoteIpAddress { get; set; }
+        public string RemoteIpAddress { get; set; }
 
         public void CopyTo(ZServiceDTO target)
         {

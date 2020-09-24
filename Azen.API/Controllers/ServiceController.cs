@@ -8,6 +8,7 @@ using Azen.API.Sockets.Utils;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.IO;
@@ -62,12 +63,15 @@ namespace Azen.API.Controllers
                 Log = log ?? 0,
                 JsonBuffer = json,
                 HttpMethod = methodVerb,
-                RemoteIpAddress = Request.HttpContext.Connection.RemoteIpAddress
+                RemoteIpAddress = Request.HttpContext.Connection.RemoteIpAddress.ToString()
             };
-            
+
+            _logHandler.Debug($"Request: {JsonConvert.SerializeObject(command)}");
+
             var zResponse = await _mediator.Send(command);
             Response.StatusCode = (int)zResponse.Status;
 
+            _logHandler.Debug($"Response: {JsonConvert.SerializeObject(zResponse)}");
             return zResponse;
         }
 
