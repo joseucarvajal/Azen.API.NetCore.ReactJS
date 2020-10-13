@@ -402,6 +402,10 @@ namespace Azen.API.Sockets.Comunications
             {
                 _logHandler.Info("Error al TransferirSinProtocolo: " + e.ToString());
             }
+            finally
+            {
+                CerrarSocket();
+            }
 
             _logHandler.Info(result);
             return result;
@@ -424,6 +428,10 @@ namespace Azen.API.Sockets.Comunications
             catch (Exception e)
             {
                 _logHandler.Info("Error al TransferirSinProtocolo: " + e.ToString());
+            }
+            finally
+            {
+                CerrarSocket();
             }
 
             return cadena;
