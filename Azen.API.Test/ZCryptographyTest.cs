@@ -10,7 +10,7 @@ namespace Azen.API.Test
         [Fact]
         public void Plain_text_to_cipher_and_visceversa_works_well()
         {
-            var plainText = "20262";
+            var plainText = "1234";
 
             ZCryptographySettings zCriptographySettings = new ZCryptographySettings();
             zCriptographySettings.Key = "$B&E)H@McQfTjWnZr4u7x!A%C*F-JaNd";
