@@ -26904,6 +26904,10 @@ var Services;
         };
         var downloadReportPopup = function (visualRtpParams, getState) {
             var rptWindow = window.open(zutils_1.Services.trimLasCharacter(getState().azenURL, "/") + "/downloadreport/" + visualRtpParams.vc, "", "location=0");
+            if (!rptWindow) {
+                alert('Por favor habilite las ventanas emergentes en su navegador');
+                return;
+            }
             if (visualRtpParams.vc.endsWith(".txt")) {
                 rptWindow.addEventListener("load", function () {
                     var preElementsArray;
