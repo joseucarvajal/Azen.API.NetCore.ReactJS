@@ -26,7 +26,7 @@ namespace Azen.API.Sockets.Comunications.ZFile
 
         public void Upload(string fileToUpload)
         {
-            using (var sftpClient = new SftpClient(_azenSettings.IPC, _zTransferFileSettings.Username, _zTransferFileSettings.Password))
+            using (var sftpClient = new SftpClient(_azenSettings.IPC, _zTransferFileSettings.Port, _zTransferFileSettings.Username, _zTransferFileSettings.Password))
             using (var fs = new FileStream(fileToUpload, FileMode.Open))
             {
                 sftpClient.Connect();
