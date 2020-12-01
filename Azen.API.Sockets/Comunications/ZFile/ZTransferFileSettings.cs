@@ -11,6 +11,7 @@ namespace Azen.API.Sockets.Comunications.ZFile
         public string Username { get; set; }
         public string Password { get; set; }
         public int Port{ get; set; }
+        public string AuthMethod { get; set; }        
         public string TargetPath { get; set; }
     }
 }

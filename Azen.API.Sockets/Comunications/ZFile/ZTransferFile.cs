@@ -26,7 +26,7 @@ namespace Azen.API.Sockets.Comunications.ZFile
 
         public void Upload(string fileToUpload)
         {
-            using (var sftpClient = new SftpClient(_azenSettings.IPC, _zTransferFileSettings.Port, _zTransferFileSettings.Username, _zTransferFileSettings.Password))
+            var sftpClient = GetSftpClient();
             using (var fs = new FileStream(fileToUpload, FileMode.Open))
             {
                 sftpClient.Connect();
@@ -41,7 +41,36 @@ namespace Azen.API.Sockets.Comunications.ZFile
                         Console.WriteLine($"Uploaded {(double)uploaded / fs.Length * 100}% of the file.");
                     });
 
-                sftpClient.Disconnect();
+            }
+            sftpClient.Disconnect();
+            sftpClient.Dispose();
+        }
+
+        private void HandleKeyEvent(object sender, AuthenticationPromptEventArgs e)
+        {
+            foreach (AuthenticationPrompt prompt in e.Prompts)
+            {
+                if (prompt.Request.IndexOf("Password:", StringComparison.InvariantCultureIgnoreCase) != -1)
+                {
+                    prompt.Response = _zTransferFileSettings.Password;
+                }
+            }
+        }
+
+        private SftpClient GetSftpClient()
+        {
+            if (_zTransferFileSettings.AuthMethod == "basic")
+            {
+                return new SftpClient(_azenSettings.IPC, _zTransferFileSettings.Username, _zTransferFileSettings.Password);
+            }
+            else 
+            {
+                KeyboardInteractiveAuthenticationMethod keybAuth = new KeyboardInteractiveAuthenticationMethod(_zTransferFileSettings.Username);
+                keybAuth.AuthenticationPrompt += new EventHandler<AuthenticationPromptEventArgs>(HandleKeyEvent);
+
+                ConnectionInfo conInfo = new ConnectionInfo(_azenSettings.IPC, _zTransferFileSettings.Port, _zTransferFileSettings.Username, keybAuth);
+
+                return new SftpClient(conInfo);
             }
         }
     }
