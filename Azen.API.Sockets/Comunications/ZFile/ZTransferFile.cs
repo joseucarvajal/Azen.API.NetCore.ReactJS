@@ -26,8 +26,7 @@ namespace Azen.API.Sockets.Comunications.ZFile
 
         public void Upload(string fileToUpload)
         {
-            var sftpClient = GetSftpClient();
-            sftpClient.Connect();
+            using (var sftpClient = new SftpClient(_azenSettings.IPC, _zTransferFileSettings.Username, _zTransferFileSettings.Password))
             using (var fs = new FileStream(fileToUpload, FileMode.Open))
             {
                 sftpClient.ChangeDirectory(_zTransferFileSettings.TargetPath);
@@ -54,20 +53,7 @@ namespace Azen.API.Sockets.Comunications.ZFile
                 KeyboardInteractiveAuthenticationMethod keybAuth = new KeyboardInteractiveAuthenticationMethod(_zTransferFileSettings.Username);
                 keybAuth.AuthenticationPrompt += new EventHandler<AuthenticationPromptEventArgs>(HandleKeyEvent);
 
-                ConnectionInfo conInfo = new ConnectionInfo(_azenSettings.IPC, _zTransferFileSettings.Port, _zTransferFileSettings.Username, keybAuth);
-
-                return new SftpClient(conInfo);
-            }
-        }
-
-        private void HandleKeyEvent(object sender, AuthenticationPromptEventArgs e)
-        {
-            foreach (AuthenticationPrompt prompt in e.Prompts)
-            {
-                if (prompt.Request.IndexOf("Password:", StringComparison.InvariantCultureIgnoreCase) != -1)
-                {
-                    prompt.Response = _zTransferFileSettings.Password;
-                }
+                sftpClient.Disconnect();
             }
         }
     }
