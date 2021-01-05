@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
 	<TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+	<UserSecretsId>068074e7-d467-43f9-a9bc-8b5966ea98e7</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
