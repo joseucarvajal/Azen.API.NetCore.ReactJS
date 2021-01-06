@@ -78,7 +78,6 @@ export class ZCampoTextoBasico extends React.PureComponent<OwnProps & ConnectedS
         }
         */        
 
-        console.log('ir a campo debug');
         this.props.onCampoFocusIrACmp(this.props.zCampoState);
     }
 
@@ -201,7 +200,8 @@ export class ZCampoTextoBasico extends React.PureComponent<OwnProps & ConnectedS
         }
     }
 
-    onBlur(e: any) {        
+    onBlur(e: any) {       
+        console.log('on blurr'); 
         this.props.onCampoBlur(this.props.zCampoState);
     }
 

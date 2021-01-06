@@ -13300,25 +13300,21 @@ var Actions;
                         zFormaTablaStateListIds: zFormaTablaState.allIds,
                     },
                     _a),
-                allIds: [zPantex.numPx]
+                allIds: [zPantex.numPx],
             };
             dispatch(cmPxCrear(zPantex.numPx, pilaPantexState, zFormaTablaState, zVentanaState, zCampoState, zComandoFormaState));
         }; };
         var agregarZFormaTablasState = function (getStateFn, zPantex, zFormaTablaState, zVentanaState, zCampoState, zComandoFormaState, cmd) {
             var id = selectors_1.Selectors.ZPantexStateModule.ZFormaTablaState.getNextZFormaTablaStateId(getStateFn());
             for (var i = 0; i < zPantex.zFormaTablaList.length; i++) {
-                zFormaTablaState.byId[id] = new zcommon_1.ZFormaTablaState(id, zPantex.numPx, (i + 1), zPantex.zFormaTablaList[i].cmps.length);
+                zFormaTablaState.byId[id] = new zcommon_1.ZFormaTablaState(id, zPantex.numPx, i + 1, zPantex.zFormaTablaList[i].cmps.length);
                 zFormaTablaState.byId[id].esRegionActiva = i == 0;
-                zFormaTablaState.byId[id].idZVentana =
-                    agregarZVentanaState(getStateFn, zPantex, zPantex.zFormaTablaList[i], id, zVentanaState);
+                zFormaTablaState.byId[id].idZVentana = agregarZVentanaState(getStateFn, zPantex, zPantex.zFormaTablaList[i], id, zVentanaState);
                 var camposFijosList = [];
-                zFormaTablaState.byId[id].zCampoStateListIds =
-                    agregarZCamposState(getStateFn, zPantex, zPantex.zFormaTablaList[i], camposFijosList, i, id, zCampoState, cmd);
+                zFormaTablaState.byId[id].zCampoStateListIds = agregarZCamposState(getStateFn, zPantex, zPantex.zFormaTablaList[i], camposFijosList, i, id, zCampoState, cmd);
                 zFormaTablaState.byId[id].camposFijosList = camposFijosList;
-                zFormaTablaState.byId[id].btnsListIds =
-                    agregarZComandosBtnsFormaState(getStateFn, zPantex, zPantex.zFormaTablaList[i], i, id, zComandoFormaState);
-                zFormaTablaState.byId[id].linEstListIds =
-                    agregarZComandosLinEstFormaState(getStateFn, zPantex, zPantex.zFormaTablaList[i], i, id, zComandoFormaState);
+                zFormaTablaState.byId[id].btnsListIds = agregarZComandosBtnsFormaState(getStateFn, zPantex, zPantex.zFormaTablaList[i], i, id, zComandoFormaState);
+                zFormaTablaState.byId[id].linEstListIds = agregarZComandosLinEstFormaState(getStateFn, zPantex, zPantex.zFormaTablaList[i], i, id, zComandoFormaState);
                 zFormaTablaState.allIds.push(id);
                 id++;
             }
@@ -13346,7 +13342,9 @@ var Actions;
                 for (var fila = 0; fila <= zFormaTabla.ven.numLinsDatos; fila++) {
                     for (var i = 0; i < zFormaTabla.cmps.length; i++) {
                         var zcampoModel = new zcommon_1.ZCampoState(zFormaTabla.cmps[i], id, zPantex.numPx, region, idZft, fila);
-                        if (cmd == ZCommon.Constants.ComandoEnum.CM_PXCREARZOOM && fila == 0 && i == 0) {
+                        if (cmd == ZCommon.Constants.ComandoEnum.CM_PXCREARZOOM &&
+                            fila == 0 &&
+                            i == 0) {
                             zcampoModel.autoFocus = true;
                         }
                         if (fila == zFormaTabla.ven.numLinsDatos && zcampoModel.esFijo) {
@@ -13400,7 +13398,7 @@ var Actions;
             var id = selectors_1.Selectors.ZPantexStateModule.ZComandoFormaState.getNextZComandoFormaStateId(getStateFn());
             id = id + zComandosFormaState.allIds.length + 1;
             for (var i = 0; i < zFormaTabla.btns.length; i++) {
-                zComandosFormaState.byId[id] = new zcommon_1.ZComandoFormaState(zFormaTabla.btns[i], id, zPantex.numPx, (indiceZft + 1), idZft);
+                zComandosFormaState.byId[id] = new zcommon_1.ZComandoFormaState(zFormaTabla.btns[i], id, zPantex.numPx, indiceZft + 1, idZft);
                 zComandosFormaState.allIds.push(id);
                 zFormaTablaBtnsIds.push(id);
                 id++;
@@ -13415,7 +13413,7 @@ var Actions;
             var id = selectors_1.Selectors.ZPantexStateModule.ZComandoFormaState.getNextZComandoFormaStateId(getStateFn());
             id = id + zComandosFormaState.allIds.length + 1;
             for (var i = 0; i < zFormaTabla.linEst.length; i++) {
-                zComandosFormaState.byId[id] = new zcommon_1.ZComandoFormaState(zFormaTabla.linEst[i], id, zPantex.numPx, (indiceZft + 1), idZft);
+                zComandosFormaState.byId[id] = new zcommon_1.ZComandoFormaState(zFormaTabla.linEst[i], id, zPantex.numPx, indiceZft + 1, idZft);
                 zComandosFormaState.allIds.push(id);
                 zFormaTablaLinEstIds.push(id);
                 id++;
@@ -13429,15 +13427,15 @@ var Actions;
             zFormaTablaState: zFormaTablaState,
             zVentanaState: zVentanaState,
             zCampoState: zCampoState,
-            zComandoFormaState: zComandoFormaState
+            zComandoFormaState: zComandoFormaState,
         }); };
         ZPantexStateModule.ponerModal = function (px) { return ({
             type: actionTypes_1.ActionTypes.ZPantexStateModule.CM_PONERMODAL,
-            px: px
+            px: px,
         }); };
         ZPantexStateModule.quitarModal = function (px) { return ({
             type: actionTypes_1.ActionTypes.ZPantexStateModule.CM_QUITARMODAL,
-            px: px
+            px: px,
         }); };
         ZPantexStateModule.cmPxArrivar = function (pxArrivarParams) { return ({
             type: actionTypes_1.ActionTypes.ZPantexStateModule.CM_PXARRIVAR,
@@ -13457,7 +13455,7 @@ var Actions;
             rgIrALinea: rgIrALinea,
             irALinea: irALinea,
             cambiaFoco: cambiaFoco,
-            ultimoComandoEnviado: ultimoComandoEnviado
+            ultimoComandoEnviado: ultimoComandoEnviado,
         }); };
         ZPantexStateModule.onCampoChanged = function (zcampoState, valor) { return function (dispatch, getStateFn) {
             if (valor == "*") {
@@ -13487,7 +13485,7 @@ var Actions;
             px: px,
             idZCampoState: idZCampoState,
             haCambiado: haCambiado,
-            ponerFoco: ponerFoco
+            ponerFoco: ponerFoco,
         }); };
         ZPantexStateModule.setComandoBuffer = function (cm, buffer) { return ({
             type: actionTypes_1.ActionTypes.ZPantexStateModule.SET_COMANDOBUFFER,
@@ -13503,31 +13501,34 @@ var Actions;
         }; };
         ZPantexStateModule.setTituloVentana = function (parametros) { return ({
             type: actionTypes_1.ActionTypes.ZPantexStateModule.SET_TITULOVENTANA,
-            parametros: parametros
+            parametros: parametros,
         }); };
-        ZPantexStateModule.onCampoFocusIrACmp = function (zcampoState) { return function (dispatch, getStateFn) {
-            var buffer = "<nc>" + zcampoState.nomCmp + "</nc>";
-            var zformaTabla = getStateFn().zPantexStateModule.zFormaTablaState.byId[zcampoState.idZft];
-            var zPantexState = getStateFn().zPantexStateModule.pilaPantexState.byId[zcampoState.px];
-            if (zPantexState.zFormaTablaStateListIds.length == 1 || zformaTabla.esRegionActiva) {
-                dispatch(onCampoFocusIrACmpInternal(zcampoState));
-                return;
-            }
-            dispatch(ZPantexStateModule.onSaltarMov(zformaTabla, zcampoState.rg)).then(function () {
-                dispatch(onCampoFocusIrACmpInternal(zcampoState));
-            });
-        }; };
         ZPantexStateModule.cmDetallar = function (zcampoState) { return function (dispatch, getStateFn) {
             var buffer = "<nc>" + zcampoState.nomCmp + "</nc>";
-            var zformaTabla = getStateFn().zPantexStateModule.zFormaTablaState.byId[zcampoState.idZft];
-            var zPantexState = getStateFn().zPantexStateModule.pilaPantexState.byId[zcampoState.px];
-            if (zPantexState.zFormaTablaStateListIds.length == 1 || zformaTabla.esRegionActiva) {
+            var zformaTabla = getStateFn().zPantexStateModule
+                .zFormaTablaState.byId[zcampoState.idZft];
+            var zPantexState = getStateFn().zPantexStateModule
+                .pilaPantexState.byId[zcampoState.px];
+            if (zPantexState.zFormaTablaStateListIds.length == 1 ||
+                zformaTabla.esRegionActiva) {
                 dispatch(actions_1.Actions.despacharEventoCliente(zcommon_1.Constants.ComandoEnum.CM_DETALLAR, buffer));
                 return;
             }
             dispatch(ZPantexStateModule.onSaltarMov(zformaTabla, zcampoState.rg)).then(function () {
                 dispatch(actions_1.Actions.despacharEventoCliente(zcommon_1.Constants.ComandoEnum.CM_DETALLAR, buffer));
             });
+        }; };
+        ZPantexStateModule.onCampoFocusIrACmp = function (zcampoState) { return function (dispatch, getStateFn) {
+            var zformaTabla = getStateFn().zPantexStateModule
+                .zFormaTablaState.byId[zcampoState.idZft];
+            var zPantexState = getStateFn().zPantexStateModule
+                .pilaPantexState.byId[zcampoState.px];
+            if (zPantexState.zFormaTablaStateListIds.length == 1 ||
+                zformaTabla.esRegionActiva) {
+                dispatch(onCampoFocusIrACmpInternal(zcampoState));
+                return;
+            }
+            dispatch(saltarIrACmp(zcampoState, zformaTabla));
         }; };
         var onCampoFocusIrACmpInternal = function (zcampoState) { return function (dispatch, getStateFn) {
             var buffer = "<nc>" + zcampoState.nomCmp + "</nc>";
@@ -13535,10 +13536,23 @@ var Actions;
                 dispatch(ZPantexStateModule.setZCampoHaCambiado(zcampoState.px, zcampoState.id, false, true));
             });
         }; };
+        var saltarIrACmp = function (zcampoState, zFormaTablaState) { return function (dispatch, getStateFn) {
+            var buffer = "<nc>" + zcampoState.nomCmp + "</nc>";
+            if (zcampoState.fi !== undefined) {
+                buffer = "<nc>" + zcampoState.nomCmp + "</nc><fi>" + zcampoState.fi + "</fi>";
+            }
+            dispatch(actions_1.Actions.despacharEventoCliente(zcommon_1.Constants.ComandoEnum.CM_SALTAR_IRACMP, buffer)).then(function (resultadoDesparcharEvento) {
+                dispatch(ZPantexStateModule.setZFormaTablaComoRegionActiva(zFormaTablaState.id, zFormaTablaState.numPx));
+                dispatch(ZPantexStateModule.setZCampoHaCambiado(zcampoState.px, zcampoState.id, false, true));
+            });
+        }; };
         ZPantexStateModule.onCampoChangedEnviarCmd = function (zcampoState, valor) { return function (dispatch, getStateFn) {
-            var zformaTabla = getStateFn().zPantexStateModule.zFormaTablaState.byId[zcampoState.idZft];
-            var zPantexState = getStateFn().zPantexStateModule.pilaPantexState.byId[zcampoState.px];
-            if (zPantexState.zFormaTablaStateListIds.length == 1 || zformaTabla.esRegionActiva) {
+            var zformaTabla = getStateFn().zPantexStateModule
+                .zFormaTablaState.byId[zcampoState.idZft];
+            var zPantexState = getStateFn().zPantexStateModule
+                .pilaPantexState.byId[zcampoState.px];
+            if (zPantexState.zFormaTablaStateListIds.length == 1 ||
+                zformaTabla.esRegionActiva) {
                 dispatch(onCampoChangedEnviarCmdInternal(zcampoState, valor));
                 return;
             }
@@ -13551,9 +13565,12 @@ var Actions;
             dispatch(ZPantexStateModule.onCampoBlur(selectors_1.Selectors.ZPantexStateModule.ZCampoState.getZCampoStateMap(getStateFn()).byId[zcampoState.id]));
         }; };
         ZPantexStateModule.onCampoBlur = function (zcampoState) { return function (dispatch, getStateFn) {
-            var zformaTabla = getStateFn().zPantexStateModule.zFormaTablaState.byId[zcampoState.idZft];
-            var zPantexState = getStateFn().zPantexStateModule.pilaPantexState.byId[zcampoState.px];
-            if (zPantexState.zFormaTablaStateListIds.length == 1 || zformaTabla.esRegionActiva) {
+            var zformaTabla = getStateFn().zPantexStateModule
+                .zFormaTablaState.byId[zcampoState.idZft];
+            var zPantexState = getStateFn().zPantexStateModule
+                .pilaPantexState.byId[zcampoState.px];
+            if (zPantexState.zFormaTablaStateListIds.length == 1 ||
+                zformaTabla.esRegionActiva) {
                 dispatch(onCampoBlurInternal(zcampoState));
                 return;
             }
@@ -13577,13 +13594,15 @@ var Actions;
         }; };
         ZPantexStateModule.enviarCmdCambioCmp = function (zcampoState, valor) { return function (dispatch, getStateFn) {
             var buffer = "<nc>" + zcampoState.nomCmp + "</nc><vc>" + valor + "</vc>";
-            dispatch(actions_1.Actions.despacharEventoCliente(zcommon_1.Constants.ComandoEnum.CM_CAMBIOCMP, buffer)).then(function (resultadoDesparcharEvento) {
-            });
+            dispatch(actions_1.Actions.despacharEventoCliente(zcommon_1.Constants.ComandoEnum.CM_CAMBIOCMP, buffer)).then(function (resultadoDesparcharEvento) { });
         }; };
         ZPantexStateModule.prenderValorBitRadio = function (zcampoState) { return function (dispatch, getStateFn) {
-            var zformaTabla = getStateFn().zPantexStateModule.zFormaTablaState.byId[zcampoState.idZft];
-            var zPantexState = getStateFn().zPantexStateModule.pilaPantexState.byId[zcampoState.px];
-            if (zPantexState.zFormaTablaStateListIds.length == 1 || zformaTabla.esRegionActiva) {
+            var zformaTabla = getStateFn().zPantexStateModule
+                .zFormaTablaState.byId[zcampoState.idZft];
+            var zPantexState = getStateFn().zPantexStateModule
+                .pilaPantexState.byId[zcampoState.px];
+            if (zPantexState.zFormaTablaStateListIds.length == 1 ||
+                zformaTabla.esRegionActiva) {
                 dispatch(ZPantexStateModule.prenderValorBitRadioInternal(zcampoState));
                 return;
             }
@@ -13594,13 +13613,15 @@ var Actions;
         ZPantexStateModule.prenderValorBitRadioInternal = function (zcampoState) { return function (dispatch, getStateFn) {
             dispatch(ZPantexStateModule.onCampoRadioChanged(zcampoState, zcampoState.lon));
             var buffer = "<nc>" + zcampoState.nomCmp + "</nc><vc>*</vc><pb>" + zcampoState.lon + "</pb>";
-            dispatch(actions_1.Actions.despacharEventoCliente(zcommon_1.Constants.ComandoEnum.CM_CAMBIOCMP, buffer)).then(function (resultadoDesparcharEvento) {
-            });
+            dispatch(actions_1.Actions.despacharEventoCliente(zcommon_1.Constants.ComandoEnum.CM_CAMBIOCMP, buffer)).then(function (resultadoDesparcharEvento) { });
         }; };
         ZPantexStateModule.notificarCambioCheckbox = function (zcampoState) { return function (dispatch, getStateFn) {
-            var zformaTabla = getStateFn().zPantexStateModule.zFormaTablaState.byId[zcampoState.idZft];
-            var zPantexState = getStateFn().zPantexStateModule.pilaPantexState.byId[zcampoState.px];
-            if (zPantexState.zFormaTablaStateListIds.length == 1 || zformaTabla.esRegionActiva) {
+            var zformaTabla = getStateFn().zPantexStateModule
+                .zFormaTablaState.byId[zcampoState.idZft];
+            var zPantexState = getStateFn().zPantexStateModule
+                .pilaPantexState.byId[zcampoState.px];
+            if (zPantexState.zFormaTablaStateListIds.length == 1 ||
+                zformaTabla.esRegionActiva) {
                 dispatch(ZPantexStateModule.notificarCambioCheckboxInternal(zcampoState));
                 return;
             }
@@ -13612,13 +13633,15 @@ var Actions;
             var value = !zcampoState.checked;
             dispatch(ZPantexStateModule.onCampoCheckboxChanged(zcampoState, value));
             var buffer = "<nc>" + zcampoState.nomCmp + "</nc><vc>" + (value ? "X" : " ") + "</vc><pb>" + zcampoState.lon + "</pb>";
-            dispatch(actions_1.Actions.despacharEventoCliente(zcommon_1.Constants.ComandoEnum.CM_CAMBIOCMP, buffer)).then(function (resultadoDesparcharEvento) {
-            });
+            dispatch(actions_1.Actions.despacharEventoCliente(zcommon_1.Constants.ComandoEnum.CM_CAMBIOCMP, buffer)).then(function (resultadoDesparcharEvento) { });
         }; };
         ZPantexStateModule.onFilaMultiSeleccionada = function (zFormaTablaState, indexFilaMultiSeleccionada) { return function (dispatch, getStateFn) {
-            var zformaTabla = getStateFn().zPantexStateModule.zFormaTablaState.byId[zFormaTablaState.id];
-            var zPantexState = getStateFn().zPantexStateModule.pilaPantexState.byId[zFormaTablaState.numPx];
-            if (zPantexState.zFormaTablaStateListIds.length == 1 || zformaTabla.esRegionActiva) {
+            var zformaTabla = getStateFn().zPantexStateModule
+                .zFormaTablaState.byId[zFormaTablaState.id];
+            var zPantexState = getStateFn().zPantexStateModule
+                .pilaPantexState.byId[zFormaTablaState.numPx];
+            if (zPantexState.zFormaTablaStateListIds.length == 1 ||
+                zformaTabla.esRegionActiva) {
                 dispatch(ZPantexStateModule.onFilaMultiSeleccionadaInternal(zFormaTablaState, indexFilaMultiSeleccionada));
                 return;
             }
@@ -13651,11 +13674,11 @@ var Actions;
         ZPantexStateModule.setZFormaTablaComoRegionActiva = function (zftId, numPx) { return ({
             type: actionTypes_1.ActionTypes.ZPantexStateModule.SET_ZFORMATABLA_COMOREGIONACTIVA,
             zftId: zftId,
-            numPx: numPx
+            numPx: numPx,
         }); };
         ZPantexStateModule.setEsPxModal = function (esPxModal) { return ({
             type: actionTypes_1.ActionTypes.ZPantexModule.SET_ESPXMODAL,
-            esPxModal: esPxModal
+            esPxModal: esPxModal,
         }); };
         ZPantexStateModule.cmPxDestruir = function (pxDestruirParams) { return ({
             type: actionTypes_1.ActionTypes.ZPantexStateModule.CM_PXDESTRUIR,
@@ -13663,12 +13686,12 @@ var Actions;
         }); };
         ZPantexStateModule.pxDestruir = function (pxDestruirParams) { return ({
             type: actionTypes_1.ActionTypes.ZPantexModule.PX_DESTRUIR,
-            pxDestruirParams: pxDestruirParams
+            pxDestruirParams: pxDestruirParams,
         }); };
     })(ZPantexStateModule = Actions.ZPantexStateModule || (Actions.ZPantexStateModule = {}));
     Actions.despacharOpcionMenu = function (zmenuItemModel) { return ({
         type: ZMenu.ActionTypes.DESPACHAR_OPCION_MENU,
-        zmenuItemModel: zmenuItemModel
+        zmenuItemModel: zmenuItemModel,
     }); };
 })(Actions = exports.Actions || (exports.Actions = {}));
 
@@ -53377,7 +53400,6 @@ var ZCampoTextoBasico = (function (_super) {
             } }));
     };
     ZCampoTextoBasico.prototype.onFocus = function (e) {
-        console.log('ir a campo debug');
         this.props.onCampoFocusIrACmp(this.props.zCampoState);
     };
     ZCampoTextoBasico.prototype.onChange = function (e) {
@@ -53484,6 +53506,7 @@ var ZCampoTextoBasico = (function (_super) {
         }
     };
     ZCampoTextoBasico.prototype.onBlur = function (e) {
+        console.log('on blurr');
         this.props.onCampoBlur(this.props.zCampoState);
     };
     ZCampoTextoBasico.prototype.componentDidUpdate = function () {
