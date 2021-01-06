@@ -560,17 +560,23 @@ export namespace Actions {
                 return;
             }
 
-            dispatch(onSaltarMov(zformaTabla, zformaTabla.rg)).then(
-                () => {
-                    dispatch(onFilaMultiSeleccionadaInternal(zFormaTablaState, indexFilaMultiSeleccionada));
-                }
-            );
+            dispatch(saltarIrALinea(zFormaTablaState, indexFilaMultiSeleccionada));
         }
         
         export const onFilaMultiSeleccionadaInternal = (zFormaTablaState: IZFormaTablaState, indexFilaMultiSeleccionada: number) => (dispatch: any, getStateFn: () => IZAplState) => {            
             const buffer = `<fi>${indexFilaMultiSeleccionada}</fi>`;
             dispatch(ZAplicacionActions.despacharEventoCliente(Constants.ComandoEnum.CM_IRALINEA, buffer)).then(
                 (resultadoDesparcharEvento: ResultadoActionConDato<IZColaEventos>) => {
+                    dispatch(setComandoBuffer(Constants.ComandoEnum.CM_ACEPTAR, buffer));
+                }
+            );
+        }
+
+        export const saltarIrALinea = (zFormaTablaState: IZFormaTablaState, indexFilaMultiSeleccionada: number) => (dispatch: any, getStateFn: () => IZAplState) => {            
+            const buffer = `<fi>${indexFilaMultiSeleccionada}</fi>`;
+            dispatch(ZAplicacionActions.despacharEventoCliente(Constants.ComandoEnum.CM_SALTAR_IRALINEA, buffer)).then(
+                (resultadoDesparcharEvento: ResultadoActionConDato<IZColaEventos>) => {
+                    dispatch(setZFormaTablaComoRegionActiva(zFormaTablaState.id, zFormaTablaState.numPx));
                     dispatch(setComandoBuffer(Constants.ComandoEnum.CM_ACEPTAR, buffer));
                 }
             );

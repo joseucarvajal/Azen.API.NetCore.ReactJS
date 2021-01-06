@@ -255,6 +255,10 @@ export namespace Constants {
         CM_PUERTO = 188,
         CM_EJECSOLOOPCION_TKNA = 189,
 
+        CM_SALTAR_IRALINEA = 198,
+        CM_SALTAR_IRALINEA_IRACMP = 199,
+        CM_SALTAR_IRACMP = 200,
+
         CM_APLICACION = -1,
         CM_LOGIN = -2,
         CM_ACEPTARLOGIN = -3,

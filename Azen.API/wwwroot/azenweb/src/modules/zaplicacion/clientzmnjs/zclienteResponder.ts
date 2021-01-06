@@ -43,6 +43,9 @@ export namespace ZclienteResponder {
 
       case ZCommon.Constants.ComandoEnum.CM_IRACMP:
       case ZCommon.Constants.ComandoEnum.CM_CAMBIOCMP:
+      case ZCommon.Constants.ComandoEnum.CM_IRALINEA:
+      case ZCommon.Constants.ComandoEnum.CM_SALTAR_IRALINEA:
+      case ZCommon.Constants.ComandoEnum.CM_SALTAR_IRALINEA_IRACMP:
       case ZCommon.Constants.ComandoEnum.CM_CERRAR:
       case ZCommon.Constants.ComandoEnum.CM_RETOCAR:
       case ZCommon.Constants.ComandoEnum.CM_CAMBIOCMPIND:

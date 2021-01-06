@@ -13622,13 +13622,18 @@ var Actions;
                 dispatch(ZPantexStateModule.onFilaMultiSeleccionadaInternal(zFormaTablaState, indexFilaMultiSeleccionada));
                 return;
             }
-            dispatch(ZPantexStateModule.onSaltarMov(zformaTabla, zformaTabla.rg)).then(function () {
-                dispatch(ZPantexStateModule.onFilaMultiSeleccionadaInternal(zFormaTablaState, indexFilaMultiSeleccionada));
-            });
+            dispatch(ZPantexStateModule.saltarIrALinea(zFormaTablaState, indexFilaMultiSeleccionada));
         }; };
         ZPantexStateModule.onFilaMultiSeleccionadaInternal = function (zFormaTablaState, indexFilaMultiSeleccionada) { return function (dispatch, getStateFn) {
             var buffer = "<fi>" + indexFilaMultiSeleccionada + "</fi>";
             dispatch(actions_1.Actions.despacharEventoCliente(zcommon_1.Constants.ComandoEnum.CM_IRALINEA, buffer)).then(function (resultadoDesparcharEvento) {
+                dispatch(ZPantexStateModule.setComandoBuffer(zcommon_1.Constants.ComandoEnum.CM_ACEPTAR, buffer));
+            });
+        }; };
+        ZPantexStateModule.saltarIrALinea = function (zFormaTablaState, indexFilaMultiSeleccionada) { return function (dispatch, getStateFn) {
+            var buffer = "<fi>" + indexFilaMultiSeleccionada + "</fi>";
+            dispatch(actions_1.Actions.despacharEventoCliente(zcommon_1.Constants.ComandoEnum.CM_SALTAR_IRALINEA, buffer)).then(function (resultadoDesparcharEvento) {
+                dispatch(ZPantexStateModule.setZFormaTablaComoRegionActiva(zFormaTablaState.id, zFormaTablaState.numPx));
                 dispatch(ZPantexStateModule.setComandoBuffer(zcommon_1.Constants.ComandoEnum.CM_ACEPTAR, buffer));
             });
         }; };
@@ -17821,6 +17826,9 @@ var Constants;
         ComandoEnum[ComandoEnum["CM_TKNS"] = 187] = "CM_TKNS";
         ComandoEnum[ComandoEnum["CM_PUERTO"] = 188] = "CM_PUERTO";
         ComandoEnum[ComandoEnum["CM_EJECSOLOOPCION_TKNA"] = 189] = "CM_EJECSOLOOPCION_TKNA";
+        ComandoEnum[ComandoEnum["CM_SALTAR_IRALINEA"] = 198] = "CM_SALTAR_IRALINEA";
+        ComandoEnum[ComandoEnum["CM_SALTAR_IRALINEA_IRACMP"] = 199] = "CM_SALTAR_IRALINEA_IRACMP";
+        ComandoEnum[ComandoEnum["CM_SALTAR_IRACMP"] = 200] = "CM_SALTAR_IRACMP";
         ComandoEnum[ComandoEnum["CM_APLICACION"] = -1] = "CM_APLICACION";
         ComandoEnum[ComandoEnum["CM_LOGIN"] = -2] = "CM_LOGIN";
         ComandoEnum[ComandoEnum["CM_ACEPTARLOGIN"] = -3] = "CM_ACEPTARLOGIN";
@@ -51752,6 +51760,9 @@ var ZclienteResponder;
                     break;
                 case ZCommon.Constants.ComandoEnum.CM_IRACMP:
                 case ZCommon.Constants.ComandoEnum.CM_CAMBIOCMP:
+                case ZCommon.Constants.ComandoEnum.CM_IRALINEA:
+                case ZCommon.Constants.ComandoEnum.CM_SALTAR_IRALINEA:
+                case ZCommon.Constants.ComandoEnum.CM_SALTAR_IRALINEA_IRACMP:
                 case ZCommon.Constants.ComandoEnum.CM_CERRAR:
                 case ZCommon.Constants.ComandoEnum.CM_RETOCAR:
                 case ZCommon.Constants.ComandoEnum.CM_CAMBIOCMPIND:
@@ -53366,6 +53377,7 @@ var ZCampoTextoBasico = (function (_super) {
             } }));
     };
     ZCampoTextoBasico.prototype.onFocus = function (e) {
+        console.log('ir a campo debug');
         this.props.onCampoFocusIrACmp(this.props.zCampoState);
     };
     ZCampoTextoBasico.prototype.onChange = function (e) {

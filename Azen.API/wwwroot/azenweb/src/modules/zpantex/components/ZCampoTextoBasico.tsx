@@ -78,6 +78,7 @@ export class ZCampoTextoBasico extends React.PureComponent<OwnProps & ConnectedS
         }
         */        
 
+        console.log('ir a campo debug');
         this.props.onCampoFocusIrACmp(this.props.zCampoState);
     }
 
