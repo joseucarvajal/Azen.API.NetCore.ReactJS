@@ -9,7 +9,8 @@ import {
 
 import {
     IZCampoState,
-    IZFormaTablaState
+    IZFormaTablaState,
+    ZCampoState
 } from "../../zcommon";
 
 import { ZLabelCampoContainer } from '../containers/ZLabelCampoContainer';
@@ -88,7 +89,8 @@ export class ZCampoDetallable extends React.PureComponent<OwnProps & ConnectedSt
         }
     }
 
-    onCampoZoomClick() {
+    onCampoZoomClick(e:any) {
         this.props.cmDetallar(this.props.zCampoState);
+        e.stopPropagation();
     }
 }

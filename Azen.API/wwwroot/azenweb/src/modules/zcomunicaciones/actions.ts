@@ -45,11 +45,12 @@ export namespace Actions {
 
       if (getState().nivelLog == 1) {
         console.log(
-          "----------------------------------------------------------------"
+          "========================================================================================================================"
         );
         console.time(`${ZCommon.Constants.ComandoEnum[cmd]} = ${cmd}`);
         console.log({requestUrl});
-        console.log({buffer});
+        console.log(`${ZCommon.Constants.ComandoEnum[cmd]} - ${cmd}`);
+        console.log(`buffer: ${buffer}`);
       }
 
       dispatch(setProcesosServidor(true, parametros.tipoAJAXIndicador));

@@ -32,6 +32,7 @@ import { ResultadoActionConDato } from "../zutils";
 
 import { Actions as ZAplicacionActions } from "../zaplicacion/actions";
 import { Selectors } from "./selectors";
+import { type } from "os";
 
 export namespace DTO {
   export class DespacharOpcionMenuParamsDTO {
@@ -540,14 +541,7 @@ export namespace Actions {
         return;
       }
 
-      dispatch(onSaltarMov(zformaTabla, zcampoState.rg)).then(() => {
-        dispatch(
-          ZAplicacionActions.despacharEventoCliente(
-            Constants.ComandoEnum.CM_DETALLAR,
-            buffer
-          )
-        );
-      });
+      dispatch(saltarDetallar(zcampoState, zformaTabla));
     };
 
     export const onCampoFocusIrACmp = (zcampoState: IZCampoState) => (
@@ -567,8 +561,24 @@ export namespace Actions {
         return;
       }
 
-      dispatch(saltarIrACmp(zcampoState, zformaTabla));
-
+      //Saltar_irACampo
+      dispatch(
+        saltarYEjecutarComandos(
+          zformaTabla,
+          [ //Cola eventos
+            getXMLComandoMultiple(
+              Constants.ComandoEnum.CM_IRACMP,
+              `<nc>${zcampoState.nomCmp}</nc>`
+            ),
+          ],
+          () => { //Success callback function
+            dispatch(
+              //Poner foco
+              setZCampoHaCambiado(zcampoState.px, zcampoState.id, false, true)
+            );  
+          }
+        )
+      );
     };
 
     const onCampoFocusIrACmpInternal = (zcampoState: IZCampoState) => (
@@ -590,20 +600,20 @@ export namespace Actions {
       );
     };
 
-    const saltarIrACmp = (
+    const saltarDetallar = (
       zcampoState: IZCampoState,
       zFormaTablaState: IZFormaTablaState
     ) => (dispatch: any, getStateFn: () => IZAplState) => {
       let buffer = `<nc>${zcampoState.nomCmp}</nc>`;
-      
+
       //Ocurrió en un detalle
-      if(zcampoState.fi !== undefined){
+      if (zcampoState.fi !== undefined) {
         buffer = `<nc>${zcampoState.nomCmp}</nc><fi>${zcampoState.fi}</fi>`;
       }
 
       dispatch(
         ZAplicacionActions.despacharEventoCliente(
-          Constants.ComandoEnum.CM_SALTAR_IRACMP,
+          Constants.ComandoEnum.CM_SALTAR_DETALLAR,
           buffer
         )
       ).then(
@@ -819,7 +829,21 @@ export namespace Actions {
         return;
       }
 
-      dispatch(saltarIrALinea(zFormaTablaState, indexFilaMultiSeleccionada));
+      //Saltar_irALinea
+      dispatch(
+        saltarYEjecutarComandos(
+          zFormaTablaState,
+          [ //Cola de comandos
+            getXMLComandoMultiple(
+              Constants.ComandoEnum.CM_IRALINEA,
+              `<fi>${indexFilaMultiSeleccionada}</fi>`
+            ),
+          ],
+          (buffer:string) => { //Success callback function
+            dispatch(setComandoBuffer(Constants.ComandoEnum.CM_ACEPTAR, buffer));
+          }
+        )
+      );
     };
 
     export const onFilaMultiSeleccionadaInternal = (
@@ -834,29 +858,6 @@ export namespace Actions {
         )
       ).then(
         (resultadoDesparcharEvento: ResultadoActionConDato<IZColaEventos>) => {
-          dispatch(setComandoBuffer(Constants.ComandoEnum.CM_ACEPTAR, buffer));
-        }
-      );
-    };
-
-    export const saltarIrALinea = (
-      zFormaTablaState: IZFormaTablaState,
-      indexFilaMultiSeleccionada: number
-    ) => (dispatch: any, getStateFn: () => IZAplState) => {
-      const buffer = `<fi>${indexFilaMultiSeleccionada}</fi>`;
-      dispatch(
-        ZAplicacionActions.despacharEventoCliente(
-          Constants.ComandoEnum.CM_SALTAR_IRALINEA,
-          buffer
-        )
-      ).then(
-        (resultadoDesparcharEvento: ResultadoActionConDato<IZColaEventos>) => {
-          dispatch(
-            setZFormaTablaComoRegionActiva(
-              zFormaTablaState.id,
-              zFormaTablaState.numPx
-            )
-          );
           dispatch(setComandoBuffer(Constants.ComandoEnum.CM_ACEPTAR, buffer));
         }
       );
@@ -894,6 +895,48 @@ export namespace Actions {
           );
         }
       );
+    };
+
+    const saltarYEjecutarComandos = (
+      zFormaTablaState: IZFormaTablaState,
+      bufferCmds: string[],
+      successCallbackFn?: (buffer:String) => void
+    ) => (dispatch: any, getStateFn: () => IZAplState) => {
+      const buffer = `
+<cmds>
+  ${getXMLComandoMultiple(Constants.ComandoEnum.CM_SALTAR)}
+  ${bufferCmds.map((buff) => buff)}
+</cmds>`;
+
+      dispatch(
+        ZAplicacionActions.despacharEventoCliente(
+          Constants.ComandoEnum.CM_PROCESARMULTIEVENTOS,
+          buffer
+        )
+      ).then(
+        (resultadoDesparcharEvento: ResultadoActionConDato<IZColaEventos>) => {
+          dispatch(
+            setZFormaTablaComoRegionActiva(
+              zFormaTablaState.id,
+              zFormaTablaState.numPx
+            )
+          );          
+          if (successCallbackFn !== undefined && typeof successCallbackFn === "function") {
+            successCallbackFn(buffer);
+          }
+        }
+      );
+    };
+
+    const getXMLComandoMultiple = (
+      cmd: Constants.ComandoEnum,
+      buffer?: string
+    ) => {
+      return `
+<cmd>
+  <cmm>${cmd}</cmm>
+  ${buffer?.trim().length > 0 ? `<bfm>${buffer}</bfm>` : ""}
+</cmd>`;
     };
 
     export const setZFormaTablaComoRegionActiva = (

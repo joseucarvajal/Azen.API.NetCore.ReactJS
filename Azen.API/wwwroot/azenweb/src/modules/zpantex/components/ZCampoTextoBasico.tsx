@@ -72,13 +72,11 @@ export class ZCampoTextoBasico extends React.PureComponent<OwnProps & ConnectedS
 
     onFocus(e: any) {
         
-        /*
         if (this.props.zCampoState.autoFocus) {         
             return;
         }
-        */        
 
-        this.props.onCampoFocusIrACmp(this.props.zCampoState);
+        this.props.onCampoFocusIrACmp(this.props.zCampoState);        
     }
 
     onChange(e: any) {
@@ -201,7 +199,6 @@ export class ZCampoTextoBasico extends React.PureComponent<OwnProps & ConnectedS
     }
 
     onBlur(e: any) {       
-        console.log('on blurr'); 
         this.props.onCampoBlur(this.props.zCampoState);
     }
 

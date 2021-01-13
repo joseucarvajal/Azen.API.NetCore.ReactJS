@@ -13514,9 +13514,7 @@ var Actions;
                 dispatch(actions_1.Actions.despacharEventoCliente(zcommon_1.Constants.ComandoEnum.CM_DETALLAR, buffer));
                 return;
             }
-            dispatch(ZPantexStateModule.onSaltarMov(zformaTabla, zcampoState.rg)).then(function () {
-                dispatch(actions_1.Actions.despacharEventoCliente(zcommon_1.Constants.ComandoEnum.CM_DETALLAR, buffer));
-            });
+            dispatch(saltarDetallar(zcampoState, zformaTabla));
         }; };
         ZPantexStateModule.onCampoFocusIrACmp = function (zcampoState) { return function (dispatch, getStateFn) {
             var zformaTabla = getStateFn().zPantexStateModule
@@ -13528,7 +13526,11 @@ var Actions;
                 dispatch(onCampoFocusIrACmpInternal(zcampoState));
                 return;
             }
-            dispatch(saltarIrACmp(zcampoState, zformaTabla));
+            dispatch(saltarYEjecutarComandos(zformaTabla, [
+                getXMLComandoMultiple(zcommon_1.Constants.ComandoEnum.CM_IRACMP, "<nc>" + zcampoState.nomCmp + "</nc>"),
+            ], function () {
+                dispatch(ZPantexStateModule.setZCampoHaCambiado(zcampoState.px, zcampoState.id, false, true));
+            }));
         }; };
         var onCampoFocusIrACmpInternal = function (zcampoState) { return function (dispatch, getStateFn) {
             var buffer = "<nc>" + zcampoState.nomCmp + "</nc>";
@@ -13536,12 +13538,12 @@ var Actions;
                 dispatch(ZPantexStateModule.setZCampoHaCambiado(zcampoState.px, zcampoState.id, false, true));
             });
         }; };
-        var saltarIrACmp = function (zcampoState, zFormaTablaState) { return function (dispatch, getStateFn) {
+        var saltarDetallar = function (zcampoState, zFormaTablaState) { return function (dispatch, getStateFn) {
             var buffer = "<nc>" + zcampoState.nomCmp + "</nc>";
             if (zcampoState.fi !== undefined) {
                 buffer = "<nc>" + zcampoState.nomCmp + "</nc><fi>" + zcampoState.fi + "</fi>";
             }
-            dispatch(actions_1.Actions.despacharEventoCliente(zcommon_1.Constants.ComandoEnum.CM_SALTAR_IRACMP, buffer)).then(function (resultadoDesparcharEvento) {
+            dispatch(actions_1.Actions.despacharEventoCliente(zcommon_1.Constants.ComandoEnum.CM_SALTAR_DETALLAR, buffer)).then(function (resultadoDesparcharEvento) {
                 dispatch(ZPantexStateModule.setZFormaTablaComoRegionActiva(zFormaTablaState.id, zFormaTablaState.numPx));
                 dispatch(ZPantexStateModule.setZCampoHaCambiado(zcampoState.px, zcampoState.id, false, true));
             });
@@ -13645,18 +13647,15 @@ var Actions;
                 dispatch(ZPantexStateModule.onFilaMultiSeleccionadaInternal(zFormaTablaState, indexFilaMultiSeleccionada));
                 return;
             }
-            dispatch(ZPantexStateModule.saltarIrALinea(zFormaTablaState, indexFilaMultiSeleccionada));
+            dispatch(saltarYEjecutarComandos(zFormaTablaState, [
+                getXMLComandoMultiple(zcommon_1.Constants.ComandoEnum.CM_IRALINEA, "<fi>" + indexFilaMultiSeleccionada + "</fi>"),
+            ], function (buffer) {
+                dispatch(ZPantexStateModule.setComandoBuffer(zcommon_1.Constants.ComandoEnum.CM_ACEPTAR, buffer));
+            }));
         }; };
         ZPantexStateModule.onFilaMultiSeleccionadaInternal = function (zFormaTablaState, indexFilaMultiSeleccionada) { return function (dispatch, getStateFn) {
             var buffer = "<fi>" + indexFilaMultiSeleccionada + "</fi>";
             dispatch(actions_1.Actions.despacharEventoCliente(zcommon_1.Constants.ComandoEnum.CM_IRALINEA, buffer)).then(function (resultadoDesparcharEvento) {
-                dispatch(ZPantexStateModule.setComandoBuffer(zcommon_1.Constants.ComandoEnum.CM_ACEPTAR, buffer));
-            });
-        }; };
-        ZPantexStateModule.saltarIrALinea = function (zFormaTablaState, indexFilaMultiSeleccionada) { return function (dispatch, getStateFn) {
-            var buffer = "<fi>" + indexFilaMultiSeleccionada + "</fi>";
-            dispatch(actions_1.Actions.despacharEventoCliente(zcommon_1.Constants.ComandoEnum.CM_SALTAR_IRALINEA, buffer)).then(function (resultadoDesparcharEvento) {
-                dispatch(ZPantexStateModule.setZFormaTablaComoRegionActiva(zFormaTablaState.id, zFormaTablaState.numPx));
                 dispatch(ZPantexStateModule.setComandoBuffer(zcommon_1.Constants.ComandoEnum.CM_ACEPTAR, buffer));
             });
         }; };
@@ -13671,6 +13670,18 @@ var Actions;
                 return dispatch(ZPantexStateModule.setZFormaTablaComoRegionActiva(zFormaTablaState.id, zFormaTablaState.numPx));
             });
         }; };
+        var saltarYEjecutarComandos = function (zFormaTablaState, bufferCmds, successCallbackFn) { return function (dispatch, getStateFn) {
+            var buffer = "\n<cmds>\n  " + getXMLComandoMultiple(zcommon_1.Constants.ComandoEnum.CM_SALTAR) + "\n  " + bufferCmds.map(function (buff) { return buff; }) + "\n</cmds>";
+            dispatch(actions_1.Actions.despacharEventoCliente(zcommon_1.Constants.ComandoEnum.CM_PROCESARMULTIEVENTOS, buffer)).then(function (resultadoDesparcharEvento) {
+                dispatch(ZPantexStateModule.setZFormaTablaComoRegionActiva(zFormaTablaState.id, zFormaTablaState.numPx));
+                if (successCallbackFn !== undefined && typeof successCallbackFn === "function") {
+                    successCallbackFn(buffer);
+                }
+            });
+        }; };
+        var getXMLComandoMultiple = function (cmd, buffer) {
+            return "\n<cmd>\n  <cmm>" + cmd + "</cmm>\n  " + ((buffer === null || buffer === void 0 ? void 0 : buffer.trim().length) > 0 ? "<bfm>" + buffer + "</bfm>" : "") + "\n</cmd>";
+        };
         ZPantexStateModule.setZFormaTablaComoRegionActiva = function (zftId, numPx) { return ({
             type: actionTypes_1.ActionTypes.ZPantexStateModule.SET_ZFORMATABLA_COMOREGIONACTIVA,
             zftId: zftId,
@@ -17852,6 +17863,8 @@ var Constants;
         ComandoEnum[ComandoEnum["CM_SALTAR_IRALINEA"] = 198] = "CM_SALTAR_IRALINEA";
         ComandoEnum[ComandoEnum["CM_SALTAR_IRALINEA_IRACMP"] = 199] = "CM_SALTAR_IRALINEA_IRACMP";
         ComandoEnum[ComandoEnum["CM_SALTAR_IRACMP"] = 200] = "CM_SALTAR_IRACMP";
+        ComandoEnum[ComandoEnum["CM_SALTAR_DETALLAR"] = 204] = "CM_SALTAR_DETALLAR";
+        ComandoEnum[ComandoEnum["CM_PROCESARMULTIEVENTOS"] = 205] = "CM_PROCESARMULTIEVENTOS";
         ComandoEnum[ComandoEnum["CM_APLICACION"] = -1] = "CM_APLICACION";
         ComandoEnum[ComandoEnum["CM_LOGIN"] = -2] = "CM_LOGIN";
         ComandoEnum[ComandoEnum["CM_ACEPTARLOGIN"] = -3] = "CM_ACEPTARLOGIN";
@@ -51784,8 +51797,9 @@ var ZclienteResponder;
                 case ZCommon.Constants.ComandoEnum.CM_IRACMP:
                 case ZCommon.Constants.ComandoEnum.CM_CAMBIOCMP:
                 case ZCommon.Constants.ComandoEnum.CM_IRALINEA:
+                case ZCommon.Constants.ComandoEnum.CM_PROCESARMULTIEVENTOS:
                 case ZCommon.Constants.ComandoEnum.CM_SALTAR_IRALINEA:
-                case ZCommon.Constants.ComandoEnum.CM_SALTAR_IRALINEA_IRACMP:
+                case ZCommon.Constants.ComandoEnum.CM_SALTAR_IRACMP:
                 case ZCommon.Constants.ComandoEnum.CM_CERRAR:
                 case ZCommon.Constants.ComandoEnum.CM_RETOCAR:
                 case ZCommon.Constants.ComandoEnum.CM_CAMBIOCMPIND:
@@ -52410,10 +52424,11 @@ var Actions;
                 tkns: getState().zLoginModule.tkns,
             });
             if (getState().nivelLog == 1) {
-                console.log("----------------------------------------------------------------");
+                console.log("========================================================================================================================");
                 console.time(ZCommon.Constants.ComandoEnum[cmd] + " = " + cmd);
                 console.log({ requestUrl: requestUrl });
-                console.log({ buffer: buffer });
+                console.log(ZCommon.Constants.ComandoEnum[cmd] + " - " + cmd);
+                console.log("buffer: " + buffer);
             }
             dispatch(Actions.setProcesosServidor(true, parametros.tipoAJAXIndicador));
             fetch(requestUrl, {
@@ -53087,8 +53102,9 @@ var ZCampoDetallable = (function (_super) {
             }
         }
     };
-    ZCampoDetallable.prototype.onCampoZoomClick = function () {
+    ZCampoDetallable.prototype.onCampoZoomClick = function (e) {
         this.props.cmDetallar(this.props.zCampoState);
+        e.stopPropagation();
     };
     return ZCampoDetallable;
 }(React.PureComponent));
@@ -53400,6 +53416,9 @@ var ZCampoTextoBasico = (function (_super) {
             } }));
     };
     ZCampoTextoBasico.prototype.onFocus = function (e) {
+        if (this.props.zCampoState.autoFocus) {
+            return;
+        }
         this.props.onCampoFocusIrACmp(this.props.zCampoState);
     };
     ZCampoTextoBasico.prototype.onChange = function (e) {
@@ -53506,7 +53525,6 @@ var ZCampoTextoBasico = (function (_super) {
         }
     };
     ZCampoTextoBasico.prototype.onBlur = function (e) {
-        console.log('on blurr');
         this.props.onCampoBlur(this.props.zCampoState);
     };
     ZCampoTextoBasico.prototype.componentDidUpdate = function () {

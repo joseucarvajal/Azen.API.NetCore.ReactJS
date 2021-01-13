@@ -258,6 +258,8 @@ export namespace Constants {
         CM_SALTAR_IRALINEA = 198,
         CM_SALTAR_IRALINEA_IRACMP = 199,
         CM_SALTAR_IRACMP = 200,
+        CM_SALTAR_DETALLAR = 204,
+        CM_PROCESARMULTIEVENTOS = 205,
 
         CM_APLICACION = -1,
         CM_LOGIN = -2,
