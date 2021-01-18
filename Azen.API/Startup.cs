@@ -50,9 +50,10 @@ namespace Azen.API
 
             services.AddScoped<AuthService>();
             services.AddScoped<ZCryptography>();
-            services.AddScoped<ZTransferFile>();            
+            services.AddScoped<ZTransferFile>();
 
             services.AddSingleton<ZTag>();
+            services.AddSingleton<ZSocketState>();
             services.AddTransient<ZSocket>();
 
             //Fluent Validators

@@ -42,7 +42,7 @@ namespace Azen.API.Models.ZCommand
             }
 
             public async Task<string> Handle(Command request, CancellationToken cancellationToken)
-            {                
+            {
                 request.Buffer = _zCryptography.GetPlainText(request.Buffer);
 
                 switch (request.Cmd)

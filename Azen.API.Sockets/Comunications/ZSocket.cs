@@ -101,15 +101,15 @@ namespace Azen.API.Sockets.Comunications
 
         public void IniciarSocketCliente(int puerto)
         {
-            var watch = System.Diagnostics.Stopwatch.StartNew();
             try
             {
                 // Insiste en crear el socket cliente hasta que exista servidor.		
-                do
-                {
                     _logHandler.Info("========== CREANDO SCKCLIENTE ip=" + _azenSettings.Value.IPC + " -- puerto=" + puerto);
-                    Thread.Sleep(1000);
-                } while (! CrearSckCliente(_azenSettings.Value.IPC, puerto));
+                if(!CrearSckCliente(_azenSettings.Value.IPC, puerto))
+                {
+                    _logHandler.Error($"No fue posible crear socket: {_azenSettings.Value.IPC}, puerto {puerto}");
+                    throw new Exception($"No fue posible crear socket: {_azenSettings.Value.IPC}, puerto {puerto}");
+                }
 
                 _logHandler.Info("ZAzen solicitarIpCliente asignado: " + _azenSettings.Value.IPC);
                 _logHandler.Info("ZAzen iniciarSocketCliente conectado");
@@ -118,11 +118,6 @@ namespace Azen.API.Sockets.Comunications
             {
                 _logHandler.Info(e.ToString());
             }
-
-            watch.Stop();
-            var elapsedMs = watch.ElapsedMilliseconds;
-
-            _logHandler.Info($"ZSocket.cs IniciarSocketCliente Time: {elapsedMs}");
         }
 
 
@@ -134,21 +129,11 @@ namespace Azen.API.Sockets.Comunications
         /// <returns></returns>
         public bool CrearSckCliente(string servidor, int puerto)
         {
-            var watch = System.Diagnostics.Stopwatch.StartNew();
-
             try
             {
                 if (_zSocketState.OpenSockets.ContainsKey(puerto.ToString()) && _azenSettings.Value.SocketOnline)
                 {
-                    //socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                    //socket.Connect(servidor, puerto);
-
-                    //_zSocketState.OpenSockets[puerto.ToString()] = new ZSocketStateInfo { 
-                    //    socket = socket
-                    //};
-
                     socket = _zSocketState.OpenSockets[puerto.ToString()].socket;
-
                 }
                 else
                 { 
@@ -174,11 +159,6 @@ namespace Azen.API.Sockets.Comunications
                 return false;
 
             }
-
-            watch.Stop();
-            var elapsedMs = watch.ElapsedMilliseconds;
-
-            _logHandler.Info($"ZSocket.cs CrearSckCliente Time: {elapsedMs}");
 
             return true;
         }
@@ -536,7 +516,7 @@ namespace Azen.API.Sockets.Comunications
         {
             var watch = System.Diagnostics.Stopwatch.StartNew();
 
-            _logHandler.Info("///////// ejecutarEvento aplicacion: " + aplicacion + ", Puerto: " + puerto.ToString());
+            _logHandler.Info("////////////////////////////////// ejecutarEvento aplicacion: " + aplicacion + ", Puerto: " + puerto.ToString() + ", cmd: " + cmd.ToString());
             string cadenaEnviar = new ZEvent(tipo, tec, cmd, info, buffer).ArmarCadenaSocket();
 
             // Cerios abr 2020
