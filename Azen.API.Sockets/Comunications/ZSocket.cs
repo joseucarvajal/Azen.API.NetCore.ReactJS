@@ -85,12 +85,14 @@ namespace Azen.API.Sockets.Comunications
         private readonly IOptions<AzenSettings> _azenSettings;
         LogHandler _logHandler;
         ZTag _ztag;
+        ZSocketState _zSocketState;
 
-        public ZSocket(IOptions<AzenSettings> azenSettings, ZTag ztag, LogHandler logHandler)
+        public ZSocket(IOptions<AzenSettings> azenSettings, ZTag ztag, LogHandler logHandler, ZSocketState zSocketState)
         {
             _azenSettings = azenSettings;
             _logHandler = logHandler;
             _ztag = ztag;
+            _zSocketState = zSocketState;
 
             siLogActividad = false;
 
@@ -99,6 +101,7 @@ namespace Azen.API.Sockets.Comunications
 
         public void IniciarSocketCliente(int puerto)
         {
+            var watch = System.Diagnostics.Stopwatch.StartNew();
             try
             {
                 // Insiste en crear el socket cliente hasta que exista servidor.		
@@ -115,6 +118,11 @@ namespace Azen.API.Sockets.Comunications
             {
                 _logHandler.Info(e.ToString());
             }
+
+            watch.Stop();
+            var elapsedMs = watch.ElapsedMilliseconds;
+
+            _logHandler.Info($"ZSocket.cs IniciarSocketCliente Time: {elapsedMs}");
         }
 
 
@@ -126,11 +134,38 @@ namespace Azen.API.Sockets.Comunications
         /// <returns></returns>
         public bool CrearSckCliente(string servidor, int puerto)
         {
+            var watch = System.Diagnostics.Stopwatch.StartNew();
+
             try
             {
-                /* Se crea el socket cliente */
-                socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                socket.Connect(servidor, puerto);
+                if (_zSocketState.OpenSockets.ContainsKey(puerto.ToString()) && _azenSettings.Value.SocketOnline)
+                {
+                    //socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                    //socket.Connect(servidor, puerto);
+
+                    //_zSocketState.OpenSockets[puerto.ToString()] = new ZSocketStateInfo { 
+                    //    socket = socket
+                    //};
+
+                    socket = _zSocketState.OpenSockets[puerto.ToString()].socket;
+
+                }
+                else
+                { 
+                    /* Se crea el socket cliente */
+                    socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                    socket.Connect(servidor, puerto);
+
+                    lock (_zSocketState.OpenSockets)
+                    {
+                        _zSocketState.OpenSockets.Remove(puerto.ToString());
+
+                        _zSocketState.OpenSockets.Add(puerto.ToString(), new ZSocketStateInfo
+                        {
+                            socket = socket
+                        });
+                    }
+                }
             }
             catch (Exception e)
             {
@@ -140,11 +175,17 @@ namespace Azen.API.Sockets.Comunications
 
             }
 
+            watch.Stop();
+            var elapsedMs = watch.ElapsedMilliseconds;
+
+            _logHandler.Info($"ZSocket.cs CrearSckCliente Time: {elapsedMs}");
+
             return true;
         }
 
         public int TransferirSinProtocolo(string dato)
         {
+            var watch = System.Diagnostics.Stopwatch.StartNew();
 
             int error;
 
@@ -167,6 +208,11 @@ namespace Azen.API.Sockets.Comunications
                 return zsck_errnum = ZSCK_ERRESCRIBIRSOCKET;
             }
 
+            watch.Stop();
+            var elapsedMs = watch.ElapsedMilliseconds;
+
+            _logHandler.Info($"ZSocket.cs TransferirSinProtocolo Time: {elapsedMs}");
+
             return zsck_errnum = ZSCK_EXITO;
 
         }
@@ -179,7 +225,8 @@ namespace Azen.API.Sockets.Comunications
                 int protocoloConvert = System.Net.IPAddress.HostToNetworkOrder(protocolo);
 
                 byte[] msg  = BitConverter.GetBytes(protocoloConvert);
-                socket.Send(msg);
+
+                int x = socket.Send(msg);
                 //Escribir("<cm>SOLOLOGIN</cm>");
             }
             catch (Exception e)
@@ -327,7 +374,7 @@ namespace Azen.API.Sockets.Comunications
 
         public void CerrarSocket()
         {
-            this.socket.Close();
+            //this.socket.Close();
         }
 
         public void Monitorear(String cadena)
@@ -346,6 +393,7 @@ namespace Azen.API.Sockets.Comunications
         /// <param name="cmd"></param>
         public string SocketClienteEnviar(string buffer, int puertoCliente, int cmd)
         {
+            var watch = System.Diagnostics.Stopwatch.StartNew();
             string result = string.Empty;
 
             string cadena = null;
@@ -408,6 +456,12 @@ namespace Azen.API.Sockets.Comunications
             }
 
             _logHandler.Info(result);
+
+            watch.Stop();
+            var elapsedMs = watch.ElapsedMilliseconds;
+
+            _logHandler.Info($"ZSocket.cs SocketClienteEnviar Time: {elapsedMs}");
+
             return result;
         }
 
@@ -480,6 +534,8 @@ namespace Azen.API.Sockets.Comunications
 
         public string EjecutarEvento(int tipo, int tec, int cmd, string info, string buffer, string aplicacion, int puerto, string datoTkn)
         {
+            var watch = System.Diagnostics.Stopwatch.StartNew();
+
             _logHandler.Info("///////// ejecutarEvento aplicacion: " + aplicacion + ", Puerto: " + puerto.ToString());
             string cadenaEnviar = new ZEvent(tipo, tec, cmd, info, buffer).ArmarCadenaSocket();
 
@@ -487,6 +543,11 @@ namespace Azen.API.Sockets.Comunications
             cadenaEnviar = cadenaEnviar + datoTkn;
 
             _logHandler.Info(cadenaEnviar);
+
+            watch.Stop();
+            var elapsedMs = watch.ElapsedMilliseconds;
+
+            _logHandler.Info($"ZSocket.cs EjecutarEvento Time: {elapsedMs}");
 
             return SocketClienteEnviar(cadenaEnviar, puerto, cmd);
         }
