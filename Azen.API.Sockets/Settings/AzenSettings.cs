@@ -9,7 +9,7 @@ namespace Azen.API.Sockets.Settings
     {
         public string IPC { get; set; }
         public int PuertoServidor { get; set; }
-
         public bool SocketOnline { get; set; }
+        public int MaxlongSocketMessage { get; set; }        
     }
 }

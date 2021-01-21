@@ -103,16 +103,12 @@ namespace Azen.API.Sockets.Comunications
         {
             try
             {
-                // Insiste en crear el socket cliente hasta que exista servidor.		
-                    _logHandler.Info("========== CREANDO SCKCLIENTE ip=" + _azenSettings.Value.IPC + " -- puerto=" + puerto);
                 if(!CrearSckCliente(_azenSettings.Value.IPC, puerto))
                 {
                     _logHandler.Error($"No fue posible crear socket: {_azenSettings.Value.IPC}, puerto {puerto}");
                     throw new Exception($"No fue posible crear socket: {_azenSettings.Value.IPC}, puerto {puerto}");
                 }
-
-                _logHandler.Info("ZAzen solicitarIpCliente asignado: " + _azenSettings.Value.IPC);
-                _logHandler.Info("ZAzen iniciarSocketCliente conectado");
+                _logHandler.Info("ZAzen IniciarSocketCliente asignado: " + _azenSettings.Value.IPC);
             }
             catch (Exception e)
             {
@@ -157,29 +153,13 @@ namespace Azen.API.Sockets.Comunications
                 Monitorear("ERROR al CrearSckCliente servidor: " + servidor + " -- puerto: " + puerto);
                 _logHandler.Info(e.ToString());
                 return false;
-
             }
 
             return true;
         }
 
-        public int TransferirSinProtocolo(string dato)
+        public int Transferir(string dato)
         {
-            var watch = System.Diagnostics.Stopwatch.StartNew();
-
-            int error;
-
-            // inicio tranferencias
-            if (ZSCK_EXITO != (error = EnviarProtocolo(ZSCK_INICTRANSF)))
-                return error;
-
-            // Envia tamano del bloque
-            if (ZSCK_EXITO != Escribir(dato.Length))
-            {
-                zsck_cadMemError = "Error al enviar tamano del bloque";
-                return zsck_errnum = ZSCK_ERRESCRIBIRSOCKET;
-            }
-
             //enviar bloque
             if (ZSCK_EXITO != Escribir(dato))
             {
@@ -188,15 +168,8 @@ namespace Azen.API.Sockets.Comunications
                 return zsck_errnum = ZSCK_ERRESCRIBIRSOCKET;
             }
 
-            watch.Stop();
-            var elapsedMs = watch.ElapsedMilliseconds;
-
-            _logHandler.Info($"ZSocket.cs TransferirSinProtocolo Time: {elapsedMs}");
-
             return zsck_errnum = ZSCK_EXITO;
-
         }
-
         public int EnviarProtocolo(int protocolo)
         {
             // inicio tranferencias
@@ -207,7 +180,6 @@ namespace Azen.API.Sockets.Comunications
                 byte[] msg  = BitConverter.GetBytes(protocoloConvert);
 
                 int x = socket.Send(msg);
-                //Escribir("<cm>SOLOLOGIN</cm>");
             }
             catch (Exception e)
             {
@@ -216,32 +188,16 @@ namespace Azen.API.Sockets.Comunications
             }
 
             return zsck_errnum = ZSCK_EXITO;
-        }
-
-        public int Escribir(int dato)
-        {
-            // inicio tranferencias
-            try
-            {
-                int datoConvert = System.Net.IPAddress.HostToNetworkOrder(dato);
-
-                byte[] msg = BitConverter.GetBytes(datoConvert);
-                socket.Send(msg);
-            }
-            catch (Exception e)
-            {
-                _logHandler.Info(e.ToString());
-                return zsck_errnum = ZSCK_ERRESCRIBIRSOCKET;
-            }
-
-            return zsck_errnum = ZSCK_EXITO;
-
         }
 
         public int Escribir(string dato)
         {
             try
             {
+                int lenDato = dato.Length;
+                lenDato += lenDato.ToString().Length;
+
+                dato = lenDato.ToString() + dato;
                 byte[] msg = Encoding.ASCII.GetBytes(dato);
                 socket.Send(msg);
             }
@@ -252,76 +208,22 @@ namespace Azen.API.Sockets.Comunications
             }
 
             return zsck_errnum = ZSCK_EXITO;
-
         }
 
-        public int RecibirProtocolo()
+        public string Recibir()
         {
-            byte[] bytes = new byte[sizeof(Int32)];
-
-            int operacionLeida;
-            try
-            {
-                int bytesRec = socket.Receive(bytes);
-                operacionLeida = BitConverter.ToInt32(bytes.Reverse().ToArray(), 0);
-            }
-            catch (Exception e)
-            {
-                _logHandler.Info(e.ToString());
-                return zsck_errnum = ZSCK_ERRLEERSOCKET;
-            }
-
-            return operacionLeida;
-
-        }
-
-        public string RecibirSinProtocolo()
-        {
-            int tamanoBloque;
             string bloque;
 
-            // Recibe tamano del bloque
-            if (0 > (tamanoBloque = Leer()))
-            {
-                zsck_cadMemError = "Error al recibir tamano del bloque";
-                //		Monitorear("Error ZSCK_ERRESCRIBIRSOCKET");
-                EnviarProtocolo(ZSCK_ERROR);
-                zsck_errnum = ZSCK_ERRESCRIBIRSOCKET;
-                return null;
-            }
-
             //recibe bloque 
-            if (null == (bloque = Leer(tamanoBloque)))
+            if (null == (bloque = Leer(_azenSettings.Value.MaxlongSocketMessage)))
             {
                 zsck_cadMemError = "Error al enviar bloque de datos";
-                //		Monitorear("Error ZSCK_ERRESCRIBIRSOCKET");	
                 EnviarProtocolo(ZSCK_ERROR);
                 zsck_errnum = ZSCK_ERRESCRIBIRSOCKET;
                 return null;
             }
 
             return bloque;
-
-        }
-
-        public int Leer()
-        {
-            byte[] bytes = new byte[sizeof(Int32)];
-
-            int tamano;
-            try
-            {
-                int bytesRec = socket.Receive(bytes);
-                tamano = BitConverter.ToInt32(bytes.Reverse().ToArray(), 0);
-            }
-            catch (Exception e)
-            {
-                _logHandler.Info(e.ToString());
-                return -1;
-            }
-
-            return tamano;
-
         }
 
         public string Leer(int tamano)
@@ -330,17 +232,35 @@ namespace Azen.API.Sockets.Comunications
             byte[] bytes = new byte[tamano];
             try
             {
-                int bytesRead = 0;
                 string result = string.Empty;
-                
+                int bytesRec = 0;
+                int bytesRead = 0;
+                int lenBuffer = 0;
+
                 do
                 {
-                    int bytesRec = socket.Receive(bytes);
+                    bytesRec = socket.Receive(bytes);
                     bytesRead += bytesRec;
+                    _logHandler.Info($"ZSocket Leer bytesRec: {bytesRec}");
 
-                    result += Encoding.UTF8.GetString(bytes, 0, bytesRec);
+                    if (string.IsNullOrEmpty(result))
+                    {
+                        result = Encoding.UTF8.GetString(bytes, 0, bytesRec);
 
-                } while (bytesRead < tamano);
+                        int indexInitJson = result.IndexOf('{');
+                        var lenBufferString = result.Substring(0, indexInitJson);
+
+                        lenBuffer = Int32.Parse(lenBufferString);// + Encoding.ASCII.GetBytes(lenBufferString).Length;
+                        result = result.Substring(indexInitJson);
+                    }
+                    else
+                    {
+                        result += Encoding.UTF8.GetString(bytes, 0, bytesRec);
+                    }
+                    
+                    _logHandler.Info($"ZSocket Leer result: {result}");
+
+                } while (bytesRead < lenBuffer);
 
 
                 return result;
@@ -373,19 +293,16 @@ namespace Azen.API.Sockets.Comunications
         /// <param name="cmd"></param>
         public string SocketClienteEnviar(string buffer, int puertoCliente, int cmd)
         {
-            var watch = System.Diagnostics.Stopwatch.StartNew();
             string result = string.Empty;
 
             string cadena = null;
-            string numEvtsCadena;
-            int numEvts;
 
             IniciarSocketCliente(puertoCliente);
 
             try
             {
-                _logHandler.Info("################### socketClienteEnviar: " + buffer.Length.ToString() + " --- " + buffer);
-                TransferirSinProtocolo(buffer);
+                _logHandler.Info($"ZSocket socketClienteEnviar buffer length: {buffer.Length.ToString()}, buffer: {buffer}");
+                Transferir(buffer);
 
                 // Si el comando es CM_LINEAMEMO, el servidor no retorna respuesta		
                 if (cmd == ZCommandConst.CM_LINEAMEMO || cmd == ZCommandConst.CM_FINMEMO || cmd == ZCommandConst.CM_INICIOMEMO)
@@ -393,38 +310,7 @@ namespace Azen.API.Sockets.Comunications
                     return string.Empty;
                 }
 
-                if (RecibirProtocolo() == ZSocket.ZSCK_INICTRANSF)
-                {
-                    cadena = RecibirSinProtocolo();
-                }
-
-                numEvtsCadena = GetTagValue(ZTag.ZTAG_NUMEVT, cadena);
-
-                // Si la cadena indica que hay mas eventos para recibir
-                // leer ese numero de eventos
-                if (numEvtsCadena != null)
-                {
-                    numEvts = Int32.Parse(numEvtsCadena);
-
-                    // CErios julio 2017: Pendiete revisar que esta pasando con el ciclo, no esta 
-                    // escrubiendo al cliente.
-                    //for(int i=0; i<numEvts; i++)
-                    //{
-                    if (RecibirProtocolo() == ZSocket.ZSCK_INICTRANSF)
-                    {
-                        cadena = RecibirSinProtocolo();
-                        result = cadena.Substring(0, cadena.Length - 1);
-                    }
-                    //}
-                }
-                else // Si la cadena solo es un evento
-                {
-                    // Cerios 2017: html por json
-                    //out.print(JZTag.ZTAG_I_EVT + cadena.substring(0, cadena.length() - 1) + JZTag.ZTAG_F_EVT);
-                    result = cadena.Substring(0, cadena.Length - 1);
-                }
-
-                CerrarSocket();
+                result = Recibir();
             }
             catch (Exception e)
             {
@@ -436,11 +322,6 @@ namespace Azen.API.Sockets.Comunications
             }
 
             _logHandler.Info(result);
-
-            watch.Stop();
-            var elapsedMs = watch.ElapsedMilliseconds;
-
-            _logHandler.Info($"ZSocket.cs SocketClienteEnviar Time: {elapsedMs}");
 
             return result;
         }
@@ -454,10 +335,8 @@ namespace Azen.API.Sockets.Comunications
 
             try
             {
-                TransferirSinProtocolo(buffer);
-                if (RecibirProtocolo() == ZSocket.ZSCK_INICTRANSF)
-                    cadena = RecibirSinProtocolo();
-                CerrarSocket();
+                Transferir(buffer);
+                cadena = Recibir();
             }
             catch (Exception e)
             {
@@ -474,7 +353,6 @@ namespace Azen.API.Sockets.Comunications
         public ZColaEventos ExecuteCommand(ZCommandDTO zCommandDTO)
         {
             var result = SocketClienteEnviar(zCommandDTO.Buffer);
-
             return JsonConvert.DeserializeObject<ZColaEventos>(result);
         }
 
@@ -504,9 +382,7 @@ namespace Azen.API.Sockets.Comunications
             string puertoSrvAplicacion = GetTagValue(ZTag.ZTAG_PSC, cadena);
             string tkns = GetTagValue(ZTag.ZTAG_TKNS, cadena);
 
-            _logHandler.Info(puertoSrvAplicacion);
-            _logHandler.Info(tkns);
-            _logHandler.Info("---- CM_EJECOPCION");
+            _logHandler.Info($"ZSocket EjecutarSoloOpcion puertoSrvAplicacion: {puertoSrvAplicacion}, tkns: {tkns}");
 
             string datoTkns = ZTag.ZTAG_I_TKNS + tkns + ZTag.ZTAG_F_TKNS;
             return EjecutarEvento(2, 0, ZCommandConst.CM_EJECOPCION, "", "", aplicacion, Int32.Parse(puertoSrvAplicacion), datoTkns);
@@ -514,8 +390,6 @@ namespace Azen.API.Sockets.Comunications
 
         public string EjecutarEvento(int tipo, int tec, int cmd, string info, string buffer, string aplicacion, int puerto, string datoTkn)
         {
-            var watch = System.Diagnostics.Stopwatch.StartNew();
-
             _logHandler.Info("////////////////////////////////// ejecutarEvento aplicacion: " + aplicacion + ", Puerto: " + puerto.ToString() + ", cmd: " + cmd.ToString());
             string cadenaEnviar = new ZEvent(tipo, tec, cmd, info, buffer).ArmarCadenaSocket();
 
@@ -523,11 +397,6 @@ namespace Azen.API.Sockets.Comunications
             cadenaEnviar = cadenaEnviar + datoTkn;
 
             _logHandler.Info(cadenaEnviar);
-
-            watch.Stop();
-            var elapsedMs = watch.ElapsedMilliseconds;
-
-            _logHandler.Info($"ZSocket.cs EjecutarEvento Time: {elapsedMs}");
 
             return SocketClienteEnviar(cadenaEnviar, puerto, cmd);
         }
@@ -581,7 +450,7 @@ namespace Azen.API.Sockets.Comunications
             string localIP = LocalIPAddress().ToString();
 
             // Ejecuta aplicacion
-            _logHandler.Info("---- CM_APLICACION " + idApl + ", Opc:" + opcion + ", remoteIP: " + remoteIpAddress + ", localIP: " + localIP);
+            _logHandler.Info("ZSocket EjecutarServicio CM_APLICACION " + idApl + ", Opc:" + opcion + ", remoteIP: " + remoteIpAddress + ", localIP: " + localIP);
 
             string buffer = string.Empty;
 
@@ -600,8 +469,6 @@ namespace Azen.API.Sockets.Comunications
                     ZTag.ZTAG_I_LOG + log + ZTag.ZTAG_F_LOG +
                     ZTag.ZTAG_I_OPC + opcion + ZTag.ZTAG_F_OPC +
                     ZTag.ZTAG_I_PARAMETROS + "si" + ZTag.ZTAG_F_PARAMETROS; // Indica que es servicio
-
-                    _logHandler.Info("---- antes CM_APLICACION EJECUTAR SERVICIO Buffer: " + buffer);
                     break;
             }
 
@@ -610,8 +477,7 @@ namespace Azen.API.Sockets.Comunications
             //Obtiene puerto donde se ejecuta la aplciacion
             int puertoSrvAplicacion = Int32.Parse(GetTagValue(ZTag.ZTAG_PSC, cadena));
             string tkns = GetTagValue(ZTag.ZTAG_TKNS, cadena);
-            _logHandler.Info(puertoSrvAplicacion);
-            _logHandler.Info(tkns);
+            _logHandler.Info($"ZSocket puertoSrvAplicacion: {puertoSrvAplicacion}, tkns: {tkns}");
 
             string datoTkns = ZTag.ZTAG_I_TKNS + tkns + ZTag.ZTAG_F_TKNS;
 
