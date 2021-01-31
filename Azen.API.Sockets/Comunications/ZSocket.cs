@@ -194,10 +194,9 @@ namespace Azen.API.Sockets.Comunications
         {
             try
             {
-                int lenDato = dato.Length;
-                lenDato += lenDato.ToString().Length;
+                int lenDato = Encoding.ASCII.GetBytes(dato).Length;
 
-                dato = lenDato.ToString() + dato;
+                dato = $"{lenDato.ToString()}|{dato}";
                 byte[] msg = Encoding.ASCII.GetBytes(dato);
                 socket.Send(msg);
             }
@@ -236,6 +235,7 @@ namespace Azen.API.Sockets.Comunications
                 int bytesRec = 0;
                 int bytesRead = 0;
                 int lenBuffer = 0;
+                int lenHeader = 0;
 
                 do
                 {
@@ -247,11 +247,13 @@ namespace Azen.API.Sockets.Comunications
                     {
                         result = Encoding.UTF8.GetString(bytes, 0, bytesRec);
 
-                        int indexInitJson = result.IndexOf('{');
+                        int indexInitJson = result.IndexOf('|');
                         var lenBufferString = result.Substring(0, indexInitJson);
 
+                        lenHeader = ASCIIEncoding.ASCII.GetByteCount($"{lenBufferString}|");
+
                         lenBuffer = Int32.Parse(lenBufferString);// + Encoding.ASCII.GetBytes(lenBufferString).Length;
-                        result = result.Substring(indexInitJson);
+                        result = result.Substring(indexInitJson+1);
                     }
                     else
                     {
@@ -260,7 +262,7 @@ namespace Azen.API.Sockets.Comunications
                     
                     _logHandler.Info($"ZSocket Leer result: {result}");
 
-                } while (bytesRead < lenBuffer);
+                } while (bytesRead < lenBuffer + lenHeader);
 
 
                 return result;
