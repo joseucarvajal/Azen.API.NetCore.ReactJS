@@ -13,7 +13,7 @@ using System.IO;
 
 namespace Azen.API.Controllers
 {
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class TransferFileController : AzenBaseController
     {
@@ -26,6 +26,7 @@ namespace Azen.API.Controllers
             _logHandler = logHandler;
         }
 
+
         /// <summary>
         /// 
         /// </summary>
@@ -33,10 +34,10 @@ namespace Azen.API.Controllers
         /// <param name="log">1=length, 2=length and content</param>
         /// <returns></returns>
         [HttpPost("{log?}")]
-        [ActionName("file")]
         [Authorize]
-        public async Task<ActionResult<string>> Post([FromForm] TransferFile.Command command,
-            [FromRoute] int? log)
+        public async Task<ActionResult<string>> Post([FromRoute] int? log, 
+            [FromForm] TransferFile.Command command
+           )
         {
             Response.StatusCode = 201;
 
@@ -58,16 +59,16 @@ namespace Azen.API.Controllers
             return await _mediator.Send(command);
         }
 
+        
         /// <summary>
         /// 
         /// </summary>
         /// <param name="command"></param>
         /// <param name="log">1=length, 2=length and content</param>
         /// <returns></returns>
-        [HttpPost("{log?}")]
-        [ActionName("fileevent")]
+        [HttpPost("fileevent/{log?}")]
         [Authorize]
-        public async Task<ActionResult<string>> Post([FromForm] TransferFileEvent.Command command,
+        public async Task<ActionResult<string>> FileEvent([FromForm] TransferFileEvent.Command command,
             [FromRoute] int? log)
         {
             Response.StatusCode = 201;

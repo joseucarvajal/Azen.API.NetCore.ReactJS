@@ -35,7 +35,7 @@ export const ZCampoArchivo: React.FC<
   
   const [loadingFileMessage, setLoadingFileMessage] = React.useState('');
 
-  const requestUrl = `${ZUtils.Services.trimLasCharacter(azenAPIURL, "/")}/api/transferfile`;
+  const requestUrl = `${ZUtils.Services.trimLasCharacter(azenAPIURL, "/")}/api/transferfile/0`;
 
   return (
     <Panel bsStyle="success">
