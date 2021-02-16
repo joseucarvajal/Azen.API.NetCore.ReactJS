@@ -130,6 +130,7 @@ namespace Azen.API.Sockets.Comunications
                 if (_zSocketState.OpenSockets.ContainsKey(puerto.ToString()) && _azenSettings.Value.SocketOnline)
                 {
                     socket = _zSocketState.OpenSockets[puerto.ToString()].socket;
+                    _zSocketState.OpenSockets[puerto.ToString()].LastEvent = DateTime.Now;
                 }
                 else
                 { 
@@ -143,7 +144,8 @@ namespace Azen.API.Sockets.Comunications
 
                         _zSocketState.OpenSockets.Add(puerto.ToString(), new ZSocketStateInfo
                         {
-                            socket = socket
+                            socket = socket,
+                            LastEvent = DateTime.Now
                         });
                     }
                 }

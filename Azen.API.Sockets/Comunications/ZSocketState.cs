@@ -19,5 +19,6 @@ namespace Azen.API.Sockets.Comunications
     public class ZSocketStateInfo
     {
         public Socket socket { get; set; }
+        public DateTime LastEvent { get; set; }
     }
 }

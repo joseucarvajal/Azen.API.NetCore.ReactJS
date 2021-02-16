@@ -5,6 +5,7 @@ using Azen.API.Sockets.Comunications.ZFile;
 using Azen.API.Sockets.Cryptography;
 using Azen.API.Sockets.General;
 using Azen.API.Sockets.Helpers;
+using Azen.API.Sockets.Jobs;
 using Azen.API.Sockets.Settings;
 using Azen.API.Sockets.Utils;
 using FluentValidation.AspNetCore;
@@ -14,6 +15,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Quartz;
+using Quartz.Impl;
+using Quartz.Spi;
 
 namespace Azen.API
 {
@@ -55,6 +59,18 @@ namespace Azen.API
             services.AddSingleton<ZTag>();
             services.AddSingleton<ZSocketState>();
             services.AddTransient<ZSocket>();
+
+            // Add Quartz services
+            services.AddSingleton<IJobFactory, SingletonJobFactory>();
+            services.AddSingleton<ISchedulerFactory, StdSchedulerFactory>();
+            services.AddHostedService<QuartzHostedService>();
+
+            // Add our job
+            services.AddSingleton<SocketJob>();
+            services.AddSingleton(new SocketJobSchedule(
+                jobType: typeof(SocketJob),
+                cronExpression: Configuration.GetSection("AzenSettings").GetValue<string>("CloseSocketCron")));
+
 
             //Fluent Validators
             services.AddControllers()
