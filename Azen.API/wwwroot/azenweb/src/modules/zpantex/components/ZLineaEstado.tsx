@@ -12,6 +12,7 @@ import {
 } from "../../zcommon";
 
 import { Services } from "../services";
+import { ZButtonComando } from './ZButtonComando';
 
 export interface OwnProperties {
     linEst: Array<IZComandoFormaState>;
@@ -38,7 +39,7 @@ export class ZLineaEstado extends React.PureComponent<OwnProperties & ConnectedS
 
     public render(): any {
         const { linEst } = this.props;
-        let zPantexServies = new Services.ZRecursoServices();
+        let zPantexServices = new Services.ZRecursoServices();
         return (
             <div
                 style={{
@@ -50,20 +51,16 @@ export class ZLineaEstado extends React.PureComponent<OwnProperties & ConnectedS
                         
                         if(zComandoI.cmd === ZCommon.Constants.ComandoEnum.CM_CERRAR) return;
 
-                        const iconName = zPantexServies.getCMIcon(zComandoI);
                         return (
-                            <Button
-                                key={zComandoI.id}
-                                bsStyle={this.props.zFormaTablaState.esRegionActiva ? "info" : "default"}
-                                title={zComandoI.etq}
-                                disabled={zComandoI.desh == 1}
-                                onClick={() => this.despacharComandoLineaEstado(zComandoI)}
+                            <ZButtonComando
+                                key={zComandoI.id.toString()}
+                                zComando={zComandoI}
+                                despacharComandoLineaEstado={this.despacharComandoLineaEstado}
+                                zPantexServices={zPantexServices}
+                                esRegionActiva={this.props.zFormaTablaState.esRegionActiva}
+                                zComandoInfo={zPantexServices.getCMIcon(zComandoI)}
                             >
-                                {(!iconName) &&
-                                    zComandoI.etq
-                                }
-                                <span className={iconName} aria-hidden="true"></span>
-                            </Button>
+                            </ZButtonComando>
                         );
                     })}
                 </ButtonGroup>

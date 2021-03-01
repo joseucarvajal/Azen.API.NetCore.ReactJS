@@ -6,13 +6,13 @@ import {
 export namespace Services {
     export class ZRecursoServices {
         
-        public getCMIcon(zComando: IZComandoForma) {
+        public getCMIcon(zComando: IZComandoForma): CM.IZComandoDefinicion {
 
             if(CM.hashInfoComandos.has(zComando.cmd)){
-                return CM.hashInfoComandos.get(zComando.cmd).icono;
+                return CM.hashInfoComandos.get(zComando.cmd);
             }
 
-            return "";
+            return {} as CM.IZComandoDefinicion;
         }
     }
 }

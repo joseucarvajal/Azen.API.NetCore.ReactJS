@@ -41,18 +41,18 @@ export class ZBarraComandos extends React.PureComponent<OwnProperties & Connecte
                 <div className="zaplicacion-zprocesando-no-modal-loader">
                     <ButtonToolbar>
                         {zComandosList.map((zComandoI: IZComandoFormaState, index: number) => {
-                            let iconName = zPantexServies.getCMIcon(zComandoI);
+                            let zcomandoInfo = zPantexServies.getCMIcon(zComandoI);
                             return (
                                 <Button
                                     key={zComandoI.id}
-                                    title={zComandoI.etq}
+                                    title='{zComandoI.etq}'
                                     disabled={zComandoI.desh == 1}
                                     onClick={() => this.despacharComandoLineaEstado(zComandoI)}
                                 >
-                                    {(!iconName) &&
+                                    {(!zcomandoInfo) &&
                                         zComandoI.etq
                                     }                                    
-                                    <span className={iconName} aria-hidden="true"></span>
+                                    <span className={zcomandoInfo.icono} aria-hidden="true"></span>
                                 </Button>
                             );
                         })}

@@ -533,6 +533,8 @@ export class ZVentanaState implements IZVentanaState {
 export namespace CM {
   export interface IZComandoDefinicion {
     icono: string;
+    hotKey: string, //https://github.com/jaywcjlove/hotkeys/#defining-shortcuts
+    hotKeyTitle: string,
   }
 
   export const hashInfoComandos = new Map<
@@ -550,6 +552,8 @@ export namespace CM {
       Constants.ComandoEnum.CM_ADICIONAR,
       {
         icono: "glyphicon glyphicon-plus",
+        hotKey: 'shift+m',
+        hotKeyTitle: 'shift →',
       } as IZComandoDefinicion,
     ],
 
@@ -557,6 +561,10 @@ export namespace CM {
       Constants.ComandoEnum.CM_MODIFICAR,
       {
         icono: "glyphicon glyphicon-pencil",
+        //hotKey: 'shift+m',
+        //hotKeyTitle: 'ctrl m',
+        //hotKey: 'ctrl+m',
+        //hotKeyTitle: 'ctrl m',
       } as IZComandoDefinicion,
     ],
 
@@ -578,6 +586,8 @@ export namespace CM {
       Constants.ComandoEnum.CM_PRIMERO,
       {
         icono: "glyphicon glyphicon-fast-backward",
+        //hotKey: 'shift+down',
+        //hotKeyTitle: 'shift ↓',
       } as IZComandoDefinicion,
     ],
 
@@ -585,6 +595,8 @@ export namespace CM {
       Constants.ComandoEnum.CM_ANTREG,
       {
         icono: "glyphicon glyphicon-step-backward",
+        //hotKey: 'shift+left',
+        //hotKeyTitle: 'shift ←',
       } as IZComandoDefinicion,
     ],
 
@@ -592,6 +604,8 @@ export namespace CM {
       Constants.ComandoEnum.CM_SGTEREG,
       {
         icono: "glyphicon glyphicon-step-forward",
+        //hotKey: 'shift+m',
+        //hotKeyTitle: 'shift →',
       } as IZComandoDefinicion,
     ],
 
@@ -599,6 +613,8 @@ export namespace CM {
       Constants.ComandoEnum.CM_ULTIMO,
       {
         icono: "glyphicon glyphicon-fast-forward",
+        //hotKey: 'shift+up',
+        //hotKeyTitle: 'shift ↑',
       } as IZComandoDefinicion,
     ],
 
@@ -620,6 +636,8 @@ export namespace CM {
       Constants.ComandoEnum.CM_GRABAR,
       {
         icono: "glyphicon glyphicon-floppy-save",
+        //hotKey: 'ctrl+g',
+        //hotKeyTitle: 'ctrl g',
       } as IZComandoDefinicion,
     ],
 
@@ -634,6 +652,7 @@ export namespace CM {
       Constants.ComandoEnum.CM_DETALLAR,
       {
         icono: "glyphicon glyphicon-open",
+        hotKey: 'shift+s'
       } as IZComandoDefinicion,
     ],
 

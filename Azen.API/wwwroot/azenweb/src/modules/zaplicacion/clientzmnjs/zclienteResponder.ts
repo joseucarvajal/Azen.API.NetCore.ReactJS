@@ -41,40 +41,13 @@ export namespace ZclienteResponder {
           tipoAJAXIndicador = zCommon.Constants.TipoAJAXIndicadorEnum.MODAL;
           break;
 
-        case ZCommon.Constants.ComandoEnum.CM_IRACMP:
-        case ZCommon.Constants.ComandoEnum.CM_CAMBIOCMP:
-        case ZCommon.Constants.ComandoEnum.CM_IRALINEA:
-        case ZCommon.Constants.ComandoEnum.CM_PROCESARMULTIEVENTOS:
-        case ZCommon.Constants.ComandoEnum.CM_SALTAR_IRALINEA:
-        case ZCommon.Constants.ComandoEnum.CM_SALTAR_IRACMP:
-        case ZCommon.Constants.ComandoEnum.CM_CERRAR:
-        case ZCommon.Constants.ComandoEnum.CM_RETOCAR:
-        case ZCommon.Constants.ComandoEnum.CM_CAMBIOCMPIND:
-        case zCommon.Constants.ComandoEnum.CM_PRIMERO:
-        case zCommon.Constants.ComandoEnum.CM_ULTIMO:
-        case zCommon.Constants.ComandoEnum.CM_ANTREG:
-        case zCommon.Constants.ComandoEnum.CM_SGTEREG:
-        case zCommon.Constants.ComandoEnum.CM_ULTREG:
-
-        case ZCommon.Constants.ComandoEnum.CM_IRALINEA:
-        case zCommon.Constants.ComandoEnum.CM_ANTPAG:
-        case zCommon.Constants.ComandoEnum.CM_SGTEPAG:
-        case zCommon.Constants.ComandoEnum.CM_DETALLAR:
-
-        case ZCommon.Constants.ComandoEnum.CM_ACEPTARLOGIN:
-        case ZCommon.Constants.ComandoEnum.CM_EJECOPCION:
-        case ZCommon.Constants.ComandoEnum.CM_DEFMENU:
-
-          tipoAJAXIndicador = zCommon.Constants.TipoAJAXIndicadorEnum.NO_MODAL;
-          break;
-
-
-
-
         case ZCommon.Constants.ComandoEnum.CM_SI:
         case ZCommon.Constants.ComandoEnum.CM_NO:
-        default:
           tipoAJAXIndicador = zCommon.Constants.TipoAJAXIndicadorEnum.MODAL;
+          break;
+
+        default:
+          tipoAJAXIndicador = zCommon.Constants.TipoAJAXIndicadorEnum.NO_MODAL;
           break;
       }
 
