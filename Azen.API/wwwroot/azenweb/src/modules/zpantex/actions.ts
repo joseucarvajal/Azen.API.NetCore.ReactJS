@@ -490,23 +490,19 @@ export namespace Actions {
       dispatch: any,
       getStateFn: () => IZAplState
     ) => {
-      const buffer = `<fi>${indexFila}</fi>`;
+      const buffer = `
+<cmds>
+  <cmd><cmm>${ZCommon.Constants.ComandoEnum.CM_IRALINEA}</cmm><bfm><fi>${indexFila}</fi></bfm></cmd>
+  <cmd><cmm>${ZCommon.Constants.ComandoEnum.CM_ACEPTAR}</cmm></cmd>
+<cmds>`;
       dispatch(
         setComandoBuffer(ZCommon.Constants.ComandoEnum.CM_ACEPTAR, buffer)
       );
       dispatch(
         ZAplicacionActions.despacharEventoCliente(
-          ZCommon.Constants.ComandoEnum.CM_IRALINEA,
+          ZCommon.Constants.ComandoEnum.CM_PROCESARMULTIEVENTOS,
           buffer
         )
-      ).then(
-        (resultadoDesparcharEvento: ResultadoActionConDato<IZColaEventos>) => {
-          dispatch(
-            ZAplicacionActions.despacharEventoCliente(
-              ZCommon.Constants.ComandoEnum.CM_ACEPTAR
-            )
-          );
-        }
       );
     };
 

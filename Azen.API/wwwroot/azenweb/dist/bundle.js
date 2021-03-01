@@ -13493,11 +13493,9 @@ var Actions;
             buffer: buffer,
         }); };
         ZPantexStateModule.seleccionarFila = function (indexFila) { return function (dispatch, getStateFn) {
-            var buffer = "<fi>" + indexFila + "</fi>";
+            var buffer = "\n<cmds>\n  <cmd><cmm>" + ZCommon.Constants.ComandoEnum.CM_IRALINEA + "</cmm><bfm><fi>" + indexFila + "</fi></bfm></cmd>\n  <cmd><cmm>" + ZCommon.Constants.ComandoEnum.CM_ACEPTAR + "</cmm></cmd>\n<cmds>";
             dispatch(ZPantexStateModule.setComandoBuffer(ZCommon.Constants.ComandoEnum.CM_ACEPTAR, buffer));
-            dispatch(actions_1.Actions.despacharEventoCliente(ZCommon.Constants.ComandoEnum.CM_IRALINEA, buffer)).then(function (resultadoDesparcharEvento) {
-                dispatch(actions_1.Actions.despacharEventoCliente(ZCommon.Constants.ComandoEnum.CM_ACEPTAR));
-            });
+            dispatch(actions_1.Actions.despacharEventoCliente(ZCommon.Constants.ComandoEnum.CM_PROCESARMULTIEVENTOS, buffer));
         }; };
         ZPantexStateModule.setTituloVentana = function (parametros) { return ({
             type: actionTypes_1.ActionTypes.ZPantexStateModule.SET_TITULOVENTANA,
@@ -51808,17 +51806,17 @@ var ZclienteResponder;
                 case zCommon.Constants.ComandoEnum.CM_ANTREG:
                 case zCommon.Constants.ComandoEnum.CM_SGTEREG:
                 case zCommon.Constants.ComandoEnum.CM_ULTREG:
-                    tipoAJAXIndicador = zCommon.Constants.TipoAJAXIndicadorEnum.NO_MODAL;
-                    break;
                 case ZCommon.Constants.ComandoEnum.CM_IRALINEA:
                 case zCommon.Constants.ComandoEnum.CM_ANTPAG:
                 case zCommon.Constants.ComandoEnum.CM_SGTEPAG:
-                case ZCommon.Constants.ComandoEnum.CM_SI:
-                case ZCommon.Constants.ComandoEnum.CM_NO:
+                case zCommon.Constants.ComandoEnum.CM_DETALLAR:
                 case ZCommon.Constants.ComandoEnum.CM_ACEPTARLOGIN:
                 case ZCommon.Constants.ComandoEnum.CM_EJECOPCION:
                 case ZCommon.Constants.ComandoEnum.CM_DEFMENU:
-                case zCommon.Constants.ComandoEnum.CM_DETALLAR:
+                    tipoAJAXIndicador = zCommon.Constants.TipoAJAXIndicadorEnum.NO_MODAL;
+                    break;
+                case ZCommon.Constants.ComandoEnum.CM_SI:
+                case ZCommon.Constants.ComandoEnum.CM_NO:
                 default:
                     tipoAJAXIndicador = zCommon.Constants.TipoAJAXIndicadorEnum.MODAL;
                     break;
@@ -52457,7 +52455,7 @@ var Actions;
                 retornoStr = retornoStr.replace("<usr>null</usr>", "");
                 retornoStr = retornoStr.replace('La edicion de "Cuentas" presenta modificaciones.', "La edicion de Cuentas presenta modificaciones.");
                 retornoStr = retornoStr.replace('La edicion de "Tercero" presenta modificaciones.', "La edicion de Tercero presenta modificaciones.");
-                var retorno = JSON.parse(retornoStr);
+                var retorno = JSON.parse(retornoStr.trim());
                 var resultadoActionExito = new zutils_1.ResultadoActionConDato();
                 resultadoActionExito.retorno = retorno;
                 resultadoActionExito.resultado =

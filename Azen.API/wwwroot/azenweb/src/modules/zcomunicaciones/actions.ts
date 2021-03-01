@@ -90,7 +90,7 @@ export namespace Actions {
             "La edicion de Tercero presenta modificaciones."
           );
 
-          let retorno: TRetorno = JSON.parse(retornoStr);
+          let retorno: TRetorno = JSON.parse(retornoStr.trim());
           let resultadoActionExito = new ResultadoActionConDato<TRetorno>();
           resultadoActionExito.retorno = retorno;
           resultadoActionExito.resultado =
