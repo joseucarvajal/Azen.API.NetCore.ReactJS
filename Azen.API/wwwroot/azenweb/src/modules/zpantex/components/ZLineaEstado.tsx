@@ -39,7 +39,6 @@ export class ZLineaEstado extends React.PureComponent<OwnProperties & ConnectedS
 
     public render(): any {
         const { linEst } = this.props;
-        let zPantexServices = new Services.ZRecursoServices();
         return (
             <div
                 style={{
@@ -53,12 +52,11 @@ export class ZLineaEstado extends React.PureComponent<OwnProperties & ConnectedS
 
                         return (
                             <ZButtonComando
-                                key={zComandoI.id.toString()}
+                                key={zComandoI.id}
                                 zComando={zComandoI}
                                 despacharComandoLineaEstado={this.despacharComandoLineaEstado}
-                                zPantexServices={zPantexServices}
                                 esRegionActiva={this.props.zFormaTablaState.esRegionActiva}
-                                zComandoInfo={zPantexServices.getCMIcon(zComandoI)}
+                                esLineaEstadoButton={true}
                             >
                             </ZButtonComando>
                         );

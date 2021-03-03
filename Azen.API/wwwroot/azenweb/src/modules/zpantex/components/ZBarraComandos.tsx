@@ -12,6 +12,7 @@ import {
 
 import { Services } from "../services";
 import { ZProcesandoNoModalContainer } from "../../zaplicacion/containers/ZProcesandoNoModalContainer";
+import { ZButtonComando } from './ZButtonComando';
 
 export interface OwnProperties {
     zComandosList: Array<IZComandoFormaState>,
@@ -41,20 +42,28 @@ export class ZBarraComandos extends React.PureComponent<OwnProperties & Connecte
                 <div className="zaplicacion-zprocesando-no-modal-loader">
                     <ButtonToolbar>
                         {zComandosList.map((zComandoI: IZComandoFormaState, index: number) => {
-                            let zcomandoInfo = zPantexServies.getCMIcon(zComandoI);
+                            return (
+                                <ZButtonComando
+                                    key={zComandoI.id}
+                                    zComando={zComandoI}
+                                    despacharComandoLineaEstado={this.despacharComandoLineaEstado}
+                                >
+                                </ZButtonComando>);
+                            /*
                             return (
                                 <Button
                                     key={zComandoI.id}
-                                    title='{zComandoI.etq}'
+                                    title={zComandoI.etq}
                                     disabled={zComandoI.desh == 1}
                                     onClick={() => this.despacharComandoLineaEstado(zComandoI)}
                                 >
-                                    {(!zcomandoInfo) &&
+                                    {(!zcomandoInfo.icono) &&
                                         zComandoI.etq
                                     }                                    
                                     <span className={zcomandoInfo.icono} aria-hidden="true"></span>
                                 </Button>
                             );
+                            */
                         })}
                     </ButtonToolbar>
                     <ZProcesandoNoModalContainer />
