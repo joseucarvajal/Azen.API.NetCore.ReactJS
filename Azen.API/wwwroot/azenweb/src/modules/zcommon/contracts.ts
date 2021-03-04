@@ -639,8 +639,10 @@ export namespace CM {
       Constants.ComandoEnum.CM_GRABAR,
       {
         icono: "glyphicon glyphicon-floppy-save",
-        hotKey: 'Shift Control g',
-        hotKeyTitle: 'Shift Control g',
+        //hotKey: 'Shift Control g',
+        //hotKeyTitle: 'Shift Control g',
+        //hotKey: 'Shift Control g',
+        hotKeyTitle: '',
       } as IZComandoDefinicion,
     ],
 
@@ -675,6 +677,8 @@ export namespace CM {
       Constants.ComandoEnum.CM_BORRAR,
       {
         icono: "glyphicon glyphicon-trash",
+        hotKey: 'Shift Control r',
+        hotKeyTitle: 'Shift Control r',
       } as IZComandoDefinicion,
     ],
 
@@ -682,6 +686,8 @@ export namespace CM {
       Constants.ComandoEnum.CM_ANTPAG,
       {
         icono: "glyphicon glyphicon-step-backward",
+        hotKey: 'Shift Control ArrowLeft',
+        hotKeyTitle: 'Shift Control ←',
       } as IZComandoDefinicion,
     ],
 
@@ -689,6 +695,8 @@ export namespace CM {
       Constants.ComandoEnum.CM_SGTEPAG,
       {
         icono: "glyphicon glyphicon-step-forward",
+        hotKey: 'Shift Control ArrowRight',
+        hotKeyTitle: 'Shift Control →',
       } as IZComandoDefinicion,
     ],
 
