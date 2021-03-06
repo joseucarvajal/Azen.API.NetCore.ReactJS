@@ -1,4 +1,5 @@
 ﻿using Azen.API.Sockets.Comunications;
+using Azen.API.Sockets.General;
 using Azen.API.Sockets.Settings;
 using Azen.API.Sockets.Utils;
 using Microsoft.Extensions.Options;
@@ -17,12 +18,14 @@ namespace Azen.API.Sockets.Jobs
         private readonly AzenSettings _azenSettings;
         ZSocketState _zSocketState;
         LogHandler _logHandler;
+        ZSocket _zsck;
 
-        public SocketJob(IOptions<AzenSettings> azenSettings, ZSocketState zSocketState, LogHandler logHandler)
+        public SocketJob(IOptions<AzenSettings> azenSettings, ZSocketState zSocketState, LogHandler logHandler, ZSocket zsck)
         {
             _azenSettings = azenSettings.Value;
             _zSocketState = zSocketState;
             _logHandler = logHandler;
+            _zsck = zsck;
         }
 
         public Task Execute(IJobExecutionContext context)
@@ -37,20 +40,23 @@ namespace Azen.API.Sockets.Jobs
             _logHandler.Info("CleanInactiveSocket Init");
             IList<string> socketsClose = new List<string>();
 
-            foreach (var openSokcet in _zSocketState.OpenSockets)
+            foreach (var openSocket in _zSocketState.OpenSockets)
             {
-                if (_azenSettings.PuertoServidor.ToString() == openSokcet.Key)
+                if (_azenSettings.PuertoServidor.ToString() == openSocket.Key)
                 {
                     continue;
                 }
 
-                var diffInSeconds = (DateTime.Now - openSokcet.Value.LastEvent).TotalSeconds;
+                var diffInSeconds = (DateTime.Now - openSocket.Value.LastEvent).TotalSeconds;
 
                 if (diffInSeconds >= _azenSettings.MaxTimeInactiveSocket)
                 {
-                    openSokcet.Value.socket.Close();
-                    socketsClose.Add(openSokcet.Key);
-                    _logHandler.Info($"CleanInactiveSocket close port {openSokcet.Key}");
+                    CloseAzenPort(Int32.Parse(openSocket.Key), openSocket.Value.Tkns);
+
+                    openSocket.Value.socket.Close();
+                    socketsClose.Add(openSocket.Key);
+
+                    _logHandler.Info($"CleanInactiveSocket close port {openSocket.Key}");
                 }
             }
 
@@ -66,6 +72,17 @@ namespace Azen.API.Sockets.Jobs
                     _zSocketState.OpenSockets.Remove(port);
                 }
             }
+        }
+
+        private void CloseAzenPort(int port, string tkns)
+        {
+            string datoTkns = ZTag.ZTAG_I_TKNS + tkns + ZTag.ZTAG_F_TKNS;
+
+            string cadEvento = new ZEvent(2, 0, ZCommandConst.CM_TERMINAR, "", "").ArmarCadenaSocket();
+
+            string cadenaEnviar = cadEvento + datoTkns;
+
+            _zsck.SocketClienteEnviar(cadenaEnviar, port, ZCommandConst.CM_TERMINAR);
         }
     }
 }

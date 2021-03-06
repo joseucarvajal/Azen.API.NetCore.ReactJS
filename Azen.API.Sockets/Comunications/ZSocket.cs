@@ -160,6 +160,11 @@ namespace Azen.API.Sockets.Comunications
             return true;
         }
 
+        public void SetTknsOpenSocket(int puerto, string tkns)
+        {
+            _zSocketState.OpenSockets[puerto.ToString()].Tkns = tkns;
+        }
+
         public int Transferir(string dato)
         {
             //enviar bloque

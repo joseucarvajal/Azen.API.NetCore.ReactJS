@@ -5,6 +5,7 @@ using Azen.API.Sockets.Domain.Command;
 using Azen.API.Sockets.General;
 using FluentValidation;
 using MediatR;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -60,6 +61,10 @@ namespace Azen.API.Models.ZCommand.Interceptors
                 var result = _zsck.ExecuteCommandAsString(request);
 
                 string tkns = _zsck.GetTagValue(ZTag.ZTAG_TKNS, result);
+
+                int puertoSrvAplicacion = Int32.Parse(_zsck.GetTagValue(ZTag.ZTAG_PSC, result));
+                _zsck.IniciarSocketCliente(puertoSrvAplicacion);
+                _zsck.SetTknsOpenSocket(puertoSrvAplicacion, tkns);
 
                 if (string.IsNullOrEmpty(tkns))
                 {

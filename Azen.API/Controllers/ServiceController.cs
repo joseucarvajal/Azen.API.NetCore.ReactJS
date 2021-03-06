@@ -188,6 +188,7 @@ namespace Azen.API.Controllers
             //Obtiene puerto donde se ejecuta la aplciacion
             int puertoSrvAplicacion = Int32.Parse(_zsck.GetTagValue(ZTag.ZTAG_PSC, cadena));
             string tkns = _zsck.GetTagValue(ZTag.ZTAG_TKNS, cadena);
+            _zsck.SetTknsOpenSocket(puertoSrvAplicacion, tkns);
             _logHandler.Info(puertoSrvAplicacion);
             _logHandler.Info(tkns);
 
