@@ -72,25 +72,33 @@ export namespace Actions {
           dispatch(setProcesosServidor(false, parametros.tipoAJAXIndicador));
           return response.text();
         })
-        .then((retornoStr: string) => {
+        .then((responseText: string) => {
+          if(!responseText || responseText.length === 0){
+            let retorno = {} as TRetorno;
+            let resultadoActionExito = new ResultadoActionConDato<TRetorno>();
+            resultadoActionExito.retorno = retorno;
+            resultadoActionExito.resultado =
+              ZUtils.Constants.ResultadoAccionEnum.EXITO;
+            resolve(resultadoActionExito);
+          }
           if (getState().nivelLog == 1) {
             console.timeEnd(`${ZCommon.Constants.ComandoEnum[cmd]} = ${cmd}`);
-            console.log(retornoStr);
+            console.log(responseText);
           }
-          if (retornoStr[retornoStr.length - 1] != "}") {
-            retornoStr = retornoStr.substring(0, retornoStr.length - 1);
+          if (responseText[responseText.length - 1] != "}") {
+            responseText = responseText.substring(0, responseText.length - 1);
           }
-          retornoStr = retornoStr.replace("<usr>null</usr>", "");
-          retornoStr = retornoStr.replace(
+          responseText = responseText.replace("<usr>null</usr>", "");
+          responseText = responseText.replace(
             'La edicion de "Cuentas" presenta modificaciones.',
             "La edicion de Cuentas presenta modificaciones."
           );
-          retornoStr = retornoStr.replace(
+          responseText = responseText.replace(
             'La edicion de "Tercero" presenta modificaciones.',
             "La edicion de Tercero presenta modificaciones."
           );
 
-          let retorno: TRetorno = JSON.parse(retornoStr);
+          let retorno: TRetorno = JSON.parse(responseText);
           let resultadoActionExito = new ResultadoActionConDato<TRetorno>();
           resultadoActionExito.retorno = retorno;
           resultadoActionExito.resultado =

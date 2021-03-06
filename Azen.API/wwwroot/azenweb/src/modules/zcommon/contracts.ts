@@ -533,6 +533,9 @@ export class ZVentanaState implements IZVentanaState {
 export namespace CM {
   export interface IZComandoDefinicion {
     icono: string;
+    hotKey: string, //https://github.com/reecelucas/react-use-hotkeys
+                    //https://www.npmjs.com/package/shim-keyboard-event-key
+    hotKeyTitle: string,
   }
 
   export const hashInfoComandos = new Map<
@@ -550,6 +553,8 @@ export namespace CM {
       Constants.ComandoEnum.CM_ADICIONAR,
       {
         icono: "glyphicon glyphicon-plus",
+        hotKey: 'Shift Control a',
+        hotKeyTitle: 'Shift Control a',
       } as IZComandoDefinicion,
     ],
 
@@ -557,6 +562,8 @@ export namespace CM {
       Constants.ComandoEnum.CM_MODIFICAR,
       {
         icono: "glyphicon glyphicon-pencil",
+        hotKey: 'Shift Control m',
+        hotKeyTitle: 'Shift Control m',
       } as IZComandoDefinicion,
     ],
 
@@ -564,6 +571,8 @@ export namespace CM {
       Constants.ComandoEnum.CM_CONSULTAR,
       {
         icono: "glyphicon glyphicon-book",
+        hotKey: 'Shift Control c',
+        hotKeyTitle: 'Shift Control c',
       } as IZComandoDefinicion,
     ],
 
@@ -578,6 +587,9 @@ export namespace CM {
       Constants.ComandoEnum.CM_PRIMERO,
       {
         icono: "glyphicon glyphicon-fast-backward",
+        //hotKey: 'shift+down',
+        hotKeyTitle: 'shift ↓',
+        hotKey: 'Shift+ArrowDown',
       } as IZComandoDefinicion,
     ],
 
@@ -585,6 +597,8 @@ export namespace CM {
       Constants.ComandoEnum.CM_ANTREG,
       {
         icono: "glyphicon glyphicon-step-backward",
+        hotKey: 'Shift+ArrowLeft',
+        hotKeyTitle: 'shift ←',
       } as IZComandoDefinicion,
     ],
 
@@ -592,6 +606,9 @@ export namespace CM {
       Constants.ComandoEnum.CM_SGTEREG,
       {
         icono: "glyphicon glyphicon-step-forward",
+        hotKey: 'Shift+ArrowRight',
+        hotKeyTitle: 'shift →',
+    
       } as IZComandoDefinicion,
     ],
 
@@ -599,6 +616,8 @@ export namespace CM {
       Constants.ComandoEnum.CM_ULTIMO,
       {
         icono: "glyphicon glyphicon-fast-forward",
+        hotKey: 'Shift+ArrowUp',
+        hotKeyTitle: 'shift ↑',
       } as IZComandoDefinicion,
     ],
 
@@ -620,6 +639,10 @@ export namespace CM {
       Constants.ComandoEnum.CM_GRABAR,
       {
         icono: "glyphicon glyphicon-floppy-save",
+        //hotKey: 'Shift Control g',
+        //hotKeyTitle: 'Shift Control g',
+        //hotKey: 'Shift Control g',
+        hotKeyTitle: '',
       } as IZComandoDefinicion,
     ],
 
@@ -627,6 +650,8 @@ export namespace CM {
       Constants.ComandoEnum.CM_BUSCAR,
       {
         icono: "glyphicon glyphicon-search",
+        hotKey: 'Shift Control b',
+        hotKeyTitle: 'Shift Control b',
       } as IZComandoDefinicion,
     ],
 
@@ -634,6 +659,8 @@ export namespace CM {
       Constants.ComandoEnum.CM_DETALLAR,
       {
         icono: "glyphicon glyphicon-open",
+        hotKey: 'Shift Control d',
+        hotKeyTitle: 'Shift Control d',
       } as IZComandoDefinicion,
     ],
 
@@ -641,6 +668,8 @@ export namespace CM {
       Constants.ComandoEnum.CM_SELECCIONAR,
       {
         icono: "glyphicon glyphicon-list",
+        hotKey: 'Shift Control s',
+        hotKeyTitle: 'Shift Control s',
       } as IZComandoDefinicion,
     ],
 
@@ -648,6 +677,8 @@ export namespace CM {
       Constants.ComandoEnum.CM_BORRAR,
       {
         icono: "glyphicon glyphicon-trash",
+        hotKey: 'Shift Control r',
+        hotKeyTitle: 'Shift Control r',
       } as IZComandoDefinicion,
     ],
 
@@ -655,6 +686,8 @@ export namespace CM {
       Constants.ComandoEnum.CM_ANTPAG,
       {
         icono: "glyphicon glyphicon-step-backward",
+        hotKey: 'Shift Control ArrowLeft',
+        hotKeyTitle: 'Shift Control ←',
       } as IZComandoDefinicion,
     ],
 
@@ -662,6 +695,8 @@ export namespace CM {
       Constants.ComandoEnum.CM_SGTEPAG,
       {
         icono: "glyphicon glyphicon-step-forward",
+        hotKey: 'Shift Control ArrowRight',
+        hotKeyTitle: 'Shift Control →',
       } as IZComandoDefinicion,
     ],
 
@@ -669,6 +704,8 @@ export namespace CM {
       Constants.ComandoEnum.CM_ADICIONARLINEA,
       {
         icono: "glyphicon glyphicon-plus-sign",
+        hotKey: 'Shift Control n',
+        hotKeyTitle: 'Shift Control n',
       } as IZComandoDefinicion,
     ],
 
@@ -676,6 +713,8 @@ export namespace CM {
       Constants.ComandoEnum.CM_INSERTARLINEA,
       {
         icono: "glyphicon glyphicon-indent-left",
+        hotKey: 'Shift Control i',
+        hotKeyTitle: 'Shift Control i',
       } as IZComandoDefinicion,
     ],
 
@@ -683,6 +722,8 @@ export namespace CM {
       Constants.ComandoEnum.CM_ELIMINARLINEA,
       {
         icono: "glyphicon glyphicon-minus-sign",
+        hotKey: 'Shift Control e',
+        hotKeyTitle: 'Shift Control e',
       } as IZComandoDefinicion,
     ],
   ]);
