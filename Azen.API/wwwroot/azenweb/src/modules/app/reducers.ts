@@ -12,6 +12,8 @@ import { ActionTypes } from "./actionTypes";
 
 import * as ZCommon from "../zcommon";
 
+import {Reducers as ZColaEventosClienteModuleReducers} from '../zcola-eventos-cliente/reducers';
+
 export namespace Reducers {
 
     export const idApl = (state: string = null, action: ActionTypes.Action): string => {
@@ -128,5 +130,6 @@ export namespace Reducers {
         zMenuModule: ZMenu.Reducers.ZMenuModule.impl,
         zPantexStateModule: ZPantex.Reducers.ZPantexStateModule.impl,
         zLoginModule: ZLogin.Reducers.ZLoginModule.impl,
+        zColaEventosState: ZColaEventosClienteModuleReducers.ZColaEventosClienteModule.impl,
     });
 }

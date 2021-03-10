@@ -32,7 +32,6 @@ import { ResultadoActionConDato } from "../zutils";
 
 import { Actions as ZAplicacionActions } from "../zaplicacion/actions";
 import { Selectors } from "./selectors";
-import { type } from "os";
 
 export namespace DTO {
   export class DespacharOpcionMenuParamsDTO {

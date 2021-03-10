@@ -51693,6 +51693,7 @@ var ZMenu = __webpack_require__(74);
 var ZPantex = __webpack_require__(161);
 var actionTypes_1 = __webpack_require__(154);
 var ZCommon = __webpack_require__(12);
+var reducers_1 = __webpack_require__(1079);
 var Reducers;
 (function (Reducers) {
     Reducers.idApl = function (state, action) {
@@ -51787,6 +51788,7 @@ var Reducers;
         zMenuModule: ZMenu.Reducers.ZMenuModule.impl,
         zPantexStateModule: ZPantex.Reducers.ZPantexStateModule.impl,
         zLoginModule: ZLogin.Reducers.ZLoginModule.impl,
+        zColaEventosState: reducers_1.Reducers.ZColaEventosClienteModule.impl,
     });
 })(Reducers = exports.Reducers || (exports.Reducers = {}));
 
@@ -52180,6 +52182,8 @@ var CM;
             constants_1.Constants.ComandoEnum.CM_AYUDA,
             {
                 icono: "glyphicon glyphicon-info-sign",
+                hotKey: '',
+                hotKeyTitle: '',
             },
         ],
         [
@@ -96180,6 +96184,76 @@ module.exports = function(originalModule) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(515);
+
+
+/***/ }),
+/* 1078 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var ActionTypes;
+(function (ActionTypes) {
+    var ZColaEventosClienteModule;
+    (function (ZColaEventosClienteModule) {
+        ZColaEventosClienteModule.ENCOLAR_EVENTO_CLIENTE = "ZColaEventosModule/ENCOLAR_EVENTO_CLIENTE";
+        ZColaEventosClienteModule.LIMPIAR_COLA_EVENTOS_CLIENTE = "ZColaEventosModule/LIMPIAR_COLA_EVENTOS_CLIENTE";
+    })(ZColaEventosClienteModule = ActionTypes.ZColaEventosClienteModule || (ActionTypes.ZColaEventosClienteModule = {}));
+})(ActionTypes = exports.ActionTypes || (exports.ActionTypes = {}));
+
+
+/***/ }),
+/* 1079 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var u = __webpack_require__(93);
+var zcommon_1 = __webpack_require__(12);
+var actionTypes_1 = __webpack_require__(1078);
+var actionTypes_2 = __webpack_require__(158);
+var Reducers;
+(function (Reducers) {
+    var ZColaEventosClienteModule;
+    (function (ZColaEventosClienteModule) {
+        var zColaEventosClienteState = {};
+        ZColaEventosClienteModule.impl = function (state, action) {
+            var _a, _b;
+            if (state === void 0) { state = zColaEventosClienteState; }
+            switch (action.type) {
+                case actionTypes_1.ActionTypes.ZColaEventosClienteModule.ENCOLAR_EVENTO_CLIENTE:
+                    return u({
+                        eventosCamposEncolados: __assign(__assign({}, state.eventosCamposEncolados), (_a = {}, _a[action.infoEvento.idElemento] = action.infoEvento, _a))
+                    }, state);
+                case actionTypes_1.ActionTypes.ZColaEventosClienteModule.LIMPIAR_COLA_EVENTOS_CLIENTE:
+                    return u({
+                        eventosCamposEncolados: {},
+                    }, state);
+                case actionTypes_2.ActionTypes.ZPantexStateModule.ON_CAMPOCHANGE:
+                    return u({
+                        eventosCamposEncolados: __assign(__assign({}, state.eventosCamposEncolados), (_b = {}, _b[action.zcampoState.id] = {
+                            cmd: zcommon_1.Constants.ComandoEnum.CM_CAMBIOCMP,
+                            buffer: "<nc>" + action.zcampoState.nomCmp + "</nc><vc>" + action.valor + "</vc>",
+                        }, _b))
+                    }, state);
+            }
+            return state;
+        };
+    })(ZColaEventosClienteModule = Reducers.ZColaEventosClienteModule || (Reducers.ZColaEventosClienteModule = {}));
+})(Reducers = exports.Reducers || (exports.Reducers = {}));
 
 
 /***/ })

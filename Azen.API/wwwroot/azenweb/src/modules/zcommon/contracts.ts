@@ -2,6 +2,7 @@ import { Constants } from "./constants";
 import { ResultadoAction } from "../zutils/models";
 import { ZIconoBoton } from "./index";
 import { ZMenuItemContainer } from "../zmenu/containers/ZMenuItemContainer";
+import { ZColaEventosClienteState } from "./state";
 
 //#region =============================================== UTILS ===============================================
 export interface CfgObj {
@@ -546,6 +547,8 @@ export namespace CM {
       Constants.ComandoEnum.CM_AYUDA,
       {
         icono: "glyphicon glyphicon-info-sign",
+        hotKey: '',
+        hotKeyTitle: '',
       } as IZComandoDefinicion,
     ],
 
@@ -1028,6 +1031,8 @@ export interface IZAplState {
   zrptModule: IZrptModule;
 
   lanzarMenu: number;
+
+  zColaEventosClienteState: ZColaEventosClienteState
 }
 
 export interface IParametrosActivacionObj {
