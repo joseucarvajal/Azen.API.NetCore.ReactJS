@@ -212,7 +212,6 @@ namespace Azen.API.Sockets.General
 		public const int CM_TKNS = 187; //  token sesion 
 		public const int CM_PUERTO = 188; //  Puerto 
 
-
 		//cerios jun 2020 
 		public const int CM_EJECSERVICIO = 189; //  ejecutar servicio 
 		public const int CM_POST = 190; //  para actualizar datos	o procesar 
