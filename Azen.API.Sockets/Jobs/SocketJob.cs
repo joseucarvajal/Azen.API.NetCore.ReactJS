@@ -7,6 +7,7 @@ using Quartz;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -52,6 +53,9 @@ namespace Azen.API.Sockets.Jobs
                 if (diffInSeconds >= _azenSettings.MaxTimeInactiveSocket)
                 {
                     CloseAzenPort(Int32.Parse(openSocket.Key), openSocket.Value.Tkns);
+
+                    openSocket.Value.socket.Shutdown(SocketShutdown.Both);
+                    //openSocket.Value.socket.Disconnect(true);
 
                     openSocket.Value.socket.Close();
                     socketsClose.Add(openSocket.Key);

@@ -17,6 +17,11 @@ namespace Azen.API.Sockets.Cryptography
 
         public string GetCipherText(string plainText)
         {
+            if (string.IsNullOrEmpty(plainText))
+            {
+                return string.Empty;
+            }
+
             byte[] cipherTextBytes;
 
             using (var rijAlg = new RijndaelManaged())
@@ -43,6 +48,11 @@ namespace Azen.API.Sockets.Cryptography
 
         public string GetPlainText(string cipherText)
         {
+            if (string.IsNullOrEmpty(cipherText))
+            {
+                return string.Empty;
+            }
+
             using (var rijAlg = new RijndaelManaged())
             {
                 InitializeAesAlgorithm(rijAlg);
