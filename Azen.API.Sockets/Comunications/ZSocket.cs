@@ -162,7 +162,7 @@ namespace Azen.API.Sockets.Comunications
 
         public void SetTknsOpenSocket(int puerto, string tkns)
         {
-            _zSocketState.OpenSockets[puerto.ToString()].Tkns = tkns;
+           _zSocketState.OpenSockets[puerto.ToString()].Tkns = tkns;
         }
 
         public int Transferir(string dato)

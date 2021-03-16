@@ -31,7 +31,8 @@ namespace Azen.API.Sockets.Jobs
 
         public Task Execute(IJobExecutionContext context)
         {
-            CleanInactiveSocket();
+            //TODO: se documenta hasta que se libere puerto en cliente
+            //CleanInactiveSocket();
 
             return Task.CompletedTask;
         }

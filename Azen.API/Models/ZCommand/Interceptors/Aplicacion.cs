@@ -3,6 +3,7 @@ using Azen.API.Sockets.Auth;
 using Azen.API.Sockets.Comunications;
 using Azen.API.Sockets.Domain.Command;
 using Azen.API.Sockets.General;
+using Azen.API.Sockets.Utils;
 using FluentValidation;
 using MediatR;
 using System;
@@ -33,11 +34,13 @@ namespace Azen.API.Models.ZCommand.Interceptors
         {
             ZSocket _zsck;
             AuthService _authService;
+            LogHandler _logHandler;
 
-            public Handler(ZSocket zsck, AuthService authService)
+            public Handler(ZSocket zsck, AuthService authService, LogHandler logHandler)
             {
                 _zsck = zsck;
                 _authService = authService;
+                _logHandler = logHandler;
             }
 
             public async Task<string> Handle(Command request, CancellationToken cancellationToken)
@@ -63,13 +66,14 @@ namespace Azen.API.Models.ZCommand.Interceptors
                 string tkns = _zsck.GetTagValue(ZTag.ZTAG_TKNS, result);
 
                 int puertoSrvAplicacion = Int32.Parse(_zsck.GetTagValue(ZTag.ZTAG_PSC, result));
-                _zsck.IniciarSocketCliente(puertoSrvAplicacion);
-                _zsck.SetTknsOpenSocket(puertoSrvAplicacion, tkns);
+
 
                 if (string.IsNullOrEmpty(tkns))
                 {
                     return result;
                 }
+
+                InitSocket(puertoSrvAplicacion, tkns);
 
                 string token = _authService.GenerateJwtToken(new ZClaims
                 {
@@ -78,6 +82,26 @@ namespace Azen.API.Models.ZCommand.Interceptors
                 });
 
                 return result.Replace($"<{ZTag.ZTAG_TKNS}>{tkns}</{ZTag.ZTAG_TKNS}>", $"<{ZTag.ZTAG_TKNS}>{token}</{ZTag.ZTAG_TKNS}>");
+            }
+
+            private void InitSocket(int puertoSrvAplicacion, string tkns)
+            {
+                int exit = 1;
+                while (exit <= 10)
+                {
+                    Thread.Sleep(300);
+                    try
+                    {
+                        _zsck.IniciarSocketCliente(puertoSrvAplicacion);
+                        _zsck.SetTknsOpenSocket(puertoSrvAplicacion, tkns);
+                        exit = 11;
+                    }
+                    catch (Exception ex)
+                    {
+                        _logHandler.Info($"Aplicacion InitSocket error {ex.ToString()}");
+                        exit++;
+                    }
+                }
             }
         }
     }
