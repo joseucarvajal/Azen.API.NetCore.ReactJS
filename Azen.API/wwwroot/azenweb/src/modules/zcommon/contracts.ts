@@ -1032,7 +1032,7 @@ export interface IZAplState {
 
   lanzarMenu: number;
 
-  zColaEventosClienteState: ZColaEventosClienteState
+  zColaEventosState: ZColaEventosClienteState
 }
 
 export interface IParametrosActivacionObj {

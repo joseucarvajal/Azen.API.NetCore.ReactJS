@@ -10,6 +10,7 @@ import {
   IZAplState,
   IZColaEventos,
   IZEnviarComandoParamsOptional,
+  ZEventoEncolado,
 } from "../../zcommon";
 
 import * as ZComunicaciones from "../../zcomunicaciones";
@@ -51,12 +52,14 @@ export namespace ZclienteResponder {
           break;
       }
 
+      const eventoNormalizado = getComandoSiHayEventosEnCola(getState, zComando, buffer);
+
       return new Promise<ResultadoActionConDato<IZColaEventos>>(
         (resolve, reject) => {
           dispatch(
             ZComunicaciones.Actions.enviarRequestComando<IZColaEventos>({
-              cmd: zComando,
-              buffer,
+              cmd: eventoNormalizado.cmd,
+              buffer: eventoNormalizado.buffer,
               tipoAJAXIndicador,
               optionalParams,
             })
@@ -84,4 +87,31 @@ export namespace ZclienteResponder {
         }
       );
     };
+
+    const getComandoSiHayEventosEnCola = (
+      getState: () => IZAplState,  
+      zComando: ZCommon.Constants.ComandoEnum,
+      buffer: string = "",
+      ) : ZEventoEncolado => {
+      if(true || !getState().zColaEventosState?.eventosCamposEncolados){
+        return {
+          cmd: zComando,
+          buffer: buffer
+        } as ZEventoEncolado;
+      }
+
+      let bufferFinal = '<cmds>';
+      let evtInfo:ZEventoEncolado;
+      for(let elementId in getState().zColaEventosState?.eventosCamposEncolados){
+        evtInfo = getState().zColaEventosState?.eventosCamposEncolados[elementId] as ZEventoEncolado;
+        bufferFinal += `<cmd><cmm>${evtInfo.cmd}</cmm><bfm>${evtInfo.buffer}</bfm></cmd>`;
+      }
+      
+      bufferFinal = `${bufferFinal}<cmd><cmm>${zComando}</cmm><bfm>${buffer}</bfm></cmd></cmds>`;
+
+      return {
+        cmd: ZCommon.Constants.ComandoEnum.CM_PROCESARMULTIEVENTOS,
+        buffer: bufferFinal
+      } as ZEventoEncolado;
+    }
 }

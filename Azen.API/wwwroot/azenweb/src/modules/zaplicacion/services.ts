@@ -83,7 +83,7 @@ export namespace Services {
 
       cambiaFoco = false;
 
-      for (let i = 0; i < zColaEventos.eventos.length; i++) {
+      for (let i = 0; i < zColaEventos?.eventos?.length; i++) {
         ZUtilsServices.parseEventoDataToJSON(zColaEventos.eventos[i]);
 
         const evento = zColaEventos.eventos[i];

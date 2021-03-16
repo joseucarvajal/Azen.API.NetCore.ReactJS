@@ -55,6 +55,7 @@ export namespace Actions {
 
       dispatch(setProcesosServidor(true, parametros.tipoAJAXIndicador));
       fetch(requestUrl, {
+      //fetch('http://18.237.75.139:8080/api/command/azenctb/execute', {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${

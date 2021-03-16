@@ -17,7 +17,7 @@ interface ZAplicationState
 }
 
 import  {Constants} from "./constants";
-import { EntityNormalizedObj, IZPantexState } from './contracts';
+import { EntityMap, EntityNormalizedObj, IZPantexState } from './contracts';
 interface ZEventoEncolado {
     idElemento:number; //id del elemento que causa el evento encolado  (e.g. input, input-radio... etc). id global asignado en cliente.
     cmd: Constants.ComandoEnum;
@@ -25,7 +25,7 @@ interface ZEventoEncolado {
 }
 
 interface ZColaEventosClienteState {
-    eventosCamposEncolados: EntityNormalizedObj<IZPantexState>;
+    eventosCamposEncolados: EntityMap<ZEventoEncolado>;
 }
 
 interface State

@@ -24,8 +24,6 @@ export namespace Reducers {
             action: ActionTypes.ZColaEventosClienteModule.Action | ActionTypesZPantexModule.ZPantexStateModule.Action,
             ) => {
 
-                //if(action.type == ActionTypesZPantexModule.ZPantexStateModule.ON_CAMPOCHANGE)
-
             switch (action.type) {
                 case ActionTypes.ZColaEventosClienteModule.ENCOLAR_EVENTO_CLIENTE:
                     return u({
