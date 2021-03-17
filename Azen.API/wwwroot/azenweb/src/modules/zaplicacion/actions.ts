@@ -11,7 +11,7 @@ import {
   IZEnviarComandoParamsOptional,
 } from "../zcommon/contracts";
 
-import {Actions as ZColaEventosClienteActions} from '../zcola-eventos-cliente/actions';
+import { Actions as ZColaEventosClienteActions } from "../zcola-eventos-cliente/actions";
 
 import * as App from "../app";
 import * as ZMenu from "../zmenu";
@@ -24,7 +24,7 @@ import { Actions as ZPantexActions } from "../zpantex/actions";
 import { Services } from "./services";
 import { ZEventoEncolado } from "../zcommon";
 
-import {ActionTypes as ZPantexActionTypes} from '../zpantex/actionTypes';
+import { ActionTypes as ZPantexActionTypes } from "../zpantex/actionTypes";
 
 export namespace Actions {
   export const lanzarAplicacion = (
@@ -38,14 +38,13 @@ export namespace Actions {
     dispatch: (p: any) => any,
     getState: () => IZAplState
   ): Promise<ResultadoActionConDato<IZColaEventos>> => {
-
     dispatch(App.Actions.setIdApl(idApl));
     dispatch(App.Actions.setNomApl(nomApl));
     dispatch(ZLogin.Actions.ZLoginModule.setUsername(username));
     dispatch(ZLogin.Actions.ZLoginModule.setTkna(tkna));
 
-    if(opcion){
-        return dispatch(lanzarOpcionAtomica(opcion, tkna));
+    if (opcion) {
+      return dispatch(lanzarOpcionAtomica(opcion, tkna));
     }
 
     return new Promise<ResultadoActionConDato<IZColaEventos>>(
@@ -54,7 +53,7 @@ export namespace Actions {
           ZComunicaciones.Actions.enviarRequestComando<IZColaEventos>({
             cmd: ZCommon.Constants.ComandoEnum.CM_APLICACION,
             buffer: getState().zLoginModule.username,
-            tipoAJAXIndicador: ZCommon.Constants.TipoAJAXIndicadorEnum.MODAL
+            tipoAJAXIndicador: ZCommon.Constants.TipoAJAXIndicadorEnum.MODAL,
           })
         ).then(
           (resultadoCmAplicacion: ResultadoActionConDato<IZColaEventos>) => {
@@ -82,16 +81,16 @@ export namespace Actions {
     );
   };
 
-  const lanzarOpcionAtomica = (opcion: string, tkna:string) => (
+  const lanzarOpcionAtomica = (opcion: string, tkna: string) => (
     dispatch: (p: any) => any,
     getState: () => IZAplState
   ) => {
     return dispatch(
-        despacharEventoCliente(
+      despacharEventoCliente(
         ZCommon.Constants.ComandoEnum.CM_EJECSOLOOPCION,
-        '',
+        "",
         {
-            opcion
+          opcion,
         }
       )
     );
@@ -133,79 +132,86 @@ export namespace Actions {
       zformaTabla.esRegionActiva
     ) {
       let zComandoFinal = getComandoSiHayEventosEnCola(
-        zcomandoFormaState.cmd, 
-        '', 
-        getState, 
-        dispatch);
+        zcomandoFormaState.cmd,
+        "",
+        getState,
+        dispatch
+      );
       return dispatch(
-        ZclienteResponder.responderEventoCliente(zComandoFinal.cmd, zComandoFinal.buffer)
+        despacharEventoCliente(zComandoFinal.cmd, zComandoFinal.buffer)
       );
     }
 
+    const buffer = `
+    <cmds>
+      <cmd><cmm>${ZCommon.Constants.ComandoEnum.CM_SALTAR}</cmm></cmd>
+      <cmd><cmm>${zcomandoFormaState.cmd}</cmm></cmd>
+    <cmds>`;
+
     //ocurrió un saltar
     return dispatch(
-      ZPantexActions.ZPantexStateModule.onSaltarMov(
-        zformaTabla,
-        zcomandoFormaState.rg
+      ZclienteResponder.responderEventoCliente(
+        ZCommon.Constants.ComandoEnum.CM_PROCESARMULTIEVENTOS,
+        buffer
       )
-    ).then(() => {
-      return dispatch(
-        ZclienteResponder.responderEventoCliente(zcomandoFormaState.cmd)
-      );
-    });
+    ).then(
+      (resultadoDesparcharEvento: ResultadoActionConDato<IZColaEventos>) => {
+        dispatch(
+          ZPantexActions.ZPantexStateModule.setZFormaTablaComoRegionActiva(
+            zformaTabla.id,
+            zformaTabla.numPx
+          )
+        );
+      }
+    );
   };
 
-  
   const getComandoSiHayEventosEnCola = (
     zComando: ZCommon.Constants.ComandoEnum,
     buffer: string = "",
     getState: () => IZAplState,
-    dispatch: (p: any) => any,
-    ) : ZEventoEncolado => {
-    if(!getState().zColaEventosState?.eventosCamposEncolados){
+    dispatch: (p: any) => any
+  ): ZEventoEncolado => {
+    if (!getState().zColaEventosState?.eventosCamposEncolados) {
       return {
         cmd: zComando,
-        buffer: buffer
+        buffer: buffer,
       } as ZEventoEncolado;
     }
 
-    let bufferFinal = '<cmds>';
-    let evtInfo:ZEventoEncolado;
-    for(let elementId in getState().zColaEventosState?.eventosCamposEncolados){
-      evtInfo = getState().zColaEventosState?.eventosCamposEncolados[elementId] as ZEventoEncolado;
+    let bufferFinal = "<cmds>";
+    let evtInfo: ZEventoEncolado;
+    for (let elementId in getState().zColaEventosState
+      ?.eventosCamposEncolados) {
+      evtInfo = getState().zColaEventosState?.eventosCamposEncolados[
+        elementId
+      ] as ZEventoEncolado;
       bufferFinal += `<cmd><cmm>${evtInfo.cmd}</cmm><bfm>${evtInfo.buffer}</bfm></cmd>`;
-      if(evtInfo.cmd == ZCommon.Constants.ComandoEnum.CM_CAMBIOCMP){
+      if (evtInfo.cmd == ZCommon.Constants.ComandoEnum.CM_CAMBIOCMP) {
         dispatch(
           //Poner foco
-          setZCampoHaCambiado(evtInfo.pxElemento, evtInfo.idElemento, false, true)
-        );  
+          ZPantexActions.ZPantexStateModule.setZCampoHaCambiado(
+            evtInfo.pxElemento,
+            evtInfo.idElemento,
+            false,
+            true
+          )
+        );
       }
     }
-    
+
     bufferFinal = `${bufferFinal}<cmd><cmm>${zComando}</cmm><bfm>${buffer}</bfm></cmd></cmds>`;
 
-    dispatch(ZColaEventosClienteActions.ZColaEventosClienteModule.limpiarColaEventosCliente());
+    dispatch(
+      ZColaEventosClienteActions.ZColaEventosClienteModule.limpiarColaEventosCliente()
+    );
 
     return {
       cmd: ZCommon.Constants.ComandoEnum.CM_PROCESARMULTIEVENTOS,
-      buffer: bufferFinal
+      buffer: bufferFinal,
     } as ZEventoEncolado;
-  }
-  
-  
-  export const setZCampoHaCambiado = (
-    px: number,
-    idZCampoState: number,
-    haCambiado: boolean,
-    ponerFoco: boolean
-  ): ZPantexActionTypes.ZPantexStateModule.Action => ({
-    type: ZPantexActionTypes.ZPantexStateModule.SET_ZCAMPOSTATE_HACAMBIADO,
-    px,
-    idZCampoState,
-    haCambiado,
-    ponerFoco,
-  });
-  
+  };
+
   export const despacharEventoCliente = (
     cmd: ZCommon.Constants.ComandoEnum,
     buffer: string = "",
@@ -214,10 +220,10 @@ export namespace Actions {
     dispatch: (p: any) => any,
     getState: () => IZAplState
   ): Promise<ResultadoActionConDato<IZColaEventos>> => {
-    return dispatch(ZclienteResponder.responderEventoCliente(cmd, buffer, optionalParams));
+    return dispatch(
+      ZclienteResponder.responderEventoCliente(cmd, buffer, optionalParams)
+    );
   };
-
-
 
   export namespace ZAplState {}
 }
