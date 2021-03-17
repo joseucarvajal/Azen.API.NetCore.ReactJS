@@ -556,8 +556,8 @@ export namespace CM {
       Constants.ComandoEnum.CM_ADICIONAR,
       {
         icono: "glyphicon glyphicon-plus",
-        hotKey: 'Shift Control a',
-        hotKeyTitle: 'Shift Control a',
+        hotKey: 'Control Alt a',
+        hotKeyTitle: 'Ctrl+Alt+a',
       } as IZComandoDefinicion,
     ],
 
@@ -565,8 +565,8 @@ export namespace CM {
       Constants.ComandoEnum.CM_MODIFICAR,
       {
         icono: "glyphicon glyphicon-pencil",
-        hotKey: 'Shift Control m',
-        hotKeyTitle: 'Shift Control m',
+        hotKey: 'Control Alt m',
+        hotKeyTitle: 'Ctrl+Alt+m',
       } as IZComandoDefinicion,
     ],
 
@@ -574,8 +574,8 @@ export namespace CM {
       Constants.ComandoEnum.CM_CONSULTAR,
       {
         icono: "glyphicon glyphicon-book",
-        hotKey: 'Shift Control c',
-        hotKeyTitle: 'Shift Control c',
+        hotKey: 'Control Alt c',
+        hotKeyTitle: 'Ctrl+Alt+c',
       } as IZComandoDefinicion,
     ],
 
@@ -591,8 +591,8 @@ export namespace CM {
       {
         icono: "glyphicon glyphicon-fast-backward",
         //hotKey: 'shift+down',
-        hotKeyTitle: 'shift ↓',
-        hotKey: 'Shift+ArrowDown',
+        hotKeyTitle: 'Ctrl+↓',
+        hotKey: 'Control+ArrowDown',
       } as IZComandoDefinicion,
     ],
 
@@ -600,8 +600,8 @@ export namespace CM {
       Constants.ComandoEnum.CM_ANTREG,
       {
         icono: "glyphicon glyphicon-step-backward",
-        hotKey: 'Shift+ArrowLeft',
-        hotKeyTitle: 'shift ←',
+        hotKey: 'Control+ArrowLeft',
+        hotKeyTitle: 'Ctrl+←',
       } as IZComandoDefinicion,
     ],
 
@@ -609,8 +609,8 @@ export namespace CM {
       Constants.ComandoEnum.CM_SGTEREG,
       {
         icono: "glyphicon glyphicon-step-forward",
-        hotKey: 'Shift+ArrowRight',
-        hotKeyTitle: 'shift →',
+        hotKey: 'Control+ArrowRight',
+        hotKeyTitle: 'Ctrl+→',
     
       } as IZComandoDefinicion,
     ],
@@ -619,8 +619,8 @@ export namespace CM {
       Constants.ComandoEnum.CM_ULTIMO,
       {
         icono: "glyphicon glyphicon-fast-forward",
-        hotKey: 'Shift+ArrowUp',
-        hotKeyTitle: 'shift ↑',
+        hotKey: 'Control+ArrowUp',
+        hotKeyTitle: 'Ctrl+↑',
       } as IZComandoDefinicion,
     ],
 
@@ -642,10 +642,8 @@ export namespace CM {
       Constants.ComandoEnum.CM_GRABAR,
       {
         icono: "glyphicon glyphicon-floppy-save",
-        //hotKey: 'Shift Control g',
-        //hotKeyTitle: 'Shift Control g',
-        //hotKey: 'Shift Control g',
-        hotKeyTitle: '',
+        hotKey: 'Control Alt g',
+        hotKeyTitle: 'Ctrl+Alt+g',
       } as IZComandoDefinicion,
     ],
 
@@ -653,8 +651,8 @@ export namespace CM {
       Constants.ComandoEnum.CM_BUSCAR,
       {
         icono: "glyphicon glyphicon-search",
-        hotKey: 'Shift Control b',
-        hotKeyTitle: 'Shift Control b',
+        hotKey: 'Control Alt b',
+        hotKeyTitle: 'Ctrl+Alt+b',
       } as IZComandoDefinicion,
     ],
 
@@ -662,8 +660,8 @@ export namespace CM {
       Constants.ComandoEnum.CM_DETALLAR,
       {
         icono: "glyphicon glyphicon-open",
-        hotKey: 'Shift Control d',
-        hotKeyTitle: 'Shift Control d',
+        hotKey: 'Control Alt d',
+        hotKeyTitle: 'Ctrl+d',
       } as IZComandoDefinicion,
     ],
 
@@ -671,8 +669,8 @@ export namespace CM {
       Constants.ComandoEnum.CM_SELECCIONAR,
       {
         icono: "glyphicon glyphicon-list",
-        hotKey: 'Shift Control s',
-        hotKeyTitle: 'Shift Control s',
+        hotKey: 'Control Alt s',
+        hotKeyTitle: 'Ctrl+Alt+s',
       } as IZComandoDefinicion,
     ],
 
@@ -680,8 +678,8 @@ export namespace CM {
       Constants.ComandoEnum.CM_BORRAR,
       {
         icono: "glyphicon glyphicon-trash",
-        hotKey: 'Shift Control r',
-        hotKeyTitle: 'Shift Control r',
+        hotKey: 'Control Alt r',
+        hotKeyTitle: 'Ctrl+Alt+r',
       } as IZComandoDefinicion,
     ],
 
@@ -689,8 +687,8 @@ export namespace CM {
       Constants.ComandoEnum.CM_ANTPAG,
       {
         icono: "glyphicon glyphicon-step-backward",
-        hotKey: 'Shift Control ArrowLeft',
-        hotKeyTitle: 'Shift Control ←',
+        hotKey: 'Control Shift ArrowLeft',
+        hotKeyTitle: 'Ctrl+Shift+←',
       } as IZComandoDefinicion,
     ],
 
@@ -698,8 +696,8 @@ export namespace CM {
       Constants.ComandoEnum.CM_SGTEPAG,
       {
         icono: "glyphicon glyphicon-step-forward",
-        hotKey: 'Shift Control ArrowRight',
-        hotKeyTitle: 'Shift Control →',
+        hotKey: 'Control Shift ArrowRight',
+        hotKeyTitle: 'Ctrl+Shift+→',
       } as IZComandoDefinicion,
     ],
 
@@ -707,8 +705,8 @@ export namespace CM {
       Constants.ComandoEnum.CM_ADICIONARLINEA,
       {
         icono: "glyphicon glyphicon-plus-sign",
-        hotKey: 'Shift Control n',
-        hotKeyTitle: 'Shift Control n',
+        hotKey: 'Control Alt n',
+        hotKeyTitle: 'Ctrl+Alt+n',
       } as IZComandoDefinicion,
     ],
 
@@ -716,8 +714,8 @@ export namespace CM {
       Constants.ComandoEnum.CM_INSERTARLINEA,
       {
         icono: "glyphicon glyphicon-indent-left",
-        hotKey: 'Shift Control i',
-        hotKeyTitle: 'Shift Control i',
+        hotKey: 'Control Alt i',
+        hotKeyTitle: 'Ctrl+Alt+i',
       } as IZComandoDefinicion,
     ],
 
@@ -725,8 +723,8 @@ export namespace CM {
       Constants.ComandoEnum.CM_ELIMINARLINEA,
       {
         icono: "glyphicon glyphicon-minus-sign",
-        hotKey: 'Shift Control e',
-        hotKeyTitle: 'Shift Control e',
+        hotKey: 'Control Alt e',
+        hotKeyTitle: 'Ctrl+Alt+e',
       } as IZComandoDefinicion,
     ],
   ]);

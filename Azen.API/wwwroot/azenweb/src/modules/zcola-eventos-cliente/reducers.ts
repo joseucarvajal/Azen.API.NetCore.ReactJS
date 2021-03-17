@@ -34,15 +34,15 @@ export namespace Reducers {
                     } as ZColaEventosClienteState, state);
 
                 case ActionTypes.ZColaEventosClienteModule.LIMPIAR_COLA_EVENTOS_CLIENTE:
-                    return u({
-                       eventosCamposEncolados: {},
-                    } as ZColaEventosClienteState, state);    
+                    return {} as ZColaEventosClienteState;    
                     
                 case ActionTypesZPantexModule.ZPantexStateModule.ON_CAMPOCHANGE:
                     return u({
                         eventosCamposEncolados: { 
                             ...state.eventosCamposEncolados, 
                             [action.zcampoState.id]:{
+                                pxElemento: action.zcampoState.px,
+                                idElemento: action.zcampoState.id,
                                 cmd: Constants.ComandoEnum.CM_CAMBIOCMP,
                                 buffer: `<nc>${action.zcampoState.nomCmp}</nc><vc>${action.valor}</vc>`,
                             } as ZEventoEncolado,

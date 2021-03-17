@@ -11,6 +11,8 @@ import {
   IZEnviarComandoParamsOptional,
 } from "../zcommon/contracts";
 
+import {Actions as ZColaEventosClienteActions} from '../zcola-eventos-cliente/actions';
+
 import * as App from "../app";
 import * as ZMenu from "../zmenu";
 import * as ZComunicaciones from "../zcomunicaciones";
@@ -20,6 +22,9 @@ import { ZclienteResponder } from "./clientzmnjs/zclienteResponder";
 
 import { Actions as ZPantexActions } from "../zpantex/actions";
 import { Services } from "./services";
+import { ZEventoEncolado } from "../zcommon";
+
+import {ActionTypes as ZPantexActionTypes} from '../zpantex/actionTypes';
 
 export namespace Actions {
   export const lanzarAplicacion = (
@@ -127,11 +132,17 @@ export namespace Actions {
       zPantexState.zFormaTablaStateListIds.length == 1 ||
       zformaTabla.esRegionActiva
     ) {
+      let zComandoFinal = getComandoSiHayEventosEnCola(
+        zcomandoFormaState.cmd, 
+        '', 
+        getState, 
+        dispatch);
       return dispatch(
-        ZclienteResponder.responderEventoCliente(zcomandoFormaState.cmd)
+        ZclienteResponder.responderEventoCliente(zComandoFinal.cmd, zComandoFinal.buffer)
       );
     }
 
+    //ocurrió un saltar
     return dispatch(
       ZPantexActions.ZPantexStateModule.onSaltarMov(
         zformaTabla,
@@ -144,6 +155,57 @@ export namespace Actions {
     });
   };
 
+  
+  const getComandoSiHayEventosEnCola = (
+    zComando: ZCommon.Constants.ComandoEnum,
+    buffer: string = "",
+    getState: () => IZAplState,
+    dispatch: (p: any) => any,
+    ) : ZEventoEncolado => {
+    if(!getState().zColaEventosState?.eventosCamposEncolados){
+      return {
+        cmd: zComando,
+        buffer: buffer
+      } as ZEventoEncolado;
+    }
+
+    let bufferFinal = '<cmds>';
+    let evtInfo:ZEventoEncolado;
+    for(let elementId in getState().zColaEventosState?.eventosCamposEncolados){
+      evtInfo = getState().zColaEventosState?.eventosCamposEncolados[elementId] as ZEventoEncolado;
+      bufferFinal += `<cmd><cmm>${evtInfo.cmd}</cmm><bfm>${evtInfo.buffer}</bfm></cmd>`;
+      if(evtInfo.cmd == ZCommon.Constants.ComandoEnum.CM_CAMBIOCMP){
+        dispatch(
+          //Poner foco
+          setZCampoHaCambiado(evtInfo.pxElemento, evtInfo.idElemento, false, true)
+        );  
+      }
+    }
+    
+    bufferFinal = `${bufferFinal}<cmd><cmm>${zComando}</cmm><bfm>${buffer}</bfm></cmd></cmds>`;
+
+    dispatch(ZColaEventosClienteActions.ZColaEventosClienteModule.limpiarColaEventosCliente());
+
+    return {
+      cmd: ZCommon.Constants.ComandoEnum.CM_PROCESARMULTIEVENTOS,
+      buffer: bufferFinal
+    } as ZEventoEncolado;
+  }
+  
+  
+  export const setZCampoHaCambiado = (
+    px: number,
+    idZCampoState: number,
+    haCambiado: boolean,
+    ponerFoco: boolean
+  ): ZPantexActionTypes.ZPantexStateModule.Action => ({
+    type: ZPantexActionTypes.ZPantexStateModule.SET_ZCAMPOSTATE_HACAMBIADO,
+    px,
+    idZCampoState,
+    haCambiado,
+    ponerFoco,
+  });
+  
   export const despacharEventoCliente = (
     cmd: ZCommon.Constants.ComandoEnum,
     buffer: string = "",
@@ -154,6 +216,8 @@ export namespace Actions {
   ): Promise<ResultadoActionConDato<IZColaEventos>> => {
     return dispatch(ZclienteResponder.responderEventoCliente(cmd, buffer, optionalParams));
   };
+
+
 
   export namespace ZAplState {}
 }

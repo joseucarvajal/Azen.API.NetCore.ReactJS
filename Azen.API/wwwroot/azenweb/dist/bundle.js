@@ -14379,13 +14379,15 @@ SafeBuffer.allocUnsafeSlow = function (size) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var ZUtils = __webpack_require__(37);
 var ZCommon = __webpack_require__(11);
+var actions_1 = __webpack_require__(1080);
 var App = __webpack_require__(221);
 var ZMenu = __webpack_require__(75);
 var ZComunicaciones = __webpack_require__(98);
 var ZLogin = __webpack_require__(157);
 var zclienteResponder_1 = __webpack_require__(521);
-var actions_1 = __webpack_require__(27);
+var actions_2 = __webpack_require__(27);
 var services_1 = __webpack_require__(224);
+var actionTypes_1 = __webpack_require__(99);
 var Actions;
 (function (Actions) {
     Actions.lanzarAplicacion = function (idApl, nomApl, username, lanzarMenu, opcion, tkna) {
@@ -14437,12 +14439,45 @@ var Actions;
             .pilaPantexState.byId[zcomandoFormaState.px];
         if (zPantexState.zFormaTablaStateListIds.length == 1 ||
             zformaTabla.esRegionActiva) {
-            return dispatch(zclienteResponder_1.ZclienteResponder.responderEventoCliente(zcomandoFormaState.cmd));
+            var zComandoFinal = getComandoSiHayEventosEnCola(zcomandoFormaState.cmd, '', getState, dispatch);
+            return dispatch(zclienteResponder_1.ZclienteResponder.responderEventoCliente(zComandoFinal.cmd, zComandoFinal.buffer));
         }
-        return dispatch(actions_1.Actions.ZPantexStateModule.onSaltarMov(zformaTabla, zcomandoFormaState.rg)).then(function () {
+        return dispatch(actions_2.Actions.ZPantexStateModule.onSaltarMov(zformaTabla, zcomandoFormaState.rg)).then(function () {
             return dispatch(zclienteResponder_1.ZclienteResponder.responderEventoCliente(zcomandoFormaState.cmd));
         });
     }; };
+    var getComandoSiHayEventosEnCola = function (zComando, buffer, getState, dispatch) {
+        if (buffer === void 0) { buffer = ""; }
+        var _a, _b, _c;
+        if (!((_a = getState().zColaEventosState) === null || _a === void 0 ? void 0 : _a.eventosCamposEncolados)) {
+            return {
+                cmd: zComando,
+                buffer: buffer
+            };
+        }
+        var bufferFinal = '<cmds>';
+        var evtInfo;
+        for (var elementId in (_b = getState().zColaEventosState) === null || _b === void 0 ? void 0 : _b.eventosCamposEncolados) {
+            evtInfo = (_c = getState().zColaEventosState) === null || _c === void 0 ? void 0 : _c.eventosCamposEncolados[elementId];
+            bufferFinal += "<cmd><cmm>" + evtInfo.cmd + "</cmm><bfm>" + evtInfo.buffer + "</bfm></cmd>";
+            if (evtInfo.cmd == ZCommon.Constants.ComandoEnum.CM_CAMBIOCMP) {
+                dispatch(Actions.setZCampoHaCambiado(evtInfo.pxElemento, evtInfo.idElemento, false, true));
+            }
+        }
+        bufferFinal = bufferFinal + "<cmd><cmm>" + zComando + "</cmm><bfm>" + buffer + "</bfm></cmd></cmds>";
+        dispatch(actions_1.Actions.ZColaEventosClienteModule.limpiarColaEventosCliente());
+        return {
+            cmd: ZCommon.Constants.ComandoEnum.CM_PROCESARMULTIEVENTOS,
+            buffer: bufferFinal
+        };
+    };
+    Actions.setZCampoHaCambiado = function (px, idZCampoState, haCambiado, ponerFoco) { return ({
+        type: actionTypes_1.ActionTypes.ZPantexStateModule.SET_ZCAMPOSTATE_HACAMBIADO,
+        px: px,
+        idZCampoState: idZCampoState,
+        haCambiado: haCambiado,
+        ponerFoco: ponerFoco,
+    }); };
     Actions.despacharEventoCliente = function (cmd, buffer, optionalParams) {
         if (buffer === void 0) { buffer = ""; }
         return function (dispatch, getState) {
@@ -51831,11 +51866,10 @@ var ZclienteResponder;
                     tipoAJAXIndicador = zCommon.Constants.TipoAJAXIndicadorEnum.NO_MODAL;
                     break;
             }
-            var eventoNormalizado = getComandoSiHayEventosEnCola(getState, zComando, buffer);
             return new Promise(function (resolve, reject) {
                 dispatch(ZComunicaciones.Actions.enviarRequestComando({
-                    cmd: eventoNormalizado.cmd,
-                    buffer: eventoNormalizado.buffer,
+                    cmd: zComando,
+                    buffer: buffer,
                     tipoAJAXIndicador: tipoAJAXIndicador,
                     optionalParams: optionalParams,
                 })).then(function (resultadoClienteCm) {
@@ -51849,27 +51883,6 @@ var ZclienteResponder;
                     resolve(resultadoClienteCm);
                 }, function () { });
             });
-        };
-    };
-    var getComandoSiHayEventosEnCola = function (getState, zComando, buffer) {
-        if (buffer === void 0) { buffer = ""; }
-        var _a, _b, _c;
-        if (true) {
-            return {
-                cmd: zComando,
-                buffer: buffer
-            };
-        }
-        var bufferFinal = '<cmds>';
-        var evtInfo;
-        for (var elementId in (_b = getState().zColaEventosState) === null || _b === void 0 ? void 0 : _b.eventosCamposEncolados) {
-            evtInfo = (_c = getState().zColaEventosState) === null || _c === void 0 ? void 0 : _c.eventosCamposEncolados[elementId];
-            bufferFinal += "<cmd><cmm>" + evtInfo.cmd + "</cmm><bfm>" + evtInfo.buffer + "</bfm></cmd>";
-        }
-        bufferFinal = bufferFinal + "<cmd><cmm>" + zComando + "</cmm><bfm>" + buffer + "</bfm></cmd></cmds>";
-        return {
-            cmd: ZCommon.Constants.ComandoEnum.CM_PROCESARMULTIEVENTOS,
-            buffer: bufferFinal
         };
     };
 })(ZclienteResponder = exports.ZclienteResponder || (exports.ZclienteResponder = {}));
@@ -52126,12 +52139,12 @@ var Reducers;
                         eventosCamposEncolados: __assign(__assign({}, state.eventosCamposEncolados), (_a = {}, _a[action.infoEvento.idElemento] = action.infoEvento, _a))
                     }, state);
                 case actionTypes_1.ActionTypes.ZColaEventosClienteModule.LIMPIAR_COLA_EVENTOS_CLIENTE:
-                    return u({
-                        eventosCamposEncolados: {},
-                    }, state);
+                    return {};
                 case actionTypes_2.ActionTypes.ZPantexStateModule.ON_CAMPOCHANGE:
                     return u({
                         eventosCamposEncolados: __assign(__assign({}, state.eventosCamposEncolados), (_b = {}, _b[action.zcampoState.id] = {
+                            pxElemento: action.zcampoState.px,
+                            idElemento: action.zcampoState.id,
                             cmd: zcommon_1.Constants.ComandoEnum.CM_CAMBIOCMP,
                             buffer: "<nc>" + action.zcampoState.nomCmp + "</nc><vc>" + action.valor + "</vc>",
                         }, _b))
@@ -52283,24 +52296,24 @@ var CM;
             constants_1.Constants.ComandoEnum.CM_ADICIONAR,
             {
                 icono: "glyphicon glyphicon-plus",
-                hotKey: 'Shift Control a',
-                hotKeyTitle: 'Shift Control a',
+                hotKey: 'Control Alt a',
+                hotKeyTitle: 'Ctrl+Alt+a',
             },
         ],
         [
             constants_1.Constants.ComandoEnum.CM_MODIFICAR,
             {
                 icono: "glyphicon glyphicon-pencil",
-                hotKey: 'Shift Control m',
-                hotKeyTitle: 'Shift Control m',
+                hotKey: 'Control Alt m',
+                hotKeyTitle: 'Ctrl+Alt+m',
             },
         ],
         [
             constants_1.Constants.ComandoEnum.CM_CONSULTAR,
             {
                 icono: "glyphicon glyphicon-book",
-                hotKey: 'Shift Control c',
-                hotKeyTitle: 'Shift Control c',
+                hotKey: 'Control Alt c',
+                hotKeyTitle: 'Ctrl+Alt+c',
             },
         ],
         [
@@ -52313,32 +52326,32 @@ var CM;
             constants_1.Constants.ComandoEnum.CM_PRIMERO,
             {
                 icono: "glyphicon glyphicon-fast-backward",
-                hotKeyTitle: 'shift ↓',
-                hotKey: 'Shift+ArrowDown',
+                hotKeyTitle: 'Ctrl+↓',
+                hotKey: 'Control+ArrowDown',
             },
         ],
         [
             constants_1.Constants.ComandoEnum.CM_ANTREG,
             {
                 icono: "glyphicon glyphicon-step-backward",
-                hotKey: 'Shift+ArrowLeft',
-                hotKeyTitle: 'shift ←',
+                hotKey: 'Control+ArrowLeft',
+                hotKeyTitle: 'Ctrl+←',
             },
         ],
         [
             constants_1.Constants.ComandoEnum.CM_SGTEREG,
             {
                 icono: "glyphicon glyphicon-step-forward",
-                hotKey: 'Shift+ArrowRight',
-                hotKeyTitle: 'shift →',
+                hotKey: 'Control+ArrowRight',
+                hotKeyTitle: 'Ctrl+→',
             },
         ],
         [
             constants_1.Constants.ComandoEnum.CM_ULTIMO,
             {
                 icono: "glyphicon glyphicon-fast-forward",
-                hotKey: 'Shift+ArrowUp',
-                hotKeyTitle: 'shift ↑',
+                hotKey: 'Control+ArrowUp',
+                hotKeyTitle: 'Ctrl+↑',
             },
         ],
         [
@@ -52357,79 +52370,80 @@ var CM;
             constants_1.Constants.ComandoEnum.CM_GRABAR,
             {
                 icono: "glyphicon glyphicon-floppy-save",
-                hotKeyTitle: '',
+                hotKey: 'Control Alt g',
+                hotKeyTitle: 'Ctrl+Alt+g',
             },
         ],
         [
             constants_1.Constants.ComandoEnum.CM_BUSCAR,
             {
                 icono: "glyphicon glyphicon-search",
-                hotKey: 'Shift Control b',
-                hotKeyTitle: 'Shift Control b',
+                hotKey: 'Control Alt b',
+                hotKeyTitle: 'Ctrl+Alt+b',
             },
         ],
         [
             constants_1.Constants.ComandoEnum.CM_DETALLAR,
             {
                 icono: "glyphicon glyphicon-open",
-                hotKey: 'Shift Control d',
-                hotKeyTitle: 'Shift Control d',
+                hotKey: 'Control Alt d',
+                hotKeyTitle: 'Ctrl+d',
             },
         ],
         [
             constants_1.Constants.ComandoEnum.CM_SELECCIONAR,
             {
                 icono: "glyphicon glyphicon-list",
-                hotKey: 'Shift Control s',
-                hotKeyTitle: 'Shift Control s',
+                hotKey: 'Control Alt s',
+                hotKeyTitle: 'Ctrl+Alt+s',
             },
         ],
         [
             constants_1.Constants.ComandoEnum.CM_BORRAR,
             {
                 icono: "glyphicon glyphicon-trash",
-                hotKey: 'Shift Control r',
-                hotKeyTitle: 'Shift Control r',
+                hotKey: 'Control Alt r',
+                hotKeyTitle: 'Ctrl+Alt+r',
             },
         ],
         [
             constants_1.Constants.ComandoEnum.CM_ANTPAG,
             {
                 icono: "glyphicon glyphicon-step-backward",
-                hotKey: 'Shift Control ArrowLeft',
-                hotKeyTitle: 'Shift Control ←',
+                hotKey: 'Control Shift ArrowLeft',
+                hotKeyTitle: 'Ctrl+Shift+←',
             },
         ],
         [
             constants_1.Constants.ComandoEnum.CM_SGTEPAG,
             {
                 icono: "glyphicon glyphicon-step-forward",
-                hotKey: 'Shift Control ArrowRight',
-                hotKeyTitle: 'Shift Control →',
+                hotKey: 'Control Shift ArrowRight',
+                hotKeyTitle: 'Ctrl+Shift+→',
             },
         ],
         [
             constants_1.Constants.ComandoEnum.CM_ADICIONARLINEA,
             {
                 icono: "glyphicon glyphicon-plus-sign",
-                hotKey: 'Shift Control n',
-                hotKeyTitle: 'Shift Control n',
+                hotKey: 'Control Alt n',
+                hotKeyTitle: 'Ctrl+Alt+n',
             },
         ],
         [
             constants_1.Constants.ComandoEnum.CM_INSERTARLINEA,
             {
                 icono: "glyphicon glyphicon-indent-left",
-                hotKey: 'Shift Control i',
-                hotKeyTitle: 'Shift Control i',
+                hotKey: 'Control Alt i',
+                hotKeyTitle: 'Ctrl+Alt+i',
             },
         ],
         [
             constants_1.Constants.ComandoEnum.CM_ELIMINARLINEA,
             {
                 icono: "glyphicon glyphicon-minus-sign",
-                hotKey: 'Shift Control e',
-                hotKeyTitle: 'Shift Control e',
+                hotKey: 'Control Alt e',
+                hotKeyTitle: 'Ctrl+Alt+e',
             },
         ],
     ]);
@@ -55134,7 +55148,7 @@ module.exports = {"modp1":{"gen":"02","prime":"ffffffffffffffffc90fdaa22168c234c
 /* 578 */
 /***/ (function(module, exports) {
 
-module.exports = {"_args":[["elliptic@6.4.0","/Users/mac/Azen/Azen.API.NetCore.ReactJS/Azen.API/wwwroot/azenweb"]],"_development":true,"_from":"elliptic@6.4.0","_id":"elliptic@6.4.0","_inBundle":false,"_integrity":"sha1-ysmvh2LIWDYYcAPI3+GT5eLq5d8=","_location":"/elliptic","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"elliptic@6.4.0","name":"elliptic","escapedName":"elliptic","rawSpec":"6.4.0","saveSpec":null,"fetchSpec":"6.4.0"},"_requiredBy":["/browserify-sign","/create-ecdh"],"_resolved":"https://registry.npmjs.org/elliptic/-/elliptic-6.4.0.tgz","_spec":"6.4.0","_where":"/Users/mac/Azen/Azen.API.NetCore.ReactJS/Azen.API/wwwroot/azenweb","author":{"name":"Fedor Indutny","email":"fedor@indutny.com"},"bugs":{"url":"https://github.com/indutny/elliptic/issues"},"dependencies":{"bn.js":"^4.4.0","brorand":"^1.0.1","hash.js":"^1.0.0","hmac-drbg":"^1.0.0","inherits":"^2.0.1","minimalistic-assert":"^1.0.0","minimalistic-crypto-utils":"^1.0.0"},"description":"EC cryptography","devDependencies":{"brfs":"^1.4.3","coveralls":"^2.11.3","grunt":"^0.4.5","grunt-browserify":"^5.0.0","grunt-cli":"^1.2.0","grunt-contrib-connect":"^1.0.0","grunt-contrib-copy":"^1.0.0","grunt-contrib-uglify":"^1.0.1","grunt-mocha-istanbul":"^3.0.1","grunt-saucelabs":"^8.6.2","istanbul":"^0.4.2","jscs":"^2.9.0","jshint":"^2.6.0","mocha":"^2.1.0"},"files":["lib"],"homepage":"https://github.com/indutny/elliptic","keywords":["EC","Elliptic","curve","Cryptography"],"license":"MIT","main":"lib/elliptic.js","name":"elliptic","repository":{"type":"git","url":"git+ssh://git@github.com/indutny/elliptic.git"},"scripts":{"jscs":"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js","jshint":"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js","lint":"npm run jscs && npm run jshint","test":"npm run lint && npm run unit","unit":"istanbul test _mocha --reporter=spec test/index.js","version":"grunt dist && git add dist/"},"version":"6.4.0"}
+module.exports = {"_args":[["elliptic@6.4.0","D:\\joseW\\azen\\Azen.API.Middleware\\Azen.API\\wwwroot\\azenweb"]],"_development":true,"_from":"elliptic@6.4.0","_id":"elliptic@6.4.0","_inBundle":false,"_integrity":"sha1-ysmvh2LIWDYYcAPI3+GT5eLq5d8=","_location":"/elliptic","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"elliptic@6.4.0","name":"elliptic","escapedName":"elliptic","rawSpec":"6.4.0","saveSpec":null,"fetchSpec":"6.4.0"},"_requiredBy":["/browserify-sign","/create-ecdh"],"_resolved":"https://registry.npmjs.org/elliptic/-/elliptic-6.4.0.tgz","_spec":"6.4.0","_where":"D:\\joseW\\azen\\Azen.API.Middleware\\Azen.API\\wwwroot\\azenweb","author":{"name":"Fedor Indutny","email":"fedor@indutny.com"},"bugs":{"url":"https://github.com/indutny/elliptic/issues"},"dependencies":{"bn.js":"^4.4.0","brorand":"^1.0.1","hash.js":"^1.0.0","hmac-drbg":"^1.0.0","inherits":"^2.0.1","minimalistic-assert":"^1.0.0","minimalistic-crypto-utils":"^1.0.0"},"description":"EC cryptography","devDependencies":{"brfs":"^1.4.3","coveralls":"^2.11.3","grunt":"^0.4.5","grunt-browserify":"^5.0.0","grunt-cli":"^1.2.0","grunt-contrib-connect":"^1.0.0","grunt-contrib-copy":"^1.0.0","grunt-contrib-uglify":"^1.0.1","grunt-mocha-istanbul":"^3.0.1","grunt-saucelabs":"^8.6.2","istanbul":"^0.4.2","jscs":"^2.9.0","jshint":"^2.6.0","mocha":"^2.1.0"},"files":["lib"],"homepage":"https://github.com/indutny/elliptic","keywords":["EC","Elliptic","curve","Cryptography"],"license":"MIT","main":"lib/elliptic.js","name":"elliptic","repository":{"type":"git","url":"git+ssh://git@github.com/indutny/elliptic.git"},"scripts":{"jscs":"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js","jshint":"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js","lint":"npm run jscs && npm run jshint","test":"npm run lint && npm run unit","unit":"istanbul test _mocha --reporter=spec test/index.js","version":"grunt dist && git add dist/"},"version":"6.4.0"}
 
 /***/ }),
 /* 579 */
@@ -96277,6 +96291,29 @@ module.exports = function(originalModule) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(515);
+
+
+/***/ }),
+/* 1080 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var actionTypes_1 = __webpack_require__(528);
+var Actions;
+(function (Actions) {
+    var ZColaEventosClienteModule;
+    (function (ZColaEventosClienteModule) {
+        ZColaEventosClienteModule.encolarEventoCliente = function (infoEvento) { return ({
+            type: actionTypes_1.ActionTypes.ZColaEventosClienteModule.ENCOLAR_EVENTO_CLIENTE,
+            infoEvento: infoEvento
+        }); };
+        ZColaEventosClienteModule.limpiarColaEventosCliente = function () { return ({
+            type: actionTypes_1.ActionTypes.ZColaEventosClienteModule.LIMPIAR_COLA_EVENTOS_CLIENTE,
+        }); };
+    })(ZColaEventosClienteModule = Actions.ZColaEventosClienteModule || (Actions.ZColaEventosClienteModule = {}));
+})(Actions = exports.Actions || (exports.Actions = {}));
 
 
 /***/ })
