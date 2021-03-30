@@ -388,13 +388,35 @@ namespace Azen.API.Sockets.Comunications
             string cadena = SocketClienteEnviar(buffer);
 
             //Obtiene puerto y tkns
-            string puertoSrvAplicacion = GetTagValue(ZTag.ZTAG_PSC, cadena);
+            int puertoSrvAplicacion = Int32.Parse(GetTagValue(ZTag.ZTAG_PSC, cadena));
             string tkns = GetTagValue(ZTag.ZTAG_TKNS, cadena);
+
+            InitSocket(puertoSrvAplicacion, tkns);
 
             _logHandler.Info($"ZSocket EjecutarSoloOpcion puertoSrvAplicacion: {puertoSrvAplicacion}, tkns: {tkns}");
 
             string datoTkns = ZTag.ZTAG_I_TKNS + tkns + ZTag.ZTAG_F_TKNS;
-            return EjecutarEvento(2, 0, ZCommandConst.CM_EJECOPCION, "", "", aplicacion, Int32.Parse(puertoSrvAplicacion), datoTkns);
+            return EjecutarEvento(2, 0, ZCommandConst.CM_EJECOPCION, "", "", aplicacion, puertoSrvAplicacion, datoTkns);
+        }
+
+        private void InitSocket(int puertoSrvAplicacion, string tkns)
+        {
+            int exit = 1;
+            while (exit <= 10)
+            {
+                Thread.Sleep(100);
+                try
+                {
+                    IniciarSocketCliente(puertoSrvAplicacion);
+                    SetTknsOpenSocket(puertoSrvAplicacion, tkns);
+                    break;
+                }
+                catch (Exception ex)
+                {
+                    _logHandler.Info($"Aplicacion InitSocket error {ex.ToString()}");
+                    exit++;
+                }
+            }
         }
 
         public string EjecutarEvento(int tipo, int tec, int cmd, string info, string buffer, string aplicacion, int puerto, string datoTkn)

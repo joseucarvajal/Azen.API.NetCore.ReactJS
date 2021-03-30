@@ -89,7 +89,7 @@ namespace Azen.API.Models.ZCommand.Interceptors
                 int exit = 1;
                 while (exit <= 10)
                 {
-                    Thread.Sleep(300);
+                    Thread.Sleep(100);
                     try
                     {
                         _zsck.IniciarSocketCliente(puertoSrvAplicacion);
