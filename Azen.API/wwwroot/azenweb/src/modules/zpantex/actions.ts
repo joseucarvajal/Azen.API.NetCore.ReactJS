@@ -31,6 +31,7 @@ import { ActionTypes } from "./actionTypes";
 import { ResultadoActionConDato } from "../zutils";
 
 import { Actions as ZAplicacionActions } from "../zaplicacion/actions";
+import { Actions as ZColaEventosClienteActions } from "../zcola-eventos-cliente/actions";
 import { Selectors } from "./selectors";
 
 export namespace DTO {
@@ -720,7 +721,11 @@ export namespace Actions {
           buffer
         )
       ).then(
-        (resultadoDesparcharEvento: ResultadoActionConDato<IZColaEventos>) => {}
+        (resultadoDesparcharEvento: ResultadoActionConDato<IZColaEventos>) => {
+          dispatch(ZColaEventosClienteActions.ZColaEventosClienteModule.desEncolarEventoCliente(
+            zcampoState.id
+          ));
+        }
       );
     };
 

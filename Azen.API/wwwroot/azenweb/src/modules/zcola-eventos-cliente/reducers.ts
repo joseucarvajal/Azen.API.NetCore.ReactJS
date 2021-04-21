@@ -33,10 +33,20 @@ export namespace Reducers {
                         }
                     } as ZColaEventosClienteState, state);
 
+                case ActionTypes.ZColaEventosClienteModule.DESENCOLAR_EVENTO_CLIENTE:
+                    const { [action.idElemento]: value, ...withoutEvent } = state.eventosCamposEncolados;
+                    return {
+                       eventosCamposEncolados: withoutEvent
+                    } as ZColaEventosClienteState;
+
                 case ActionTypes.ZColaEventosClienteModule.LIMPIAR_COLA_EVENTOS_CLIENTE:
                     return {} as ZColaEventosClienteState;    
                     
                 case ActionTypesZPantexModule.ZPantexStateModule.ON_CAMPOCHANGE:
+                    if(action.zcampoState.haCambiado === false){
+                        return state;
+                    }
+
                     return u({
                         eventosCamposEncolados: { 
                             ...state.eventosCamposEncolados, 

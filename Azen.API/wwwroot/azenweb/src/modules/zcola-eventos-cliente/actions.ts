@@ -10,6 +10,11 @@ export namespace Actions {
             infoEvento
         });
 
+        export const desEncolarEventoCliente = (idElemento: number): ActionTypes.ZColaEventosClienteModule.Action => ({
+            type: ActionTypes.ZColaEventosClienteModule.DESENCOLAR_EVENTO_CLIENTE,
+            idElemento
+        });
+
         export const limpiarColaEventosCliente = (): ActionTypes.ZColaEventosClienteModule.Action => ({
             type: ActionTypes.ZColaEventosClienteModule.LIMPIAR_COLA_EVENTOS_CLIENTE,
         });
