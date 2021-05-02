@@ -76,7 +76,7 @@ namespace Azen.API.Models.ZTransferFile
 
                 try
                 {
-                    _zTransferFile.Upload(fullPath);
+                    _zTransferFile.Upload(fullPath, request.File.FileName);
                     resultEvent = _zSocket.EjecutarEvento(2, 0, request.Cmd, "", request.Buffer, request.IdAplication, request.Port, request.Tkns);
                 }
                 catch (Exception e)

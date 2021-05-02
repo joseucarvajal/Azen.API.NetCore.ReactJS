@@ -24,7 +24,12 @@ namespace Azen.API.Sockets.Comunications.ZFile
             _logHandler = logHandler;
         }
 
-        public void Upload(string fileToUpload)
+        public void Upload(string fileToUpload, string fileName)
+        {
+            File.Copy(fileToUpload, Path.Combine(_zTransferFileSettings.TargetPath, fileName));
+        }
+
+        public void UploadSftp(string fileToUpload)
         {
             var sftpClient = GetSftpClient();
 
