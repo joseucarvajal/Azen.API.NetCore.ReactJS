@@ -13,5 +13,7 @@ namespace Azen.API.Sockets.Comunications.ZFile
         public int Port { get; set; }
         public string AuthMethod { get; set; }
         public string TargetPath { get; set; }
+        public bool UploadSftp { get; set; }
+        
     }
 }

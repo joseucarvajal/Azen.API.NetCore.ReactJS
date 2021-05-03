@@ -26,10 +26,17 @@ namespace Azen.API.Sockets.Comunications.ZFile
 
         public void Upload(string fileToUpload, string fileName)
         {
-            File.Copy(fileToUpload, Path.Combine(_zTransferFileSettings.TargetPath, fileName));
+            if (_zTransferFileSettings.UploadSftp)
+            {
+                UploadSftp(fileToUpload);
+            }
+            else
+            {
+                File.Copy(fileToUpload, Path.Combine(_zTransferFileSettings.TargetPath, fileName));
+            }
         }
 
-        public void UploadSftp(string fileToUpload)
+        private void UploadSftp(string fileToUpload)
         {
             var sftpClient = GetSftpClient();
 
