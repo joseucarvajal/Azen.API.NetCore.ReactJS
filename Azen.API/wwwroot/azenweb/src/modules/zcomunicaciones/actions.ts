@@ -47,7 +47,7 @@ export namespace Actions {
             cmd,
             buffer: getCipherText(buffer),
             log: getState().nivelLog,
-            tkns: getState().zLoginModule.tkns,
+            tokenJWT: getState().zLoginModule.tkns,
             ...parametros.optionalParams,
           } as ZCommandDTO;
 

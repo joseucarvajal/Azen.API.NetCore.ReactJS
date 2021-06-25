@@ -42,6 +42,7 @@ export class EntityMap<TEntity> {
 export interface ZCommandDTO {
   tkna: string;
   tkns: string;
+  tokenJWT: string,
   idAp: string;
   port: number;
   buffer: string;

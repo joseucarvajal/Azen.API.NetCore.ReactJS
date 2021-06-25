@@ -52615,7 +52615,7 @@ var Actions;
                     tkns: getState().zLoginModule.tkns,
                 });
                 var port = sessionStorage.getItem(ZCommon.Constants.SessionStorageKeyEnum.AZEN_PUERTO);
-                var request = __assign({ port: port ? parseInt(port) : 0, cmd: cmd, buffer: zcriptography_1.getCipherText(buffer), log: getState().nivelLog, tkns: getState().zLoginModule.tkns }, parametros.optionalParams);
+                var request = __assign({ port: port ? parseInt(port) : 0, cmd: cmd, buffer: zcriptography_1.getCipherText(buffer), log: getState().nivelLog, tokenJWT: getState().zLoginModule.tkns }, parametros.optionalParams);
                 if (getState().nivelLog == 1) {
                     console.log("========================================================================================================================");
                     console.time(ZCommon.Constants.ComandoEnum[cmd] + " = " + cmd);
