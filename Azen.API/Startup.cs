@@ -61,15 +61,15 @@ namespace Azen.API
             services.AddTransient<ZSocket>();
 
             // Add Quartz services
-            services.AddSingleton<IJobFactory, SingletonJobFactory>();
-            services.AddSingleton<ISchedulerFactory, StdSchedulerFactory>();
-            services.AddHostedService<QuartzHostedService>();
+            //services.AddSingleton<IJobFactory, SingletonJobFactory>();
+            //services.AddSingleton<ISchedulerFactory, StdSchedulerFactory>();
+            //services.AddHostedService<QuartzHostedService>();
 
             // Add our job
-            services.AddSingleton<SocketJob>();
-            services.AddSingleton(new SocketJobSchedule(
-                jobType: typeof(SocketJob),
-                cronExpression: Configuration.GetSection("AzenSettings").GetValue<string>("CloseSocketCron")));
+            //services.AddSingleton<SocketJob>();
+            //services.AddSingleton(new SocketJobSchedule(
+            //    jobType: typeof(SocketJob),
+            //    cronExpression: Configuration.GetSection("AzenSettings").GetValue<string>("CloseSocketCron")));
 
 
             //Fluent Validators

@@ -53,7 +53,7 @@ namespace Azen.API.Sockets.Jobs
 
                 if (diffInSeconds >= _azenSettings.MaxTimeInactiveSocket)
                 {
-                    CloseAzenPort(Int32.Parse(openSocket.Key), openSocket.Value.Tkns);
+                    //CloseAzenPort(Int32.Parse(openSocket.Key), openSocket.Value.TokenJWT);
 
                     openSocket.Value.socket.Shutdown(SocketShutdown.Both);
                     //openSocket.Value.socket.Disconnect(true);
@@ -79,7 +79,7 @@ namespace Azen.API.Sockets.Jobs
             }
         }
 
-        private void CloseAzenPort(int port, string tkns)
+        /*private void CloseAzenPort(int port, string tkns)
         {
             string datoTkns = ZTag.ZTAG_I_TKNS + tkns + ZTag.ZTAG_F_TKNS;
 
@@ -88,6 +88,6 @@ namespace Azen.API.Sockets.Jobs
             string cadenaEnviar = cadEvento + datoTkns;
 
             _zsck.SocketClienteEnviar(cadenaEnviar, port, ZCommandConst.CM_TERMINAR);
-        }
+        }*/
     }
 }

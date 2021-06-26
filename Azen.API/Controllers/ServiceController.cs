@@ -188,7 +188,7 @@ namespace Azen.API.Controllers
             //Obtiene puerto donde se ejecuta la aplciacion
             int puertoSrvAplicacion = Int32.Parse(_zsck.GetTagValue(ZTag.ZTAG_PSC, cadena));
             string tkns = _zsck.GetTagValue(ZTag.ZTAG_TKNS, cadena);
-            _zsck.SetTknsOpenSocket(puertoSrvAplicacion, tkns);
+            //_zsck.SetTknsOpenSocket(puertoSrvAplicacion, tkns);
             _logHandler.Info(puertoSrvAplicacion);
             _logHandler.Info(tkns);
 
@@ -200,7 +200,7 @@ namespace Azen.API.Controllers
 
             string cadenaEnviar = cadEvento + datoTkns + cadenaXmlBody;
 
-            return _zsck.SocketClienteEnviar(cadenaEnviar, puertoSrvAplicacion, ZCommandConst.CM_EJECSERVICIO);
+            return _zsck.SocketClienteEnviar(cadenaEnviar, puertoSrvAplicacion, ZCommandConst.CM_EJECSERVICIO, tkns);
         }
 
         private string JsonToXml(string data)

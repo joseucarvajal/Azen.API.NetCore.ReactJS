@@ -3,9 +3,11 @@ using Azen.API.Sockets.Auth;
 using Azen.API.Sockets.Comunications;
 using Azen.API.Sockets.Domain.Command;
 using Azen.API.Sockets.General;
+using Azen.API.Sockets.Settings;
 using Azen.API.Sockets.Utils;
 using FluentValidation;
 using MediatR;
+using Microsoft.Extensions.Options;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -35,12 +37,14 @@ namespace Azen.API.Models.ZCommand.Interceptors
             ZSocket _zsck;
             AuthService _authService;
             LogHandler _logHandler;
+            private readonly IOptions<AzenSettings> _azenSettings;
 
-            public Handler(ZSocket zsck, AuthService authService, LogHandler logHandler)
+            public Handler(ZSocket zsck, AuthService authService, LogHandler logHandler, IOptions<AzenSettings> azenSettings)
             {
                 _zsck = zsck;
                 _authService = authService;
                 _logHandler = logHandler;
+                _azenSettings = azenSettings;
             }
 
             public async Task<string> Handle(Command request, CancellationToken cancellationToken)
@@ -73,18 +77,18 @@ namespace Azen.API.Models.ZCommand.Interceptors
                     return result;
                 }
 
-                InitSocket(puertoSrvAplicacion, tkns);
-
-                string token = _authService.GenerateJwtToken(new ZClaims
+                string tokenJWT = _authService.GenerateJwtToken(new ZClaims
                 {
                     Tkna = request.Tkna,
                     Tkns = tkns
                 });
 
-                return result.Replace($"<{ZTag.ZTAG_TKNS}>{tkns}</{ZTag.ZTAG_TKNS}>", $"<{ZTag.ZTAG_TKNS}>{token}</{ZTag.ZTAG_TKNS}>");
+                InitSocket(puertoSrvAplicacion, tokenJWT);
+
+                return result.Replace($"<{ZTag.ZTAG_TKNS}>{tkns}</{ZTag.ZTAG_TKNS}>", $"<{ZTag.ZTAG_TKNS}>{tokenJWT}</{ZTag.ZTAG_TKNS}>");
             }
 
-            private void InitSocket(int puertoSrvAplicacion, string tkns)
+            private void InitSocket(int puertoSrvAplicacion, string tokenJWT)
             {
                 int exit = 1;
                 while (exit <= 10)
@@ -92,8 +96,8 @@ namespace Azen.API.Models.ZCommand.Interceptors
                     Thread.Sleep(100);
                     try
                     {
-                        _zsck.IniciarSocketCliente(puertoSrvAplicacion);
-                        _zsck.SetTknsOpenSocket(puertoSrvAplicacion, tkns);
+                        _zsck.SetOpenSocket(_azenSettings.Value.IPC, puertoSrvAplicacion, tokenJWT);
+                        //_zsck.SetTknsOpenSocket(puertoSrvAplicacion, tokenJWT);
                         exit = 11;
                     }
                     catch (Exception ex)

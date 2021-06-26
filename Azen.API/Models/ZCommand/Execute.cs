@@ -56,13 +56,13 @@ namespace Azen.API.Models.ZCommand
                     case ZCommandConst.CM_DEFMENU:
                     case ZCommandConst.CM_EJECOPCION:            // opcion de menu desplegado
                     case ZCommandConst.CM_IRVENTANA_CS:
-                        return _zSocket.EjecutarEvento(2, 0, request.Cmd, request.Buffer, "", request.IdAplication, request.Port, request.Tkns);
+                        return _zSocket.EjecutarEvento(2, 0, request.Cmd, request.Buffer, "", request.IdAplication, request.Port, request.TokenJWT);
 
                     case ZCommandConst.CM_EJECSOLOOPCION:
                         return _zSocket.EjecutarSoloOpcion(request.IdAplication, request.Opcion, request.Buffer, null, request.Log, request.Tkna, request.RemoteIpAddress);
 
                     default:
-                        return _zSocket.EjecutarEvento(2, 0, request.Cmd, "", request.Buffer, request.IdAplication, request.Port, request.Tkns);
+                        return _zSocket.EjecutarEvento(2, 0, request.Cmd, "", request.Buffer, request.IdAplication, request.Port, request.TokenJWT);
                 }
             }
         }

@@ -1,12 +1,16 @@
 ﻿using Azen.API.Models.ZCommand;
 using Azen.API.Sockets.Comunications;
 using Azen.API.Sockets.Cryptography;
+using Azen.API.Sockets.Exceptions;
+using Azen.API.Sockets.Exceptions.Services;
 using Azen.API.Sockets.Helpers;
 using Azen.API.Sockets.Settings;
 using Azen.API.Sockets.Utils;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace Azen.API.Controllers
@@ -65,7 +69,16 @@ namespace Azen.API.Controllers
             command.Tkna = zClaims.Tkna;
             command.RemoteIpAddress = Request.HttpContext.Connection.RemoteIpAddress;
 
-            return await _mediator.Send(command);
+            //return await _mediator.Send(command);
+            
+            try
+            {
+                return await _mediator.Send(command);
+            }
+            catch (ZSessionEndedException)
+            {
+                return StatusCode((int)HttpStatusCode.Unauthorized, "Oopss!!!!");
+            }
         }
     }
 }

@@ -11,7 +11,7 @@ namespace Azen.API.Sockets.Domain.Command
     public class ZCommandDTO : IRequest<string>
     {
         public string Tkna { get; set; }
-        public string Tkns { get; set; }
+        public string TokenJWT { get; set; }
         public string IdAplication { get; set; }
         public int Port { get; set; }
         public string Buffer { get; set; }
@@ -22,7 +22,7 @@ namespace Azen.API.Sockets.Domain.Command
         public void CopyTo(ZCommandDTO target)
         {
             target.Tkna = Tkna;
-            target.Tkns = Tkns;
+            target.TokenJWT = TokenJWT;
             target.IdAplication = IdAplication;
             target.Port = Port;
             target.Buffer = Buffer;
