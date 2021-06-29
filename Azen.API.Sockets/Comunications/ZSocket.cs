@@ -168,6 +168,12 @@ namespace Azen.API.Sockets.Comunications
 
             lock (_zSocketState.OpenSockets)
             {
+                if (_zSocketState.OpenSockets.ContainsKey(puerto.ToString()))
+                {
+                    _zSocketState.OpenSockets[puerto.ToString()].socket.Shutdown(SocketShutdown.Both);
+                    _zSocketState.OpenSockets[puerto.ToString()].socket.Close();
+                }
+
                 _zSocketState.OpenSockets.Remove(puerto.ToString());
 
                 _zSocketState.OpenSockets.Add(puerto.ToString(), new ZSocketStateInfo
