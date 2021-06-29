@@ -100,11 +100,11 @@ namespace Azen.API.Sockets.Comunications
             socket = null;
         }
 
-        public void IniciarSocketCliente(int puerto, string tokenJWT)
+        public void IniciarSocketCliente(int puerto, string tkns)
         {
             try
             {
-                if(!CrearSckCliente(_azenSettings.Value.IPC, puerto, tokenJWT))
+                if(!CrearSckCliente(_azenSettings.Value.IPC, puerto, tkns))
                 {
                     _logHandler.Error($"No fue posible crear socket: {_azenSettings.Value.IPC}, puerto {puerto}");
                     throw new Exception($"No fue posible crear socket: {_azenSettings.Value.IPC}, puerto {puerto}");
@@ -125,17 +125,17 @@ namespace Azen.API.Sockets.Comunications
         /// <param name="servidor"></param>
         /// <param name="puerto"></param>
         /// <returns></returns>
-        public bool CrearSckCliente(string servidor, int puerto, string tokenJWT)
+        public bool CrearSckCliente(string servidor, int puerto, string tkns)
         {
             try
             {
-                if (_zSocketState.OpenSockets.ContainsKey(puerto.ToString()) && _zSocketState.OpenSockets[puerto.ToString()].TokenJWT != tokenJWT)
+                if (_zSocketState.OpenSockets.ContainsKey(puerto.ToString()) && _zSocketState.OpenSockets[puerto.ToString()].Tkns != tkns)
                 {
                     throw new ZSessionEndedException();
                 }
 
                 if (_zSocketState.OpenSockets.ContainsKey(puerto.ToString())
-                    && _zSocketState.OpenSockets[puerto.ToString()].TokenJWT == tokenJWT
+                    && _zSocketState.OpenSockets[puerto.ToString()].Tkns == tkns
                     && _azenSettings.Value.SocketOnline)
                 {
                     socket = _zSocketState.OpenSockets[puerto.ToString()].socket;
@@ -143,7 +143,7 @@ namespace Azen.API.Sockets.Comunications
                 }
                 else
                 {
-                    SetOpenSocket(servidor, puerto, tokenJWT);
+                    SetOpenSocket(servidor, puerto, tkns);
                 }
             }
             catch (ZSessionEndedException)
@@ -160,27 +160,27 @@ namespace Azen.API.Sockets.Comunications
             return true;
         }
 
-        public void SetOpenSocket(string servidor, int puerto, string tokenJWT)
+        public void SetOpenSocket(string servidor, int puerto, string tkns)
         {
+            if (_zSocketState.OpenSockets.ContainsKey(puerto.ToString()))
+            {
+                _zSocketState.OpenSockets[puerto.ToString()].socket.Shutdown(SocketShutdown.Both);
+                _zSocketState.OpenSockets[puerto.ToString()].socket.Close();
+            }
+
             /* Se crea el socket cliente */
             socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             socket.Connect(servidor, puerto);
 
             lock (_zSocketState.OpenSockets)
             {
-                if (_zSocketState.OpenSockets.ContainsKey(puerto.ToString()))
-                {
-                    _zSocketState.OpenSockets[puerto.ToString()].socket.Shutdown(SocketShutdown.Both);
-                    _zSocketState.OpenSockets[puerto.ToString()].socket.Close();
-                }
-
                 _zSocketState.OpenSockets.Remove(puerto.ToString());
 
                 _zSocketState.OpenSockets.Add(puerto.ToString(), new ZSocketStateInfo
                 {
                     socket = socket,
                     LastEvent = DateTime.Now,
-                    TokenJWT = tokenJWT
+                    Tkns = tkns
                 });
             }
         }
@@ -325,13 +325,13 @@ namespace Azen.API.Sockets.Comunications
         /// <param name="buffer">cadena contenedora del evento que se envia a la logica</param>
         /// <param name="puertoCliente">puerto servidor</param>
         /// <param name="cmd"></param>
-        public string SocketClienteEnviar(string buffer, int puertoCliente, int cmd, string tokenJWT)
+        public string SocketClienteEnviar(string buffer, int puertoCliente, int cmd, string tkns)
         {
             string result = string.Empty;
 
             string cadena = null;
 
-            IniciarSocketCliente(puertoCliente, tokenJWT);
+            IniciarSocketCliente(puertoCliente, tkns);
 
             try
             {
@@ -422,8 +422,7 @@ namespace Azen.API.Sockets.Comunications
 
             _logHandler.Info($"ZSocket EjecutarSoloOpcion puertoSrvAplicacion: {puertoSrvAplicacion}, tkns: {tkns}");
 
-            string datoTkns = ZTag.ZTAG_I_TKNS + tkns + ZTag.ZTAG_F_TKNS;
-            return EjecutarEvento(2, 0, ZCommandConst.CM_EJECOPCION, "", "", aplicacion, puertoSrvAplicacion, datoTkns);
+            return EjecutarEvento(2, 0, ZCommandConst.CM_EJECOPCION, "", "", aplicacion, puertoSrvAplicacion, tkns);
         }
 
         private void InitSocket(int puertoSrvAplicacion, string tkns)
@@ -446,17 +445,17 @@ namespace Azen.API.Sockets.Comunications
             }
         }
 
-        public string EjecutarEvento(int tipo, int tec, int cmd, string info, string buffer, string aplicacion, int puerto, string tokenJWT)
+        public string EjecutarEvento(int tipo, int tec, int cmd, string info, string buffer, string aplicacion, int puerto, string tkns)
         {
             _logHandler.Info("////////////////////////////////// ejecutarEvento aplicacion: " + aplicacion + ", Puerto: " + puerto.ToString() + ", cmd: " + cmd.ToString());
             string cadenaEnviar = new ZEvent(tipo, tec, cmd, info, buffer).ArmarCadenaSocket();
 
             // Cerios abr 2020
-            cadenaEnviar = cadenaEnviar + tokenJWT;
+            cadenaEnviar = cadenaEnviar + ZTag.ZTAG_I_TKNS + tkns + ZTag.ZTAG_F_TKNS;
 
             _logHandler.Info(cadenaEnviar);
 
-            return SocketClienteEnviar(cadenaEnviar, puerto, cmd, tokenJWT);
+            return SocketClienteEnviar(cadenaEnviar, puerto, cmd, tkns);
         }
 
         public string GetTagValue(string tag, string buffer)

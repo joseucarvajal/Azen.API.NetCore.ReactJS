@@ -9,6 +9,9 @@ using Azen.API.Sockets.Utils;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json.Linq;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -70,7 +73,23 @@ namespace Azen.API.Controllers
             command.RemoteIpAddress = Request.HttpContext.Connection.RemoteIpAddress;
 
             //return await _mediator.Send(command);
-            
+
+            if (!string.IsNullOrEmpty(command.TokenJWT))
+            {
+                var handler = new JwtSecurityTokenHandler();
+                var jsonToken = handler.ReadToken(command.TokenJWT);
+                var tokenS = jsonToken as JwtSecurityToken;
+                var jti = tokenS.Claims.First(claim => claim.Type == "ZClaims").Value;
+                dynamic data = JObject.Parse(jti);
+
+                command.TokenJWT = data.Tkns;
+            }
+
+            if (!string.IsNullOrEmpty(zClaims.Tkns))
+            {
+                command.TokenJWT = zClaims.Tkns;
+            }
+
             try
             {
                 return await _mediator.Send(command);

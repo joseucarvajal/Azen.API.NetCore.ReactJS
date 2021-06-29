@@ -83,12 +83,12 @@ namespace Azen.API.Models.ZCommand.Interceptors
                     Tkns = tkns
                 });
 
-                InitSocket(puertoSrvAplicacion, tokenJWT);
+                InitSocket(puertoSrvAplicacion, tkns);
 
                 return result.Replace($"<{ZTag.ZTAG_TKNS}>{tkns}</{ZTag.ZTAG_TKNS}>", $"<{ZTag.ZTAG_TKNS}>{tokenJWT}</{ZTag.ZTAG_TKNS}>");
             }
 
-            private void InitSocket(int puertoSrvAplicacion, string tokenJWT)
+            private void InitSocket(int puertoSrvAplicacion, string tkns)
             {
                 int exit = 1;
                 while (exit <= 10)
@@ -96,7 +96,7 @@ namespace Azen.API.Models.ZCommand.Interceptors
                     Thread.Sleep(100);
                     try
                     {
-                        _zsck.SetOpenSocket(_azenSettings.Value.IPC, puertoSrvAplicacion, tokenJWT);
+                        _zsck.SetOpenSocket(_azenSettings.Value.IPC, puertoSrvAplicacion, tkns);
                         //_zsck.SetTknsOpenSocket(puertoSrvAplicacion, tokenJWT);
                         exit = 11;
                     }

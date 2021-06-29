@@ -20,6 +20,6 @@ namespace Azen.API.Sockets.Comunications
     {
         public Socket socket { get; set; }
         public DateTime LastEvent { get; set; }
-        public string TokenJWT { get; set; }
+        public string Tkns { get; set; }
     }
 }
