@@ -14,5 +14,10 @@ namespace Azen.API.Controllers
         {
             return View();
         }
+
+        public ActionResult Portal()
+        {
+            return View();
+        }
     }
 }
