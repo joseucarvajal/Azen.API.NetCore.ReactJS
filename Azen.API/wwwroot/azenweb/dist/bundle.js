@@ -52637,6 +52637,11 @@ var Actions;
                     synchronous: true,
                 })
                     .then(function (response) {
+                    if (response.status == 401) {
+                        alert('Su sesi\u00F3n de trabajo ha expirado.\nPor favor inicie la aplicaci\u00F3n de nuevo.');
+                        window.close();
+                        return;
+                    }
                     dispatch(Actions.setProcesosServidor(false, parametros.tipoAJAXIndicador));
                     return response.text();
                 })

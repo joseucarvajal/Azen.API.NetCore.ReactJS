@@ -79,6 +79,11 @@ export namespace Actions {
             synchronous: true,
           } as any)
             .then((response) => {
+              if(response.status == 401){
+                alert('Su sesi\u00F3n de trabajo ha expirado.\nPor favor inicie la aplicaci\u00F3n de nuevo.');
+                window.close();
+                return;
+              }
               dispatch(
                 setProcesosServidor(false, parametros.tipoAJAXIndicador)
               );
