@@ -397,7 +397,7 @@ namespace Azen.API.Sockets.Comunications
             return SocketClienteEnviar(zCommandDTO.Buffer);
         }
 
-        public string EjecutarSoloOpcion(string aplicacion, string opcion, string buffer, string dominio, int log, string tkna, IPAddress remoteIpAddress)
+        public (string, string) EjecutarSoloOpcion(string aplicacion, string opcion, string buffer, string dominio, int log, string tkna, IPAddress remoteIpAddress)
         {
             string remoteIP = remoteIpAddress.ToString();
             string localIP = LocalIPAddress().ToString();
@@ -422,7 +422,10 @@ namespace Azen.API.Sockets.Comunications
 
             _logHandler.Info($"ZSocket EjecutarSoloOpcion puertoSrvAplicacion: {puertoSrvAplicacion}, tkns: {tkns}");
 
-            return EjecutarEvento(2, 0, ZCommandConst.CM_EJECOPCION, "", "", aplicacion, puertoSrvAplicacion, tkns);
+            var result = EjecutarEvento(2, 0, ZCommandConst.CM_EJECOPCION, "", "", aplicacion, puertoSrvAplicacion, tkns);
+            var newTkns = GetTagValue(ZTag.ZTAG_TKNS, result);
+
+            return (result.Replace($"<{ZTag.ZTAG_TKNS}>{newTkns}</{ZTag.ZTAG_TKNS}>", $"<{ZTag.ZTAG_TKNS}>{tkns}</{ZTag.ZTAG_TKNS}>"), tkns);
         }
 
         private void InitSocket(int puertoSrvAplicacion, string tkns)

@@ -1,4 +1,5 @@
 ﻿using Azen.API.Models.ZCommand.Interceptors;
+using Azen.API.Sockets.Auth;
 using Azen.API.Sockets.Comunications;
 using Azen.API.Sockets.Cryptography;
 using Azen.API.Sockets.Domain.Command;
@@ -31,14 +32,16 @@ namespace Azen.API.Models.ZCommand
             private readonly IMediator _mediator;
             private ZSocket _zSocket;
             private ZCryptography _zCryptography;
+            AuthService _authService;
 
             private readonly IValidator<CommandValidator> _commandValidator;
 
-            public Handler(IMediator mediator, ZSocket zSocket, ZCryptography zCryptography)
+            public Handler(IMediator mediator, ZSocket zSocket, ZCryptography zCryptography, AuthService authService)
             {
                 _mediator = mediator;
                 _zSocket = zSocket;
                 _zCryptography = zCryptography;
+                _authService = authService;
             }
 
             public async Task<string> Handle(Command request, CancellationToken cancellationToken)
@@ -59,8 +62,17 @@ namespace Azen.API.Models.ZCommand
                         return _zSocket.EjecutarEvento(2, 0, request.Cmd, request.Buffer, "", request.IdAplication, request.Port, request.TokenJWT);
 
                     case ZCommandConst.CM_EJECSOLOOPCION:
-                        return _zSocket.EjecutarSoloOpcion(request.IdAplication, request.Opcion, request.Buffer, null, request.Log, request.Tkna, request.RemoteIpAddress);
+                        {
+                            var (result, tkns) = _zSocket.EjecutarSoloOpcion(request.IdAplication, request.Opcion, request.Buffer, null, request.Log, request.Tkna, request.RemoteIpAddress);
 
+                            string tokenJWT = _authService.GenerateJwtToken(new ZClaims
+                            {
+                                Tkna = request.Tkna,
+                                Tkns = tkns
+                            });
+
+                            return result.Replace($"<{ZTag.ZTAG_TKNS}>{tkns}</{ZTag.ZTAG_TKNS}>", $"<{ZTag.ZTAG_TKNS}>{tokenJWT}</{ZTag.ZTAG_TKNS}>");
+                        }
                     default:
                         return _zSocket.EjecutarEvento(2, 0, request.Cmd, "", request.Buffer, request.IdAplication, request.Port, request.TokenJWT);
                 }
