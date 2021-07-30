@@ -116,7 +116,7 @@ let cargarAplicacion: (cfgObj:CfgObj) => void = (cfgObj:CfgObj) => {
     else {
         ReactDOM.render(
             <Provider store={store}>
-                <LoginPage/>
+                 <ZListadoAplicacionesContainer />
             </Provider>,
             document.getElementById("app-container")
         );
