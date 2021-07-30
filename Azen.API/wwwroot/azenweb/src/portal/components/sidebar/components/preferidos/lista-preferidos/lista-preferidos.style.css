@@ -1,0 +1,18 @@
+.grid-preferidos{
+    width: 280px;
+    padding-right: 5px;
+    padding-left: 0px;
+}  
+
+.fuente-h4{
+    color: rgba(247, 242, 242, 0.904);
+}
+
+.lista-vacia{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 0px;
+    margin: 0px;
+}

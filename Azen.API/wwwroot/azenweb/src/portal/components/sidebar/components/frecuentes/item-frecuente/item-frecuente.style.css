@@ -1,0 +1,34 @@
+.list-group{
+    margin: 0px;
+    height: auto;
+    cursor: pointer;
+}
+
+.list-group-item{
+    display: flex;
+    flex-direction: row;
+    background-color: transparent;
+    padding-bottom: 5px;
+    border: 0px;
+    text-align: left;
+}
+
+.list-group :hover{
+
+    transition: color 0.3s ease;
+    color: rgb(2, 37, 2);
+   
+}
+
+.item-titulo{
+    color: white;
+}
+
+.item-icono{
+    color: white;
+    padding-right: 10px;
+}
+
+a .list-group-item{
+    border-radius: 0px;
+}

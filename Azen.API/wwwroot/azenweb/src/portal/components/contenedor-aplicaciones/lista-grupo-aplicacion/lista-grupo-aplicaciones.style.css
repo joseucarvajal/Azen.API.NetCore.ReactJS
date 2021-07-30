@@ -1,0 +1,23 @@
+.grid-lista-grupo-app{
+    width: auto;
+    margin: 0px;
+}
+
+.div-nombre-area{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items:center ;
+}
+
+.icono-area{
+    padding-right: 10px;
+    size: 40px;
+    color: #2595be;
+}
+
+
+hr{
+    height: 1px;
+    background-color:  #25be2f;
+}

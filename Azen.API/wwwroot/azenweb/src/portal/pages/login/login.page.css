@@ -1,0 +1,73 @@
+body{
+   
+background: radial-gradient(ellipse at center, #9FC639 0%, #5DA433 50%, #1F4C16 100%);
+}
+
+.bienvenido{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px 25px 30px;
+    margin: 0 auto 25px;
+    margin-top: 60px;
+}
+
+.titulo-bienvenido{
+    color: white;
+    font-weight: 700;
+}
+
+.mt-5{
+    margin-top: 20px;
+}
+
+.mb-5{
+    margin-bottom: 20px;
+}
+
+.m-30{
+    margin: 30px;
+}
+
+.mt-30{
+    margin-top: 30px;
+}
+
+.ml-5{
+    margin-left: 20px;
+}
+
+.mr-5{
+    margin-right: 20px;
+}
+
+.container-login{
+    /* background-color: #84f884; */
+    background-color: white;
+    padding: 20px 25px 30px;
+    margin: 0 auto 25px;
+    margin-top: 40px;
+    border-radius: 3px;
+    box-shadow: 5px 5px 15px 5px #000000;
+    
+}
+
+
+.btn-signin {
+    
+    background-color: rgb(12, 97, 33);
+    padding: 0px;
+    font-weight: 700;
+    font-size: 14px;
+    height: 36px;
+    border-radius: 3px;
+    border: none;
+    transition: all 0.218s;
+}
+
+.btn-signin:hover,
+.btn-signin:active,
+.btn-signin:focus {
+    background-color: rgb(18, 180, 59);
+}

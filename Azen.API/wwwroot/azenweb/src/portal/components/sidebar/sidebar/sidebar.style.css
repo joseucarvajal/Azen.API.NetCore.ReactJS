@@ -1,0 +1,34 @@
+.sidebar{
+    background: radial-gradient(ellipse at center, #9FC639 0%, #5DA433 50%, #1F4C16 100%);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    height: auto;
+    padding-left: 10px;
+    padding-right: 0px;
+    width: 300px;
+    position: relative;
+    top: 60px;
+}
+
+.sidebar-navbar{
+    
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+}
+
+.sidebar-navbar h3 {
+    font-weight: lighter;
+}
+
+a .sidebar-item .list-group-item{
+    border-radius: 0px;
+}
+
+.divider-sidebar{
+    width: 99%;
+    background-color: white;
+}

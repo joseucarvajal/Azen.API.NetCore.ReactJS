@@ -6,6 +6,8 @@
         "removeComments": true,
         "module": "commonjs",
         "preserveConstEnums": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
         "target": "es5",
         "jsx": "react",
         "lib": [

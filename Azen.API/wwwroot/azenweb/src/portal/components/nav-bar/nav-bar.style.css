@@ -1,0 +1,46 @@
+.navbar{
+    background: radial-gradient(ellipse at center, #9FC639 0%, #5DA433 50%, #1F4C16 100%);
+    width: 100vw;
+    border: 0px;
+    margin-bottom: 0px;
+    border-radius: 0px;
+    padding: 0px;
+    
+}
+
+.navbar-cliente{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.logo-azen{
+    height: 50px;
+    width: 100px;
+}
+
+.datos-cliente{
+    padding-left: 200px;
+}
+
+/* .logo-cliente{
+    height: 50px;
+
+} */
+
+.navbar-default .navbar-nav>li>a{
+    color: rgba(255, 255, 255, 0.644);
+    font-size: x-large;
+}
+
+.navbar-default .navbar-text{
+    color: white;
+    font-size: x-large; 
+}
+
+
+/* .navbar-default .navbar-toggle{
+    
+} */
+

@@ -1,0 +1,19 @@
+
+
+.contenedor-principal{
+  
+    position: relative;
+    top: 20px;
+    padding-bottom: 10px;
+    text-align: left;
+}
+
+.titulo-principal{
+    margin: 0px;
+    font-weight: bold;
+    color: #5DA433;
+    text-shadow: 2px 2px 0px #FFFFFF, 5px 4px 0px rgba(0,0,0,0.15);
+    margin-bottom: 10px;
+    text-align: center;
+
+}

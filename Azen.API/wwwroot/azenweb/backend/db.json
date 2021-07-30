@@ -1,0 +1,260 @@
+{
+  "datosIniciales":
+    {
+      "azen": "AZEN consultoria",
+      "logoAzen": "",
+      "cliente": "xxxxx",
+      "logoCliente": ""
+    },
+  "gruposAplicaciones":
+   [
+      {
+        "area":"Comercial",
+        "aplicaciones":
+        [
+          {
+            "apl":"azenaad",
+            "descr":"Actos administrativos",
+            "activo":"1"
+          },
+          {
+            "apl":"azencrt",
+            "descr":"Cartera de clientes",
+            "activo":"1"
+          },
+          {
+            "apl":"azenlon",
+            "descr":"Loteria online",
+            "activo":"1"
+          },
+          {
+            "apl":"azenltr",
+            "descr":"Loteria",
+            "activo":"1"
+          },
+          {
+            "apl":"azenonl",
+            "descr":"Loteria online",
+            "activo":"1"
+          },
+          {
+            "apl":"azenonla",
+            "descr":"Apostadores loteria online",
+            "activo":"1"
+          },
+          {
+            "apl":"azenonlv",
+            "descr":"loteria online-v",
+            "activo":"1"
+          },
+          {
+            "apl":"azenprm",
+            "descr":"Manejo promocionales - loteria",
+            "activo":"1"
+          }
+        ]
+      },
+      {
+        "area":"Financiero",
+        "aplicaciones":
+        [
+          {
+            "apl":"azencau",
+            "descr":"Causaciones",
+            "activo":"1"
+          },
+          {
+            "apl":"azenctb",
+            "descr":"Contanilidad ver 2.0",
+            "activo":"1"
+          },
+          {
+            "apl":"azennmn",
+            "descr":"Nomina",
+            "activo":"1"
+          },
+          {
+            "apl":"azenprs",
+            "descr":"Presupuesto ver 2.0",
+            "activo":"1"
+          }
+        ]
+      },
+      {
+        "area":"Administrativo",
+        "aplicaciones":
+        [
+          {
+            "apl":"azenact",
+            "descr":"Activos Fijos",
+            "activo":"1"
+          },
+          {
+            "apl":"azenalm",
+            "descr":"Almacen",
+            "activo":"1"
+          },
+          {
+            "apl":"azenaud",
+            "descr":"Auditoria",
+            "activo":"1"
+          },
+          {
+            "apl":"azenctn",
+            "descr":"Contratacion",
+            "activo":"1"
+          },
+          {
+            "apl":"azeninv",
+            "descr":"Inventario (comercial) ver 3.0",
+            "activo":"1"
+          },
+          {
+            "apl":"azenivt",
+            "descr":"Inventario (almacen)",
+            "activo":"1"
+          }
+        ]
+      },
+      {
+        "area":"Logistica",
+        "aplicaciones":
+        [
+          {
+            "apl":"azenejl",
+            "descr":"Ejecucion logistica",
+            "activo":"1"
+          },
+          {
+            "apl":"azengsl",
+            "descr":"Generales logistica",
+            "activo":"1"
+          },
+          {
+            "apl":"azenprg",
+            "descr":"Programacion logistica",
+            "activo":"1"
+          },
+          {
+            "apl":"azenmto",
+            "descr":"Mantenimiento",
+            "activo":"1"
+          }
+        ]
+      },
+      {
+        "area":"Por definir",
+        "aplicaciones":
+        [
+          {
+            "apl":"azenmsj",
+            "descr":"Mensajeria",
+            "activo":"1"
+          }
+        ]
+      }
+  ],
+  "opcionesPreferidas":
+  [
+    {
+      "apl":"azenprs",
+      "opc":"prsinf_InformeEjecucionEgresos",
+      "descrOpc":"Informe de presupuesto de gasto .",
+      "activo":"1"
+    },
+    {
+      "apl":"azenctb",
+      "opc":"cta_BalancePrueba",
+      "descrOpc":"Genera el Balance de Prueba",
+      "activo":"1"
+    },
+    {
+      "apl":"azenprs",
+      "opc":"prsmen_Ejecutar",
+      "descrOpc":"Edicion de movimientos.",
+      "activo":"1"
+    },
+    {
+      "apl":"azenctb",
+      "opc":"asi_Ejecutar",
+      "descrOpc":"Edita los asientos de diario del mes activo",
+      "activo":"1"
+    }
+  ],
+  "opcionesFrecuentes":
+  [
+    {
+      "apl":"azenetl",
+      "opc":"etlproc_EjecutarExtraccionLoteria",
+      "descrOpc":"Proceso para la extraccion de datos del modulo de lazenetl",
+      "activo":"1"
+    },
+    {
+      "apl":"azenaad",
+      "opc":"aadmen_Ejecutar",
+      "descrOpc":"Editar, listar, movimientos.",
+      "activo":"1"
+    },
+    {
+      "apl":"zabd",
+      "opc":"zabd_TblExpTexto",
+      "descrOpc":"Exporta datos de una tabla a formato texto",
+      "activo":"1"
+    },
+    {
+      "apl":"zabd",
+      "opc":"zabd_TblEditarMulti",
+      "descrOpc":"Edita una tabla en forma multirregistro",
+      "activo":"1"
+    },
+    {
+      "apl":"azenaut",
+      "opc":"autmsvr_ResultadosSorteo",
+      "descrOpc":"Constulta los resultados de un sorteo",
+      "activo":"1"
+    },
+    {
+      "apl":"azenadm",
+      "opc":"zapl_Despachar",
+      "descrOpc":"Maneja las aplicaciones instaladas",
+      "activo":"1"
+    },
+    {
+      "apl":"azenmsj",
+      "opc":"msjenc_EjecutarMensajes",
+      "descrOpc":"Edita los encabezados de mensajes",
+      "activo":"1"
+    },
+    {
+      "apl":"azenbdd",
+      "opc":"bddgrl_Visualizar",
+      "descrOpc":"Opcion de visualizacion de tablas.",
+      "activo":"1"
+    },
+    {
+      "apl":"azensgd",
+      "opc":"sgdcten_Ejecutar",
+      "descrOpc":"Edita los encabezados de catalogo",
+      "activo":"1"
+    },
+    {
+      "apl":"zabd",
+      "opc":"zabd_CargarAConexion",
+      "descrOpc":"Exporta y carga datos a una base de datos",
+      "activo":"1"
+    }
+  ],
+  "soporte":
+  [
+    {
+      "opc":"Atencion al cliente",
+      "descr":"http:/atencionalcliente.com",
+      "img":"http:/imagenatencion.jpg"
+    },
+    {
+      "opc":"Soporte tecnico",
+      "descr":"http:/soporte.com",
+      "img":"http:/soporteimagen.jpg"
+    }
+  ]
+}

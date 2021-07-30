@@ -1,0 +1,14 @@
+.lista-horizontal{
+    display: inline-block;
+    flex-wrap: wrap;
+    list-style-type: none;
+}
+
+.item-aplicacion .item-titulo{
+    color: green;
+}
+
+.item-icono-app{
+    color: #25be2f;
+    padding-right: 8px;
+}

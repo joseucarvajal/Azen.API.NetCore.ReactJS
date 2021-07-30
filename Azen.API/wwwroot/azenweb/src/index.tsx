@@ -43,6 +43,8 @@ import {
 
 import { Actions as ZcomunicacionesActions } from "./modules/zcomunicaciones";
 import { ResultadoActionConDato } from './modules/zutils';
+import LoginPage from './portal/pages/login/Login.page';
+import HomePage from './portal/pages/home/Home.page';
 
 console.log("Stage: " + process.env.NODE_ENV);
 
@@ -103,7 +105,7 @@ let cargarAplicacion: (cfgObj:CfgObj) => void = (cfgObj:CfgObj) => {
     if ((idApl && nombreOpcion) || (idApl && nomApl && lanzarMenu)) {
         ReactDOM.render(
             <Provider store={store}>
-                <ZAplicacionContainer />
+                <LoginPage/>
             </Provider>,
             document.getElementById("app-container")
         );
@@ -114,7 +116,7 @@ let cargarAplicacion: (cfgObj:CfgObj) => void = (cfgObj:CfgObj) => {
     else {
         ReactDOM.render(
             <Provider store={store}>
-                <ZListadoAplicacionesContainer />
+                <LoginPage/>
             </Provider>,
             document.getElementById("app-container")
         );
