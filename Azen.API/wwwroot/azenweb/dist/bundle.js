@@ -55385,19 +55385,6 @@ var Services;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var __importStar = (this && this.__importStar) || function (mod) {
     if (mod && mod.__esModule) return mod;
     var result = {};
@@ -55410,48 +55397,36 @@ var React = __importStar(__webpack_require__(0));
 var react_bootstrap_1 = __webpack_require__(14);
 __webpack_require__(1079);
 var ZUtils = __importStar(__webpack_require__(33));
-var LoginPage = (function (_super) {
-    __extends(LoginPage, _super);
-    function LoginPage(props) {
-        var _this = _super.call(this, props) || this;
-        _this.onIngresarClick = _this.onIngresarClick.bind(_this);
-        _this.onUsernameChanged = _this.onUsernameChanged.bind(_this);
-        _this.onPasswordChanged = _this.onPasswordChanged.bind(_this);
-        return _this;
-    }
-    LoginPage.prototype.render = function () {
-        return (React.createElement(React.Fragment, null,
-            React.createElement(react_bootstrap_1.Grid, { className: "mt-5" },
-                React.createElement(react_bootstrap_1.Row, { className: "mt-5 ml-5 mr-5" },
-                    React.createElement(react_bootstrap_1.Col, { lg: 5, md: 6, sm: 12, className: "bienvenido text-success" },
-                        React.createElement("h1", { className: "shadow-sm text-success mt-8 p-3 text-center rounded titulo-bienvenido" }, "Bienvenido"),
-                        React.createElement("img", { className: "mt-5", src: "https://github.com/marcelaTrujilloToro/loteriApp.ionic.react/blob/main/public/assets/img/splash/LoteriApp_azen_96x30.png?raw=true", alt: "" })),
-                    React.createElement(react_bootstrap_1.Col, { lg: 7, md: 6, sm: 12, className: "p-5 m-auto shadow-sm rounded-lg text-center container-login" },
-                        React.createElement("h2", { className: "shadow-sm text-success mt-30 p-3 text-center rounded " }, "Ingreso"),
-                        React.createElement("img", { className: "mt-5", src: "https://img.icons8.com/cute-clipart/64/26e07f/password.png", alt: "icon" }),
-                        React.createElement(react_bootstrap_1.Form, { className: "m-30" },
-                            React.createElement(react_bootstrap_1.FormGroup, { controlId: "formBasicEmail" },
-                                React.createElement("h4", null, "Usuario:"),
-                                React.createElement(react_bootstrap_1.FormControl, { type: "username", placeholder: "Nombre usuario", onChange: this.onUsernameChanged })),
-                            React.createElement(react_bootstrap_1.FormGroup, { controlId: "formBasicPassword" },
-                                React.createElement("h4", null, "Contrase\u00F1a:"),
-                                React.createElement(react_bootstrap_1.FormControl, { type: "password", placeholder: "Contrase\u00F1a", onChange: this.onPasswordChanged })),
-                            React.createElement(react_bootstrap_1.Button, { bsStyle: "success btn-block mt-5 mb-5 btn-signin", bsSize: "large", type: "button", onClick: this.onIngresarClick }, "Ingresar")))))));
-    };
-    LoginPage.prototype.onIngresarClick = function () {
+exports.LoginPage = function (props) {
+    var onIngresarClick = function () {
         var idApl = ZUtils.Services.getQueryStringParameter("idApl");
         var nombreOpcion = ZUtils.Services.getQueryStringParameter("opcion");
-        this.props.despacharLogin(idApl, nombreOpcion);
+        props.despacharLogin(idApl, nombreOpcion);
     };
-    LoginPage.prototype.onUsernameChanged = function (e) {
-        this.props.usernameChanged(e.target.value);
+    var onUsernameChanged = function (e) {
+        props.usernameChanged(e.target.value);
     };
-    LoginPage.prototype.onPasswordChanged = function (e) {
-        this.props.passwordChanged(e.target.value);
+    var onPasswordChanged = function (e) {
+        props.passwordChanged(e.target.value);
     };
-    return LoginPage;
-}(React.Component));
-exports.LoginPage = LoginPage;
+    return (React.createElement(React.Fragment, null,
+        React.createElement(react_bootstrap_1.Grid, { className: "mt-5" },
+            React.createElement(react_bootstrap_1.Row, { className: "mt-5 ml-5 mr-5" },
+                React.createElement(react_bootstrap_1.Col, { lg: 5, md: 6, sm: 12, className: "bienvenido text-success" },
+                    React.createElement("h1", { className: "shadow-sm text-success mt-8 p-3 text-center rounded titulo-bienvenido" }, "Bienvenid@"),
+                    React.createElement("img", { className: "mt-5", src: "https://github.com/marcelaTrujilloToro/loteriApp.ionic.react/blob/main/public/assets/img/splash/LoteriApp_azen_96x30.png?raw=true", alt: "" })),
+                React.createElement(react_bootstrap_1.Col, { lg: 7, md: 6, sm: 12, className: "p-5 m-auto shadow-sm rounded-lg text-center container-login" },
+                    React.createElement("h2", { className: "shadow-sm text-success mt-30 p-3 text-center rounded " }, "Ingreso"),
+                    React.createElement("img", { className: "mt-5", src: "https://img.icons8.com/cute-clipart/64/26e07f/password.png", alt: "icon" }),
+                    React.createElement(react_bootstrap_1.Form, { className: "m-30" },
+                        React.createElement(react_bootstrap_1.FormGroup, { controlId: "formBasicEmail" },
+                            React.createElement("h4", null, "Usuario:"),
+                            React.createElement(react_bootstrap_1.FormControl, { type: "username", placeholder: "Nombre usuario", value: props.zLoginModule.username, onChange: onUsernameChanged })),
+                        React.createElement(react_bootstrap_1.FormGroup, { controlId: "formBasicPassword" },
+                            React.createElement("h4", null, "Contrase\u00F1a:"),
+                            React.createElement(react_bootstrap_1.FormControl, { type: "password", placeholder: "Contrase\u00F1a", value: props.zLoginModule.password, onChange: onPasswordChanged })),
+                        React.createElement(react_bootstrap_1.Button, { bsStyle: "success btn-block mt-5 mb-5 btn-signin", bsSize: "large", type: "button", onClick: onIngresarClick }, "Ingresar")))))));
+};
 
 
 /***/ }),
