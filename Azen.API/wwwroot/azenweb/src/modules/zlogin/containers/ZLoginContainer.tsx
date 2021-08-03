@@ -14,6 +14,7 @@ import {
 } from '../components/ZLogin';
 
 import { Actions } from '../actions'
+import { LoginPage } from '../../../portal/pages/login/Login.page';
 
 const mapStateToProps = (appState: IZAplState): ConnectedState => ({    
     zLoginModule: appState.zLoginModule
@@ -31,4 +32,4 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<IZAplState, {}, AnyAction>):
 });
 
 export const ZLoginContainer: React.ComponentClass<OwnProps> =
-    connect<ConnectedState, ConnectedDispatch, OwnProps>(mapStateToProps, mapDispatchToProps)(ZLogin);
+    connect<ConnectedState, ConnectedDispatch, OwnProps>(mapStateToProps, mapDispatchToProps)(LoginPage);

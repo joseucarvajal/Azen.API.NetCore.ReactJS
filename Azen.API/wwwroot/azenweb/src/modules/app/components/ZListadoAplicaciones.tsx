@@ -56,7 +56,7 @@ export class ZListadoAplicaciones extends React.Component<
 
     return (
       <div className="apls-list">
-        {!apls || (apls.length == 0 && <LoginPage />)}
+        {!apls || (apls.length == 0 && <ZLoginContainer />)}
 
         <Grid>
           {/* {apls.length > 0 && (
