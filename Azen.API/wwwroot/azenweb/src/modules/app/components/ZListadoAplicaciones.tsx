@@ -20,7 +20,7 @@ import {
 import { ZProcesandoContainer } from "../../zaplicacion/containers/ZProcesandoContainer";
 import { ZLoginContainer } from "../../zlogin/containers/ZLoginContainer";
 import { ZAplicacionContainer } from "../../zaplicacion/containers/ZAplicacionContainer";
-import LoginPage from "../../../portal/pages/login/Login.page";
+import {LoginPage} from "../../../portal/pages/login/Login.page";
 
 export interface OwnProps {}
 

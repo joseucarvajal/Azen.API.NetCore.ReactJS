@@ -1,5 +1,5 @@
 import * as React from "react";
-import LoginPage from '../pages/login/Login.page';
+import {LoginPage} from '../pages/login/Login.page';
 
 
 import {
@@ -16,7 +16,7 @@ const AppRouter = () => {
             <div>
                 <Switch> 
                     <Route exact path="/login">
-                        <LoginPage/>
+                        {/* <LoginPage/> */}
                     </Route>
                     
                 </Switch>
