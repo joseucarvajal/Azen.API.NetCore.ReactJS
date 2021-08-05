@@ -44,7 +44,7 @@ export const LoginPage: React.FunctionComponent <OwnProps & ConnectedState & Con
   };
 
   return (
-    <>
+    <div className="fondo-login">
       <Grid className="mt-5">
         <Row className="mt-5 ml-5 mr-5">
           <Col lg={5} md={6} sm={12} className="bienvenido text-success">
@@ -107,6 +107,6 @@ export const LoginPage: React.FunctionComponent <OwnProps & ConnectedState & Con
           </Col>
         </Row>
       </Grid>
-    </>
+    </div>
   );
 };

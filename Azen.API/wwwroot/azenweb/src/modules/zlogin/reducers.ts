@@ -20,7 +20,16 @@ export namespace Reducers {
         const zLoginModule = {
             username: '',
             password: '',
-            zAplList: { apls: [] } as IZAplList,
+            // zAplList: { apls: [] } as IZAplList,
+            zAplList:
+                {
+                    datosIniciales: {}, 
+                    gruposAplicaciones: [], 
+                    opcionesPreferidas: [], 
+                    opcionesFrecuentes: [],
+                    soporte: []
+            
+            } as IZAplList,
             resultadoAction: new ResultadoAction(),
             tkna: '',
             tkns: ''

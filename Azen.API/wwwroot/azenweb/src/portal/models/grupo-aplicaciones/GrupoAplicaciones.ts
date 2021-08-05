@@ -1,6 +1,6 @@
 import {Aplicacion} from './Aplicacion';
 
-export interface GrupoAplicaciones{
+export interface GruposAplicaciones{
     area: string,
     aplicaciones: Aplicacion[] | undefined;
 }

@@ -3,6 +3,11 @@ import { ResultadoAction } from "../zutils/models";
 import { ZIconoBoton } from "./index";
 import { ZMenuItemContainer } from "../zmenu/containers/ZMenuItemContainer";
 import { ZColaEventosClienteState } from "./state";
+import { DatosIniciales } from "../../portal/models/datos-iniciales/datos-iniciales";
+import { GruposAplicaciones } from "../../portal/models/grupo-aplicaciones/GrupoAplicaciones";
+import { OpcionPreferido } from "../../portal/models/opciones-preferidas/OpcionPreferido";
+import { OpcionFrecuente } from "../../portal/models/opciones-frecuentes/OpcionFrecuente";
+import { OpcionSoporte } from "../../portal/models/opciones-soporte/OpcionSoporte";
 
 //#region =============================================== UTILS ===============================================
 export interface CfgObj {
@@ -183,7 +188,12 @@ export interface IZCampo extends IZCampoBase {
 }
 
 export interface IZAplList {
-  apls: Array<IZApl>;
+  // apls: Array<IZApl>;
+  datosIniciales: DatosIniciales,
+  gruposAplicaciones: GruposAplicaciones[],
+  opcionesPreferidas: OpcionPreferido[],
+  opcionesFrecuentes: OpcionFrecuente[],
+  soporte: OpcionSoporte[]
 }
 
 export interface IZApl {

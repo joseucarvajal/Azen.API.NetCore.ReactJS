@@ -20,7 +20,7 @@ import {
 import { ZProcesandoContainer } from "../../zaplicacion/containers/ZProcesandoContainer";
 import { ZLoginContainer } from "../../zlogin/containers/ZLoginContainer";
 import { ZAplicacionContainer } from "../../zaplicacion/containers/ZAplicacionContainer";
-import {LoginPage} from "../../../portal/pages/login/Login.page";
+import { HomeContainer } from "../../../portal/pages/home/HomeContainer";
 
 export interface OwnProps {}
 
@@ -39,7 +39,7 @@ export class ZListadoAplicaciones extends React.Component<
   }
 
   render() {
-    const { apls } = this.props.zLoginModule.zAplList;
+    const { datosIniciales, gruposAplicaciones, opcionesFrecuentes, opcionesPreferidas, soporte } = this.props.zLoginModule.zAplList;
 
     const azenPto = sessionStorage.getItem(
       ZCommon.Constants.SessionStorageKeyEnum.AZEN_PUERTO
@@ -56,18 +56,21 @@ export class ZListadoAplicaciones extends React.Component<
 
     return (
       <div className="apls-list">
-        {!apls || (apls.length == 0 && <ZLoginContainer />)}
+        {/* {!apls || (apls.length == 0 && <ZLoginContainer />)} */}
+        {!datosIniciales || (gruposAplicaciones.length == 0 && <ZLoginContainer/>)  }
 
-        <Grid>
+        {/* <Grid> */}
+
+          {gruposAplicaciones.length > 0 && <HomeContainer/>}
           {/* {apls.length > 0 && (
                     this.renderAplList(this.props.zLoginModule)
                 )} */}
 
-          {apls.length > 0 && this.rendersApls(apls)}
-          <hr />
-          {apls.length > 0 && this.rendersOpts(apls)}
+          {/* {apls.length > 0 && this.rendersApls(apls)} */}
+          {/* <hr /> */}
+          {/* {apls.length > 0 && this.rendersOpts(apls)} */}
 
-          <Row>
+          {/* <Row>
             <div
               style={{
                 display: "flex",
@@ -82,8 +85,8 @@ export class ZListadoAplicaciones extends React.Component<
                 style={{ marginBottom: "10px" }}
               />
             </div>
-          </Row>
-        </Grid>
+          </Row> */}
+        {/* </Grid> */}
         <ZProcesandoContainer />
       </div>
     );
@@ -182,50 +185,50 @@ export class ZListadoAplicaciones extends React.Component<
     return <span></span>;
   };
 
-  private renderAplList(zLoginModule: IZLoginModule) {
-    let zAplCols: Array<JSX.Element> = [];
+  // private renderAplList(zLoginModule: IZLoginModule) {
+  //   let zAplCols: Array<JSX.Element> = [];
 
-    zLoginModule.zAplList.apls.forEach((zApl: IZApl, index: number) => {
-      zAplCols.push(
-        <Col
-          key={"zAplCol" + index}
-          xs={12}
-          xsOffset={0}
-          sm={4}
-          smOffset={0}
-          md={4}
-          mdOffset={0}
-          lg={2}
-          lgOffset={index % 4 == 0 ? 2 : 0}
-        >
-        <Thumbnail src="azenweb/dist/img/azenLogo.jpg">
-            <h4>{zApl.descr}</h4>
-            <p>
-              <Button
-                bsStyle="primary"
-                value={zApl.apl}
-                href={`?idApl=${zApl.apl}&nomApl=${zApl.descr}&lanzarMenu=1`}
-                target="_blank"
-              >
-                Ejecutar
-              </Button>
-            </p>
-          </Thumbnail>
-        </Col>
-      );
-    });
+  //   zLoginModule.zAplList.apls.forEach((zApl: IZApl, index: number) => {
+  //     zAplCols.push(
+  //       <Col
+  //         key={"zAplCol" + index}
+  //         xs={12}
+  //         xsOffset={0}
+  //         sm={4}
+  //         smOffset={0}
+  //         md={4}
+  //         mdOffset={0}
+  //         lg={2}
+  //         lgOffset={index % 4 == 0 ? 2 : 0}
+  //       >
+  //       <Thumbnail src="azenweb/dist/img/azenLogo.jpg">
+  //           <h4>{zApl.descr}</h4>
+  //           <p>
+  //             <Button
+  //               bsStyle="primary"
+  //               value={zApl.apl}
+  //               href={`?idApl=${zApl.apl}&nomApl=${zApl.descr}&lanzarMenu=1`}
+  //               target="_blank"
+  //             >
+  //               Ejecutar
+  //             </Button>
+  //           </p>
+  //         </Thumbnail>
+  //       </Col>
+  //     );
+  //   });
 
-    const zAplsContainer: JSX.Element = (
-      <Grid
-        fluid
-        style={{
-          paddingTop: "2%",
-        }}
-      >
-        <Row>{zAplCols}</Row>
-      </Grid>
-    );
+  //   const zAplsContainer: JSX.Element = (
+  //     <Grid
+  //       fluid
+  //       style={{
+  //         paddingTop: "2%",
+  //       }}
+  //     >
+  //       {/* <Row>{zAplCols}</Row> */}
+  //     </Grid>
+  //   );
 
-    return zAplsContainer;
-  }
+  //   return zAplsContainer;
+  // }
 }

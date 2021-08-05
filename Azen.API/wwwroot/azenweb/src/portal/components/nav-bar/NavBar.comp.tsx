@@ -11,15 +11,19 @@ import {
   NavItem,
 } from "react-bootstrap";
 import { Link, NavLink } from "react-router-dom";
+import { IZLoginModule } from "../../../modules/zcommon";
 import { useDatosIniciales } from "../../hooks/datos-iniciales/useDatos.hook";
 import { useOpcionesSoporte } from "../../hooks/opciones-soporte/useOpcionesSoporte.hook";
 import { ItemSoporte } from "./components/ItemSoporte.comp";
 import "./nav-bar.style.css";
 
-export const NavBarComp = () => {
-  const [sidebar, setSidebar] = useState(false);
+export interface ConnectedState {
+  zLoginModule: IZLoginModule;
+}
 
-  const verSidebar = () => setSidebar(!sidebar);
+
+export const NavBarComp: React.FC <ConnectedState> = (props) => {
+  
 
   const { data: respuesta } = useDatosIniciales();
 
@@ -31,10 +35,10 @@ export const NavBarComp = () => {
         <img className="logo-azen" src="https://github.com/marcelaTrujilloToro/loteriApp.ionic.react/blob/main/public/assets/img/splash/LoteriApp_azen_96x30.png?raw=true"></img>
         <Navbar.Toggle />
         <div className="datos-cliente">
-          <Navbar.Text className="navbar-text">{respuesta?.cliente}</Navbar.Text>
+          <Navbar.Text className="navbar-text">{props.zLoginModule.zAplList.datosIniciales.cliente}</Navbar.Text>
           <img
             className="logo-cliente"
-            src={respuesta?.logoCliente}
+            src={props.zLoginModule.zAplList.datosIniciales.logoCliente}
             alt="logo cliente"
           ></img>
         </div>
@@ -43,7 +47,7 @@ export const NavBarComp = () => {
 
       <Nav pullRight>
       <NavDropdown title="Soporte" id="nav-dropdown" pullRight>
-          {respuestaSoporte?.map((opcionSoporte) => {
+          {props.zLoginModule.zAplList.soporte.map((opcionSoporte) => {
             return (
               <ItemSoporte
                 key={opcionSoporte.opc}

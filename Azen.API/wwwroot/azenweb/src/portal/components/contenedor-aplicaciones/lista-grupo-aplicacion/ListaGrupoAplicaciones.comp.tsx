@@ -1,12 +1,12 @@
 import React, { Fragment } from "react";
 import { Col, Glyphicon, Grid, Row } from "react-bootstrap";
-import { GrupoAplicaciones } from "../../../models/grupo-aplicaciones/GrupoAplicaciones";
+import { GruposAplicaciones } from "../../../models/grupo-aplicaciones/GrupoAplicaciones";
 import { ListaAplicaciones } from "../lista-aplicaciones/ListaAplicaciones.comp";
 import './lista-grupo-aplicaciones.style.css';
 
 
 type ListaGrupoAplicacionesProps = {
-  listaGrupoAplicaciones: GrupoAplicaciones[] | undefined;
+  listaGrupoAplicaciones: GruposAplicaciones[] | undefined;
 };
 
 export const ListaGrupoAplicaciones: React.FC<ListaGrupoAplicacionesProps> = (
