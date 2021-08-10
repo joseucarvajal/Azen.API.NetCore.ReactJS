@@ -1,11 +1,13 @@
 import * as React from "react";
 import { Grid } from "react-bootstrap";
+import { IZLoginModule } from "../../../../../../modules/zcommon/contracts";
 import { OpcionFrecuente } from "../../../../../models/opciones-frecuentes/OpcionFrecuente";
 import  ItemFrecuente  from "../item-frecuente/ItemFrecuente.comp";
 import './lista-frecuentes.style.css';
 
 type ListaFrecuentesProps = {
     listaFrecuentes: OpcionFrecuente[] | undefined;
+    zLoginModule: IZLoginModule;
 }
 
 const ListaFrecuente: React.FC <ListaFrecuentesProps> = (props) => {
@@ -25,7 +27,7 @@ const ListaFrecuente: React.FC <ListaFrecuentesProps> = (props) => {
                 <h4> Opciones frecuentes</h4>
                 <Grid className="grid-frecuentes">
                     {props.listaFrecuentes.map((opcionFrecuente) => {
-                        return <ItemFrecuente key={opcionFrecuente.opc} frecuente={opcionFrecuente}/>
+                        return <ItemFrecuente key={opcionFrecuente.opc} frecuente={opcionFrecuente} zLoginModule={props.zLoginModule}/>
                     })}   
                 </Grid>    
             </div>

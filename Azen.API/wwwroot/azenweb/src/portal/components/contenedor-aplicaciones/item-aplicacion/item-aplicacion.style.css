@@ -12,3 +12,18 @@
     color: #25be2f;
     padding-right: 8px;
 }
+
+a {
+    color: black;
+}
+
+.item-apl-titulo{
+    color: green;
+}
+
+.item-apl-titulo :hover{
+
+    transition: color 0.3s ease;
+    color: rgb(20, 78, 20);
+   
+}

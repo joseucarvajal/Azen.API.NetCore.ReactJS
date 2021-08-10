@@ -6,6 +6,7 @@ import './lista-aplicaciones.style.css';
 
 type ListaAplicacionesProps = {
     listaAplicaciones: Aplicacion[] | undefined;
+    zLoginModule: IZLoginModule;
 };
 
 
@@ -29,6 +30,7 @@ export const ListaAplicaciones: React.FC <ListaAplicacionesProps> = (props) => {
                   <ItemAplicacion
                     key={aplicacion.apl}
                     aplicacion={aplicacion}
+                    zLoginModule={props.zLoginModule}
                   />
                 );
               })}

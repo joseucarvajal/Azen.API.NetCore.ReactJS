@@ -106,7 +106,8 @@ let cargarAplicacion: (cfgObj:CfgObj) => void = (cfgObj:CfgObj) => {
     if ((idApl && nombreOpcion) || (idApl && nomApl && lanzarMenu)) {
         ReactDOM.render(
             <Provider store={store}>
-                <ZLoginContainer />
+                <ZAplicacionContainer/>
+                {/* <ZLoginContainer /> */}
             </Provider>,
             document.getElementById("app-container")
         );

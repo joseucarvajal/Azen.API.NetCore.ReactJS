@@ -13,12 +13,7 @@
     text-align: left;
 }
 
-.list-group :hover{
 
-    transition: color 0.3s ease;
-    color: rgb(2, 37, 2);
-   
-}
 
 .item-titulo{
     color: white;

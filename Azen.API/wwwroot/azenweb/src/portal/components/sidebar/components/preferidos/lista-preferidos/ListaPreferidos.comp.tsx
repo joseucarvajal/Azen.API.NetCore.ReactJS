@@ -1,11 +1,13 @@
 import React from "react";
 import { Grid } from "react-bootstrap";
+import { IZLoginModule } from "../../../../../../modules/zcommon/contracts";
 import { OpcionPreferido } from "../../../../../models/opciones-preferidas/OpcionPreferido";
 import ItemPreferido from "../item-preferidos/ItemPreferido.comp";
 import "./lista-preferidos.style.css";
 
 type ListaPreferidasProps = {
   listaPreferidos: OpcionPreferido[] | undefined;
+  zLoginModule: IZLoginModule;
 };
 
 const ListaPreferidos: React.FC<ListaPreferidasProps> = (props) => {
@@ -26,6 +28,7 @@ const ListaPreferidos: React.FC<ListaPreferidasProps> = (props) => {
               <ItemPreferido
                 key={opcionPreferida.opc}
                 preferido={opcionPreferida}
+                zLoginModule={props.zLoginModule}
               />
             );
           })}

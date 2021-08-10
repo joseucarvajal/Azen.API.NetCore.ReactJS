@@ -20,11 +20,11 @@ export const SidebarComp: React.FC <ConnectedState> = (props) => {
      
       <div className="sidebar-navbar">
          <div>
-           <ListaPreferidos listaPreferidos={props.zLoginModule.zAplList.opcionesPreferidas}/>
+           <ListaPreferidos listaPreferidos={props.zLoginModule.zAplList.opcionesPreferidas} zLoginModule={props.zLoginModule}/>
          </div>
          <hr className="divider-sidebar"/>
          <div>
-           <ListaFrecuente listaFrecuentes={props.zLoginModule.zAplList.opcionesFrecuentes}/>
+           <ListaFrecuente listaFrecuentes={props.zLoginModule.zAplList.opcionesFrecuentes} zLoginModule={props.zLoginModule} />
          </div>
       </div>
      

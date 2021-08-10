@@ -12,7 +12,7 @@ import "./portal.style.css";
 
 const Portal = () => {
   return (
-    <Grid className="grid-home">
+    <Grid className="grid-home zportal">
       <Row className="row-navbar">
         <Col>
           <NavbarContainer/>

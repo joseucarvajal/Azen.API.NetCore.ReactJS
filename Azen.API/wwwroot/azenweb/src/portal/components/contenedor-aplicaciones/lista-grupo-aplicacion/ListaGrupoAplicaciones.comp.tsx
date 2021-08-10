@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import { Col, Glyphicon, Grid, Row } from "react-bootstrap";
+import { IZLoginModule } from "../../../../modules/zcommon/contracts";
 import { GruposAplicaciones } from "../../../models/grupo-aplicaciones/GrupoAplicaciones";
 import { ListaAplicaciones } from "../lista-aplicaciones/ListaAplicaciones.comp";
 import './lista-grupo-aplicaciones.style.css';
@@ -7,6 +8,7 @@ import './lista-grupo-aplicaciones.style.css';
 
 type ListaGrupoAplicacionesProps = {
   listaGrupoAplicaciones: GruposAplicaciones[] | undefined;
+  zLoginModule: IZLoginModule;
 };
 
 export const ListaGrupoAplicaciones: React.FC<ListaGrupoAplicacionesProps> = (
@@ -27,6 +29,7 @@ export const ListaGrupoAplicaciones: React.FC<ListaGrupoAplicacionesProps> = (
                 </div>
                 <ListaAplicaciones
                   listaAplicaciones={grupoAplicaciones.aplicaciones}
+                  zLoginModule={props.zLoginModule}
                 />
                 <hr/>
               </Col>
