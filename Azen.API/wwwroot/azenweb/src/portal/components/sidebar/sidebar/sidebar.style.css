@@ -32,3 +32,7 @@ a .sidebar-item .list-group-item{
     width: 99%;
     background-color: white;
 }
+
+.sidebar a {
+    color: white;
+}
