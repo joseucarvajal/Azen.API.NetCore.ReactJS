@@ -84,7 +84,7 @@ export class ZPantex extends React.PureComponent<
                 return (
                   <div key={zFormaTablaI.id}>
                     <Panel
-                      bsStyle="primary"
+                      bsStyle="success"
                       style={{
                         marginBottom: "0px"
                       }}
@@ -101,7 +101,7 @@ export class ZPantex extends React.PureComponent<
                             <div style={{ float: "right", paddingTop: "6px" }}>
                               {this.props.zPantex.cmdCerrar && (
                                 <Button
-                                  bsStyle="info"
+                                  bsStyle="success"
                                   onClick={this.cerrarPantex}
                                   title="Cerrar"
                                 >

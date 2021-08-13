@@ -9,21 +9,17 @@ type ListaAplicacionesProps = {
     zLoginModule: IZLoginModule;
 };
 
-
-
 export const ListaAplicaciones: React.FC <ListaAplicacionesProps> = (props) => {
 
     if (props.listaAplicaciones === undefined) {
         return (
           <div className="lista-vacia">
             <h3>No hay aplicaciones disponibles</h3>
-            
           </div>
         );
       } else {
         return (
          
-           
             <div className="list-group grid-lista-aplicaciones">
               {props.listaAplicaciones.map((aplicacion) => {
                 return (
@@ -35,7 +31,6 @@ export const ListaAplicaciones: React.FC <ListaAplicacionesProps> = (props) => {
                 );
               })}
             </div>
-        
         );
       }
 }

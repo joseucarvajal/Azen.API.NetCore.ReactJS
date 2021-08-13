@@ -26,7 +26,7 @@ export class ZFormaTablaCmpsFijos extends React.PureComponent<
 
   render(): any {
     return (
-      <Panel bsStyle="info">
+      <Panel bsStyle="success">
         <Panel.Body>
           <Form horizontal>
             {this.props.zFormaTabla.camposFijosList.map(

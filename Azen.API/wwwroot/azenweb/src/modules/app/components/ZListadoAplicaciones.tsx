@@ -20,7 +20,7 @@ import {
 import { ZProcesandoContainer } from "../../zaplicacion/containers/ZProcesandoContainer";
 import { ZLoginContainer } from "../../zlogin/containers/ZLoginContainer";
 import { ZAplicacionContainer } from "../../zaplicacion/containers/ZAplicacionContainer";
-import { HomeContainer } from "../../../portal/pages/home/HomeContainer";
+import { PortalContainer } from "../../../portal/pages/portal/PortalContainer";
 
 export interface OwnProps {}
 
@@ -61,7 +61,7 @@ export class ZListadoAplicaciones extends React.Component<
 
         {/* <Grid> */}
 
-          {gruposAplicaciones.length > 0 && <HomeContainer/>}
+          {gruposAplicaciones.length > 0 && <PortalContainer/>}
           {/* {apls.length > 0 && (
                     this.renderAplList(this.props.zLoginModule)
                 )} */}

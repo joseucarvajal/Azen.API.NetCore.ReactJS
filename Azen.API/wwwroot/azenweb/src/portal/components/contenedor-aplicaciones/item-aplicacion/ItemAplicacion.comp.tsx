@@ -1,6 +1,5 @@
 import React from 'react';
-import { Glyphicon, ListGroup, ListGroupItem, NavItem } from 'react-bootstrap';
-import { ListItem } from 'react-bootstrap/lib/Media';
+import { Glyphicon, ListGroupItem, NavItem } from 'react-bootstrap';
 import { IZLoginModule } from '../../../../modules/zcommon';
 import { Aplicacion } from '../../../models/grupo-aplicaciones/Aplicacion';
 import './item-aplicacion.style.css';

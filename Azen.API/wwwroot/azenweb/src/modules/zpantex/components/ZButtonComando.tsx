@@ -31,7 +31,7 @@ export const ZButtonComando: FunctionComponent<ZButtonComandoProps> = ({
 
     return (
         <Button
-            bsStyle={esRegionActiva && esLineaEstadoButton  ? "info" : "default"}
+            bsStyle={esRegionActiva && esLineaEstadoButton  ? "success" : "default"}
             title={`${zComando.etq} - ${zComandoInfo?.hotKeyTitle}`}
             disabled={zComando.desh == 1}
             onClick={() => despacharComandoLineaEstado(zComando)}

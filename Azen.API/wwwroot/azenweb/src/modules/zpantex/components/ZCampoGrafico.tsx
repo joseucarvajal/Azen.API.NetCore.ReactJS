@@ -28,7 +28,7 @@ export default class ZCampoGrafico extends React.PureComponent<
     if (zCampoGrafico.etq == "@Rjuntura") {
       if (zCampoGrafico.cmpsState.length == 2) {
         return (
-          <Panel bsStyle="info">
+          <Panel bsStyle="success">
             <Panel.Body>
               {zCampoGrafico.cmpsState &&
                 zCampoGrafico.cmpsState.map(
@@ -61,7 +61,7 @@ export default class ZCampoGrafico extends React.PureComponent<
       }
 
       return (
-        <Panel bsStyle="info">
+        <Panel bsStyle="success">
           <Panel.Body>
             {zCampoGrafico.cmpsState &&
               zCampoGrafico.cmpsState.map(
@@ -88,7 +88,7 @@ export default class ZCampoGrafico extends React.PureComponent<
     }
 
     return (
-      <Panel bsStyle="info">
+      <Panel bsStyle="success">
         <Panel.Heading>{zCampoGrafico.etq.replace("@R", "")}</Panel.Heading>
         <Panel.Body>
           {zCampoGrafico.cmpsState &&

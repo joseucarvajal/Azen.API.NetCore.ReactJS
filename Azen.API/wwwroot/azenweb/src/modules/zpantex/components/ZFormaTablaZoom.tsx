@@ -101,7 +101,7 @@ export class ZFormaTablaZoom extends React.PureComponent<OwnProps & ConnectedDis
                                 <tr
                                     key={indexFila}
                                     style={{
-                                        backgroundColor: this.props.zFormaTabla.indexFilaMultiSeleccionada == indexFila ? "#D9EDF7" : "",
+                                        backgroundColor: this.props.zFormaTabla.indexFilaMultiSeleccionada == indexFila ? "#7dc67d" : "",
                                         cursor: "pointer"
                                     }}
                                     className="azn-seleccionar"

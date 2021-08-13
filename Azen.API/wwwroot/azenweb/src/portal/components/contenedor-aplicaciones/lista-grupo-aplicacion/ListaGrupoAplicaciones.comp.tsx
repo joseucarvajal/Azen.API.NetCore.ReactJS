@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { Col, Glyphicon, Grid, Row } from "react-bootstrap";
 import { IZLoginModule } from "../../../../modules/zcommon/contracts";
 import { GruposAplicaciones } from "../../../models/grupo-aplicaciones/GrupoAplicaciones";

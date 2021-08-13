@@ -43,8 +43,6 @@ import {
 
 import { Actions as ZcomunicacionesActions } from "./modules/zcomunicaciones";
 import { ResultadoActionConDato } from './modules/zutils';
-import {LoginPage} from './portal/pages/login/Login.page';
-import HomePage from './portal/pages/home/Home.page';
 import { ZLoginContainer } from './modules/zlogin/containers/ZLoginContainer';
 
 console.log("Stage: " + process.env.NODE_ENV);
@@ -107,7 +105,6 @@ let cargarAplicacion: (cfgObj:CfgObj) => void = (cfgObj:CfgObj) => {
         ReactDOM.render(
             <Provider store={store}>
                 <ZAplicacionContainer/>
-                {/* <ZLoginContainer /> */}
             </Provider>,
             document.getElementById("app-container")
         );
