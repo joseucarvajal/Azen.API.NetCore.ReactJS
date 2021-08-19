@@ -76,7 +76,7 @@ export const NavBarComp: React.FC<ConnectedState> = (props) => {
            }
 
           </NavDropdown>
-          <NavDropdown title="Soporte" id="nav-dropdown" pullRight>
+          <NavDropdown title="Centro de soporte" id="nav-dropdown" pullRight>
             {props.zLoginModule.zAplList.soporte.map((opcionSoporte) => {
               return (
                 <ItemSoporte
