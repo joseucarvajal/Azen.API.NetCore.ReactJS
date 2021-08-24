@@ -26,12 +26,12 @@ namespace Azen.API.Sockets.Utils
 
         public void Debug(object message)
         {
-            _log.Debug(message);
+            //_log.Debug(message);
         }
 
         public void Info(object message)
         {
-            _log.Info(message);
+            //_log.Info(message);
         }
 
         public void Error(object message)
@@ -41,7 +41,7 @@ namespace Azen.API.Sockets.Utils
 
         public void Warn(object message)
         {
-            _log.Warn(message);
+            //_log.Warn(message);
         }
 
         private void SetLog4NetConfiguration()
