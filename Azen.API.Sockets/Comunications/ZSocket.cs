@@ -162,26 +162,40 @@ namespace Azen.API.Sockets.Comunications
 
         public void SetOpenSocket(string servidor, int puerto, string tkns)
         {
-            if (_zSocketState.OpenSockets.ContainsKey(puerto.ToString()))
+            int exit = 1;
+            while (exit <= 10)
             {
-                _zSocketState.OpenSockets[puerto.ToString()].socket.Shutdown(SocketShutdown.Both);
-                _zSocketState.OpenSockets[puerto.ToString()].socket.Close();
-            }
-
-            /* Se crea el socket cliente */
-            socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            socket.Connect(servidor, puerto);
-
-            lock (_zSocketState.OpenSockets)
-            {
-                _zSocketState.OpenSockets.Remove(puerto.ToString());
-
-                _zSocketState.OpenSockets.Add(puerto.ToString(), new ZSocketStateInfo
+                Thread.Sleep(100);
+                try
                 {
-                    socket = socket,
-                    LastEvent = DateTime.Now,
-                    Tkns = tkns
-                });
+                    if (_zSocketState.OpenSockets.ContainsKey(puerto.ToString()))
+                    {
+                        _zSocketState.OpenSockets[puerto.ToString()].socket.Shutdown(SocketShutdown.Both);
+                        _zSocketState.OpenSockets[puerto.ToString()].socket.Close();
+                    }
+
+                    /* Se crea el socket cliente */
+                    socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                    socket.Connect(servidor, puerto);
+
+                    lock (_zSocketState.OpenSockets)
+                    {
+                        _zSocketState.OpenSockets.Remove(puerto.ToString());
+
+                        _zSocketState.OpenSockets.Add(puerto.ToString(), new ZSocketStateInfo
+                        {
+                            socket = socket,
+                            LastEvent = DateTime.Now,
+                            Tkns = tkns
+                        });
+                    }
+                    exit = 11;
+                }
+                catch (Exception ex)
+                {
+                    _logHandler.Info($"Aplicacion InitSocket error {ex.ToString()}");
+                    exit++;
+                }
             }
         }
 
