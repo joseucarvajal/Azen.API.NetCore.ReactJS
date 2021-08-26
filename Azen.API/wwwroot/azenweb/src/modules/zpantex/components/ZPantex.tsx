@@ -126,9 +126,11 @@ export class ZPantex extends React.PureComponent<
                             <Col
                               xs={12}
                               sm={6}
-                              md={3}
+                              md={6}
+                              lg={4}
                               smOffset={6}
-                              mdOffset={9}
+                              mdOffset={6}
+                              lgOffset={8}
                             >
                               <ZLineaEstadoContainer
                                 linEst={zFormaTablaI.linEstState}
