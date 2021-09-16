@@ -11,8 +11,8 @@ namespace Azen.API.Sockets.Domain.Service
         public HttpStatusCode Status { get; set; }
         public string Type { get; set; }
         public object Data { get; set; }
-        
-  
+
+    }
 
     public class ZColaServiceEventos
     {
