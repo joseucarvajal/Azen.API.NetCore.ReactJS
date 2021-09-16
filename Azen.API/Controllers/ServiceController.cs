@@ -81,19 +81,22 @@ namespace Azen.API.Controllers
 
         [HttpPost("{idaplicacion}/{opcion}/{log?}")]
         [Authorize]
-        public async Task<ActionResult<ZServiceResponse>> Post(
+        public async Task<ActionResult<Object>> Post(
                         [FromRoute] string idAplicacion,
                         [FromRoute] string opcion,
                         [FromRoute] int? log,
                         [FromBody] object json
             )
         {
-            return await SaveAccept(idAplicacion, opcion, log, json, System.Web.Mvc.HttpVerbs.Post);
+            var response =  await SaveAccept(idAplicacion, opcion, log, json, System.Web.Mvc.HttpVerbs.Post);
+
+            return response.Value.Data;
+
         }
 
         [HttpGet("{idaplicacion}/{opcion}/{log?}")]
         [Authorize]
-        public async Task<ActionResult<ZServiceResponse>> Get(
+        public async Task<ActionResult<Object>> Get(
                         [FromRoute] string idAplicacion,
                         [FromRoute] string opcion,
                         [FromRoute] int? log
@@ -102,8 +105,13 @@ namespace Azen.API.Controllers
             var urlParameters = HttpUtility.ParseQueryString(Request.QueryString.Value);
 
             var dictionary = urlParameters.AllKeys.ToDictionary(k => k, k => urlParameters[k]);
+            
 
-            return await SaveAccept(idAplicacion, opcion, log, dictionary, System.Web.Mvc.HttpVerbs.Get);
+            var response =  await SaveAccept(idAplicacion, opcion, log, dictionary, System.Web.Mvc.HttpVerbs.Get);
+
+            return response.Value.Data;
+
+
         }
 
 

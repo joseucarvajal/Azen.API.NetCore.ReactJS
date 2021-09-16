@@ -485,8 +485,11 @@ namespace Azen.API.Sockets.Comunications
             string responseStr = EjecutarServicio(zServiceDTO.IdAplication, zServiceDTO.Opcion, zServiceDTO.Tkna, zServiceDTO.Log, zServiceDTO.ObjectBuffer, zServiceDTO.Cmd, zServiceDTO.HttpMethod.ToString(), zServiceDTO.RemoteIpAddress);
 
             var zcolaResponse = JsonConvert.DeserializeObject<ZColaServiceEventos>(responseStr);
-
+           
+            
             ZServiceResponse response = zcolaResponse.Eventos.ElementAt(0).Dato.Buffer;
+
+            response.ChequearFormatoJsonData();
 
             if(response.Errors != null)
             {

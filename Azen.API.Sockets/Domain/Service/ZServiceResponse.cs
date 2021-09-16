@@ -11,6 +11,23 @@ namespace Azen.API.Sockets.Domain.Service
         public HttpStatusCode Status { get; set; }
         public string Type { get; set; }
         public object Data { get; set; }
+        
+        // Cerios 15/09/21: Se elimina doble llave en Data: Data= {{ ... }} a Data = { ... }
+        public void ChequearFormatoJsonData()
+        {
+            int i;
+            
+            string dato = Data.ToString();
+            
+            System.Text.StringBuilder sb = new System.Text.StringBuilder(dato);
+             for (i = 0; i < sb.Length; i++)
+            {
+                if (sb[i] == '\r' || sb[i] == '\n' ||  sb[i] == '\\' )
+                    sb[i] = ' ';
+            }
+             
+            Data = sb.ToString();
+        }
     }
 
     public class ZColaServiceEventos
