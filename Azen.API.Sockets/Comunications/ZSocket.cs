@@ -489,7 +489,6 @@ namespace Azen.API.Sockets.Comunications
             
             ZServiceResponse response = zcolaResponse.Eventos.ElementAt(0).Dato.Buffer;
 
-            response.ChequearFormatoJsonData();
 
             if(response.Errors != null)
             {
