@@ -16,6 +16,9 @@ namespace Azen.API.Sockets.Domain.Service
         public void ChequearFormatoJsonData()
         {
             int i;
+
+            if (null == Data)
+                return;
             
             string dato = Data.ToString();
             
