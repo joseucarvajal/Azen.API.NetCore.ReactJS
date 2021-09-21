@@ -11,10 +11,10 @@ type ListaAplicacionesProps = {
 
 export const ListaAplicaciones: React.FC <ListaAplicacionesProps> = (props) => {
 
-    if (props.listaAplicaciones === undefined) {
+    if (props.listaAplicaciones === undefined || props.listaAplicaciones.length === 0) {
         return (
           <div className="lista-vacia">
-            <h3>No hay aplicaciones disponibles</h3>
+            <h4>No hay aplicaciones disponibles</h4>
           </div>
         );
       } else {

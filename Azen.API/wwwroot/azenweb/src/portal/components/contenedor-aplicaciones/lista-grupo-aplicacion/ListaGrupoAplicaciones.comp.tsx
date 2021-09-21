@@ -14,8 +14,8 @@ type ListaGrupoAplicacionesProps = {
 export const ListaGrupoAplicaciones: React.FC<ListaGrupoAplicacionesProps> = (
   props
 ) => {
-  if (props.listaGrupoAplicaciones === undefined) {
-    return <h3>No hay grupos de aplicaciones</h3>;
+  if (props.listaGrupoAplicaciones === undefined || props.listaGrupoAplicaciones.length === 0) {
+    return <h4>No hay grupos de aplicaciones</h4>;
   } else {
     return (
       <Grid className="grid-lista-grupo-app">

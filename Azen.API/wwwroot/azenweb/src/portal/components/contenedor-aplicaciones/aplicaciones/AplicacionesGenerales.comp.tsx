@@ -10,10 +10,11 @@ export interface ConnectedState {
 export const AplicacionesGenerales: React.FC <ConnectedState> = (props) => {
 
     
-   if (props.zLoginModule.zAplList.gruposAplicaciones === undefined) {
+   if (props.zLoginModule.zAplList.gruposAplicaciones === undefined || props.zLoginModule.zAplList.gruposAplicaciones.length === 0) {
        return(
            <div className="contenedor-principal">
-               <h3>No hay aplicaciones disponibles</h3>
+               <h3 className="titulo-principal">APLICACIONES</h3>
+               <h4>No hay aplicaciones disponibles</h4>
            </div>
        )
    }else{
