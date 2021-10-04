@@ -21,8 +21,7 @@ export const ListaGrupoAplicaciones: React.FC<ListaGrupoAplicacionesProps> = (
       <Grid className="grid-lista-grupo-app">
         {props.listaGrupoAplicaciones.map((grupoAplicaciones) => {
           return (
-            <Row key={grupoAplicaciones.area}>
-              <Col>
+              <Col sm={3} md={4} lg={4} key={grupoAplicaciones.area}>
                 <div className="div-nombre-area">
                 <Glyphicon glyph="list-alt" className="icono-area"/>
                   <h4>{grupoAplicaciones.area}</h4>
@@ -31,9 +30,7 @@ export const ListaGrupoAplicaciones: React.FC<ListaGrupoAplicacionesProps> = (
                   listaAplicaciones={grupoAplicaciones.aplicaciones}
                   zLoginModule={props.zLoginModule}
                 />
-                <hr/>
               </Col>
-            </Row>
           );
         })}
       </Grid>

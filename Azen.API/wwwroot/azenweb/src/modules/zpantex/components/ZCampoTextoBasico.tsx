@@ -28,7 +28,6 @@ export interface ConnectedDispatch {
     onCampoChanged: (zcampoState: IZCampoState, valor: string) => void;
 }
 
-
 export class ZCampoTextoBasico extends React.PureComponent<OwnProps & ConnectedState & ConnectedDispatch, undefined>
 {
     private ref: any;    
@@ -41,6 +40,8 @@ export class ZCampoTextoBasico extends React.PureComponent<OwnProps & ConnectedS
         this.onChange = this.onChange.bind(this);
         this.onBlur = this.onBlur.bind(this);
     }
+
+    
 
 
     render() {
