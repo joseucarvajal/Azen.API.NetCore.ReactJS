@@ -584,7 +584,7 @@ export namespace CM {
     [
       Constants.ComandoEnum.CM_CONSULTAR,
       {
-        icono: "glyphicon glyphicon-book",
+        icono: "zicon zicon-zconsultar",
         hotKey: 'Control Alt c',
         hotKeyTitle: 'Ctrl+Alt+c',
       } as IZComandoDefinicion,
