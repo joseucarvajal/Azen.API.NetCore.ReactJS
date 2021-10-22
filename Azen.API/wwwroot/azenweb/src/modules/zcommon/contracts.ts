@@ -557,7 +557,7 @@ export namespace CM {
     [
       Constants.ComandoEnum.CM_AYUDA,
       {
-        icono: "glyphicon glyphicon-info-sign",
+        icono: "zico zico-ayuda",
         hotKey: '',
         hotKeyTitle: '',
       } as IZComandoDefinicion,
@@ -566,7 +566,7 @@ export namespace CM {
     [
       Constants.ComandoEnum.CM_ADICIONAR,
       {
-        icono: "glyphicon glyphicon-plus",
+        icono: "zico zico-adicionar",
         hotKey: 'Control Alt a',
         hotKeyTitle: 'Ctrl+Alt+a',
       } as IZComandoDefinicion,
@@ -575,7 +575,7 @@ export namespace CM {
     [
       Constants.ComandoEnum.CM_MODIFICAR,
       {
-        icono: "glyphicon glyphicon-pencil",
+        icono: "zico zico-modificar",
         hotKey: 'Control Alt m',
         hotKeyTitle: 'Ctrl+Alt+m',
       } as IZComandoDefinicion,
@@ -584,7 +584,7 @@ export namespace CM {
     [
       Constants.ComandoEnum.CM_CONSULTAR,
       {
-        icono: "zicon zicon-zconsultar",
+        icono: "zico zico-consultar",
         hotKey: 'Control Alt c',
         hotKeyTitle: 'Ctrl+Alt+c',
       } as IZComandoDefinicion,
@@ -593,14 +593,14 @@ export namespace CM {
     [
       Constants.ComandoEnum.CM_CERRAR,
       {
-        icono: "glyphicon glyphicon-remove",
+        icono: "zico zico-salir",
       } as IZComandoDefinicion,
     ],
 
     [
       Constants.ComandoEnum.CM_PRIMERO,
       {
-        icono: "glyphicon glyphicon-fast-backward",
+        icono: "zico zico-primero",
         //hotKey: 'shift+down',
         hotKeyTitle: 'Ctrl+↓',
         hotKey: 'Control+ArrowDown',
@@ -610,7 +610,7 @@ export namespace CM {
     [
       Constants.ComandoEnum.CM_ANTREG,
       {
-        icono: "glyphicon glyphicon-step-backward",
+        icono: "zico zico-anterior",
         hotKey: 'Control+ArrowLeft',
         hotKeyTitle: 'Ctrl+←',
       } as IZComandoDefinicion,
@@ -619,7 +619,7 @@ export namespace CM {
     [
       Constants.ComandoEnum.CM_SGTEREG,
       {
-        icono: "glyphicon glyphicon-step-forward",
+        icono: "zico zico-siguiente",
         hotKey: 'Control+ArrowRight',
         hotKeyTitle: 'Ctrl+→',
     
@@ -629,7 +629,7 @@ export namespace CM {
     [
       Constants.ComandoEnum.CM_ULTIMO,
       {
-        icono: "glyphicon glyphicon-fast-forward",
+        icono: "zico zico-ultimo",
         hotKey: 'Control+ArrowUp',
         hotKeyTitle: 'Ctrl+↑',
       } as IZComandoDefinicion,
@@ -652,7 +652,7 @@ export namespace CM {
     [
       Constants.ComandoEnum.CM_GRABAR,
       {
-        icono: "glyphicon glyphicon-floppy-save",
+        icono: "zico zico-grabar",
         hotKey: 'Control Alt g',
         hotKeyTitle: 'Ctrl+Alt+g',
       } as IZComandoDefinicion,
@@ -661,7 +661,7 @@ export namespace CM {
     [
       Constants.ComandoEnum.CM_BUSCAR,
       {
-        icono: "glyphicon glyphicon-search",
+        icono: "zico zico-buscar",
         hotKey: 'Control Alt b',
         hotKeyTitle: 'Ctrl+Alt+b',
       } as IZComandoDefinicion,
@@ -679,7 +679,7 @@ export namespace CM {
     [
       Constants.ComandoEnum.CM_SELECCIONAR,
       {
-        icono: "glyphicon glyphicon-list",
+        icono: "zico zico-seleccionar",
         hotKey: 'Control Alt s',
         hotKeyTitle: 'Ctrl+Alt+s',
       } as IZComandoDefinicion,
@@ -688,7 +688,7 @@ export namespace CM {
     [
       Constants.ComandoEnum.CM_BORRAR,
       {
-        icono: "glyphicon glyphicon-trash",
+        icono: "zico zico-eliminar",
         hotKey: 'Control Alt r',
         hotKeyTitle: 'Ctrl+Alt+r',
       } as IZComandoDefinicion,
@@ -715,7 +715,7 @@ export namespace CM {
     [
       Constants.ComandoEnum.CM_ADICIONARLINEA,
       {
-        icono: "glyphicon glyphicon-plus-sign",
+        icono: "zico zico-adicionar-linea",
         hotKey: 'Control Alt n',
         hotKeyTitle: 'Ctrl+Alt+n',
       } as IZComandoDefinicion,
@@ -724,7 +724,7 @@ export namespace CM {
     [
       Constants.ComandoEnum.CM_INSERTARLINEA,
       {
-        icono: "glyphicon glyphicon-indent-left",
+        icono: "zico zico-insertar-linea",
         hotKey: 'Control Alt i',
         hotKeyTitle: 'Ctrl+Alt+i',
       } as IZComandoDefinicion,
@@ -733,11 +733,23 @@ export namespace CM {
     [
       Constants.ComandoEnum.CM_ELIMINARLINEA,
       {
-        icono: "glyphicon glyphicon-minus-sign",
+        icono: "zico zico-eliminar-linea",
         hotKey: 'Control Alt e',
         hotKeyTitle: 'Ctrl+Alt+e',
       } as IZComandoDefinicion,
     ],
+    [
+      Constants.ComandoEnum.CM_EXPORTAR,
+      {
+        icono: "zico zico-exportar",
+      } as IZComandoDefinicion,
+    ],
+    [
+      Constants.ComandoEnum.CM_ACEPTAR,
+      {
+        icono: "zico zico-aceptar",
+      } as IZComandoDefinicion,
+    ]
   ]);
 
   /**

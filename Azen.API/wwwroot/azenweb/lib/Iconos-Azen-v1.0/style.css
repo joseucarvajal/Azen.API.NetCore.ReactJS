@@ -1,0 +1,138 @@
+@font-face {
+  font-family: 'Iconos-Azen';
+  src:
+    url('fonts/Iconos-Azen.ttf?1yctrh') format('truetype'),
+    url('fonts/Iconos-Azen.woff?1yctrh') format('woff'),
+    url('fonts/Iconos-Azen.svg?1yctrh#Iconos-Azen') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+.zico {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'Iconos-Azen' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.zico-mesa-de-trabajo:before {
+  content: "\e900";
+  color: #fff;
+}
+.zico-configuracion:before {
+  content: "\e901";
+  color: #324260;
+}
+.zico-preferido:before {
+  content: "\e902";
+  color: #c9d245;
+}
+.zico-calendario:before {
+  content: "\e903";
+  color: #fff;
+}
+.zico-usuario:before {
+  content: "\e904";
+  color: #324260;
+}
+.zico-fecha:before {
+  content: "\e905";
+  color: #324260;
+}
+.zico-salir:before {
+  content: "\e906";
+  color: #324260;
+}
+.zico-aceptar:before {
+  content: "\e907";
+  color: #324260;
+}
+.zico-ayuda:before {
+  content: "\e908";
+  color: #324260;
+}
+.zico-adicionar:before {
+  content: "\e909";
+  color: #324260;
+}
+.zico-modificar:before {
+  content: "\e90a";
+  color: #324260;
+}
+.zico-consultar:before {
+  content: "\e90b";
+  color: #324260;
+}
+.zico-primero:before {
+  content: "\e90c";
+  color: #324260;
+}
+.zico-anterior:before {
+  content: "\e90d";
+  color: #324260;
+}
+.zico-siguiente:before {
+  content: "\e90e";
+  color: #324260;
+}
+.zico-ultimo:before {
+  content: "\e90f";
+  color: #324260;
+}
+.zico-exportar:before {
+  content: "\e910";
+  color: #324260;
+}
+.zico-favorito:before {
+  content: "\e911";
+  color: #324260;
+}
+.zico-grabar:before {
+  content: "\e912";
+  color: #324260;
+}
+.zico-buscar:before {
+  content: "\e913";
+  color: #324260;
+}
+.zico-seleccionar:before {
+  content: "\e914";
+  color: #324260;
+}
+.zico-eliminar:before {
+  content: "\e915";
+  color: #324260;
+}
+.zico-adicionar-linea:before {
+  content: "\e916";
+  color: #324260;
+}
+.zico-insertar-linea:before {
+  content: "\e917";
+  color: #324260;
+}
+.zico-eliminar-linea:before {
+  content: "\e918";
+  color: #324260;
+}
+.zico-ultimo2:before {
+  content: "\e919";
+  color: #324260;
+}
+.zico-buscar-anterior:before {
+  content: "\e91a";
+  color: #324260;
+}
+.zico-bucar-siguiente:before {
+  content: "\e91b";
+  color: #324260;
+}
